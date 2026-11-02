@@ -1,0 +1,15 @@
+{
+  "_note": "Add one entry per Raya agent. kind=conversation for call agents. Copy agent UUIDs from the Raya dashboard after creating each agent.",
+  "targets": [
+    {
+      "id": "siza-en",
+      "name": "Siza — Blue Dots SA",
+      "file": "bot/prompts/raya/siza-en.md",
+      "kind": "conversation",
+      "language": "en",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "de59bc3f-780a-41b0-8ec8-9f9fb8826a05"
+    }
+  ]
+}

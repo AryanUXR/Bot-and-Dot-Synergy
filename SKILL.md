@@ -1,9 +1,11 @@
 # Blue Dots — Bot + Dot Prototype Skill
 
-Entry point. Read this file first, then `LESSONS.md` (mistakes from past builds and their fixes), then fetch only the sub-files your task needs via their raw GitHub URLs.
+Entry point. Read this file first, then `LESSONS.md` (mistakes from past builds and their fixes), then read only the sub-files your task needs.
 
-Base URL for all files:
-`https://raw.githubusercontent.com/AryanUXR/Bot-and-Dot-Synergy/main/`
+Read every file from the local clone, not from GitHub URLs. The repo is private, so raw GitHub links return 404.
+- Local clone: `/Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy`
+- Run `git pull` on `main` before starting so you have the latest lessons.
+- Remote, for pushing lessons back: `https://github.com/AryanUXR/Bot-and-Dot-Synergy` (`main`)
 
 ---
 

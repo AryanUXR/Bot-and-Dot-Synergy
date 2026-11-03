@@ -1,7 +1,7 @@
 # Kisaan Saathi — Persona Image Prompts (Gemini)
 
 Generated on Vertex AI with the `blue-dots-admin` service account (project blue-dots-project, role Agent Platform User), aspect ratio 16:9. Built from `image-generation/gemini-prompt-template.md`.
-Sunita: `gemini-2.5-flash-image`. Ganesh and Rahul: `gemini-3-pro-image`, regenerated with the v2 prompts below because v1 put a whole tractor inside Rahul's van and a badge on Ganesh's tractor.
+Sunita: `gemini-3-pro-image`, v2 close-up (v1 showed her too small to see her face). Ganesh and Rahul: `gemini-3-pro-image`, regenerated with the v2 prompts below because v1 put a whole tractor inside Rahul's van and a badge on Ganesh's tractor.
 Final photos: `images/` (JPEG copies). Live in the Lovable bot as src/assets/<persona-id>.png.asset.json.
 
 ## sunita-onion-farmer (early-stage seeker)
@@ -20,3 +20,6 @@ A 42-year-old Marathi man farmer with a short black moustache and only a little 
 
 ### rahul-tractor-mechanic
 A 29-year-old Marathi man tractor mechanic in a navy blue work shirt with grease marks, standing beside a small white service van with its rear doors open. Inside the van are only metal toolboxes, a hydraulic jack, spanners and a few spare parts on shelves, nothing large. Behind him, separate from the van, is the open bay of a modest roadside repair workshop in Ozar, Niphad taluka, Nashik district, Maharashtra, where a tractor stands on the workshop floor with its engine bonnet open. He holds a spanner, posture calm and ready, expression of quiet confidence. Dusty roadside and a peepal tree in the background. No text, logos, posters or readable signage anywhere. Natural midday daylight. Photorealistic. 16:9 horizontal framing.
+
+### sunita-onion-farmer
+Medium close-up portrait, framed from the waist up, of a 34-year-old Marathi woman onion farmer in Vinchur village, Niphad taluka, Nashik district, Maharashtra. Her face is the clear focus: large in the frame, sharply in focus, evenly lit by soft late-afternoon sunlight, turned three-quarters toward the camera with her eyes visible. She wears a cotton sari in deep green with a light cotton dupatta draped loosely over her hair, her face fully uncovered and unshadowed. She holds a basic mobile phone in one hand. Expression: worried but quietly determined, not smiling. She stands in the left half of the frame. Behind her, softly out of focus, rows of mature onion plants with yellowing leaves and a low kanda chawl storage shed with a corrugated tin roof. No text, logos or signage. Photorealistic. 16:9 horizontal framing.

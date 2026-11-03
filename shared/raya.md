@@ -14,11 +14,46 @@ Raya is the voice AI platform (LitWiz Labs) that powers all bot prototypes.
 | Local test scripts (`scripts/*.py`) | `RAYA_API_TOKEN` | `raya/.env` (git-ignored) |
 | Supabase edge function (Lovable bot) | `RAYA_API_KEY` | Supabase project → Edge Function secrets |
 
-Both hold the same key value. The name difference exists because the scripts were written independently of the Lovable edge function. Retrieve the key value from project memory.
+Both hold the same key value. The name difference exists because the scripts were written independently of the Lovable edge function. The key lives in `raya/.env`; if it is missing, ask the user once and write it there.
 
-## Creating / updating a Raya agent
+Full API docs: `https://docs.litwizlabs.com/llms.txt` (agents OpenAPI at `/api-reference/agents-openapi.json`).
 
-Deploy a prompt to an agent with a PATCH — this is the only write path:
+## Creating a Raya agent — do it via the API, not the dashboard
+
+```
+POST /api/agent
+X-API-Key: [key]
+Content-Type: application/json
+
+{
+  "name": "Kisaan Saathi Hindi · Green Dots Nashik",
+  "instructions": "[full conversation prompt]",
+  "output_instructions": "[how to fill output_fields]",
+  "output_fields": [{ "key": "persona", "description": "..." }, ...],
+  "language_id": "38695ff2-ee6f-4a1c-837b-27ab241377f7",   // Hindi India
+  "voice_id": "9a1dd39c-5125-4c63-afc7-ae9f917a8111",      // B. Arjun (Hindi, M)
+  "max_call_duration_mins": 4,
+  "call_duration_exceed_message": "[spoken line in the target language]",
+  "allow_interruption": true
+}
+```
+
+Returns 201 with the agent including `uuid`. Language and voice UUIDs: `/documentation/agent-language-options.md` and `/documentation/agent-voice-options.md` on the docs site. Pick a voice whose gender matches the prompt's self-references (Hindi "बोल रहा हूँ" is masculine). Record the uuid in `raya/agents.json`.
+
+List agents: `GET /api/agent?limit=100` → `{ "agents": [{ "id", "name", ... }] }`.
+
+### Memory — undocumented but supported
+
+The create schema has no memory field, but PATCH accepts it:
+
+```
+PATCH /api/agent/{uuid}
+{ "memory_enabled": true, "memory_instructions": "[memory prompt text]" }
+```
+
+Verified 2026-11-03: GET returns both fields afterwards.
+
+## Updating a Raya agent
 
 ```
 PATCH /api/agent/{agent_uuid}
@@ -28,7 +63,11 @@ Content-Type: application/json
 { "instructions": "[full system prompt text]" }
 ```
 
-**Critical:** `GET /api/agent/{uuid}` returns EMPTY instructions on Raya — never use GET to verify what is live. Verify against the PATCH response body, not a subsequent GET.
+Verify with `GET /api/agent/{uuid}`: as of Nov 2026 it returns full `instructions`, `output_fields`, `output_instructions`, `memory_instructions` and settings. Compare against the local file (strip trailing whitespace). Older note that GET returned empty instructions no longer applies.
+
+## Ending the call — hard rule
+
+Raya hangs up when the agent says the word `Goodbye` (Latin script) at the end of its turn. Every closing line must end with exactly `Goodbye`, once, nothing after it. Without it the agent and the caller trade goodbyes until the call-duration limit. See `bot/prompt-anatomy.md` for the closing pattern.
 
 Always snapshot the current prompt before editing:
 ```bash
@@ -51,15 +90,7 @@ Content-Type: application/json
 }
 ```
 
-**Do NOT pass `out_did` in the body.** Passing it explicitly causes Unanswered on test calls. Omit it and Raya routes correctly.
-
-### Outbound DID routing (in the Lovable edge function)
-
-```typescript
-const outDid = cleanCountryCode === '91' ? '918037006352' : '19786849695';
-```
-
-India (91) → `918037006352`. All others → `19786849695`.
+**Do NOT pass `out_did` in the body.** Passing it explicitly causes Unanswered on test calls. Omit it and Raya routes correctly. If a remixed base still computes an `outDid` variable in its edge function, remove it.
 
 ## Rate limiting
 
@@ -85,6 +116,8 @@ Returns paginated list with `calls[]`, each having `uuid`, `outcome`, `call_dura
 GET /api/call/{call_uuid}
 ```
 Returns the full call object. **This endpoint LAGS** immediately after a call ends — poll every 15–18 seconds until outcome is terminal and transcript is non-empty.
+
+`call_output` (the filled output fields) is often `null` right after the call even when the transcript is ready. Re-read a minute later before grading it.
 
 ### Terminal outcomes
 `Completed` | `Failure` | `Unanswered` | `No Answer` | `Rejected` | `Busy` | `Canceled`
@@ -150,3 +183,5 @@ Language-agnostic — same three lines in English in every language file. Never 
 | API key | `RAYA_API_KEY` |
 
 BOTNAME = uppercase slug e.g. SIZA, SAARTHI, KARIGAR.
+
+The agent ID is not a secret. Lovable cannot open its secure secrets form over MCP, so put the uuid in the edge function as the fallback (`Deno.env.get('RAYA_AGENT_ID_X') ?? '<uuid>'`) instead of waiting for the user to add a secret. Only `RAYA_API_KEY` must be a secret, and remixes keep it.

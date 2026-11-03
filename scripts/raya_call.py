@@ -13,6 +13,9 @@ misses every payload bug (e.g. apply_job sent profile_id="5051", the numeric id,
 of the profileId UUID). See .claude/skills/bug-fix/SKILL.md "Read the transcript PROPERLY".
 """
 import json, sys, os, urllib.request
+# python.org builds on macOS ship without a CA bundle; fall back to the system one.
+if not os.environ.get("SSL_CERT_FILE") and os.path.exists("/etc/ssl/cert.pem"):
+    os.environ["SSL_CERT_FILE"] = "/etc/ssl/cert.pem"
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = {}

@@ -1,3 +1,14 @@
 
 # Raya API key
 raya/.env
+
+# Tester agent backups written by scripts/raya_testcall.py (local safety net only)
+raya/personas/_backups/
+
+# Google credentials (service account keys, OAuth client secrets) and local secrets
+secrets/
+*service-account*.json
+*.pem
+
+# Python caches
+__pycache__/

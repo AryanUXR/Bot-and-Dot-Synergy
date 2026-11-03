@@ -24,7 +24,7 @@ Fetch these in order before writing any Lovable prompts:
 - [ ] Provider type: what kinds of dots are shown
 - [ ] Sector list: 6-9 filter categories
 - [ ] Supabase project (same one as the bot prototype for this use case)
-- [ ] Google Maps API key (retrieve from project memory — set as VITE_GOOGLE_MAPS_API_KEY in Lovable)
+- [ ] Google Maps API key — the remixed base reads it through the `get-google-maps-key` edge function from the `GOOGLE_MAPS_API_KEY` secret. The user sets it in Project Settings → Secrets; Lovable cannot open the secure form over MCP.
 
 ### Step 1: Remix
 ```

@@ -4,7 +4,10 @@
 
 - Photorealistic
 - Horizontal / landscape / 16:9 aspect ratio
-- Subject occupies left two-thirds of frame, context visible on right
+- **Face first.** Medium close-up, framed from the waist up. The face is large in the frame, sharply in focus, evenly lit, turned toward the camera with eyes visible, and not covered or shadowed by a scarf or cap brim. A wide shot with a small figure gets rejected.
+- Subject in the left half of the frame; context (workplace, field, street) behind them, softly out of focus
+- Spell out what must NOT appear when the scene invites a mistake ("the tractor is completely unbranded", "inside the van are only toolboxes, nothing large")
+- State the age with visual cues ("only a little grey at the temples") so the model does not age the subject
 - No text, logos, readable signage, or watermarks
 - Expression aligned to persona's emotional state (not smiling — focused, thoughtful, or quietly determined)
 - Specific location markers from the actual geography (landmark, craft setting, market type, urban texture)
@@ -14,7 +17,8 @@
 ## Prompt formula
 
 ```
-A [AGE]-year-old [GENDER] [DESCRIPTION OF WHAT THEY DO] in [SPECIFIC LOCATION IN GEOGRAPHY].
+Medium close-up portrait, framed from the waist up, of a [AGE]-year-old [GENDER] [DESCRIPTION OF WHAT THEY DO] in [SPECIFIC LOCATION IN GEOGRAPHY].
+Their face is the clear focus: large in the frame, sharply in focus, evenly lit, turned toward the camera.
 [VISUAL CONTEXT: what is around them, what they are wearing, what they are doing].
 [EXPRESSION AND BODY LANGUAGE].
 [SPECIFIC LOCATION DETAIL: a named area, type of street, type of building visible in background].

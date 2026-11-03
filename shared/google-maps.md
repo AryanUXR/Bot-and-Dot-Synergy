@@ -4,7 +4,7 @@ All dot prototypes use Google Maps JavaScript API with Advanced Marker Elements.
 
 ## API key
 
-Key is stored in project memory (`ways-of-working-tools.md`). Retrieve it from there — do not hardcode it in repo files or Lovable prompt text.
+Do not hardcode the key in repo files or Lovable prompt text. The dot base reads it from the `GOOGLE_MAPS_API_KEY` secret via the `get-google-maps-key` edge function; the user sets the secret in Lovable Project Settings → Secrets.
 
 Set it as `VITE_GOOGLE_MAPS_API_KEY` in Lovable project settings → Environment Variables for every dot prototype.
 

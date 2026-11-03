@@ -11,7 +11,7 @@ Always remix from one of these — never build from scratch:
 
 | Use case | Reference project | Lovable ID |
 |----------|-------------------|-----------|
-| Bot prototype (any sector, English or Hindi) | Blue Dots SA — Siza | `2937b9e5-2f19-44d7-ad16-82efd6b5b9b7` |
+| Bot prototype (any sector, English or Hindi) | Blue Dots SA NLC | `d816ead9-ef48-4fb9-8af2-26ae06bc157a` (old Siza base `2937b9e5…` fails to remix) |
 | Dot prototype (any sector, no login) | Red Dots Ladakh | `ac07c375-8ae5-49b8-a6c3-12d837bf3ded` |
 
 ## Project naming convention

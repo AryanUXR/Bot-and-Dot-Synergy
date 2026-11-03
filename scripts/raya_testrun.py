@@ -22,6 +22,9 @@ Usage: raya_testrun.py <bot_uuid> <to_10digit> <args_json> <tester_uuid> [label]
 Env: raya/.env (RAYA_BASE_URL, RAYA_API_TOKEN). Token never printed.
 """
 import json, os, sys, time, urllib.request, urllib.error
+# python.org builds on macOS ship without a CA bundle; fall back to the system one.
+if not os.environ.get("SSL_CERT_FILE") and os.path.exists("/etc/ssl/cert.pem"):
+    os.environ["SSL_CERT_FILE"] = "/etc/ssl/cert.pem"
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _env = {}

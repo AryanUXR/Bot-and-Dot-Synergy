@@ -47,7 +47,7 @@ python3 scripts/raya_call.py [bot_uuid] 3
 Copy the template and fill in the key:
 ```bash
 cp raya/.env.template raya/.env
-# then edit raya/.env with the team API key from project memory
+# then edit raya/.env with the team API key (ask the user once if you don't have it)
 ```
 
 `raya/.env` is git-ignored. Never commit it.

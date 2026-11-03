@@ -5,8 +5,8 @@ Set all vars in: Supabase project → Settings → Edge Functions → Secrets.
 ## Every bot (required)
 
 ```
-RAYA_API_KEY           = [team Raya API key — from project memory]
-RAYA_AGENT_ID_[BOTNAME] = [agent ID from Raya dashboard after creating agent]
+RAYA_API_KEY           = [team Raya API key — remixes keep it; local copy in raya/.env as RAYA_API_TOKEN]
+RAYA_AGENT_ID_[BOTNAME] = [uuid from POST /api/agent — optional, the edge function falls back to the uuid in code]
 
 VITE_SUPABASE_URL      = [Supabase project URL]
 VITE_SUPABASE_ANON_KEY = [Supabase anon/public key]

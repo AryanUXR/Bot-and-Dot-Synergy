@@ -29,9 +29,10 @@ serve(async (req) => {
     const RAYA_API_KEY = Deno.env.get("RAYA_API_KEY");
     if (!RAYA_API_KEY) return fail("RAYA_API_KEY not configured");
 
-    // CHANGE: replace BOTNAME with your bot's name e.g. SIZA, SAARTHI, KARIGAR
-    const RAYA_AGENT_ID = Deno.env.get("RAYA_AGENT_ID_BOTNAME");
-    if (!RAYA_AGENT_ID) return fail("RAYA_AGENT_ID_BOTNAME not configured");
+    // CHANGE: replace BOTNAME with your bot's name e.g. SIZA, SAARTHI, KARIGAR,
+    // and AGENT_UUID with the uuid from POST /api/agent. The agent ID is not secret,
+    // and Lovable cannot open its secrets form over MCP, so the uuid is the fallback.
+    const RAYA_AGENT_ID = Deno.env.get("RAYA_AGENT_ID_BOTNAME") ?? "AGENT_UUID";
 
     const { phone, countryCode, personaId } = await req.json();
     if (!phone || !countryCode || !personaId) {

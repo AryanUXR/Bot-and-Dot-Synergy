@@ -1,5 +1,5 @@
 {
-  "_note": "Add one entry per Raya agent. kind=conversation for call agents. Copy agent UUIDs from the Raya dashboard after creating each agent.",
+  "_note": "One entry per Raya agent. kind=conversation for call agents, kind=tester for the agent-to-agent test caller. Create agents with POST /api/agent (see shared/raya.md), then record the uuid here.",
   "targets": [
     {
       "id": "siza-en",
@@ -20,6 +20,18 @@
       "direction": "outbound",
       "deploy": true,
       "uuid": "440e0bee-0500-4989-bfcc-5f459cda8a9e"
+    },
+    {
+      "id": "tester-bluedots",
+      "name": "Testing Agent- Blue Dots",
+      "kind": "tester",
+      "language": "hi",
+      "direction": "inbound",
+      "deploy": false,
+      "uuid": "f60e0899-aa3a-4be7-9b4f-0296bd28ef48",
+      "in_did": "911204404272",
+      "dial_as": "1204404272",
+      "note": "Shared tester. raya_testcall.py persona backs it up before each PATCH. Restore the original persona from raya/personas/_backups/ (oldest file) when done."
     }
   ]
 }

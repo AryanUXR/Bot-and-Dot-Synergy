@@ -16,7 +16,13 @@ The tester agent is a dedicated Raya agent with an inbound DID. It receives the 
 
 ## Tester agent
 
-The team's tester agent is "Testing Agent — Blue Dots". Retrieve its UUID from `raya/agents.json`. It is an inbound agent — it receives, not initiates.
+The team's tester agent is "Testing Agent- Blue Dots": entry `tester-bluedots` in `raya/agents.json` (uuid `f60e0899-aa3a-4be7-9b4f-0296bd28ef48`, inbound DID `911204404272`, pass `1204404272` as the 10-digit number to `raya_testrun.py`). It is an inbound agent — it receives, not initiates. It speaks Hindi with a female voice, which is fine for male personas.
+
+The tester is shared with other teams. When you finish, put its original persona back:
+```bash
+python3 scripts/raya_testcall.py persona f60e0899-aa3a-4be7-9b4f-0296bd28ef48 "$(ls -tr raya/personas/_backups/f60e0899-* | head -1)"
+```
+Check that the oldest backup is from before your session started.
 
 ## Setup before each test
 

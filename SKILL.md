@@ -1,6 +1,6 @@
 # Blue Dots — Bot + Dot Prototype Skill
 
-Entry point. Read this file first, then fetch only the sub-files your task needs via their raw GitHub URLs.
+Entry point. Read this file first, then `LESSONS.md` (mistakes from past builds and their fixes), then fetch only the sub-files your task needs via their raw GitHub URLs.
 
 Base URL for all files:
 `https://raw.githubusercontent.com/AryanUXR/Bot-and-Dot-Synergy/main/`
@@ -30,17 +30,21 @@ Base URL for all files:
 5. **Read before prompting** — before sending any Lovable prompt, read the remixed project's key files. Do not assume. Read.
 6. **Section by section** — one `send_message` per section. Wait for build success before the next.
 7. **No slop** — apply `content/anti-slop-rules.md` to all generated copy before it goes into any Lovable prompt.
-8. **Images are automated** — use `image-generation/README.md`, not manual Gemini generation.
+8. **Images are automated, from Gemini only** — run `image-generation/vertex_generate.py` (see `image-generation/README.md`). Never use Lovable-generated images. Persona photos must show the face clearly.
+9. **Do the whole build end to end** — create the Raya agent, deploy prompts and memory, wire Lovable, run bot-to-bot tests, generate images and commit, without handing steps back. Only stop for what needs a human: a missing credential, an IAM role, a sign-in.
+10. **Learn and push back** — when something goes wrong, add an entry to `LESSONS.md`, fix the doc that was wrong, and push both so the next build starts with the fix.
 
 ---
 
 ## Credentials + workspace
 
 - Lovable workspace ID: `5mdf5lcGjqX0MUaRc1ZX`
-- Raya API key: stored in project memory (ways-of-working-tools.md)
-- Raya endpoint: `https://v1.getraya.app/api/call`
-- Google Maps API key: in project memory (ways-of-working-tools.md) — set as `VITE_GOOGLE_MAPS_API_KEY` in Lovable env vars
-- Gemini API key: in project memory (ways-of-working-tools.md) — set as `GEMINI_API_KEY` env var when running image generation script
+- **All local secrets live in `raya/.env`** (git-ignored, template in `raya/.env.template`). If the file is missing, ask the user for the values once and write it. Never commit it.
+  - `RAYA_API_TOKEN` — Raya API key (same value as `RAYA_API_KEY` in the bot's Supabase secrets, which remixes keep)
+  - `GOOGLE_SA_KEY` — path to the Google service account JSON used for Vertex AI images
+  - `GEMINI_API_KEY` — optional AI Studio key (prepaid credit can run out)
+- Raya base URL: `https://v1.getraya.app/api`
+- Google Maps API key: set as the `GOOGLE_MAPS_API_KEY` secret in the dot project's Lovable settings (the user types it in; Lovable cannot open the secure form over MCP)
 
 ---
 
@@ -48,8 +52,13 @@ Base URL for all files:
 
 | Purpose | Lovable ID |
 |---------|-----------|
-| Bot base (SA Siza) | `2937b9e5-2f19-44d7-ad16-82efd6b5b9b7` |
+| Bot base (Blue Dots SA NLC) | `d816ead9-ef48-4fb9-8af2-26ae06bc157a` |
+| Bot base, old (SA Siza) — remix fails, database unavailable since Nov 2026 | `2937b9e5-2f19-44d7-ad16-82efd6b5b9b7` |
 | Dot base (Red Dots Ladakh) | `ac07c375-8ae5-49b8-a6c3-12d837bf3ded` |
+| Latest finished bot (Kisaan Saathi, Hindi) | `ed2e96e3-5297-48bb-bbb0-d74d9ec89741` |
+| Latest finished dot (Green Dots Nashik, seekers + providers) | `49c43ba5-e7e8-4d43-ae23-0fb88ab49e61` |
+
+Raya tester agent for bot-to-bot tests: see `raya/agents.json` (`tester-bluedots`).
 
 ---
 
@@ -60,11 +69,13 @@ Base URL for all files:
 2. Draft content        → content/persona-writing-guide.md
                           content/dot-data-guide.md
                           content/anti-slop-rules.md
-3. Create Raya agent    → shared/raya.md
+3. Create Raya agent    → shared/raya.md  (POST /api/agent, then PATCH memory)
 4. Build bot prototype  → bot/SKILL.md
 5. Generate images      → image-generation/README.md
 6. Build dot prototype  → dot/SKILL.md
-7. Wire async DB sync   → shared/async-sync-architecture.md
-8. Post-build checks    → bot/post-build-checklist.md
+7. Wire async DB sync   → shared/async-sync-architecture.md (skip when the brief says dots are hardcoded)
+8. Bot-to-bot tests     → bot/voice-test-harness.md  (mandatory before handover)
+9. Post-build checks    → bot/post-build-checklist.md
                           dot/post-build-checklist.md
+10. Write back lessons  → LESSONS.md + the doc that was wrong, then push
 ```

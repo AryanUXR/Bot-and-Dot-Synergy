@@ -21,14 +21,14 @@ Fetch these in order before writing any Lovable prompts:
 ### Step 0: Confirm inputs
 Before starting, you must have:
 - [ ] Confirmed spec: bot name, language, target geography, sector, seeker types
-- [ ] Raya agent ID (create agent first via `shared/raya.md`)
+- [ ] Raya agent ID — create it yourself with `POST /api/agent` (`shared/raya.md`), then PATCH memory. Do not ask the user to use the dashboard.
 - [ ] Approved personas (3 is standard: 2 seekers + 1 provider/mentor)
 - [ ] Bot colour (hex)
 
 ### Step 1: Remix
 ```
 Lovable:remix_project
-  project_id: 2937b9e5-2f19-44d7-ad16-82efd6b5b9b7
+  project_id: d816ead9-ef48-4fb9-8af2-26ae06bc157a   # Blue Dots SA NLC. The old Siza base 2937b9e5 fails to remix.
   workspace_id: 5mdf5lcGjqX0MUaRc1ZX
   project_name: [botname-bot-geography]
   include_history: false
@@ -42,10 +42,16 @@ Read these files before writing a single prompt:
 - `src/components/Nav.tsx`
 - `supabase/functions/initiate-call/index.ts`
 - `src/components/PersonasSection.tsx`
+- `src/components/PersonaModal.tsx`, `src/components/PersonaCard.tsx`, `src/components/Footer.tsx`
+- `index.html`, `src/index.css`
+
+Bases drift from the docs. On the d816ead9 base: there is no Hero on the page (PersonasSection holds the heading and subheading as default props), `questions.english` is read in PersonaModal and CallForm, "Questions she might ask" is hard-coded, and colours are hard-coded hex in PersonaModal gradients as well as CSS variables.
 
 ### Step 3: Send Lovable prompts — one section at a time
 
 Wait for each build to succeed before sending the next.
+
+`send_message` results are often too large to return and get saved to a file. Read them with `jq -r '"\(.status) \(.commit_sha) \(.cost_credits)"'` and `jq -r '.content' | tail -c 1500`. If the call times out, run `list_messages` with limit 2 and read the newest entry with jq.
 
 **Section 1 — Visual identity** → `bot/prompts/01-visual-identity.md`
 **Section 2 — personas.ts replacement** → `bot/prompts/02-personas-ts.md`
@@ -54,7 +60,7 @@ Wait for each build to succeed before sending the next.
 **Section 5 — Supabase call log migration** → `bot/prompts/05-supabase-migration.md`
 
 ### Step 4: Generate and upload persona images
-→ `image-generation/README.md`
+→ `image-generation/README.md` (Gemini via `image-generation/vertex_generate.py`, never Lovable-generated, faces clearly visible)
 
 ### Step 5: Post-build checks
 → `bot/post-build-checklist.md`
@@ -65,3 +71,11 @@ Wait for each build to succeed before sending the next.
 → `bot/persona-lint.md` — lint your tester persona before using it
 
 A build is not done until Tier 1 (fix verification) and Tier 2 (blast-radius regression) are passed with real call transcripts.
+
+Run this yourself before handing over. Do not ask the user for their phone number as a substitute.
+
+1. Write one tester persona per bot persona in `raya/personas/[bot]-[persona]-[scenario].md` and lint each with `scripts/persona_lint.py`.
+2. For each one: `scripts/raya_testcall.py persona <tester_uuid> <file>`, then `scripts/raya_testrun.py <bot_uuid> <tester dial_as> args.json <tester_uuid> <label>`. The tester uuid and `dial_as` number are in `raya/agents.json` (`tester-bluedots`). Run the calls one after another in the background, about 2 to 5 minutes each.
+3. Grade each transcript. The call must end with one `Goodbye`, not a goodbye loop. Check matches against the directory, prohibitions, and `call_output` (re-read it after a minute if it is null).
+4. Fix the prompt, PATCH, re-run only the personas that failed.
+5. Put the tester's original persona back from the oldest file in `raya/personas/_backups/`.

@@ -10,6 +10,16 @@
       "direction": "outbound",
       "deploy": true,
       "uuid": "de59bc3f-780a-41b0-8ec8-9f9fb8826a05"
+    },
+    {
+      "id": "kisaansaathi-hi",
+      "name": "Kisaan Saathi · Green Dots Nashik",
+      "file": "use-cases/green-dots-nashik/raya/KisaanSaathi Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "440e0bee-0500-4989-bfcc-5f459cda8a9e"
     }
   ]
 }

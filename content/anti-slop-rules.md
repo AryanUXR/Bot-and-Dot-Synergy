@@ -93,3 +93,4 @@ semicolons          → split into two sentences
 - Geography + what the bot does. Under 8 words.
 - BAD: "Empowering livelihoods across India"
 - GOOD: "Your livelihoods guide, Limpopo" or "MSME support, Leh district"
+- Say what the bot does (helps you find), never what it provides. BAD: "Work, a room and child care near you" (sounds like Sakhi hands them out). GOOD: "Helps you find hostels, child care and jobs in Tiruppur".

@@ -184,4 +184,4 @@ Language-agnostic — same three lines in English in every language file. Never 
 
 BOTNAME = uppercase slug e.g. SIZA, SAARTHI, KARIGAR.
 
-The agent ID is not a secret. Lovable cannot open its secure secrets form over MCP, so put the uuid in the edge function as the fallback (`Deno.env.get('RAYA_AGENT_ID_X') ?? '<uuid>'`) instead of waiting for the user to add a secret. Only `RAYA_API_KEY` must be a secret, and remixes keep it.
+The agent ID is not a secret. Lovable cannot open its secure secrets form over MCP, so put the uuid in the edge function as the fallback (`Deno.env.get('RAYA_AGENT_ID_X') ?? '<uuid>'`) instead of waiting for the user to add a secret. Only `RAYA_API_KEY` must be a secret. A remix keeps the secret's name but its value may be stale: test the deployed function once (see `bot/SKILL.md` Step 6) and, if Raya returns 401, have the user re-enter the key in Lovable → Cloud → Secrets.

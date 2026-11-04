@@ -74,6 +74,7 @@ A build is not done until Tier 1 (fix verification) and Tier 2 (blast-radius reg
 
 Run this yourself before handing over. Do not ask the user for their phone number as a substitute.
 
+0. Test the website path first: call the deployed `initiate-call` function with curl, using the tester's `dial_as` number as `phone` (command in `LESSONS.md` lesson 34). It must return `success: true`. A 401 means the `RAYA_API_KEY` secret needs re-entering by the user.
 1. Write one tester persona per bot persona in `raya/personas/[bot]-[persona]-[scenario].md` and lint each with `scripts/persona_lint.py`.
 2. For each one: `scripts/raya_testcall.py persona <tester_uuid> <file>`, then `scripts/raya_testrun.py <bot_uuid> <tester dial_as> args.json <tester_uuid> <label>`. The tester uuid and `dial_as` number are in `raya/agents.json` (`tester-bluedots`). Run the calls one after another in the background, about 2 to 5 minutes each.
 3. Grade each transcript. The call must end with one `Goodbye`, not a goodbye loop. Check matches against the directory, prohibitions, and `call_output` (re-read it after a minute if it is null).

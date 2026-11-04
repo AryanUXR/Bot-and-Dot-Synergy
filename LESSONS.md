@@ -13,7 +13,7 @@ Format: **What happened** → **Fix** → *Now in*
 1. **The bot base in SKILL.md could not be remixed.** Siza (`2937b9e5…`) returned "remix blocked", then "source project's Lovable Cloud database isn't available". Tourist Saarthi (`8fd0d5fd…`) failed the same way. → Remixed `d816ead9-ef48-4fb9-8af2-26ae06bc157a` (Blue Dots SA NLC, single-persona base), which worked first time. → *Now in* `SKILL.md` reference IDs, `bot/SKILL.md` Step 1.
 2. **The new base differs from the documented one.** No Hero section on the page (PersonasSection carries the heading), `questions.english` key hard-coded in PersonaModal and CallForm, "Questions she might ask" hard-coded, CallForm had a hard-coded agentId, outDid logic in the edge function. → Read every file listed in `bot/SKILL.md` Step 2 and also `PersonaModal.tsx`, `PersonaCard.tsx`, `Footer.tsx`, `index.html`, `src/index.css` before prompting. → *Now in* `bot/SKILL.md` Step 2.
 3. **`send_message` and `list_messages` results are often too large to return.** → Read the saved output with `jq -r '.status, .commit_sha, .cost_credits'` and `jq -r '.content' | tail -c 1500`. If a call times out, `list_messages` (limit 2) then jq. → *Now in* `bot/SKILL.md` Step 3.
-4. **Lovable cannot open its secure secrets form from MCP.** It asks the user to type secrets in Project Settings. → The Raya agent ID is not secret: put it in the edge function as the fallback (`Deno.env.get('RAYA_AGENT_ID_X') ?? '<uuid>'`). Only `RAYA_API_KEY` must be a secret, and remixes keep it. → *Now in* `bot/edge-function-template.ts`, `shared/raya.md`.
+4. **Lovable cannot open its secure secrets form from MCP.** It asks the user to type secrets in Project Settings. → The Raya agent ID is not secret: put it in the edge function as the fallback (`Deno.env.get('RAYA_AGENT_ID_X') ?? '<uuid>'`). Only `RAYA_API_KEY` must be a secret. **Correction (2026-11-04): remixes keep the secret's name but not necessarily a working value.** Lovable's "the check passed" only meant the secret existed. See lesson 34. → *Now in* `bot/edge-function-template.ts`, `shared/raya.md`.
 5. **Preview URLs need a Lovable login, and the sandbox dev server does not proxy CDN assets.** Images look broken in Lovable's own sandbox checks. → Ask Lovable to curl `https://id-preview--<id>.lovable.app/__l5e/assets-v1/...` for 200 image/png, and ask the user to eyeball the preview once.
 6. **Never use Lovable-generated images.** User rule. → Generate with Gemini, upload with `get_file_upload_url` + PUT, attach to `send_message`, tell Lovable "use this exact file, do not generate, edit or crop". → *Now in* `SKILL.md` rule 8, `image-generation/README.md`.
 
@@ -46,3 +46,36 @@ Format: **What happened** → **Fix** → *Now in*
 ### Working style
 
 24. **The user expects the whole build done end to end** (agent creation, memory, Lovable wiring, tests, images, commits) without handing steps back. Only ask for what truly needs a human: a missing credential, an IAM role, a sign-in. → *Now in* `SKILL.md` standing rules.
+
+## 2026-11-04 · Pink Dots Tiruppur (Sakhi, Hindi, women workers: hostels and child care)
+
+The Nashik lessons paid off: the Raya agent, memory, Lovable wiring, photos and bot-to-bot tests all ran without asking the user for anything except the brief and persona approval. First-round calls all ended cleanly with one `Goodbye`.
+
+### Speed
+
+25. **Remix from the latest finished project, not the original base.** Copying last week's finished map and bot meant the seeker cards, Hindi questions, `imagePosition`, agent-ID fallback and Goodbye close were already in place. The bot took 2 Lovable messages instead of 4, and the map took 1 instead of 3. → *Now in* `SKILL.md` reference IDs (use "Latest finished" rows as bases).
+26. **Run research, photos and Lovable work in parallel.** Start the research agent as soon as the geography is set. Write the brief and personas while it runs, then generate photos and send bot sections while waiting for approval or research.
+27. **Attach large data files to `send_message` instead of pasting them.** Upload the merged dots file with `get_file_upload_url` + PUT (text/plain) and tell Lovable to copy it byte for byte. This keeps the message small and the data exact.
+
+### Lovable
+
+28. **Never ask Lovable to delete assets a remixed project inherited.** `lovable-assets delete` on the copied placeholders could break the source project's photos if the files are shared. They were not shared this time (each asset is keyed to its project), but there's no need to take the risk. Leave old assets in place. → *Now in* `image-generation/README.md`.
+
+### Copy
+
+29. **The nav tagline must say what the bot does, not what it provides.** "Work, a room and child care near you" read as if Sakhi gives women jobs and rooms. Use "Helps you find hostels, child care and jobs in Tiruppur". This matters more when listings are unverified. → *Now in* `content/anti-slop-rules.md`.
+
+### Raya prompts
+
+30. **Every worked example in the prompt must follow every rule.** The creche example left out the "not checked" sentence, and the bot copied the example instead of the rule. Check examples against the safety rules before deploying. It happened twice in this build: the provider example also left out the "anything else?" question, so the bot closed in the same turn as the match until every example ended with it. → *Now in* `bot/prompt-anatomy.md`.
+31. **Tag seeker rows in the directory with what they need** (`| NEEDS: CRECHE`, `HOSTEL`, `JOB`). Without a tag, the bot offered a woman who needed a room to a day-care provider. Tags alone were not enough when the wrong row was closer. What worked was splitting Women Requests into separate lists by need, and telling the provider persona to use only its list. → *Now in* `bot/prompt-anatomy.md`.
+32. **Output fields can grade safety for you.** Add a field such as `unverified_flagged` so `call_output` shows when a safety rule was skipped. It caught the same miss as the transcript review.
+33. **Persona leaks still happen.** The bot guessed the area and the child's age. The fix is a concrete open-question example in Phase 2 that asks for exactly those facts.
+
+### Testing the website path
+
+34. **Bot-to-bot tests never touched the website's call function, so a broken `RAYA_API_KEY` secret went unnoticed until the user pressed Call.** Our tests call Raya directly with the local key. The site goes through the Lovable edge function, which had an invalid key in both remixed bots. → After deploying the edge function, call it once yourself, aimed at the tester agent's number so no human phone rings:
+    ```bash
+    curl -s https://<supabase-ref>.supabase.co/functions/v1/initiate-call -H "Content-Type: application/json" -H "apikey: <publishable key>" -H "Authorization: Bearer <publishable key>" -d '{"phone":"1204404272","countryCode":"+91","personaId":"<persona-id>"}'
+    ```
+    The Supabase ref and publishable key are in the Lovable project's `.env`. A 401 "Invalid API key" means the user must re-enter `RAYA_API_KEY` in Lovable → Cloud → Secrets (Lovable cannot open that form over MCP). Ask for it at the start of the build, not at the end. → *Now in* `bot/SKILL.md` Step 6, `shared/raya.md`.

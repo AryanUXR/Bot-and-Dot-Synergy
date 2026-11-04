@@ -57,8 +57,11 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 | Bot base (Blue Dots SA NLC) | `d816ead9-ef48-4fb9-8af2-26ae06bc157a` |
 | Bot base, old (SA Siza) — remix fails, database unavailable since Nov 2026 | `2937b9e5-2f19-44d7-ad16-82efd6b5b9b7` |
 | Dot base (Red Dots Ladakh) | `ac07c375-8ae5-49b8-a6c3-12d837bf3ded` |
-| Latest finished bot (Kisaan Saathi, Hindi) | `ed2e96e3-5297-48bb-bbb0-d74d9ec89741` |
-| Latest finished dot (Green Dots Nashik, seekers + providers) | `49c43ba5-e7e8-4d43-ae23-0fb88ab49e61` |
+| Use the latest finished bot/dot below as the remix base: it carries every fix so far. | |
+| Latest finished bot (Sakhi, Hindi, female voice) | `b405dafa-656a-493c-b367-684aec4406df` |
+| Previous bot (Kisaan Saathi, Hindi) | `ed2e96e3-5297-48bb-bbb0-d74d9ec89741` |
+| Latest finished dot (Pink Dots Tiruppur, seekers + providers, 9 sector icons) | `fcc91ca3-91ca-4a40-8c23-c62cc2960681` |
+| Previous dot (Green Dots Nashik) | `49c43ba5-e7e8-4d43-ae23-0fb88ab49e61` |
 
 Raya tester agent for bot-to-bot tests: see `raya/agents.json` (`tester-bluedots`).
 

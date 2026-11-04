@@ -22,6 +22,16 @@
       "uuid": "440e0bee-0500-4989-bfcc-5f459cda8a9e"
     },
     {
+      "id": "sakhi-hi",
+      "name": "Sakhi · Pink Dots Tiruppur",
+      "file": "use-cases/pink-dots-tiruppur/raya/Sakhi Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "ef1d518e-5347-47fd-8987-b9ad90194667"
+    },
+    {
       "id": "tester-bluedots",
       "name": "Testing Agent- Blue Dots",
       "kind": "tester",

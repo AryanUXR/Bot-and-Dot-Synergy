@@ -34,6 +34,8 @@ Instructions are ALWAYS in English. Only spoken lines (quoted dialogue, example 
 6. **Providers get matched requests only.** When a provider calls, offer only seeker requests whose need matches the provider's service, nearest first, with a worked example in the prompt. Refer to seekers by first name and village only.
 7. **At most two options per turn**, each with name, village and distance.
 8. **Never invent.** No providers, phone numbers, prices or schemes outside the directory. Say plainly when nothing fits.
+9. **Examples obey every rule.** Each worked example must follow every rule and safety line, because the bot copies examples more than it follows rules.
+10. **Tag seeker rows with what they need** (`| NEEDS: CRECHE`) so providers only get matching requests.
 
 ## 2. Memory prompt
 

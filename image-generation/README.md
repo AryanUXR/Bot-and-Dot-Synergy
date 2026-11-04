@@ -16,7 +16,7 @@ Worked end to end on 2026-11-03. No browser sign-in, no prepaid credit to run ou
 4. **Upload.** For each image, call `get_file_upload_url` (Lovable MCP), then PUT the bytes with the returned headers. Attach all file_ids to one `send_message` that says: use these exact files, do not generate, edit or crop any image. Have Lovable create the assets as `src/assets/<persona-id>.png.asset.json`, map them in `PersonasSection.tsx`, and set an `imagePosition` per persona (for example `"35% 20%"`) so cards and the modal header crop to the face.
 5. **Save copies.** Save JPEG copies to `use-cases/<project>/images/` and commit them with the prompts that produced them.
 
-**Never use Lovable-generated images.**
+**Never use Lovable-generated images.** Do not ask Lovable to delete placeholder assets inherited from a remixed project; leave them.
 
 **Setup, once per project:**
 - The service account (`blue-dots-admin@blue-dots-project.iam.gserviceaccount.com`) needs the role **Agent Platform User** in its project. Google renamed "Vertex AI User" to this; pick it under the Vertex AI category.

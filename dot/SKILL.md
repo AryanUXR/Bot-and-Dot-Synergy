@@ -18,6 +18,7 @@ Fetch these in order before writing any Lovable prompts:
 ## Build sequence
 
 ### Step 0: Confirm inputs
+If a bot for this use case already exists, read its `src/data/personas.ts` first. Its stories give you the places, the providers each persona needs and the "You" persona (LESSONS.md 38).
 - [ ] Dot colour (hex)
 - [ ] Geography: name, centre lat/lng (verify via web search)
 - [ ] Seeker type: who is the "You" persona on the map
@@ -29,18 +30,24 @@ Fetch these in order before writing any Lovable prompts:
 ### Step 1: Remix
 ```
 Lovable:remix_project
-  project_id: ac07c375-8ae5-49b8-a6c3-12d837bf3ded
+  project_id: <latest finished dot in SKILL.md reference IDs>   # carries every fix so far; ac07c375 is the original Ladakh base
   workspace_id: 5mdf5lcGjqX0MUaRc1ZX
   project_name: [colour]-dots-[geography-slug]
   include_history: false
   include_custom_knowledge: false
 ```
 
+Right after the remix, check the Maps key (LESSONS.md 37). Print only whether a key came back, never the key itself:
+```bash
+curl -s https://<ref>.supabase.co/functions/v1/get-google-maps-key -H "apikey: <publishable key>" -H "Authorization: Bearer <publishable key>" | python3 -c 'import sys,json; print(bool(json.load(sys.stdin).get("apiKey")))'
+```
+`False` means the user must add `GOOGLE_MAPS_API_KEY` in Project Settings → Secrets. Ask now and carry on with the data.
+
 ### Step 2: Read the remixed project
 Read before writing a single prompt:
 - `src/App.tsx`
 - `src/pages/LaunchPage.tsx`
-- `src/data/ladakhDots.ts`
+- `src/data/<previous city>Dots.ts` (the finished map's data file, e.g. `guwahatiDots.ts`)
 - `src/lib/mapData.ts`
 - `src/hooks/useGoogleMaps.ts`
 

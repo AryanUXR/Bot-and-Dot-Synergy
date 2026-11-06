@@ -59,9 +59,11 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 | Dot base (Red Dots Ladakh) | `ac07c375-8ae5-49b8-a6c3-12d837bf3ded` |
 | Use the latest finished bot/dot below as the remix base: it carries every fix so far. | |
 | Latest finished bot (Sakhi, Hindi, female voice) | `b405dafa-656a-493c-b367-684aec4406df` |
+| Red Dots bot (Sahai Line, Guwahati, built by Aryan) | `2dcccbc9-11c6-4e81-b08d-ee3f9a7b0e4e` |
 | Previous bot (Kisaan Saathi, Hindi) | `ed2e96e3-5297-48bb-bbb0-d74d9ec89741` |
-| Latest finished dot (Pink Dots Tiruppur, seekers + providers, 9 sector icons) | `fcc91ca3-91ca-4a40-8c23-c62cc2960681` |
-| Previous dot (Green Dots Nashik) | `49c43ba5-e7e8-4d43-ae23-0fb88ab49e61` |
+| Latest finished dot (Red Dots Guwahati, road safety, 9 sectors, 25 km opening bounds) | `3d87126c-5381-4fbd-9203-df03837849d2` |
+| Previous dot (Pink Dots Tiruppur) | `fcc91ca3-91ca-4a40-8c23-c62cc2960681` |
+| Older dot (Green Dots Nashik) | `49c43ba5-e7e8-4d43-ae23-0fb88ab49e61` |
 
 Raya tester agent for bot-to-bot tests: see `raya/agents.json` (`tester-bluedots`).
 

@@ -89,3 +89,9 @@ The Nashik lessons paid off: the Raya agent, memory, Lovable wiring, photos and 
 39. **Research is thin for informal services, so say so on the map.** No towing operator, late-night bike garage or Boko truck-tyre shop could be confirmed. Fill those gaps with fictional rows marked `verified: "Unverified"`, with no phone number and "Example listing for this prototype" in the description, rather than inventing numbers. Don't label any hospital "cashless" without an official list; use police rows' 112 instead of officer mobiles, which rotate.
 40. **A map that spans a city and a highway 50 km out opens unreadably zoomed out.** → Fit the opening bounds to dots within 25 km of the "You" marker and leave far dots on the map for panning.
 41. **Lovable may move colours into CSS variables.** `stroke="var(--x)"` in SVG attributes and marker HTML strings does not resolve reliably (Safari). → Ask for literal hex in JS colour constants and marker HTML; CSS tokens can stay in `index.css`.
+
+## 2026-11-07 · Orange Dots Udupi (call-only page, agent built by Aryan)
+
+42. **A call-only bot page is the latest bot with the personas taken out.** Copy the latest finished bot, remove the personas section and dropdown, and send only `{ phone, countryCode }`. Before deciding what goes in `agent_args`, GET the agent and list the `${...}` variables in its instructions. This agent used only `${contact_memory}`, so it needed none.
+43. **A copied bot can pop up a secrets form for names from an older base** (`RAYA_AGENT_ID_MALA`, `RAYA_AGENT_ID_SIZA`, `RAYA_UPDATE_ACCESS_TOKEN`). Only `RAYA_API_KEY` matters. Tell the user which one to fill so they don't fill four.
+44. **Python `urllib` gets 403 from Raya's agent list here; curl works with the same key.** Raya likely blocks the default Python User-Agent. Use curl, or set a User-Agent header.

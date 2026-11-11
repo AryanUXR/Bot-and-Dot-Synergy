@@ -27,7 +27,7 @@ Instructions are ALWAYS in English. Only spoken lines (quoted dialogue, example 
 **Must-haves from bot-to-bot testing.** Each one fixed a real failure; see `LESSONS.md`. Put all of them in every new conversation prompt.
 
 1. **Close with `Goodbye`.** Every closing line ends with the word `Goodbye` in Latin script, once, nothing after it. Raya hangs up on it. Without it the call becomes a goodbye loop.
-2. **Close once.** After each answer or match, ask one short "anything else?" line in the target language (Hindi: "और किसी चीज़ की ज़रूरत है?"). Say the closing line only when the caller has nothing more, says goodbye or thanks you. If the caller speaks after the close, repeat the same closing line once.
+2. **Close once.** After each answer or match, ask one short "anything else?" line in the target language (Hindi: "और किसी चीज़ की ज़रूरत है?"). Say the closing line only when the caller has nothing more, says goodbye or thanks you. Answering a question is never closing, even when the answer sounds like the closing line or is "I can't do that" (send a link, book, call someone): end it with the "anything else?" line too. If the caller speaks after the close, repeat the same closing line once.
 3. **One closing line per role.** A seeker and a provider get different closes, for example no "good harvest" to a mechanic.
 4. **No persona leaks.** The persona section tells the bot where the call is likely to go. The bot must never say a detail from it before the caller does. Ask open questions and never offer a list of guesses. Keep the persona section to one line per persona.
 5. **No promises after the call.** Nothing executes once the call ends. Prohibit "I will tell X about you", "they will call you", and any offer to pass details on.
@@ -36,6 +36,7 @@ Instructions are ALWAYS in English. Only spoken lines (quoted dialogue, example 
 8. **Never invent.** No providers, phone numbers, prices or schemes outside the directory. Say plainly when nothing fits.
 9. **Examples obey every rule.** Each worked example must follow every rule and safety line, because the bot copies examples more than it follows rules.
 10. **Tag seeker rows with what they need** (`| NEEDS: CRECHE`) so providers only get matching requests.
+11. **No time limits in the prompt.** The bot cannot see a clock. Set `max_call_duration_mins` and `call_duration_exceed_message` on the agent instead; in the prompt ask only for short answers.
 
 ## 2. Memory prompt
 

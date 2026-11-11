@@ -1,3 +1,5 @@
+> **All dot data is fictional sample data** (LESSONS.md 48–51). Research real places for realism, then invent neutral names, use first name + initial for people, and keep no addresses or phone numbers except national helplines. No surnames, state of origin, caste, religion or marital status.
+
 # Dot Data Writing Guide
 
 How to write the provider/organisation data for a dot prototype. Read `anti-slop-rules.md` first.

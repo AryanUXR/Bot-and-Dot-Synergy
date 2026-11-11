@@ -18,3 +18,8 @@
 - **Feedback/bug:** Bot-to-bot retest: told a provider her listing would show "in one or two days" (invented), and once tacked "anything else?" onto its own question.
 - **Change:** One rule plus a spoken fallback line: never give times or day counts; add "anything else?" only after an answer.
 - **Files:** Sakhi Hindi.md (Phase 3).
+
+## 2026-11-11 — Fictional directory
+- **Feedback/bug:** Audit: all prototype data must be dummy. The directory listed real hostels, creches, employers and offices.
+- **Change:** Every directory row renamed to a fictional, neutral name; contact column "-" except 181; worked examples now use इनिया / सुदर hostels and सनी डेज़ / लिटिल स्टेप्स day care; state-of-origin labels removed from women's requests and the opening description.
+- **Files:** Sakhi Hindi.md. Retested: rinki-hostel, Completed 147 s, one Goodbye.

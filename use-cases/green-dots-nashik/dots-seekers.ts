@@ -1,3 +1,5 @@
+// All rows are fictional sample data for this prototype. Names, people and requests are made up;
+// only national helplines (108, 112, 181, 1098, 1033, 1077) are real numbers.
 // Farmer Requests — hardcoded seeker dots for Green Dots Nashik.
 // Fictional farmers, real villages. lat/lng sit about 1 km from the village anchors
 // in dots-providers.ts, so seeker and provider dots do not overlap.

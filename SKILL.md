@@ -35,6 +35,7 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 8. **Images are automated, from Gemini only** — run `image-generation/vertex_generate.py` (see `image-generation/README.md`). Never use Lovable-generated images. Persona photos must show the face clearly.
 9. **Do the whole build end to end** — create the Raya agent, deploy prompts and memory, wire Lovable, run bot-to-bot tests, generate images and commit, without handing steps back. Only stop for what needs a human: a missing credential, an IAM role, a sign-in.
 10. **Learn and push back** — when something goes wrong, add an entry to `LESSONS.md`, fix the doc that was wrong, and push both so the next build starts with the fix.
+11. **All data is fictional** — maps and bots use invented names, first name + initial for people, no addresses and no phone numbers except national helplines. No surnames, state of origin, caste, religion or marital status. See `LESSONS.md` 48–51.
 
 ---
 

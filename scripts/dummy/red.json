@@ -1,0 +1,107 @@
+{
+"1": {
+"name": "City Government Hospital (Trauma)"
+},
+"2": {
+"name": "Dispur Multispeciality Hospital"
+},
+"3": {
+"name": "Boragaon Highway Hospital"
+},
+"4": {
+"name": "Khanapara City Hospital"
+},
+"5": {
+"name": "GS Road Hospital"
+},
+"6": {
+"name": "Bhangagarh Care Hospital"
+},
+"7": {
+"name": "District Hospital, Sonapur"
+},
+"8": {
+"name": "Community Health Centre, Boko"
+},
+"12": {
+"name": "Dispur Hospital Ambulance"
+},
+"13": {
+"name": "Boragaon Hospital Ambulance"
+},
+"21": {
+"name": "Traffic Control Room",
+"contact": "112"
+},
+"31": {
+"name": "AT Road Bike Service Centre"
+},
+"32": {
+"name": "Maligaon Motorcycle Works"
+},
+"33": {
+"name": "Adabari Scooter Service"
+},
+"34": {
+"name": "Zoo Road Bike Care"
+},
+"35": {
+"name": "Night Riders Bike Repair"
+},
+"41": {
+"name": "Lokhra Car Care"
+},
+"42": {
+"name": "Sarusajai Motors"
+},
+"43": {
+"name": "Ganeshguri Car Service"
+},
+"44": {
+"name": "Basistha Auto Works"
+},
+"45": {
+"name": "Maligaon Car Workshop"
+},
+"51": {
+"name": "NH-27 Truck Service Centre"
+},
+"52": {
+"name": "Jalukbari Heavy Vehicle Works"
+},
+"53": {
+"name": "Adabari Tyre House"
+},
+"54": {
+"name": "Basistha Tyre Point"
+},
+"55": {
+"name": "Beharbari Tyres"
+},
+"56": {
+"name": "Boko Highway Tyre and Puncture",
+"description": "Roadside truck tyre mechanic next to a dhaba on NH-17 near Boko. Comes out to the highway."
+},
+"62": {
+"name": "Jalukbari Towing Service"
+},
+"71": {
+"name": "PM RAHAT: cashless accident treatment",
+"description": "Central scheme for cashless treatment of road-accident victims, linked to 112. A police report is part of the claim. Ask the hospital whether it applies."
+},
+"72": {
+"name": "Assam Golden Hour scheme",
+"description": "State scheme for cashless trauma care after a road accident. Ask the hospital whether it is covered."
+},
+"73": {
+"name": "Damaged road helpline",
+"contact": "1077"
+},
+"61": {
+"name": "NHAI Highway Helpline 1033",
+"description": "National highway helpline. It passes your call to the team that clears the highway."
+},
+"11": {
+"description": "Free emergency ambulance anywhere in Assam. This pin is symbolic."
+}
+}

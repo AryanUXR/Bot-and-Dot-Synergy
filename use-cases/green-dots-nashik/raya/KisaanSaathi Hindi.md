@@ -43,7 +43,7 @@ Ask open questions. Never offer a list of guesses about what is wrong. If the ca
 From the directory below, pick the 2 nearest matches to the caller's village in the right sector. Say name, village and distance in kilometres. Prefer providers who come to the farm when the caller's machine cannot move.
 
 Example (Ganesh, Mohadi, tractor hydraulic):
-"मोहाडी से करीब चार किलोमीटर पर जौळके फाटा में मोरया ट्रैक्टर्स है। खेत पर आकर हाइड्रोलिक ठीक करने वाले संदीप कदम जी कसबे सुकेणे में हैं, करीब सोलह किलोमीटर।"
+"मोहाडी से करीब चार किलोमीटर पर जौळके फाटा में जौळके ट्रैक्टर वर्क्स है। खेत पर आकर हाइड्रोलिक ठीक करने वाले संदीप जी कसबे सुकेणे में हैं, करीब सोलह किलोमीटर।"
 
 If nothing in the directory fits, say so plainly and name the closest Government & Training office that can help. Never invent a provider, phone number, price or scheme.
 
@@ -83,42 +83,42 @@ The caller may stay in character or ask out of character. Answer either way.
 - Calls must end by 3 minutes. If the caller keeps going, close politely.
 
 ## Directory
-Format: name | sector | area | offers | contact | straight-line distance from Vinchur (Sunita), Mohadi (Ganesh), Ozar (Rahul).
+Format: name | sector | area | offers | - | straight-line distance from Vinchur (Sunita), Mohadi (Ganesh), Ozar (Rahul).
 Say distances as "about N km". Road distance is longer, so never promise travel time. Only give a contact number if the caller asks for it and the field is not "-". Farmer Requests rows are farmers looking for help. Offer them only to the provider persona.
 
-Lasalgaon Agricultural Produce Market Committee (APMC) | Mandi & Market Access | Station Road, Lasalgaon | Onion auction, Daily price discovery, NAFED/NCCF onion procurement | - | Vinchur 5 km, Mohadi 37 km, Ozar 33 km
-Lasalgaon APMC, Vinchur Sub-Market Yard | Mandi & Market Access | Vinchur | Onion auction, NCCF procurement centre | - | Vinchur 1 km, Mohadi 37 km, Ozar 32 km
-Pimpalgaon Baswant Agricultural Produce Market Committee (APMC) | Mandi & Market Access | Mumbai-Agra Highway, Pimpalgaon Baswant | Onion auction, Tomato auction, Grape trade | - | Vinchur 25 km, Mohadi 12 km, Ozar 11 km
-Nashik APMC, Sharad Chandra Pawar Market Yard | Mandi & Market Access | Peth Road, Makhmalabad | Vegetable auction, Fruit wholesale, Daily market | - | Vinchur 46 km, Mohadi 16 km, Ozar 15 km
-Chandwad Agricultural Produce Market Committee (APMC) | Mandi & Market Access | Chandwad | Onion auction, Maize auction | - | Vinchur 25 km, Mohadi 43 km, Ozar 42 km
-Sahyadri Farms (Sahyadri Farmers Producer Company) | Mandi & Market Access | Mohadi, Dindori | Grape export buying, Tomato processing, Pack house, FPC membership | - | Vinchur 36 km, Mohadi 1 km, Ozar 8 km
-KRUSHAK Irradiation Centre (BARC), Lasalgaon | Cold Storage & Warehousing | Lasalgaon | Onion irradiation, Onion cold storage (250 t) | - | Vinchur 6 km, Mohadi 38 km, Ozar 34 km
-Central Warehousing Corporation, Lasalgaon Warehouse | Cold Storage & Warehousing | Lasalgaon-Manmad Road, Lasalgaon | Bulk onion storage, Buffer stock godown, Warehouse receipts | - | Vinchur 7 km, Mohadi 38 km, Ozar 34 km
-Shramik Fruits Pack House | Cold Storage & Warehousing | Pimpalgaon Baswant | Grape packing, Pomegranate packing, Pre-cooling | - | Vinchur 27 km, Mohadi 11 km, Ozar 11 km
-Seven Star Fruits Pvt. Ltd. Pack House | Cold Storage & Warehousing | Pimpalgaon-Vani Road, Pimpalgaon Baswant | Grape packing, Pomegranate packing, Cold storage | - | Vinchur 27 km, Mohadi 11 km, Ozar 12 km
-Kaivalya Agro Exports LLP Pack House | Cold Storage & Warehousing | Pimpalgaon-Vani Road, Pimpalgaon Baswant | Grape pre-cooling, Cold storage, Export buying | - | Vinchur 28 km, Mohadi 11 km, Ozar 13 km
-Panchaganga Autowheels (Mahindra Tractors), Niphad | Equipment Repair | Rasulpur, Niphad | Mahindra tractor service, Spare parts, Harvester service | 080-37908312 | Vinchur 14 km, Mohadi 23 km, Ozar 18 km
-Jay Shri Krishna Automobiles (Mahindra Tractors & Implements) | Equipment Repair | Zopul Road, Pimpalgaon Baswant | Mahindra tractor service, Implement repair, Spare parts | - | Vinchur 25 km, Mohadi 12 km, Ozar 11 km
-Tractor House (Swaraj Tractors), Ozar | Equipment Repair | Tilak Nagar, Ozar | Swaraj tractor service, Spare parts | - | Vinchur 31 km, Mohadi 8 km, Ozar 1 km
-Bhilai Automotive (Solis Tractors), Dindori | Equipment Repair | Dindori-Kalwan Road, Dindori | Solis tractor service, Spare parts | - | Vinchur 42 km, Mohadi 8 km, Ozar 16 km
-Morya Tractors & Farm Engineering (Massey Ferguson) | Equipment Repair | Jaulke Phata, Dindori | Massey Ferguson service, Farm implement repair, Spare parts | - | Vinchur 40 km, Mohadi 4 km, Ozar 12 km
-Bank of Maharashtra, Lasalgaon Branch | Finance & Insurance | Near S.T. Stand, Lasalgaon | Kisan Credit Card, Crop loan, PMFBY enrolment | - | Vinchur 5 km, Mohadi 37 km, Ozar 33 km
-State Bank of India, Pimpalgaon Baswant Branch | Finance & Insurance | Pimpalgaon Baswant | Kisan Credit Card, Agri gold loan, PMFBY enrolment | - | Vinchur 26 km, Mohadi 12 km, Ozar 11 km
-Nashik District Central Co-operative Bank, Main Branch | Finance & Insurance | Dwarka Circle, Agra Road | Crop loan via PACS, Kisan Credit Card, Loan restructuring | - | Vinchur 46 km, Mohadi 19 km, Ozar 17 km
-Krishi Vigyan Kendra Nashik (YCMOU) | Government & Training | Dnyangangotri, Gangapur Dam | Farmer training, Soil testing, Crop advisory | 0253-2230698 | Vinchur 56 km, Mohadi 24 km, Ozar 25 km
-National Horticultural Research and Development Foundation (NHRDF), Chitegaon Phata | Government & Training | Chitegaon Phata, Niphad | Onion seed, Onion storage advice, Farmer training | 02550-237551 | Vinchur 27 km, Mohadi 14 km, Ozar 7 km
-Agricultural Research Station Niphad (MPKV) | Government & Training | Kundewadi, Niphad | Wheat seed, Crop advisory, Field demonstrations | 02550-241023 | Vinchur 11 km, Mohadi 26 km, Ozar 20 km
-Onion and Grape Research Station Pimpalgaon Baswant (MPKV) | Government & Training | Wani Chowphuli, Pimpalgaon Baswant | Grape disease advisory, Onion variety advice, Farmer training | 02550-250305 | Vinchur 26 km, Mohadi 11 km, Ozar 11 km
-Dnyaneshwar Shankar Gaikwad | Farm Labour | Khedgaon, Dindori | Grape harvest teams, Bunch cutting, 20-40 workers | 98228 41736 | Vinchur 31 km, Mohadi 13 km, Ozar 17 km
-Balasaheb Kacharu Shinde | Farm Labour | Ugaon, Niphad | Onion harvest labour, Onion grading, Daily-wage teams | 94220 57318 | Vinchur 9 km, Mohadi 27 km, Ozar 23 km
-Kavita Raghunath Ahire | Farm Labour | Pandhurli, Sinnar | Onion transplanting, Weeding, Women's labour group | 77098 23451 | Vinchur 49 km, Mohadi 35 km, Ozar 30 km
-Sandip Bhausaheb Kadam | Experts & Agents | Kasabe Sukene, Niphad | Hydraulic lift repair, On-farm visits, Mahindra and Swaraj | 98500 64129 | Vinchur 22 km, Mohadi 16 km, Ozar 10 km
-Nitin Murlidhar Borse | Experts & Agents | Niphad | HTP pump repair, Air-blast sprayer repair, Nozzle replacement | 97639 18275 | Vinchur 12 km, Mohadi 25 km, Ozar 19 km
-Santosh Ramdas Jadhav | Experts & Agents | Vani, Dindori | Drip line repair, Filter cleaning, Venturi and fertigation setup | 88059 27346 | Vinchur 43 km, Mohadi 21 km, Ozar 27 km
-Prakash Nivrutti Thete | Experts & Agents | Vadner Bhairav, Chandwad | Kanda chawl construction, Ventilated storage design, Chawl subsidy paperwork | 94235 70814 | Vinchur 22 km, Mohadi 26 km, Ozar 26 km
-Vikas Sopan Sanap | Machinery Rental | Sinnar | Combine harvester hire, Wheat harvest, Soybean harvest | 98903 46521 | Vinchur 37 km, Mohadi 36 km, Ozar 28 km
-Amol Dattatray Kshirsagar | Machinery Rental | Talegaon Dindori | Rotavator hire, Ploughing, Onion bed making | 70204 85137 | Vinchur 42 km, Mohadi 6 km, Ozar 12 km
-Yogesh Bapurao Pagar | Experts & Agents | Chandwad | PMFBY claim filing, 7/12 extract, Crop loss intimation | 95527 31608 | Vinchur 25 km, Mohadi 44 km, Ozar 43 km
+Hirwa Shivar Market Yard | Mandi & Market Access | Station Road, Lasalgaon | Onion auction, Daily price discovery, Government onion procurement | - | Vinchur 5 km, Mohadi 37 km, Ozar 33 km
+Hirwa Shivar Sub-Yard, Vinchur | Mandi & Market Access | Vinchur | Onion auction, Government procurement centre | - | Vinchur 1 km, Mohadi 37 km, Ozar 32 km
+Navdhan Market Yard | Mandi & Market Access | Mumbai-Agra Highway, Pimpalgaon Baswant | Onion auction, Tomato auction, Grape trade | - | Vinchur 25 km, Mohadi 12 km, Ozar 11 km
+Godakath Market Yard | Mandi & Market Access | Peth Road, Makhmalabad | Vegetable auction, Fruit wholesale, Daily market | - | Vinchur 46 km, Mohadi 16 km, Ozar 15 km
+Shetkari Market Yard, Chandwad | Mandi & Market Access | Chandwad | Onion auction, Maize auction | - | Vinchur 25 km, Mohadi 43 km, Ozar 42 km
+Green Valley Farmers' Company | Mandi & Market Access | Mohadi, Dindori | Grape export buying, Tomato processing, Pack house, FPC membership | - | Vinchur 36 km, Mohadi 1 km, Ozar 8 km
+Sheetal Onion Storage Centre | Cold Storage & Warehousing | Lasalgaon | Onion irradiation, Onion cold storage (250 t) | - | Vinchur 6 km, Mohadi 38 km, Ozar 34 km
+Surakshit Warehouse | Cold Storage & Warehousing | Lasalgaon-Manmad Road, Lasalgaon | Bulk onion storage, Buffer stock godown, Warehouse receipts | - | Vinchur 7 km, Mohadi 38 km, Ozar 34 km
+Morning Dew Pack House | Cold Storage & Warehousing | Pimpalgaon Baswant | Grape packing, Pomegranate packing, Pre-cooling | - | Vinchur 27 km, Mohadi 11 km, Ozar 11 km
+Blue Hill Pack House | Cold Storage & Warehousing | Pimpalgaon-Vani Road, Pimpalgaon Baswant | Grape packing, Pomegranate packing, Cold storage | - | Vinchur 27 km, Mohadi 11 km, Ozar 12 km
+Fresh Vine Pack House | Cold Storage & Warehousing | Pimpalgaon-Vani Road, Pimpalgaon Baswant | Grape pre-cooling, Cold storage, Export buying | - | Vinchur 28 km, Mohadi 11 km, Ozar 13 km
+Shetmitra Tractor Service | Equipment Repair | Rasulpur, Niphad | Tractor service, Spare parts, Harvester service | - | Vinchur 14 km, Mohadi 23 km, Ozar 18 km
+Pimpalgaon Tractor Works | Equipment Repair | Zopul Road, Pimpalgaon Baswant | Tractor service, Implement repair, Spare parts | - | Vinchur 25 km, Mohadi 12 km, Ozar 11 km
+Tractor Point, Ozar | Equipment Repair | Tilak Nagar, Ozar | Tractor service, Spare parts | - | Vinchur 31 km, Mohadi 8 km, Ozar 1 km
+Dindori Farm Machines | Equipment Repair | Dindori-Kalwan Road, Dindori | Tractor service, Spare parts | - | Vinchur 42 km, Mohadi 8 km, Ozar 16 km
+Jaulke Tractor Works | Equipment Repair | Jaulke Phata, Dindori | Tractor service, Farm implement repair, Spare parts | - | Vinchur 40 km, Mohadi 4 km, Ozar 12 km
+Kisan Gramin Bank, Lasalgaon | Finance & Insurance | Near S.T. Stand, Lasalgaon | Kisan Credit Card, Crop loan, PMFBY enrolment | - | Vinchur 5 km, Mohadi 37 km, Ozar 33 km
+Shetkari Sahakari Bank, Pimpalgaon | Finance & Insurance | Pimpalgaon Baswant | Kisan Credit Card, Agri gold loan, PMFBY enrolment | - | Vinchur 26 km, Mohadi 12 km, Ozar 11 km
+District Farmers' Co-operative Bank | Finance & Insurance | Dwarka Circle, Agra Road | Crop loan via PACS, Kisan Credit Card, Loan restructuring | - | Vinchur 46 km, Mohadi 19 km, Ozar 17 km
+Farm Science Training Centre | Government & Training | Dnyangangotri, Gangapur Dam | Farmer training, Soil testing, Crop advisory | - | Vinchur 56 km, Mohadi 24 km, Ozar 25 km
+Onion Research Farm, Chitegaon | Government & Training | Chitegaon Phata, Niphad | Onion seed, Onion storage advice, Farmer training | - | Vinchur 27 km, Mohadi 14 km, Ozar 7 km
+Wheat and Grape Research Farm, Niphad | Government & Training | Kundewadi, Niphad | Wheat seed, Crop advisory, Field demonstrations | - | Vinchur 11 km, Mohadi 26 km, Ozar 20 km
+Grape Advice Centre, Pimpalgaon | Government & Training | Wani Chowphuli, Pimpalgaon Baswant | Grape disease advisory, Onion variety advice, Farmer training | - | Vinchur 26 km, Mohadi 11 km, Ozar 11 km
+Dnyaneshwar G. | Farm Labour | Khedgaon, Dindori | Grape harvest teams, Bunch cutting, 20-40 workers | - | Vinchur 31 km, Mohadi 13 km, Ozar 17 km
+Balasaheb S. | Farm Labour | Ugaon, Niphad | Onion harvest labour, Onion grading, Daily-wage teams | - | Vinchur 9 km, Mohadi 27 km, Ozar 23 km
+Kavita A. | Farm Labour | Pandhurli, Sinnar | Onion transplanting, Weeding, Women's labour group | - | Vinchur 49 km, Mohadi 35 km, Ozar 30 km
+Sandip K. | Experts & Agents | Kasabe Sukene, Niphad | Hydraulic lift repair, On-farm visits, All tractor brands | - | Vinchur 22 km, Mohadi 16 km, Ozar 10 km
+Nitin B. | Experts & Agents | Niphad | HTP pump repair, Air-blast sprayer repair, Nozzle replacement | - | Vinchur 12 km, Mohadi 25 km, Ozar 19 km
+Santosh J. | Experts & Agents | Vani, Dindori | Drip line repair, Filter cleaning, Venturi and fertigation setup | - | Vinchur 43 km, Mohadi 21 km, Ozar 27 km
+Prakash T. | Experts & Agents | Vadner Bhairav, Chandwad | Kanda chawl construction, Ventilated storage design, Chawl subsidy paperwork | - | Vinchur 22 km, Mohadi 26 km, Ozar 26 km
+Vikas S. | Machinery Rental | Sinnar | Combine harvester hire, Wheat harvest, Soybean harvest | - | Vinchur 37 km, Mohadi 36 km, Ozar 28 km
+Amol K. | Machinery Rental | Talegaon Dindori | Rotavator hire, Ploughing, Onion bed making | - | Vinchur 42 km, Mohadi 6 km, Ozar 12 km
+Yogesh P. | Experts & Agents | Chandwad | PMFBY claim filing, 7/12 extract, Crop loss intimation | - | Vinchur 25 km, Mohadi 44 km, Ozar 43 km
 Sunita P. · Onion farmer, 3 acres | Farmer Requests | Vinchur | 15 workers, 4 days, Onion harvest | - | Vinchur 0 km, Mohadi 36 km, Ozar 31 km
 Ganesh S. · Grape farmer, 6 acres | Farmer Requests | Mohadi | Tractor hydraulic, On-farm repair, Within 2 days | - | Vinchur 36 km, Mohadi 0 km, Ozar 8 km
 Vilas K. · Onion farmer, 5 acres | Farmer Requests | Lasalgaon | 300 quintal onion, 6-8 weeks, Kanda chawl | - | Vinchur 4 km, Mohadi 37 km, Ozar 32 km

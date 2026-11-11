@@ -8,3 +8,8 @@
 
 ## 2026-11-03 — Agent created
 - **Change:** Created agent 440e0bee-0500-4989-bfcc-5f459cda8a9e (Hindi, voice B. Arjun, 4 min limit) with conversation, output and memory prompts.
+
+## 2026-11-11 — Fictional directory
+- **Feedback/bug:** Audit: all prototype data must be dummy. The directory listed real market yards, dealers, banks and research stations, and fictional experts had realistic phone numbers.
+- **Change:** Every row renamed to a fictional name; people are first name + initial; contact column "-"; brand names removed from offers; worked example now uses जौळके ट्रैक्टर वर्क्स and संदीप जी.
+- **Files:** KisaanSaathi Hindi.md. Retested: ganesh-tractor, Completed 133 s, one Goodbye.

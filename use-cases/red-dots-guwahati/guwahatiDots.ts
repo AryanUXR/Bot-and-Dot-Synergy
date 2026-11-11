@@ -92,7 +92,7 @@ const PROVIDERS: RedDot[] = [
     area: "Sonapur, NH-27",
     lat: 26.1170, lng: 91.9770,
     org_type: "Government Hospital",
-    offers: ["Emergency stabilisation", "Referral to GMCH"],
+    offers: ["Emergency stabilisation", "Referral to the city hospital"],
     description: "Government Hospital serving Sonapur, NH-27.",
   },
   {
@@ -101,7 +101,7 @@ const PROVIDERS: RedDot[] = [
     area: "Boko, NH-17",
     lat: 25.9800, lng: 91.2350,
     org_type: "Government Health Centre",
-    offers: ["Emergency first aid", "Admission", "Referral to GMCH"],
+    offers: ["Emergency first aid", "Admission", "Referral to the city hospital"],
     description: "Government Health Centre serving Boko, NH-17.",
   },
 
@@ -251,7 +251,7 @@ const PROVIDERS: RedDot[] = [
     lat: 26.1680, lng: 91.7150,
     org_type: "Roadside Mechanic",
     offers: ["Open till midnight", "Chain and puncture repair", "Any brand"],
-    description: "Small roadside garage on AT Road that stays open late for delivery riders. Example listing for this prototype.",
+    description: "Small roadside garage on AT Road that stays open late for delivery riders.",
   },
   {
     id: 36, type: "provider", sector: "Two-wheeler Mechanics",
@@ -260,7 +260,7 @@ const PROVIDERS: RedDot[] = [
     lat: 26.1180, lng: 91.7930,
     org_type: "Roadside Mechanic",
     offers: ["Puncture repair", "Scooter service", "Open till 10 pm"],
-    description: "Roadside scooter mechanic near Beltola Chariali. Example listing for this prototype.",
+    description: "Roadside scooter mechanic near Beltola Chariali.",
   },
 
   // ───────────── Car Workshops ─────────────
@@ -384,7 +384,7 @@ const PROVIDERS: RedDot[] = [
     lat: 26.1500, lng: 91.6720,
     org_type: "Tow Truck",
     offers: ["Car and bike towing", "Open 24 hours"],
-    description: "Tow truck based at Jalukbari for breakdowns in west Guwahati. Example listing for this prototype.",
+    description: "Tow truck based at Jalukbari for breakdowns in west Guwahati.",
   },
   {
     id: 63, type: "provider", sector: "Towing & Cranes",
@@ -393,7 +393,7 @@ const PROVIDERS: RedDot[] = [
     lat: 26.1100, lng: 91.7350,
     org_type: "Crane & Recovery",
     offers: ["Heavy vehicle recovery", "Crane on call"],
-    description: "Crane and recovery truck for trucks and buses on the NH-27 bypass. Example listing for this prototype.",
+    description: "Crane and recovery truck for trucks and buses on the NH-27 bypass.",
   },
   {
     id: 64, type: "provider", sector: "Towing & Cranes",
@@ -402,14 +402,14 @@ const PROVIDERS: RedDot[] = [
     lat: 25.9760, lng: 91.2250,
     org_type: "Crane & Recovery",
     offers: ["Truck towing", "45 to 60 min to reach on NH-17"],
-    description: "Recovery truck covering the NH-17 widening stretch around Boko. Example listing for this prototype.",
+    description: "Recovery truck covering the NH-17 widening stretch around Boko.",
   },
 
   // ───────────── Schemes & Help Desks ─────────────
   {
     id: 71, type: "provider", sector: "Schemes & Help Desks",
     name: "PM RAHAT: cashless accident treatment",
-    area: "Ask at GMCH",
+    area: "Ask at any hospital",
     lat: 26.1585, lng: 91.7640,
     org_type: "Central Scheme",
     offers: ["Up to ₹1.5 lakh", "First 7 days after the crash", "Insured or not"],

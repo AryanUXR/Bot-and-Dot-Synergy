@@ -32,7 +32,7 @@ The Tiruppur knitwear cluster employs more than 10 lakh workers directly, and ab
 
 | id | Name | Sector | Why |
 |---|---|---|---|
-| 16 | Meena Devi | Creches & Child Care | Persona 3 in personas.md (home day care, 15 Velampalayam) |
+| 16 | Meena D. | Creches & Child Care | Persona 3 in personas.md (home day care, 15 Velampalayam) |
 | 17 | Lalita Munda | Creches & Child Care | Home day care, Veerapandi |
 | 20 | Anganwadi Centre (ICDS), Veerapandi area | Anganwadis & Govt Child Care | Real service, exact centre unconfirmed |
 | 21 | Anganwadi Centre (ICDS), Anupparpalayam area | Anganwadis & Govt Child Care | Real service, exact centre unconfirmed |

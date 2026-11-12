@@ -181,7 +181,7 @@ export const TIRUPPUR_PROVIDER_DOTS: PinkDot[] = [
   },
   {
     id: 16, type: "provider", sector: "Creches & Child Care",
-    name: "Meena Devi",
+    name: "Meena D.",
     area: "15 Velampalayam",
     lat: 11.1450, lng: 77.3080,
     org_type: "Home Day Care",
@@ -476,7 +476,7 @@ export const TIRUPPUR_SEEKER_DOTS: PinkDot[] = [
     name: "Laxmi B. · Tailor", area: "Nallur",
     lat: 11.0880, lng: 77.3800,
     org_type: "Needs Creche", offers: ["Twins aged 2", "Care 8 am to 7 pm", "Kangeyam Road side"],
-    description: "She has 2-year-old twins and her mother-in-law is going back to the village. She needs day care on Kangeyam Road that takes two children.",
+    description: "She has 2-year-old twins and the relative who minded them is leaving Tiruppur. She needs day care on Kangeyam Road that takes two children.",
   },
   {
     id: 109, type: "seeker", sector: "Women Requests",

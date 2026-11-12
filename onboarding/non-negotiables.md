@@ -13,4 +13,6 @@ Go through these once with every new builder. Each one exists because breaking i
 9. **Test on the real path before you say it works.** Place one call through the website's own call button code to your own tester number, then run bot-to-bot calls that copy how real callers behave. *Why:* our tests once passed while the website's key was broken.
 10. **Never move a working thing onto something untested.** Prove the new piece end to end first, and keep the old path until both pass. *Why:* a half-built relay once broke a live site.
 
+Rules 1–4 are the four audit checks. `scripts/audit.py` tests them on every prototype; see `SKILL.md`.
+
 And one about secrets: **never paste a key into chat.** Put it in `.env` or the platform's secret store yourself.

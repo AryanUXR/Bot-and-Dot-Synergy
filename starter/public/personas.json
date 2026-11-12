@@ -5,7 +5,9 @@
     "tagline": "Helps you find hostels, child care and jobs in Tiruppur",
     "language_note": "Sakhi will call you in Hindi. Talk as this person for 2 to 3 minutes.",
     "colour": "#C2185B",
-    "colour_dark": "#6A1B4D"
+    "colour_dark": "#6A1B4D",
+    "areas": "Tiruppur",
+    "platform": "Raya"
   },
   "heading": "Two workers. One day-care. Three calls.",
   "subheading": "Pick a person, enter your number, and the voice agent will call you. Talk as that person and see what help it finds nearby.",

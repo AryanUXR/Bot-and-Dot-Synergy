@@ -30,6 +30,17 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 
 ---
 
+## The four audit checks — every prototype, every time
+
+Before anyone outside the build sees a prototype, and again after every data, persona or map change, it must pass all four:
+
+1. **All types of dots are visible.** Requests and providers (for example job seekers, employers and service providers) are all on the map, every filter has dots, and nothing is hidden when the map opens.
+2. **The map opens without a login.** Check the published link a visitor will get, not the editor preview.
+3. **All data is dummy data.** Invented names, no addresses, no emails, no phone numbers except national helplines.
+4. **Nothing sensitive.** No caste, religion, community, state of origin, marital status, surnames, or gender-biased or ableist words, in the map data, the persona text on the bot page, or the bot prompt.
+
+Run `python3 scripts/audit.py <slug> --map-src <map code> --bot-src <bot code> --map-url <published map link>`. It prints PASS or FAIL for each of the four. Any FAIL blocks Stage 6 and handover. It works whatever platform you build on: it only reads files and opens the link.
+
 ## Standing rules — apply to every build
 
 1. **No login on the dot map** — `App.tsx` has `/` and `/home` routing only, both pointing to `LaunchPage`. No `AuthPage`, no phone auth, no `RequireAuth` wrapper on the map route.
@@ -84,7 +95,7 @@ Follow `FLOW.md`. It has seven stages, each with an output and a gate:
 1. Understand the use case → brief and personas, approved
 2. Specify the tech requirements → `tech-spec.md`, preflight passing
 3. Choose alternatives where an API is missing → `onboarding/fallbacks.md`
-4. QC against the rules → `scripts/qc_check.py`, no FAIL
-5. Build on the standard template UI → `starter/UI-SPEC.md` (Lovable route: `bot/SKILL.md`, `dot/SKILL.md`)
+4. QC against the rules → `scripts/audit.py` (the four audit checks) and `scripts/qc_check.py`, no FAIL
+5. Build on the standard template UI → `starter/UI-SPEC.md` (Lovable route: `bot/SKILL.md`, `dot/SKILL.md`), then `scripts/ui_check.py` and `scripts/card_alignment.js`, no FAIL
 6. Test calls → website path first, then every persona
 7. Hand over with presentation notes → `onboarding/handover-template.md`

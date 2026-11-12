@@ -60,7 +60,17 @@ For every row in the tech spec with no platform, or a platform that lacks the ca
 
 **Read:** `onboarding/non-negotiables.md`.
 
-Run `python3 scripts/qc_check.py <slug>`. It checks:
+**Gate: the four audit checks.** Run
+`python3 scripts/audit.py <slug> --map-src <map code> --bot-src <bot code> --map-url <published map link>`.
+All four must PASS:
+1. all types of dots are visible;
+2. the map opens without a login;
+3. all data is dummy data;
+4. nothing sensitive in the map data, persona text or bot prompt.
+
+Run it here on the data and personas, again after Stage 5 with the map code and published link, and once more before handover. Paste its Result block into `tests.md` and the handover.
+
+Then run `python3 scripts/qc_check.py <slug>`. It checks:
 - the data files: fictional data, helplines only, no sensitive labels, every dot type present;
 - the bot prompt: the Goodbye close, "anything else?" after answers, no time limits, no promises.
 
@@ -72,6 +82,12 @@ Then do the manual checks it lists. Run QC again after every change to data or p
 - **No app builder, or any host:** copy `starter/`, replace `public/personas.json` and `public/dots.json`, and deploy (`starter/README.md`).
 - **Lovable:** `bot/SKILL.md` and `dot/SKILL.md`. Remix your own latest finished project.
 - **Another app builder:** give it `starter/UI-SPEC.md` and the two JSON files, and ask it to reproduce the spec exactly.
+
+**Gate: the UI matches the template.** Run both checks before Stage 6, and again after any UI change:
+1. `python3 scripts/ui_check.py bot <your source folder> <a finished bot's folder>` (and `map` for the map). The second folder is the reference. Any card, label or photo style that differs from it fails.
+2. Paste `scripts/card_alignment.js` into the browser console on the bot page, at 1440 px and 390 px wide. It must print PASS: every card in a row has the same top, height, photo, name and label position.
+
+Fix every FAIL before testing calls. Inconsistent cards look broken in a demo even when the bot works.
 
 ## Stage 6: Test calls
 

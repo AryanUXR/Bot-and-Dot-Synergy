@@ -8,7 +8,7 @@
 - Built with: <voice platform> · <app builder or starter> · <map> · <images>
 
 ## Readiness
-*Paste the result of `onboarding/readiness-report.md`: nine checks, each ✅ ⚠️ ❌, plus `scripts/qc_check.py` output.*
+*Paste the result of `onboarding/readiness-report.md`: nine checks, each ✅ ⚠️ ❌, plus the Result block of `scripts/audit.py` (the four audit checks, all PASS) and `scripts/qc_check.py` output.*
 
 ## Three-minute demo script
 1. **The problem (30 s).** One line from the infographic, then the "before" quote.

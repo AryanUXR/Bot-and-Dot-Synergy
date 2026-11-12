@@ -16,4 +16,6 @@ Ask for the bot link and the map link. Then check each line, say how it was chec
 | 8 | The call ends cleanly | During that call, ask two follow-up questions, then say thanks. It should answer both, then say goodbye once |
 | 9 | Map loads on every device | Check on a phone. No "didn't load Google Maps correctly" message |
 
+Checks 1–4 are the four audit checks. If you have the repo, `python3 scripts/audit.py <slug> --map-url <link>` runs them for you; otherwise use the manual steps above.
+
 Write the result as a short plain-language summary: what is ready, what isn't, and who fixes each item. If the builder's test-call results exist, add a line for them. Offer to save the report as a file the reviewer can forward.

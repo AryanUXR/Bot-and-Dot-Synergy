@@ -37,4 +37,4 @@ All places, people and employer requests are sample data. The localities, and th
 
 ## Known limits
 - The Basti dots (for Deepak) are about 180 km from Lucknow, so they're outside the opening view. Pan or zoom out to see them.
-- The bot's persona cards still use full names. Moving to first name + initial under rule 2 is Aryan's call.
+- 12 Nov: the bot's persona cards now show first name + initial (Gaurav M., Sameer K., Ravi P., Meena D., Sunita Y., Deepak B.). The agent's internal persona headings were shortened to match. Snapshot of the earlier prompt: `versions/Divya-Lucknow/pre-initials/`.

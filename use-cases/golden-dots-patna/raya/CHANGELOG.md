@@ -16,3 +16,12 @@
   - Worked examples for the agent-money and caste questions.
   - Rough time estimates banned.
 - **Files:** Sahayika Hindi.md. Snapshot in versions/Sahayika/v1.
+
+## 2026-11-12 — Round 2 fixes
+- **Bug:**
+  - It moved Rekha's Phulwari example ("digital seva point, 1 km") to Patna City, where there is none.
+  - It invented "a fee of up to ₹100".
+- **Change:**
+  - A rule that examples are only for their own area, with a Patna City example that uses Patna City's real rows.
+  - A fee rule with a spoken line and no amounts.
+- **Files:** Sahayika Hindi.md.

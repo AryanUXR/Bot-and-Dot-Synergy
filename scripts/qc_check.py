@@ -16,6 +16,9 @@ SENSITIVE = [
     r"\bbrahmin", r"\bmuslim", r"\bhindu\b", r"\bchristian\b", r"\breligio", r"\bhusband\b", r"\bwidow", r"\bdivorc",
     r"\bseparated from\b", r"\bfrom (bihar|jharkhand|odisha|orissa|uttar pradesh|up|bengal|west bengal|assam|nepal|bangladesh|rajasthan|madhya pradesh|chhattisgarh)\b",
     r"\bbihari\b", r"\billiterate\b", r"\bfair[- ]skinned\b", r"\bhousewife\b",
+    # Disability language: use person-first, respectful terms (onboarding/non-negotiables.md rule 2)
+    r"\bhandicapped\b", r"\bsuffer(s|ing)? from\b", r"\bvictim\b", r"\bconfined to\b", r"\bwheelchair[- ]bound\b",
+    r"\bcripple", r"\bdeaf and dumb\b", r"\bretard", r"\binvalid\b", r"\babnormal\b", "विकलांग", "अपाहिज", "लंगड़",
     "जाति", "दलित", "आदिवासी", "मुस्लिम", "हिंदू", "विधवा", "बिहारी",
 ]
 results = []

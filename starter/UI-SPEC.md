@@ -11,10 +11,10 @@ This is the look and behaviour of every Dots prototype, whatever builds it: Lova
 ## Bot page
 1. **Top bar:** a coloured dot, "<Programme> · <Bot name>", and under it the tagline. The tagline says what the bot does ("Helps you find…"). On the right: a link to the map.
 2. **Heading and subheading:** the heading is short and concrete ("Two workers. One day-care. Three calls."). The subheading says how it works in one or two sentences.
-3. **Persona cards:** three across on desktop, one per row on a phone. Each card has:
+3. **Persona cards** (every card in a row has the same height, photo height, name position and label style): three across on desktop, one per row on a phone. Each card has:
    - a photo, face clearly visible, cropped to the face; or the initial on a colour gradient if there is no photo;
    - first name and initial;
-   - an uppercase label in the colour ("THE WORKING MOTHER");
+   - an uppercase label as a pale chip: the persona colour at about 12% behind dark text (#1F2937), with a small dot in the colour. **Never** plain coloured text: yellow and gold fail contrast, and mixing chip and text styles looks broken;
    - three short traits.
 4. **Call form** (opens on a card click, as a modal or bottom sheet):
    - background: a gradient from the primary to the dark shade, or the warm orange-to-yellow variant;
@@ -25,6 +25,8 @@ This is the look and behaviour of every Dots prototype, whatever builds it: Lova
    - a status line: "Connecting…", then "<Bot> will call you in a few seconds." or a plain error;
    - under that, two sample questions in the bot's language.
 5. **Footer:** the programme and areas on the left; "Voice AI powered by <platform>" on the right.
+
+**Animation:** entrance is opacity only. Never animate the card's `y` with framer while CSS `transition-all` or `hover:-translate-y` also moves it, because the two fight and cards stop at different heights.
 
 ## Dot map
 1. **Full-screen map.** It opens fitted to the dots around the "You" marker (within about 25 km). Far dots stay on the map for panning.

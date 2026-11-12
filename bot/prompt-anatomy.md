@@ -36,6 +36,7 @@ Instructions are ALWAYS in English. Only spoken lines (quoted dialogue, example 
 8. **Never invent.** No providers, phone numbers, prices or schemes outside the directory. Say plainly when nothing fits.
 9. **Examples obey every rule.** Each worked example must follow every rule and safety line, because the bot copies examples more than it follows rules.
 10. **Tag seeker rows with what they need** (`| NEEDS: CRECHE`) so providers only get matching requests.
+12. **Read each row exactly; examples stay in their own area.** Say the area and distance written in that row; never add features not in its offers; never move an example's helpers to another area. Include a wrong/right pair. Give spoken lines for fees, salaries and times that contain no number.
 11. **No time limits in the prompt.** The bot cannot see a clock. Set `max_call_duration_mins` and `call_duration_exceed_message` on the agent instead; in the prompt ask only for short answers.
 
 ## 2. Memory prompt

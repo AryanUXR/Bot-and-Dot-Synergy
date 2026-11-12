@@ -122,3 +122,10 @@ The Nashik lessons paid off: the Raya agent, memory, Lovable wiring, photos and 
 57. **Calls to a tester agent sometimes fail to connect** (outcome Failure, 0 s). Retry once before treating it as a bug.
 
 58. **Use the stored Maps key, don't ask for one.** The map bases fall back to a key built into `useGoogleMaps.ts` when no secret is set. Golden Dots rendered on it with no secret. Red Dots broke only because a restricted key was added as a secret, which overrides the stored one. → *Now in* `dot/SKILL.md` Step 1.
+
+## 2026-11-12 · Golden, Purple and White Dots
+
+59. **Persona cards stopped at different heights.** The card animated `y` with framer-motion while Tailwind `transition-all` and `hover:-translate-y-3` also moved it, so cards froze part-way (Ravi on Golden; Aman and Rakesh on White). → Opacity-only entrance, a framer hover lift, `h-full flex flex-col` for equal heights. → *Now in* `starter/UI-SPEC.md`.
+60. **One label style for every card.** Coloured label text fails contrast for yellow and gold, and a one-off dark chip for those two made the row look broken. → Every label is a pale chip of the persona colour with dark text and a colour dot. → *Now in* `starter/UI-SPEC.md`.
+61. **Bots copy examples to the wrong place.** Sahayika moved a Phulwari example to Patna City; Parivar Saathi gave places "1 km" that were 7 and 11 km away and invented "safe travel arranged". → Each prompt now says to read each row's own area and distance, never add features not in the row's offers, and use examples only for their own area or section, with a wrong/right pair. → *Now in* `bot/prompt-anatomy.md` must-have 12.
+62. **Name an amount and the bot will invent one.** Sahayika said a card takes "a few weeks" and costs "up to ₹100". → Give a spoken line for fees, salaries and times with no number in it.

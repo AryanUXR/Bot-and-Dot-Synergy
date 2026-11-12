@@ -2,7 +2,7 @@
 
 | Test | Round 1 | Round 2 |
 |---|---|---|
-| Website path (call function → tester) | ⏳ Raya 401: `RAYA_API_KEY` not yet in the Lovable project | — |
+| Website path (call function → tester) | ⏳ Raya 401: key not yet in the project | ✅ Raya 200 after the key was added |
 | Aman (course) | ✅ trade institute 2 km, skill centre 5 km, no fee invented, one Goodbye (64 s) | not re-run |
 | Priya (accounts job) | ⚠️ women-led office said "1 km" (really 11 km); invented "safe travel arranged" | ✅ Metro Accounts 7 km, job desk 4 km, no salary, one Goodbye (79 s) |
 | Rakesh (business) | ✅ packaging in Aminabad, licence desk, bank and Mudra with no amount (66 s) | not re-run |

@@ -14,7 +14,7 @@
 | 4 | No sensitive labels | ✅ first name + initial; the bot never asks caste or income |
 | 5 | Copy says what the bot does | ✅ "Helps your family find jobs, courses, services and support near home in Lucknow" |
 | 6 | Persona faces clear | ✅ four Gemini photos |
-| 7 | A call works from the page | ⏳ needs `RAYA_API_KEY` in the bot project's Secrets |
+| 7 | A call works from the page | ✅ website path, Raya 200 |
 | 8 | The call ends cleanly | ✅ one Goodbye in every test call |
 | 9 | Map loads on every device | ⚠️ desktop screenshot only |
 
@@ -29,6 +29,8 @@
    - Pick **Sunita** and call on speaker. Ask: "हमारे समूह को लोन कैसे मिलेगा?", then "चिकनकारी के खरीदार कहाँ मिलेंगे?", then thanks.
    - Point out three things: two correct desks, real distances, and it didn't promise the loan.
 4. **Close (15 s).** *"Turns out many of my family's needs can be met by local services."*
+
+**Card layout:** fixed 12 Nov, after Aryan spotted uneven gaps. All cards now share the same tops, photos, names and labels, and every label uses one chip style.
 
 ## What is fictional
 - All helpers, people and requests are sample data.

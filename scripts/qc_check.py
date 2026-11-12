@@ -79,7 +79,7 @@ def check_data(paths):
     def ok_name(n):
         m = re.search(r"reported by (.+)$", n)
         who = m.group(1) if m else n.split("·")[0]
-        return bool(re.fullmatch(r"\S+ [A-Z]\.|a [a-z]+", who.strip()))
+        return bool(re.fullmatch(r"\S+ [A-Z]\.|a [a-z]+|.+ (SHG|Group|Samuh|Committee)", who.strip()))
     long_names = [field(r, "name") for r in seekers if field(r, "name") and not ok_name(field(r, "name"))]
     if long_names:
         say("WARN", "data", f"{len(long_names)} request name(s) aren't 'First I.' style, e.g. '{long_names[0]}' (rule 2).")

@@ -37,11 +37,7 @@ Lovable:remix_project
   include_custom_knowledge: false
 ```
 
-Right after the remix, check the Maps key (LESSONS.md 37). Print only whether a key came back, never the key itself:
-```bash
-curl -s https://<ref>.supabase.co/functions/v1/get-google-maps-key -H "apikey: <publishable key>" -H "Authorization: Bearer <publishable key>" | python3 -c 'import sys,json; print(bool(json.load(sys.stdin).get("apiKey")))'
-```
-`False` means the user must add `GOOGLE_MAPS_API_KEY` in Project Settings → Secrets. Ask now and carry on with the data.
+**Maps key:** the EkStep map bases carry a stored key in `src/hooks/useGoogleMaps.ts` (`FALLBACK_GOOGLE_MAPS_API_KEY`), used whenever the project has no `GOOGLE_MAPS_API_KEY` secret. So a new copy works with **no secret**: don't ask for one. Never add a secret unless it's a key that allows `*.lovable.app`; a restricted secret overrides the stored key and breaks the map (Red Dots, 11 Nov). Outside EkStep, use your own key (`onboarding/setup-guides/google-maps.md`) or the no-key OpenStreetMap map in `starter/`.
 
 ### Step 2: Read the remixed project
 Read before writing a single prompt:

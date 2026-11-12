@@ -42,6 +42,16 @@
    "uuid": "5d13b69c-3c67-4136-aa8b-a3e98d63d618"
   },
   {
+   "id": "parivarsaathi-hi",
+   "name": "Parivar Saathi · White Dots Lucknow",
+   "file": "use-cases/white-dots-lucknow/raya/ParivarSaathi Hindi.md",
+   "kind": "conversation",
+   "language": "hi",
+   "direction": "outbound",
+   "deploy": true,
+   "uuid": "4973a151-df82-4f3d-bf4b-8acf208b5c2a"
+  },
+  {
    "id": "tester-bluedots",
    "name": "Testing Agent- Blue Dots",
    "kind": "tester",

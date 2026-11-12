@@ -12,3 +12,7 @@ secrets/
 
 # Python caches
 __pycache__/
+
+# Personal onboarding config (names and IDs from your own accounts)
+config/local.json
+.env

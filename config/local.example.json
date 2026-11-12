@@ -1,0 +1,40 @@
+{
+  "_note": "Copy to config/local.json (git-ignored). Holds NO secrets: only names and IDs from YOUR OWN accounts. Secrets live in raya/.env or your platform's secret store. Onboarding (onboarding/SKILL.md) fills this in with you.",
+  "profile": {
+    "name": "",
+    "role": "build | review | fix",
+    "organisation": "",
+    "preferences": []
+  },
+  "stack": {
+    "coding_agent": "claude-code",
+    "voice": "raya",
+    "app_builder": "lovable",
+    "maps": "google-maps",
+    "images": "gemini-vertex | gemini-ai-studio | other",
+    "git": "github",
+    "database": "none"
+  },
+  "voice": {
+    "base_url": "https://v1.getraya.app",
+    "default_language": "hi",
+    "agents": {}
+  },
+  "tester": {
+    "agent_id": "",
+    "dial_number": "",
+    "note": "Your own tester agent on your own voice platform. Never another team's."
+  },
+  "app_builder": {
+    "workspace_id": "",
+    "bases": { "bot": "", "dot": "" }
+  },
+  "images": {
+    "gcp_project": "",
+    "model": "gemini-3-pro-image"
+  },
+  "git": {
+    "remote": ""
+  },
+  "local_clone_path": ""
+}

@@ -1,3 +1,5 @@
+> **New here? Start with [`onboarding/SKILL.md`](onboarding/SKILL.md).** Bring your own accounts and platforms; nobody shares keys. Then run `python3 scripts/preflight.py` to check your setup.
+
 # Bot-and-Dot-Synergy
 
 Claude skill system for building Blue Dots bot and dot prototypes — give Claude a use case, get a working Raya voice AI bot and a Google Maps discovery platform, end to end.

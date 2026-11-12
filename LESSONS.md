@@ -108,3 +108,8 @@ The Nashik lessons paid off: the Raya agent, memory, Lovable wiring, photos and 
 49. **Fictional people: first name and initial only.** No surnames (they signal caste or community), no state of origin ("from Bihar"), no marital status. I named three placeholder businesses after surnames, one of them a community name; use place names for businesses.
 50. **Keep disclaimers in the UI, not in the data.** My generated descriptions ended with "Sample listing for this prototype." and the card then added the same line, so cards said it twice. Lovable caught it. → Data rows describe the place; the card shows the sample note.
 51. **Change bot and map data together.** When dot names change, update the bot prompt's directory rows *and* its worked examples (they are in Hindi script, so a plain name replace misses them), redeploy, and run one test call per bot.
+
+## 2026-11-12 · Opening the skill to everyone (bring your own platform)
+
+52. **The skill was written for one person's accounts.** It hard-coded EkStep's workspace, keys, tester number, local paths and "Google Maps only". Nobody outside the team could run it, and the keys must not be shared anyway. → Added `onboarding/`: route by role, choose a stack against capability lists, set up *your own* accounts with per-platform guides, check them with `scripts/preflight.py` (never prints a secret), and write a git-ignored `config/local.json`. EkStep values in the docs are now examples. Research behind it: `research/who-uses-this-skill.md`.
+53. **Never ask for a key in chat.** Users type secrets into `raya/.env` or the platform's secret store, and the agent checks them with a call that prints only OK or FAIL.

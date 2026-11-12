@@ -1,11 +1,13 @@
 # Blue Dots — Bot + Dot Prototype Skill
 
-Entry point. Read this file first, then `LESSONS.md` (mistakes from past builds and their fixes), then read only the sub-files your task needs.
+Entry point. **New here, or no `config/local.json`? Start with `onboarding/SKILL.md`.** It works out your role, helps you pick your own platforms, sets up and checks *your own* accounts, and writes your config. Otherwise read this file, then `LESSONS.md` (mistakes from past builds and their fixes), then only the sub-files your task needs.
+
+**Bring your own platform.** Nobody shares keys or accounts. Raya, Lovable, Google Maps and Gemini are the *tested defaults*, not requirements: see `onboarding/stack-options.md`. IDs, numbers and paths in these docs are EkStep's own examples. Always use the values in your `config/local.json` instead.
 
 Read every file from the local clone, not from GitHub URLs. The repo is private, so raw GitHub links return 404.
-- Local clone: `/Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy`
+- Local clone: `local_clone_path` in your `config/local.json` (EkStep's is `/Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy`)
 - Run `git pull` on `main` before starting so you have the latest lessons.
-- Remote, for pushing lessons back: `https://github.com/AryanUXR/Bot-and-Dot-Synergy` (`main`)
+- Remote, for pushing lessons back: your own `origin` (EkStep's is `https://github.com/AryanUXR/Bot-and-Dot-Synergy`, `main`)
 
 ---
 
@@ -13,6 +15,9 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 
 | Task | Fetch these files (in order) |
 |------|------------------------------|
+| First time, or new machine | `onboarding/SKILL.md` |
+| Review a prototype before a demo | `onboarding/readiness-report.md` |
+| Fix a live bot from feedback | `onboarding/fix-from-feedback.md` |
 | New use case brief → full build | `content/use-case-brief-template.md` → `bot/SKILL.md` → `dot/SKILL.md` |
 | Bot prototype only | `bot/SKILL.md` |
 | Dot prototype only | `dot/SKILL.md` |
@@ -26,9 +31,9 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 ## Standing rules — apply to every build
 
 1. **No login on the dot map** — `App.tsx` has `/` and `/home` routing only, both pointing to `LaunchPage`. No `AuthPage`, no phone auth, no `RequireAuth` wrapper on the map route.
-2. **Google Maps only** — `useGoogleMaps` hook + Advanced Marker Elements. Never Leaflet or OpenStreetMap.
+2. **Use the map provider in your config.** Google Maps with Advanced Markers is the tested default. Don't switch providers in the middle of a build.
 3. **Async bot↔dot DB** — Raya tool calls write caller data to Supabase during the call. The dot map reads from the same Supabase tables with a realtime subscription. The two prototypes are separate Lovable projects but share one Supabase project.
-4. **Remix, never scratch** — always `remix_project` from a reference. Never `create_project` from zero.
+4. **Remix your latest finished project** rather than starting from zero. A first-ever build starts from the templates in `bot/` and `dot/`; after that, your own latest project is the base.
 5. **Read before prompting** — before sending any Lovable prompt, read the remixed project's key files. Do not assume. Read.
 6. **Section by section** — one `send_message` per section. Wait for build success before the next.
 7. **No slop** — apply `content/anti-slop-rules.md` to all generated copy before it goes into any Lovable prompt.
@@ -42,7 +47,7 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 ## Credentials + workspace
 
 - Lovable workspace ID: `5mdf5lcGjqX0MUaRc1ZX`
-- **All local secrets live in `raya/.env`** (git-ignored, template in `raya/.env.template`). If the file is missing, ask the user for the values once and write it. Never commit it.
+- **All local secrets live in `raya/.env`** (git-ignored, template in `raya/.env.template`). The user types the values in themselves. Never ask for a key in chat, never commit the file, and check it with `scripts/preflight.py`, which never prints a value.
   - `RAYA_API_TOKEN` — Raya API key (same value as `RAYA_API_KEY` in the bot's Supabase secrets, which remixes keep)
   - `GOOGLE_SA_KEY` — path to the Google service account JSON used for Vertex AI images
   - `GEMINI_API_KEY` — optional AI Studio key (prepaid credit can run out)

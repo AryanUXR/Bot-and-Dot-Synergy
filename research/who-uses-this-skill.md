@@ -1,6 +1,6 @@
 # Who uses the Bot-and-Dot skill, and where it hurts
 
-Draft 0.1 · 12 Nov 2026 · input for the onboarding skill
+Draft 0.2 · 12 Nov 2026 · input for the onboarding skill
 
 **What this is.** Proto-personas, empathy maps and a journey map for anyone who runs this skill, not just the person who wrote it.
 
@@ -11,6 +11,9 @@ Draft 0.1 · 12 Nov 2026 · input for the onboarding skill
 - The Lovable workspace, which has about 90 prototypes made by several people.
 
 **What it is not.** No one outside this chat has been interviewed. Every persona is a hypothesis. Each one ends with what we would need to check.
+
+
+> **Decision, 12 Nov 2026: bring your own platform.** EkStep shares no keys with anyone. Every user sets up their own accounts and may pick any voice platform, app builder, map provider or image model. So every persona is partly Persona 5, the Partner Adopter. Raya, Lovable, Google Maps and Gemini are now the *tested defaults*, not requirements. Onboarding's job is to help each person choose a stack and set up their own accounts, then verify them. It never hands out ours.
 
 ---
 
@@ -255,9 +258,9 @@ Onboarding is not a tutorial. It is the **first 20 minutes** that make the next 
 6. **For reviewers:** produce a readiness report for any prototype against the audit checklist.
 7. **Close the loop:** record the person's role and preferences, so the next run skips onboarding.
 
-## 5. Open questions to settle before building
+## 5. Open questions, and how they were settled
 
-1. Who issues Raya keys and the Lovable workspace invite to a new joiner? (Persona 2)
-2. Should onboarding *create* a personal tester agent per builder, to end the shared-number collisions? (Personas 2, 4)
-3. Partners: do we make the skill run outside EkStep accounts now, or later? (Persona 5)
-4. Does the reviewer want the readiness report in chat, as a page, or posted somewhere? (Persona 3)
+1. **Who issues keys to a new joiner?** Settled: nobody. Each user creates their own accounts. Onboarding guides them and checks the result.
+2. **A personal tester agent per builder?** Yes, in the user's own voice platform. If the platform can't call itself, they test with their own phone.
+3. **Run outside EkStep accounts now or later?** Now. Everything EkStep-specific moves into a local config that onboarding writes.
+4. **Where does the readiness report go?** In chat first, as a plain checklist. Optionally as a file the reviewer can forward.

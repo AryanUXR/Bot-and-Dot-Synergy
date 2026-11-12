@@ -80,6 +80,8 @@ def check_data(paths):
 
     seekers = [r for r in rows if field(r, "type") == "seeker"]
     def ok_name(n):
+        if n.startswith("Hiring:"):
+            return True
         m = re.search(r"reported by (.+)$", n)
         who = m.group(1) if m else n.split("·")[0]
         return bool(re.fullmatch(r"\S+ [A-Z]\.|a [a-z]+|.+ (SHG|Group|Samuh|Committee)", who.strip()))

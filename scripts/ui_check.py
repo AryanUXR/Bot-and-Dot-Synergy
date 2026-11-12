@@ -73,7 +73,7 @@ def card_signature(folder):
     return p, card, sig
 
 
-def check_bot(folder):
+def check_bot(folder, ekstep=False):
     files = {**read_all(folder, "*.tsx"), **read_all(folder, "*.ts"), **read_all(folder, "*.html"),
              **read_all(folder, "*.css"), **read_all(folder, "*.js")}
     allt = "\n".join(files.values())
@@ -122,6 +122,8 @@ def check_bot(folder):
         ("call", r"Connecting", "a 'Connecting…' status"),
         ("footer", r"Voice AI powered by", "'Voice AI powered by <platform>' in the footer"),
     ]
+    if ekstep:  # the EkStep header (ekstep/HEADER.md) has the Blue Dots logo instead of a programme label or map link
+        checks = [c for c in checks if c[0] != "top bar"]
     for area, pat, what in checks:
         if re.search(pat, allt, re.I):
             say("OK", area, f"Has {what}.")
@@ -201,7 +203,7 @@ def main():
     sigs = {}
     for f in folders:
         print(f"\n{os.path.basename(os.path.normpath(f))}")
-        sigs[f] = check_bot(f) if kind == "bot" else check_map(f)
+        sigs[f] = check_bot(f, ekstep) if kind == "bot" else check_map(f)
         if ekstep and kind == "bot":
             check_ekstep_header(f)
     if kind == "bot" and len(folders) > 1:

@@ -1,0 +1,38 @@
+{
+  "bot": {
+    "name": "Sakhi",
+    "programme": "Pink Dots Tiruppur",
+    "tagline": "Helps you find hostels, child care and jobs in Tiruppur",
+    "language_note": "Sakhi will call you in Hindi. Talk as this person for 2 to 3 minutes.",
+    "colour": "#C2185B",
+    "colour_dark": "#6A1B4D"
+  },
+  "heading": "Two workers. One day-care. Three calls.",
+  "subheading": "Pick a person, enter your number, and the voice agent will call you. Talk as that person and see what help it finds nearby.",
+  "personas": [
+    {
+      "id": "rinki-new-arrival",
+      "name": "Rinki K.",
+      "label": "The new arrival",
+      "photo": "",
+      "traits": ["23, new to the city two weeks ago", "Has a checker job offer 12 km away with late shifts", "Needs a women's hostel she can afford near work"],
+      "questions": ["मुदलीपालयम के पास लड़कियों के लिए हॉस्टल कहाँ है?", "साढ़े तीन हज़ार में रहना मिल जाएगा क्या?"]
+    },
+    {
+      "id": "sasmita-working-mother",
+      "name": "Sasmita N.",
+      "label": "The working mother",
+      "photo": "",
+      "traits": ["29, overlock operator for 4 years", "Has a 3-year-old daughter", "Needs a creche from 8 am to 6 pm near work"],
+      "questions": ["अनुप्परपालयम के पास पूरे दिन का क्रेच है क्या?", "आंगनवाड़ी में नाम कैसे लिखवाऊँ?"]
+    },
+    {
+      "id": "meena-daycare-provider",
+      "name": "Meena D.",
+      "label": "The day-care provider",
+      "photo": "",
+      "traits": ["36, runs a home day-care", "Has room for 6 more children", "Mothers only hear about her by word of mouth"],
+      "questions": ["मेरा डे केयर नक्शे पर कैसे दिखेगा?", "आसपास किन माँओं को क्रेच चाहिए?"]
+    }
+  ]
+}

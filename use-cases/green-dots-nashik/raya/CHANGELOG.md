@@ -13,3 +13,8 @@
 - **Feedback/bug:** Audit: all prototype data must be dummy. The directory listed real market yards, dealers, banks and research stations, and fictional experts had realistic phone numbers.
 - **Change:** Every row renamed to a fictional name; people are first name + initial; contact column "-"; brand names removed from offers; worked example now uses जौळके ट्रैक्टर वर्क्स and संदीप जी.
 - **Files:** KisaanSaathi Hindi.md. Retested: ganesh-tractor, Completed 133 s, one Goodbye.
+
+## 2026-11-12 — Remove the time limit (found by qc_check.py)
+- **Feedback/bug:** Same rule that made Sakhi hang up early: "Calls must end by 3 minutes."
+- **Change:** Replaced it with "no time-based closing; answering is never closing". Raised `max_call_duration_mins` to 5.
+- **Files:** KisaanSaathi Hindi.md. Snapshot in versions/KisaanSaathi/pre-time-limit.

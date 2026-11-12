@@ -5,6 +5,8 @@ Users bring their own platforms. For each layer:
 - **Tested default:** the platform the skill has been run end to end on. Its guide is in `setup-guides/`.
 - **Alternatives:** platforms people commonly use for this layer. These are *not* tested with this skill. Check the platform's current docs against the "must do" list before committing.
 
+**Missing something?** `fallbacks.md` lists what to do when a platform lacks a capability, and `starter/` builds the whole thing with no app builder and no map key.
+
 Prices, free tiers and features change often. Never quote a price from memory: send the user to the platform's pricing page.
 
 ---
@@ -54,7 +56,9 @@ Prices, free tiers and features change often. Never quote a price from memory: s
 3. Store secrets for that function.
 4. Let the agent change code reliably, through an API, a connector or a git repo the agent can push to.
 
-**Tested default:** Lovable, with Lovable Cloud (Supabase) edge functions. Guide: `setup-guides/lovable.md`.
+**Tested defaults:**
+- Lovable, with Lovable Cloud (Supabase) edge functions. Guide: `setup-guides/lovable.md`.
+- `starter/`: plain HTML and one web-standard call function, runnable locally and on Vercel or Netlify. A real call was tested locally.
 
 **Alternatives:**
 - other AI app builders, such as Bolt or v0;
@@ -72,7 +76,9 @@ With plain code, the agent edits files directly, with no prompts to an app build
 - click a marker to open a card;
 - fit the view to a set of points.
 
-**Tested default:** Google Maps JavaScript API with Advanced Markers. Guide: `setup-guides/google-maps.md`.
+**Tested defaults:**
+- Google Maps JavaScript API with Advanced Markers. Guide: `setup-guides/google-maps.md`.
+- Leaflet with OpenStreetMap tiles, needing no key, in `starter/public/map.html`.
 
 **Alternatives:**
 - Mapbox GL JS;

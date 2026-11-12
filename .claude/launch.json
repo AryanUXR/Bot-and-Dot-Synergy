@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "dots-starter", "runtimeExecutable": "node", "runtimeArgs": ["starter/dev-server.mjs"], "port": 5173 }
+  ]
+}

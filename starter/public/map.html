@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dot map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root { --c: #C2185B; --ink: #1f2937; --muted: #6b7280; --line: #e5e7eb; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
+  #map { position: absolute; inset: 0; }
+  .panel { position: absolute; z-index: 1000; left: 12px; top: 12px; width: 268px; background: rgba(255,255,255,.96); border: 1px solid var(--line); border-radius: 16px; padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .panel h1 { font-size: 13px; margin: 0 0 8px; }
+  .chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .chip { font: inherit; font-size: 11px; font-weight: 600; padding: 6px 4px; border-radius: 10px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; line-height: 1.2; }
+  .chip.on { background: var(--c); border-color: var(--c); color: #fff; }
+  .pin { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+  .pin.provider { background: var(--c); border: 2px solid #fff; }
+  .pin.seeker { background: #fff; border: 2.5px solid var(--c); }
+  .pin.self { background: #fff; border: 3px solid var(--c); font-size: 18px; }
+  .toggle { position: absolute; z-index: 1000; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom) + 24px); display: flex; gap: 4px; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px; box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+  .toggle button { font: inherit; font-weight: 600; border: 0; border-radius: 999px; padding: 10px 20px; background: none; cursor: pointer; }
+  .toggle button.on { background: var(--c); color: #fff; }
+  #list { position: absolute; inset: 0; z-index: 900; background: #f8fafc; overflow-y: auto; padding: 16px 16px 120px; display: none; }
+  #list .item { width: 100%; text-align: left; font: inherit; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer; }
+  #list .item small { color: var(--c); font-weight: 600; }
+  #card { position: fixed; z-index: 2000; left: 0; right: 0; bottom: 0; margin: auto; max-width: 440px; background: #fff; border-radius: 20px 20px 0 0; box-shadow: 0 -8px 32px rgba(0,0,0,.2); display: none; max-height: 85vh; overflow-y: auto; }
+  #card header { background: var(--c); color: #fff; padding: 18px 20px; border-radius: 20px 20px 0 0; }
+  #card header .tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; opacity: .9; }
+  #card header h2 { margin: 6px 0 2px; font-size: 19px; }
+  #card .body { padding: 16px 20px 20px; font-size: 14px; line-height: 1.5; }
+  #card .offers span { display: inline-block; background: #fce7f0; color: var(--c); font-weight: 600; font-size: 12px; border-radius: 999px; padding: 4px 10px; margin: 0 4px 4px 0; }
+  #card .note { color: var(--muted); font-size: 12px; }
+  #card .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  #card .actions a { text-align: center; padding: 10px; border-radius: 12px; font-weight: 600; text-decoration: none; border: 1px solid var(--c); color: var(--c); }
+  #card .actions a.call { background: var(--c); color: #fff; }
+  #card .actions a.off { opacity: .4; pointer-events: none; }
+  #card .x { float: right; background: none; border: 0; color: #fff; font-size: 22px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="panel"><h1 id="title">Loading…</h1><div class="chips" id="chips"></div></div>
+<div id="list"></div>
+<div class="toggle"><button id="t-map" class="on">Map</button><button id="t-list">List</button></div>
+<div id="card" role="dialog" aria-modal="true"></div>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const map = L.map("map", { zoomControl: true });
+// OpenStreetMap tiles need no key. For a public launch, read the tile usage policy and consider a hosted tile provider.
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: "© OpenStreetMap contributors" }).addTo(map);
+let data, active, layer = L.layerGroup().addTo(map);
+
+fetch("dots.json").then(r => r.json()).then(d => {
+  data = d; active = new Set(d.sectors.map(s => s.name));
+  document.title = d.programme;
+  document.documentElement.style.setProperty("--c", d.colour);
+  document.getElementById("title").textContent = `${d.programme} · ${d.dots.length} dots`;
+  const chips = document.getElementById("chips");
+  for (const s of d.sectors) {
+    const b = document.createElement("button");
+    b.className = "chip on"; b.textContent = `${s.icon} ${s.name.split(/[:&(]/)[0].trim()}`; b.title = s.name;
+    b.onclick = () => { active.has(s.name) ? active.delete(s.name) : active.add(s.name); b.classList.toggle("on"); render(); };
+    chips.appendChild(b);
+  }
+  if (d.self) {
+    L.marker([d.self.lat, d.self.lng], { zIndexOffset: 1000, icon: L.divIcon({ className: "", html: `<div class="pin self">🧍</div>`, iconSize: [34, 34] }) })
+      .addTo(map).on("click", () => show({ type: "self", name: d.self.name, area: d.self.area, description: d.self.about }));
+  }
+  render(true);
+});
+
+function icon(s) { return (data.sectors.find(x => x.name === s) || {}).icon || "•"; }
+
+function render(fit) {
+  layer.clearLayers();
+  const shown = data.dots.filter(d => active.has(d.sector));
+  for (const d of shown) {
+    L.marker([d.lat, d.lng], { icon: L.divIcon({ className: "", html: `<div class="pin ${d.type}">${icon(d.sector)}</div>`, iconSize: [34, 34] }) })
+      .addTo(layer).on("click", () => show(d));
+  }
+  if (fit && shown.length) map.fitBounds(L.latLngBounds(shown.map(d => [d.lat, d.lng])), { padding: [60, 60] });
+  document.getElementById("list").innerHTML = shown.map(d =>
+    `<button class="item" data-id="${d.id}"><strong>${esc(d.name)}</strong> · ${esc(d.area)}<br><small>${esc(d.sector)}</small></button>`).join("");
+  document.querySelectorAll("#list .item").forEach(b => b.onclick = () => show(data.dots.find(d => d.id == b.dataset.id)));
+}
+
+function show(d) {
+  const card = document.getElementById("card");
+  const tag = d.type === "seeker" ? `Request · ${d.org_type || ""}` : d.type === "self" ? "You" : (d.org_type || d.sector || "");
+  const tel = d.contact ? `tel:${d.contact.replace(/\s+/g, "")}` : "";
+  const dir = d.lat ? `https://www.openstreetmap.org/directions?to=${d.lat},${d.lng}` : "";
+  card.innerHTML = `<header><button class="x" aria-label="Close">×</button><div class="tag">${esc(tag)}</div><h2>${esc(d.name)}</h2><div>📍 ${esc(d.area)}</div></header>
+    <div class="body">
+      ${d.offers ? `<div class="offers">${d.offers.map(o => `<span>${esc(o)}</span>`).join("")}</div>` : ""}
+      <p>${esc(d.description)}</p>
+      ${d.type !== "self" ? `<p class="note">${d.type === "seeker" ? "Sample request for this prototype." : "Sample listing for this prototype."}</p>` : ""}
+      ${d.type === "provider" ? `<div class="actions"><a class="call ${tel ? "" : "off"}" href="${tel || "#"}">Call</a><a href="${dir}" target="_blank" rel="noopener">Directions</a></div>` : ""}
+    </div>`;
+  card.style.display = "block";
+  card.querySelector(".x").onclick = () => card.style.display = "none";
+}
+
+const tMap = document.getElementById("t-map"), tList = document.getElementById("t-list"), list = document.getElementById("list");
+tMap.onclick = () => { list.style.display = "none"; tMap.classList.add("on"); tList.classList.remove("on"); };
+tList.onclick = () => { list.style.display = "block"; tList.classList.add("on"); tMap.classList.remove("on"); };
+</script>
+</body>
+</html>

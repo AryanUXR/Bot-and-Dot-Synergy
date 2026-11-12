@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bot prototype</title>
+<style>
+  :root { --c: #C2185B; --cd: #6A1B4D; --ink: #1f2937; --muted: #6b7280; --line: #e5e7eb; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: #fff; }
+  nav { display: flex; gap: 12px; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  nav .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+  nav small { display: block; color: var(--muted); font-size: 12px; }
+  nav a { margin-left: auto; color: var(--c); font-weight: 600; text-decoration: none; }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { color: var(--cd); font-size: clamp(26px, 4vw, 40px); margin: 0 0 8px; }
+  .sub { color: var(--muted); max-width: 640px; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 28px; }
+  .card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; cursor: pointer; background: #fff; text-align: left; padding: 0; font: inherit; color: inherit; }
+  .card:hover, .card:focus { border-color: var(--c); outline: none; }
+  .card .photo { height: 180px; background: linear-gradient(135deg, var(--c), var(--cd)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 48px; font-weight: 700; background-size: cover; background-position: center top; }
+  .card .body { padding: 16px; }
+  .card h2 { margin: 0; font-size: 20px; color: var(--cd); }
+  .card .label { text-transform: uppercase; letter-spacing: .06em; font-size: 12px; color: var(--c); font-weight: 700; margin: 4px 0 10px; }
+  .card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  dialog { border: 0; border-radius: 20px; padding: 0; width: min(440px, 92vw); }
+  dialog::backdrop { background: rgba(0,0,0,.4); }
+  .form { padding: 28px; background: linear-gradient(135deg, var(--c), var(--cd)); color: #fff; }
+  .form h3 { margin: 0 0 4px; font-size: 22px; }
+  .form p { margin: 0 0 16px; opacity: .9; font-size: 14px; }
+  .row { display: flex; gap: 8px; }
+  select, input { font: inherit; padding: 14px; border-radius: 12px; border: 0; }
+  select { width: 96px; } input { flex: 1; min-width: 0; }
+  button.go { margin-top: 16px; width: 100%; padding: 16px; border: 0; border-radius: 12px; font: inherit; font-weight: 700; color: var(--cd); background: #fff; cursor: pointer; }
+  button.go:disabled { opacity: .7; cursor: default; }
+  .msg { margin-top: 12px; font-size: 14px; min-height: 1.2em; }
+  .q { margin-top: 14px; font-size: 13px; opacity: .9; }
+  .close { float: right; background: none; border: 0; color: #fff; font-size: 22px; cursor: pointer; }
+</style>
+</head>
+<body>
+<nav><span class="dot"></span><div><strong id="bot-name"></strong><small id="tagline"></small></div><a href="map.html">See the map →</a></nav>
+<main>
+  <h1 id="heading"></h1>
+  <p class="sub" id="subheading"></p>
+  <div class="grid" id="grid"></div>
+</main>
+<dialog id="dlg">
+  <div class="form">
+    <button class="close" aria-label="Close" onclick="dlg.close()">×</button>
+    <h3 id="f-title"></h3>
+    <p id="f-note"></p>
+    <label for="phone" style="font-weight:600;font-size:14px">Your phone number</label>
+    <div class="row" style="margin-top:8px">
+      <select id="cc" aria-label="Country code"><option>+91</option><option>+27</option><option>+1</option><option>+44</option></select>
+      <input id="phone" inputmode="numeric" autocomplete="tel-national" placeholder="Mobile number">
+    </div>
+    <button class="go" id="go">Call me →</button>
+    <div class="msg" id="msg" role="status"></div>
+    <div class="q" id="f-q"></div>
+  </div>
+</dialog>
+<script>
+let data, current;
+const $ = id => document.getElementById(id);
+fetch("personas.json").then(r => r.json()).then(d => {
+  data = d;
+  document.title = `${d.bot.name} · ${d.bot.programme}`;
+  document.documentElement.style.setProperty("--c", d.bot.colour);
+  document.documentElement.style.setProperty("--cd", d.bot.colour_dark);
+  $("bot-name").textContent = `${d.bot.programme} · ${d.bot.name}`;
+  $("tagline").textContent = d.bot.tagline;
+  $("heading").textContent = d.heading;
+  $("subheading").textContent = d.subheading;
+  for (const p of d.personas) {
+    const b = document.createElement("button");
+    b.className = "card";
+    const photo = p.photo ? `style="background-image:url('${p.photo}')"` : "";
+    b.innerHTML = `<div class="photo" ${photo}>${p.photo ? "" : p.name[0]}</div>
+      <div class="body"><h2></h2><div class="label"></div><ul>${p.traits.map(() => "<li></li>").join("")}</ul></div>`;
+    b.querySelector("h2").textContent = p.name;
+    b.querySelector(".label").textContent = p.label;
+    b.querySelectorAll("li").forEach((li, i) => li.textContent = p.traits[i]);
+    b.onclick = () => open(p);
+    $("grid").appendChild(b);
+  }
+});
+function open(p) {
+  current = p;
+  $("f-title").textContent = `Call as ${p.name}`;
+  $("f-note").textContent = data.bot.language_note;
+  $("f-q").textContent = p.questions.length ? "Try asking: " + p.questions.join(" · ") : "";
+  $("msg").textContent = "";
+  $("dlg").showModal();
+}
+$("phone").addEventListener("input", e => e.target.value = e.target.value.replace(/\D/g, "").slice(0, 15));
+$("go").onclick = async () => {
+  const phone = $("phone").value;
+  if (phone.length < 6) { $("msg").textContent = "Enter your phone number."; return; }
+  $("go").disabled = true; $("msg").textContent = "Connecting…";
+  try {
+    const r = await fetch("/api/call", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, countryCode: $("cc").value, personaId: current.id }) });
+    const d = await r.json();
+    $("msg").textContent = d.success ? `${data.bot.name} will call you in a few seconds.` : (d.message || "Call failed. Please try again.");
+  } catch { $("msg").textContent = "Call failed. Please try again."; }
+  $("go").disabled = false;
+};
+</script>
+</body>
+</html>

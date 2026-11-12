@@ -16,6 +16,8 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 | Task | Fetch these files (in order) |
 |------|------------------------------|
 | First time, or new machine | `onboarding/SKILL.md` |
+| **Any new build (the 7 stages)** | `FLOW.md`: understand → tech spec → fallbacks → QC → template UI → test calls → handover |
+| No app builder or map key | `starter/` (plain HTML + one call function, OpenStreetMap) |
 | Review a prototype before a demo | `onboarding/readiness-report.md` |
 | Fix a live bot from feedback | `onboarding/fix-from-feedback.md` |
 | New use case brief → full build | `content/use-case-brief-template.md` → `bot/SKILL.md` → `dot/SKILL.md` |
@@ -75,20 +77,14 @@ Raya tester agent for bot-to-bot tests: see `raya/agents.json` (`tester-bluedots
 
 ---
 
-## Full pipeline (brief → working prototypes)
+## Full pipeline
 
-```
-1. Parse brief          → content/use-case-brief-template.md
-2. Draft content        → content/persona-writing-guide.md
-                          content/dot-data-guide.md
-                          content/anti-slop-rules.md
-3. Create Raya agent    → shared/raya.md  (POST /api/agent, then PATCH memory)
-4. Build bot prototype  → bot/SKILL.md
-5. Generate images      → image-generation/README.md
-6. Build dot prototype  → dot/SKILL.md
-7. Wire async DB sync   → shared/async-sync-architecture.md (skip when the brief says dots are hardcoded)
-8. Bot-to-bot tests     → bot/voice-test-harness.md  (mandatory before handover)
-9. Post-build checks    → bot/post-build-checklist.md
-                          dot/post-build-checklist.md
-10. Write back lessons  → LESSONS.md + the doc that was wrong, then push
-```
+Follow `FLOW.md`. It has seven stages, each with an output and a gate:
+
+1. Understand the use case → brief and personas, approved
+2. Specify the tech requirements → `tech-spec.md`, preflight passing
+3. Choose alternatives where an API is missing → `onboarding/fallbacks.md`
+4. QC against the rules → `scripts/qc_check.py`, no FAIL
+5. Build on the standard template UI → `starter/UI-SPEC.md` (Lovable route: `bot/SKILL.md`, `dot/SKILL.md`)
+6. Test calls → website path first, then every persona
+7. Hand over with presentation notes → `onboarding/handover-template.md`

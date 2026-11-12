@@ -113,3 +113,10 @@ The Nashik lessons paid off: the Raya agent, memory, Lovable wiring, photos and 
 
 52. **The skill was written for one person's accounts.** It hard-coded EkStep's workspace, keys, tester number, local paths and "Google Maps only". Nobody outside the team could run it, and the keys must not be shared anyway. → Added `onboarding/`: route by role, choose a stack against capability lists, set up *your own* accounts with per-platform guides, check them with `scripts/preflight.py` (never prints a secret), and write a git-ignored `config/local.json`. EkStep values in the docs are now examples. Research behind it: `research/who-uses-this-skill.md`.
 53. **Never ask for a key in chat.** Users type secrets into `raya/.env` or the platform's secret store, and the agent checks them with a call that prints only OK or FAIL.
+
+## 2026-11-12 · Building without Lovable, Raya, Google Maps or Gemini
+
+54. **The method must not depend on any one platform.** → `starter/`: plain HTML bot page and map, Leaflet with OpenStreetMap (no key), and one web-standard call function with an adapter per voice platform. Raya is tested; Vapi, Retell and Bland are written but untested. Proven 12 Nov 2026 with a real 202-second call placed through `node starter/dev-server.mjs`. → *Now in* `FLOW.md` stage 5, `onboarding/stack-options.md`.
+55. **Every build follows seven stages, each with a gate:** understand → tech spec → fallbacks → QC → template UI → test calls → handover. → *Now in* `FLOW.md`, `onboarding/fallbacks.md`, `onboarding/handover-template.md`, `starter/UI-SPEC.md`.
+56. **Automate the rules check.** `scripts/qc_check.py` found Kisaan Saathi still had the "calls must end by 3 minutes" rule that had broken Sakhi, and on the old Pink data it flags every issue the manual audit found. Run it before every handover.
+57. **Calls to a tester agent sometimes fail to connect** (outcome Failure, 0 s). Retry once before treating it as a bug.

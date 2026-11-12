@@ -28,7 +28,7 @@ Ask one question and offer four routes:
 
 | Route | For | Goes to |
 |---|---|---|
-| **Build** a prototype | builders, first-timers, partners | Steps 2–7, then the main `SKILL.md` |
+| **Build** a prototype | builders, first-timers, partners | Steps 2–8, then `FLOW.md` |
 | **Review** a prototype | managers, programme leads | `readiness-report.md` only. No accounts needed |
 | **Fix** a live bot from feedback | prompt tuners, QA | Steps 2–5 for the voice platform only, then `fix-from-feedback.md` |
 | **Just looking** | anyone curious | Step 2, then stop |
@@ -102,7 +102,7 @@ Offer a dry run that touches nothing shared or public. Take their infographic, o
 
 The dry run creates no agents and no projects, and it publishes nothing. They see the method working before spending money or credits.
 
-Then hand over to the main `SKILL.md` for the real build.
+Then hand over to `FLOW.md` for the real build: the seven stages from use case to handover.
 
 ## Step 9: Remember them
 

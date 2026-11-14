@@ -1,67 +1,78 @@
 {
- "_note": "One entry per Raya agent. kind=conversation for call agents, kind=tester for the agent-to-agent test caller. Create agents with POST /api/agent (see shared/raya.md), then record the uuid here.",
- "targets": [
-  {
-   "id": "siza-en",
-   "name": "Siza — Blue Dots SA",
-   "file": "bot/prompts/raya/siza-en.md",
-   "kind": "conversation",
-   "language": "en",
-   "direction": "outbound",
-   "deploy": true,
-   "uuid": "de59bc3f-780a-41b0-8ec8-9f9fb8826a05"
-  },
-  {
-   "id": "kisaansaathi-hi",
-   "name": "Kisaan Saathi · Green Dots Nashik",
-   "file": "use-cases/green-dots-nashik/raya/KisaanSaathi Hindi.md",
-   "kind": "conversation",
-   "language": "hi",
-   "direction": "outbound",
-   "deploy": true,
-   "uuid": "440e0bee-0500-4989-bfcc-5f459cda8a9e"
-  },
-  {
-   "id": "sakhi-hi",
-   "name": "Sakhi · Pink Dots Tiruppur",
-   "file": "use-cases/pink-dots-tiruppur/raya/Sakhi Hindi.md",
-   "kind": "conversation",
-   "language": "hi",
-   "direction": "outbound",
-   "deploy": true,
-   "uuid": "ef1d518e-5347-47fd-8987-b9ad90194667"
-  },
-  {
-   "id": "sahayika-hi",
-   "name": "Sahayika · Golden Dots Patna",
-   "file": "use-cases/golden-dots-patna/raya/Sahayika Hindi.md",
-   "kind": "conversation",
-   "language": "hi",
-   "direction": "outbound",
-   "deploy": true,
-   "uuid": "5d13b69c-3c67-4136-aa8b-a3e98d63d618"
-  },
-  {
-   "id": "parivarsaathi-hi",
-   "name": "Parivar Saathi · White Dots Lucknow",
-   "file": "use-cases/white-dots-lucknow/raya/ParivarSaathi Hindi.md",
-   "kind": "conversation",
-   "language": "hi",
-   "direction": "outbound",
-   "deploy": true,
-   "uuid": "4973a151-df82-4f3d-bf4b-8acf208b5c2a"
-  },
-  {
-   "id": "tester-bluedots",
-   "name": "Testing Agent- Blue Dots",
-   "kind": "tester",
-   "language": "hi",
-   "direction": "inbound",
-   "deploy": false,
-   "uuid": "f60e0899-aa3a-4be7-9b4f-0296bd28ef48",
-   "in_did": "911204404272",
-   "dial_as": "1204404272",
-   "note": "Shared tester. raya_testcall.py persona backs it up before each PATCH. Restore the original persona from raya/personas/_backups/ (oldest file) when done."
-  }
- ]
+  "_note": "One entry per Raya agent. kind=conversation for call agents, kind=tester for the agent-to-agent test caller. Create agents with POST /api/agent (see shared/raya.md), then record the uuid here.",
+  "targets": [
+    {
+      "id": "siza-en",
+      "name": "Siza — Blue Dots SA",
+      "file": "bot/prompts/raya/siza-en.md",
+      "kind": "conversation",
+      "language": "en",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "de59bc3f-780a-41b0-8ec8-9f9fb8826a05"
+    },
+    {
+      "id": "kisaansaathi-hi",
+      "name": "Kisaan Saathi · Green Dots Nashik",
+      "file": "use-cases/green-dots-nashik/raya/KisaanSaathi Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "440e0bee-0500-4989-bfcc-5f459cda8a9e"
+    },
+    {
+      "id": "sakhi-hi",
+      "name": "Sakhi · Pink Dots Tiruppur",
+      "file": "use-cases/pink-dots-tiruppur/raya/Sakhi Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "ef1d518e-5347-47fd-8987-b9ad90194667"
+    },
+    {
+      "id": "sakhi-hi-in",
+      "name": "Sakhi Hindi Inbound · Pink Dots Tiruppur",
+      "file": "use-cases/pink-dots-tiruppur/raya/Sakhi Inbound Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "inbound",
+      "deploy": true,
+      "uuid": "d37ecf8d-cacf-4d75-a6d3-4fc142e99b75",
+      "in_did_note": "No number yet (14 Nov 2026). 917946350283 doesn't route; 911204404272 (tester) routes and passed a test call, then was returned. See use-cases/pink-dots-tiruppur/raya/INBOUND-NUMBER.md"
+    },
+    {
+      "id": "sahayika-hi",
+      "name": "Sahayika · Golden Dots Patna",
+      "file": "use-cases/golden-dots-patna/raya/Sahayika Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "5d13b69c-3c67-4136-aa8b-a3e98d63d618"
+    },
+    {
+      "id": "parivarsaathi-hi",
+      "name": "Parivar Saathi · White Dots Lucknow",
+      "file": "use-cases/white-dots-lucknow/raya/ParivarSaathi Hindi.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "4973a151-df82-4f3d-bf4b-8acf208b5c2a"
+    },
+    {
+      "id": "tester-bluedots",
+      "name": "Testing Agent- Blue Dots",
+      "kind": "tester",
+      "language": "hi",
+      "direction": "inbound",
+      "deploy": false,
+      "uuid": "f60e0899-aa3a-4be7-9b4f-0296bd28ef48",
+      "in_did": "911204404272",
+      "dial_as": "1204404272",
+      "note": "Shared tester. raya_testcall.py persona backs it up before each PATCH. Restore the original persona from raya/personas/_backups/ (oldest file) when done."
+    }
+  ]
 }

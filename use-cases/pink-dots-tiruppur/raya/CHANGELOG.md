@@ -23,3 +23,14 @@
 - **Feedback/bug:** Audit: all prototype data must be dummy. The directory listed real hostels, creches, employers and offices.
 - **Change:** Every directory row renamed to a fictional, neutral name; contact column "-" except 181; worked examples now use इनिया / सुदर hostels and सनी डेज़ / लिटिल स्टेप्स day care; state-of-origin labels removed from women's requests and the opening description.
 - **Files:** Sakhi Hindi.md. Retested: rinki-hostel, Completed 147 s, one Goodbye.
+
+## 2026-11-14: Inbound agent created
+- **Request:** Aryan: an inbound Sakhi for Pink Dots, on a temporary number that can be restored.
+- **Change:** new agent `Sakhi Hindi Inbound · Pink Dots Tiruppur` (`d37ecf8d`). Its prompt is a copy of `Sakhi Hindi.md` with four changes:
+  1. an answering greeting;
+  2. works out the caller's role (seeker or provider) instead of reading `${persona}`;
+  3. `${contact_phone}` and `${country_code}` as reference-only inputs;
+  4. "Who may call" replaces the persona notes, and also drops the surnames and home districts.
+  Directory row "Meena Devi" became "Meena D.". Same voice, language, timing, memory and output fields as outbound, except the output field `persona` became `story`.
+- **Number:** none yet. 917946350283 (borrowed from the Purple tester) did not route and was returned. The tester number 911204404272 routed, passed call `d76a20ee` (133 s), and was returned and re-checked. See `INBOUND-NUMBER.md`.
+- **Files:** `Sakhi Inbound Hindi.md`, `Sakhi Inbound Output.md`, `Sakhi Inbound Memory.md`, `INBOUND-NUMBER.md`, `raya/agents.json`, `raya/personas/sakhi-inbound-rinki-hostel.md`, `scripts/raya_did.py`.

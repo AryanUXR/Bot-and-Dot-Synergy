@@ -34,3 +34,7 @@
   Directory row "Meena Devi" became "Meena D.". Same voice, language, timing, memory and output fields as outbound, except the output field `persona` became `story`.
 - **Number:** none yet. 917946350283 (borrowed from the Purple tester) did not route and was returned. The tester number 911204404272 routed, passed call `d76a20ee` (133 s), and was returned and re-checked. See `INBOUND-NUMBER.md`.
 - **Files:** `Sakhi Inbound Hindi.md`, `Sakhi Inbound Output.md`, `Sakhi Inbound Memory.md`, `INBOUND-NUMBER.md`, `raya/agents.json`, `raya/personas/sakhi-inbound-rinki-hostel.md`, `scripts/raya_did.py`.
+
+## 2026-11-14 (later): Number lent; greeting no longer uses memory
+- **Number:** at Aryan's request, 911204404272 was lent from the Blue Dots tester (`f60e0899`). Check call answered by Sakhi. The return command is in `INBOUND-NUMBER.md`.
+- **Fix:** a check call greeted with "last time you asked about child care", but that memory came from another bot's call with the same shared caller ID. Removed the optional earlier-need mention from Phase 1. Memory is now used only if it clearly describes an earlier Pink Dots call. Redeployed; the next call greeted cleanly.

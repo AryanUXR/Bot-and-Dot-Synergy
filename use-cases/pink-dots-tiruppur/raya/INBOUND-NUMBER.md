@@ -1,6 +1,16 @@
 # Pink Dots inbound: number status
 
-**Status (14 Nov 2026):** the inbound agent `Sakhi Hindi Inbound · Pink Dots Tiruppur` (`d37ecf8d-cacf-4d75-a6d3-4fc142e99b75`) is built and has passed one real inbound call. **It has no number.** Every borrowed number was returned and checked.
+**Status (14 Nov 2026, 20:07 IST): LIVE on a LENT number.** Sakhi Inbound (`d37ecf8d-cacf-4d75-a6d3-4fc142e99b75`) answers on **911204404272**, our Blue Dots tester's number, lent at Aryan's request. Dial `1204404272`, or `+91 120 440 4272`. Check calls at 14:35 and 14:37 UTC were answered by Sakhi.
+
+**While it's lent:**
+- **Bot-to-bot tests stop.** `Testing Agent- Blue Dots` (`f60e0899`) receives no calls. Every bot-to-bot test on the account that dials `1204404272` reaches Sakhi instead, including other teams' tests: 22 such calls came on 14 Nov alone.
+- **Return it before any test run:**
+  ```bash
+  python3 scripts/raya_did.py move 911204404272 d37ecf8d-cacf-4d75-a6d3-4fc142e99b75 f60e0899-aa3a-4be7-9b4f-0296bd28ef48
+  ```
+  Then place one call to `1204404272` and confirm the tester logs it. A return on 14 Nov routed within a minute.
+
+**Memory across bots:** Raya looked up `${contact_memory}` by caller number across agents. A test call from `…6352`, a caller ID that 17 bots share, received another bot's summary ("child care in Dadar"). Sakhi now never mentions an earlier call in the greeting, and uses memory only if it clearly describes an earlier Pink Dots call. That was redeployed 14 Nov and checked on a call.
 
 ## What was tried
 

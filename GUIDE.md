@@ -2,7 +2,7 @@
 
 How to use this skill and find your way around it. Read this first, then follow the link for whatever you're doing.
 
-> **Maintained by the EkStep Bot-and-Dot team.** Last reviewed: **14 Nov 2026**. If something here doesn't match the repo, the repo wins: fix this guide in the same commit (see [Keeping this guide current](#keeping-this-guide-current)).
+> **Maintained by the EkStep Bot-and-Dot team.** Last reviewed: **14 Nov 2026**. EkStep keeps a Google Doc copy (link in `ekstep/prototypes.md`), so update both. If something here doesn't match the repo, the repo wins: fix this guide in the same commit (see [Keeping this guide current](#keeping-this-guide-current)).
 
 ---
 
@@ -117,28 +117,27 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 
 ## 7. Where things are
 
-```
-GUIDE.md            ← this guide
-SKILL.md            ← the agent's entry point: routing, rules, IDs
-FLOW.md             ← the 7 build stages and their gates
-LESSONS.md          ← every mistake made so far, and its fix. Read before building.
-onboarding/         ← first-run setup, platform choices, fallbacks, non-negotiables,
-                      readiness report, handover template, fixing from feedback
-  setup-guides/     ← one guide per platform (Raya, Lovable, Google Maps, Gemini, GitHub, any other)
-bot/                ← building the bot page: steps, prompt anatomy, testing
-dot/                ← building the map: steps, data shape, cards, sectors
-content/            ← writing rules: brief template, personas, dot data, anti-slop
-starter/            ← plain HTML + one call function + OpenStreetMap map. UI-SPEC.md is the template.
-scripts/            ← checks, test calls, number moves (see scripts/README.md)
-raya/               ← voice agent registry (agents.json), test personas, .env (yours, never committed)
-image-generation/   ← persona photo pipeline
-shared/             ← notes on Raya, Google Maps, Supabase, workspace
-use-cases/          ← one folder per prototype: brief, personas, data, prompts, tests, handover
-versions/           ← snapshots of prompts before big changes
-research/           ← who uses this skill, and why it works the way it does
-ekstep/             ← EkStep's own builds only (header, logo, live links). Not for other teams.
-config/             ← local.example.json; your local.json is never committed
-```
+| Where | What's there |
+|---|---|
+| `GUIDE.md` | This guide |
+| `SKILL.md` | The agent's entry point: routing, rules, IDs |
+| `FLOW.md` | The 7 build stages and their gates |
+| `LESSONS.md` | Every mistake made so far, and its fix. Read before building. |
+| `onboarding/` | First-run setup, platform choices, fallbacks, non-negotiables, readiness report, handover template, fixing from feedback |
+| `onboarding/setup-guides/` | One guide per platform: Raya, Lovable, Google Maps, Gemini, GitHub, and any other |
+| `bot/` | Building the bot page: steps, prompt anatomy, testing |
+| `dot/` | Building the map: steps, data shape, cards, sectors |
+| `content/` | Writing rules: brief template, personas, dot data, anti-slop |
+| `starter/` | Plain HTML, one call function and an OpenStreetMap map. `UI-SPEC.md` is the template. |
+| `scripts/` | Checks, test calls, number moves (see `scripts/README.md`) |
+| `raya/` | Voice agent registry (`agents.json`), test personas, and your `.env` (never committed) |
+| `image-generation/` | Persona photo pipeline |
+| `shared/` | Notes on Raya, Google Maps, Supabase and the workspace |
+| `use-cases/` | One folder per prototype: brief, personas, data, prompts, tests, handover |
+| `versions/` | Snapshots of prompts before big changes |
+| `research/` | Who uses this skill, and why it works the way it does |
+| `ekstep/` | EkStep's own builds only (header, logo, live links). Not for other teams. |
+| `config/` | `local.example.json`. Your `local.json` is never committed. |
 
 ---
 
@@ -196,5 +195,5 @@ When you update it:
 
 Quick check that every path with a folder in it still exists. Short names such as `brief.md` are per-use-case files, and `config/local.json` is created by each user, so both are skipped:
 ```bash
-grep -oE '`[a-zA-Z0-9_.-]+/[a-zA-Z0-9_./-]+`' GUIDE.md | tr -d '`' | grep -v '^config/local.json$' | sort -u | while read f; do [ -e "$f" ] || echo "missing: $f"; done
+grep -oE '`[a-zA-Z0-9_.-]+/[a-zA-Z0-9_./-]+`' GUIDE.md | tr -d '`' | grep -v 'config/local.json' | sort -u | xargs -I{} sh -c 'test -e {} || echo missing: {}'
 ```

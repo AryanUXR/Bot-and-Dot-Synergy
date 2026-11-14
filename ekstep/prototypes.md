@@ -20,3 +20,10 @@ python3 scripts/audit.py <slug> --map-src <map code copy> --bot-src <bot code co
 ```
 
 The Purple and Red bots also answer on `divyavoiceconnect.lovable.app` and `sahailineassam.lovable.app`, which redirect to the custom domains above. Republished 12 Nov after the UI consistency and four-checks fixes.
+
+## User guide (Google Doc)
+
+[Bot-and-Dot Synergy: user guide](https://docs.google.com/document/d/1kzllQxQm6kvReyakTGQqQHSLCDU4FXiRpuMfG0wRu7o/edit), file id `1kzllQxQm6kvReyakTGQqQHSLCDU4FXiRpuMfG0wRu7o`, owned by Aryan.
+
+- It has the same content as `GUIDE.md`. When one changes, update the other the same day.
+- To be edited by the service account `blue-dots-admin@blue-dots-project.iam.gserviceaccount.com` once Aryan shares the doc with it as Editor.

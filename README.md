@@ -1,3 +1,5 @@
+> **Read [`GUIDE.md`](GUIDE.md) first:** what this skill does, which route to take, the checks, and where everything is.
+>
 > **New here? Start with [`onboarding/SKILL.md`](onboarding/SKILL.md).** Bring your own accounts and platforms; nobody shares keys. Then run `python3 scripts/preflight.py` to check your setup.
 
 # Bot-and-Dot-Synergy
@@ -27,7 +29,9 @@ Start: point Claude at `SKILL.md`.
 ## Repo structure
 
 ```
+GUIDE.md                          ← user guide: routes, checks, where things are
 SKILL.md                          ← Claude entry point
+FLOW.md                           ← the 7 build stages and their gates
 shared/                           ← Patterns used by both bot and dot
 bot/                              ← Bot prototype pipeline + templates
 dot/                              ← Dot prototype pipeline + templates

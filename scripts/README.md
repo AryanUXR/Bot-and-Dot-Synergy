@@ -18,6 +18,13 @@ RAYA_API_TOKEN=[team API key]
 | `uat_batch.py` | Shared HTTP client used by raya_testrun and raya_testcall |
 | `uat_dump.py` | Pretty-print saved UAT call JSON files with tool_calls |
 | `gsheets.py` | Read/write Google Sheets via service account (feedback tracker) |
+| `preflight.py` | Check your setup (config, git, keys, voice, tester, images) without printing any key |
+| `audit.py` | The four audit checks: all dot types visible, map opens without login, all data dummy, nothing sensitive |
+| `qc_check.py` | Data and prompt rules: helplines only, no addresses, Goodbye closings, no time limits or promises |
+| `ui_check.py` | Compare a bot or map's code against the template UI and a finished prototype (`--ekstep` adds the header check) |
+| `card_alignment.js` | Paste into the browser console: checks persona cards line up |
+| `make_dummy_dots.py` | Turn a dots data file into fictional sample data |
+| `raya_did.py` | Move an inbound number between voice agents and back, verified |
 
 ## Quick start — run a test
 

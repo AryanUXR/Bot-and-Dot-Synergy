@@ -1,6 +1,6 @@
 # Blue Dots — Bot + Dot Prototype Skill
 
-Entry point. **New here, or no `config/local.json`? Start with `onboarding/SKILL.md`.** It works out your role, helps you pick your own platforms, sets up and checks *your own* accounts, and writes your config. Otherwise read this file, then `LESSONS.md` (mistakes from past builds and their fixes), then only the sub-files your task needs.
+Entry point. People start with `GUIDE.md`, which explains how to use this skill and where everything is. **New here, or no `config/local.json`? Start with `onboarding/SKILL.md`.** It works out your role, helps you pick your own platforms, sets up and checks *your own* accounts, and writes your config. Otherwise read this file, then `LESSONS.md` (mistakes from past builds and their fixes), then only the sub-files your task needs.
 
 **Bring your own platform.** Nobody shares keys or accounts. Raya, Lovable, Google Maps and Gemini are the *tested defaults*, not requirements: see `onboarding/stack-options.md`. IDs, numbers and paths in these docs are EkStep's own examples. Always use the values in your `config/local.json` instead.
 

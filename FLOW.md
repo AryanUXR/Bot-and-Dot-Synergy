@@ -6,7 +6,7 @@ New to the skill? Run `onboarding/SKILL.md` first. It sets up the builder's own 
 
 | # | Stage | Output | Gate (must pass before the next stage) |
 |---|---|---|---|
-| 1 | Understand the use case | `use-cases/<slug>/brief.md` and `personas.md` | The user has approved the brief and personas |
+| 1 | Understand the use case | `use-cases/<slug>/brief.md`, `personas.md` and `schema/` (Domain Mapping, Config Note, Mapping Sheet) | The user has approved the brief, the personas and the schema |
 | 2 | Specify the tech requirements | `use-cases/<slug>/tech-spec.md` | Every capability has a platform, and every platform passes `scripts/preflight.py` |
 | 3 | Choose alternatives where an API is missing | the same tech spec, with a "Fallbacks" section | No capability is left unmet; each gap has a named fallback the user has agreed to |
 | 4 | QC against the rules | `python3 scripts/qc_check.py <slug>` report | No FAIL. Every WARN is either fixed or explained in the handover |
@@ -23,7 +23,9 @@ New to the skill? Run `onboarding/SKILL.md` first. It sets up the builder's own 
 1. Take the infographic or brief. Pull out everything you can before asking: the problem, who seeks, who provides, the place, the language, the before/after quotes, and the manager's steer.
 2. Ask **one round** of questions for what can't be inferred: city or district, language, bot name, and anything to emphasise. Propose a default for each.
 3. Write `brief.md`, then three personas: two seekers and one provider. They're fictional, use first name and initial, and carry no sensitive labels (`onboarding/non-negotiables.md` 1–2).
-4. Get the user's approval before Stage 2.
+4. Get the user's approval on the brief and personas.
+5. **Map the schema** with schema-mapper, using the approved brief and personas as its documents (`shared/schema-mapper.md`). It produces the Domain Mapping, the Config Note and the Mapping Sheet in `use-cases/<slug>/schema/`. Its need list becomes the map's sectors and filters; its fields become what the dots carry and what the bot asks. No access to schema-mapper? Skip this step and follow `content/dot-data-guide.md`.
+6. Get the user's approval on the schema before Stage 2.
 
 ## Stage 2: Specify the tech requirements
 

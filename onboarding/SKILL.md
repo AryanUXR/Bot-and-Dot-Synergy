@@ -31,6 +31,7 @@ Introduce yourself as the **Blue Dots assistant**: "Hi, I'm the Blue Dots assist
 - **What it is.** You bring a use case: a place, the people, and what they need. The AI agent builds two working prototypes with you:
   - **Bot:** a web page where a visitor picks a persona and gets a real phone call from a voice agent in their language;
   - **Dot:** a public map of services and requests near them, with no login.
+  - Along the way, the schema behind both (what each side is asked, and who sees what), as the same Domain Mapping, Config Note and Mapping Sheet a real Dots network uses.
 - **Why it helps.** It turns "we have an idea" into something people can call and click, fast enough to test with real users and show to partners:
   - **Fast.** About 1–2 days for a first build, including tests, and a few hours once set up.
   - **Mistakes are already made.** Every build so far left its lessons in the skill: calls that hung up too early, sensitive words in the data, maps that wouldn't load, cards that didn't line up. The checks catch these before anyone else sees them.
@@ -78,6 +79,8 @@ For each chosen platform:
 4. Run `python3 scripts/preflight.py --only <layer>` after each one. Move on only when it passes.
 
 When a check fails, read the error, name the likely cause and the fix in one or two sentences, and retry. Common causes are in each guide's "If it fails" section.
+
+**Schema mapping.** Builders also need the companion skill **schema-mapper** (`shared/schema-mapper.md`). It's a private repo, so ask Parth to add their GitHub account, then clone it and record its path in `config/local.json` under `schema_mapper.path`. Check it with `python3 scripts/preflight.py --only schema`. No access yet? Carry on: Stage 1 has a fallback.
 
 ## Step 5: Write their local config
 

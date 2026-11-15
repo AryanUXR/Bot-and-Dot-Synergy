@@ -4,6 +4,8 @@
   python3 scripts/gdocs.py get <doc_id> [--out file.json]        # full document JSON (saves to --out)
   python3 scripts/gdocs.py batch <doc_id> <requests.json>        # apply a batchUpdate, guarded by the
                                                                  # doc's current revisionId
+  python3 scripts/gdocs.py sync-guide <doc_id> [GUIDE.md]        # replace the doc's content with GUIDE.md (same file,
+                                                                 # same link) and reapply the guide's formatting
 The doc must be shared with the service account (Editor) first. Uses curl for HTTPS (this Mac's
 python.org build has no CA bundle). Reads the key path from $GOOGLE_SA_KEY or raya/.env. Never prints the key.
 """
@@ -38,10 +40,10 @@ def curl(args, data=None):
     return int(code), body
 
 
-def token():
+def token(scope=SCOPE):
     sa = gsheets.load_key()
     now = int(time.time())
-    claim = {"iss": sa["client_email"], "scope": SCOPE, "aud": gsheets.TOKEN_URL, "iat": now, "exp": now + 3600}
+    claim = {"iss": sa["client_email"], "scope": scope, "aud": gsheets.TOKEN_URL, "iat": now, "exp": now + 3600}
     si = gsheets.b64u(json.dumps({"alg": "RS256", "typ": "JWT"}).encode()) + b"." + gsheets.b64u(json.dumps(claim).encode())
     pk = serialization.load_pem_private_key(sa["private_key"].encode(), password=None)
     assertion = (si + b"." + gsheets.b64u(pk.sign(si, padding.PKCS1v15(), hashes.SHA256()))).decode()
@@ -65,7 +67,71 @@ def call(tok, path, method="GET", body=None):
     return json.loads(out or "{}")
 
 
+# Formatting for the guide doc (agreed 15 Nov 2026). Table widths are keyed by the first header cell, in points.
+WIDTHS = {"": [90, 189, 189], "I want to…": [128, 124, 140, 76], "#": [24, 92, 96, 112, 144],
+          "Check": [112, 226, 130], "Task": [150, 318], "Where": [150, 318], "Word": [140, 328]}
+NEW_PAGE_BEFORE = ("4. The build",)
+
+
+def _text(el):
+    return "".join(r.get("textRun", {}).get("content", "") for r in el["paragraph"]["elements"]).strip()
+
+
+def guide_format_requests(doc):
+    PT = lambda x: {"magnitude": x, "unit": "PT"}
+    req, prev = [], None
+    for el in doc["body"]["content"]:
+        if "paragraph" in el:
+            p = el["paragraph"]; st = p["paragraphStyle"].get("namedStyleType", ""); rng = {"startIndex": el["startIndex"], "endIndex": el["endIndex"]}
+            if st.startswith("HEADING"):
+                above = {"HEADING_1": 0, "HEADING_2": 22, "HEADING_3": 14}.get(st, 14)
+                style = {"spaceAbove": PT(above), "spaceBelow": PT(10 if st == "HEADING_1" else 8 if st == "HEADING_2" else 6), "keepWithNext": True}
+                fields = "spaceAbove,spaceBelow,keepWithNext"
+                if _text(el).startswith(NEW_PAGE_BEFORE):
+                    style.update(pageBreakBefore=True, spaceAbove=PT(0)); fields += ",pageBreakBefore"
+            elif "bullet" in p:
+                style, fields = {"spaceAbove": PT(2), "spaceBelow": PT(2), "lineSpacing": 115}, "spaceAbove,spaceBelow,lineSpacing"
+            else:
+                style, fields = {"spaceAbove": PT(10 if prev == "table" else 6), "spaceBelow": PT(6), "lineSpacing": 115}, "spaceAbove,spaceBelow,lineSpacing"
+            req.append({"updateParagraphStyle": {"range": rng, "paragraphStyle": style, "fields": fields}})
+            prev = "para"
+        elif "table" in el:
+            t = el["table"]; loc = {"index": el["startIndex"]}
+            first = "".join(_text(c) for c in t["tableRows"][0]["tableCells"][0]["content"] if "paragraph" in c)
+            w = WIDTHS.get(first)
+            if t["columns"] > 1 and w and len(w) == t["columns"]:
+                for j, x in enumerate(w):
+                    req.append({"updateTableColumnProperties": {"tableStartLocation": loc, "columnIndices": [j],
+                                "tableColumnProperties": {"widthType": "FIXED_WIDTH", "width": PT(x)}, "fields": "widthType,width"}})
+            elif t["columns"] > 1:
+                print(f"note: no width set for table starting {first!r} ({t['columns']} columns); add it to WIDTHS")
+            req.append({"updateTableRowStyle": {"tableStartLocation": loc, "rowIndices": list(range(t["rows"])),
+                        "tableRowStyle": {"preventOverflow": True}, "fields": "preventOverflow"}})
+            prev = "table"
+        else:
+            prev = None
+    return req
+
+
+def sync_guide(doc_id, md_path):
+    import guide_html
+    html_doc = guide_html.convert(open(md_path, encoding="utf-8").read())
+    drive_tok = token("https://www.googleapis.com/auth/drive")
+    code, out = curl(["-X", "PATCH", "-H", "Authorization: Bearer " + drive_tok, "-H", "Content-Type: text/html; charset=utf-8",
+                      "--data-binary", "@-", f"https://www.googleapis.com/upload/drive/v3/files/{doc_id}?uploadType=media"], html_doc)
+    if code != 200:
+        sys.exit(f"Drive content upload -> HTTP {code}\n{out[:600]}")
+    tok = token()
+    doc = call(tok, doc_id)
+    req = guide_format_requests(doc)
+    call(tok, doc_id + ":batchUpdate", "POST", {"requests": req, "writeControl": {"requiredRevisionId": doc["revisionId"]}})
+    print(f"synced {md_path} into {doc_id} (same link) and applied {len(req)} formatting request(s)")
+
+
 def main():
+    if len(sys.argv) >= 3 and sys.argv[1] == "sync-guide":
+        sync_guide(sys.argv[2], sys.argv[3] if len(sys.argv) > 3 else os.path.join(gsheets.REPO_ROOT, "GUIDE.md"))
+        return
     if len(sys.argv) < 3 or sys.argv[1] not in ("get", "batch"):
         print(__doc__); sys.exit(2)
     tok = token()

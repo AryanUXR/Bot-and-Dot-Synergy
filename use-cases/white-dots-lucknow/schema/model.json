@@ -1,0 +1,1305 @@
+{
+  "meta": {
+    "model_version": "1",
+    "created": "2026-11-15",
+    "updated": "2026-11-15",
+    "mode": "have_documents",
+    "inputs": [
+      "brief.md",
+      "personas.md"
+    ],
+    "questions_asked": [],
+    "stage": "framing"
+  },
+  "network": {
+    "name": "White Dots Lucknow",
+    "consent": {
+      "asked_for": [
+        "Creating a profile",
+        "Sharing PII on an accepted connection"
+      ],
+      "src": {
+        "kind": "default",
+        "ref": "purple.consent"
+      }
+    },
+    "sector": "Household services across all nine Dots sectors",
+    "problem": "A household has many needs at once. Most of the help is close by, but none of it is visible, so jobs stay unfilled, skills stay unused, and people leave for bigger cities.",
+    "problem_src": {
+      "kind": "doc",
+      "ref": "brief.md The problem",
+      "quote": "Most of the help is close by, but none of it is visible"
+    },
+    "who_finds_whom": "Seekers: members of one household, each with a different need, plus requests from other households. Providers: whatever each Dot colour covers (employers, colleges and skill centres, farm services, women's groups, disability support, emergency services, experience hosts, suppliers and lenders, SHGs and customers).",
+    "channels": {
+      "seekers": [
+        "voice_bot"
+      ],
+      "providers": [],
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md intro",
+        "quote": "One bot handles a whole family's needs"
+      }
+    },
+    "geography": {
+      "now": [
+        "Lucknow district (city wards, Malihabad, Bakshi Ka Talab, Mohanlalganj)"
+      ],
+      "next": [],
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 3. Geography",
+        "quote": "Lucknow district: city wards plus the rural edge"
+      }
+    },
+    "languages": {
+      "now": [
+        "Hindi"
+      ],
+      "next": [],
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 7. Language",
+        "quote": "Hindi"
+      }
+    }
+  },
+  "use_cases": [
+    {
+      "id": "jobs",
+      "name": "Jobs",
+      "summary": "A household member needs help with jobs near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "education_skilling",
+      "name": "Education & Skilling",
+      "summary": "A household member needs help with education & skilling near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "farm_rural_services",
+      "name": "Farm & Rural Services",
+      "summary": "A household member needs help with farm & rural services near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "women_s_jobs_support",
+      "name": "Women's Jobs & Support",
+      "summary": "A household member needs help with women's jobs & support near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "disability_support",
+      "name": "Disability Support",
+      "summary": "A household member needs help with disability support near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "emergency_services",
+      "name": "Emergency Services",
+      "summary": "A household member needs help with emergency services near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "local_experiences",
+      "name": "Local Experiences",
+      "summary": "A household member needs help with local experiences near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "business_talent_capital_suppliers",
+      "name": "Business: Talent, Capital & Suppliers",
+      "summary": "A household member needs help with business: talent, capital & suppliers near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    },
+    {
+      "id": "shgs_customers_services",
+      "name": "SHGs, Customers & Services",
+      "summary": "A household member needs help with shgs, customers & services near home in Lucknow.",
+      "src": {
+        "kind": "doc",
+        "ref": "brief.md 9. Sectors",
+        "quote": "The nine Dot colours above"
+      }
+    }
+  ],
+  "actors": [
+    {
+      "id": "seeker",
+      "kind": "seeker",
+      "label": "Seeker",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Full name",
+          "framework": "who_i_am",
+          "required": "yes",
+          "required_to_go_live": true,
+          "type": "text",
+          "constraints": "min 2, max 200 chars",
+          "role": "contact_identity",
+          "bot_field": "name",
+          "src": {
+            "kind": "default",
+            "ref": "purple.seeker.candidate_name / blue.seeker.full_name"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "mobile_number",
+          "label": "Mobile number",
+          "framework": "who_i_am",
+          "required": "yes",
+          "required_to_go_live": true,
+          "type": "phone",
+          "constraints": "10 digits",
+          "role": "contact_identity",
+          "bot_field": "phone_number",
+          "src": {
+            "kind": "default",
+            "ref": "purple.seeker.mobile_number / blue.seeker.mobile_number"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "email",
+          "label": "Email",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "email",
+          "role": "contact_identity",
+          "bot_field": "NA",
+          "src": {
+            "kind": "default",
+            "ref": "purple.seeker.email / blue.seeker.email"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "age",
+          "label": "Age",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "number",
+          "constraints": "1-100",
+          "role": "sensitive_demographic",
+          "bot_field": "age",
+          "src": {
+            "kind": "default",
+            "ref": "purple.seeker.age / blue.seeker.age"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "gender",
+          "label": "Gender",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "single_select",
+          "options": [
+            "Male",
+            "Female",
+            "Other",
+            "Prefer not to say"
+          ],
+          "role": "sensitive_demographic",
+          "bot_field": "gender",
+          "src": {
+            "kind": "default",
+            "ref": "purple.seeker.gender / blue.seeker.gender"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "location",
+          "label": "Area / locality, city or village, district",
+          "framework": "what_i_want",
+          "required": "no",
+          "required_to_go_live": true,
+          "type": "geo_point",
+          "role": "primary_location",
+          "bot_field": "address",
+          "src": {
+            "kind": "default",
+            "ref": "purple.seeker.location / blue.seeker.area_city"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "map_discovery": true,
+          "vectorise": false,
+          "search": true,
+          "filter": true,
+          "defaulted": [
+            "filter",
+            "map_discovery",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        }
+      ],
+      "src": {
+        "kind": "default",
+        "ref": "every network has seekers"
+      },
+      "description": "Members of one household, each with a different need; plus requests from other households on the map.",
+      "description_src": {
+        "kind": "doc",
+        "ref": "brief.md 4. Seekers",
+        "quote": "Members of one household, each with a different need"
+      }
+    },
+    {
+      "id": "provider",
+      "kind": "provider",
+      "label": "Provider",
+      "fields": [
+        {
+          "key": "contact_name",
+          "label": "Contact name",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "text",
+          "constraints": "min 2, max 200 chars",
+          "role": "contact_identity",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.contact_name"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "contact_phone",
+          "label": "Contact phone number",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "phone",
+          "constraints": "10 digits",
+          "role": "contact_identity",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.contact_phone"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "contact_email",
+          "label": "Contact email",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "email",
+          "role": "contact_identity",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.contact_email"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": true,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "organisation_name",
+          "label": "Name of your organisation (or your name if individual)",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "text",
+          "role": "org_name",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.organisation_name"
+          },
+          "visibility": "public",
+          "pii": false,
+          "masked": false,
+          "on_card": true,
+          "vectorise": true,
+          "search": true,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "website",
+          "label": "Website",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "url",
+          "role": "admin_or_internal",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.website"
+          },
+          "visibility": "hidden",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "service_areas",
+          "label": "In which areas and cities do you provide the service?",
+          "framework": "what_i_have",
+          "required": "yes",
+          "type": "geo_multi",
+          "role": "service_area",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.service_areas"
+          },
+          "visibility": "public",
+          "pii": false,
+          "masked": false,
+          "on_card": true,
+          "map_discovery": true,
+          "vectorise": false,
+          "search": true,
+          "filter": true,
+          "defaulted": [
+            "filter",
+            "map_discovery",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "official_address",
+          "label": "What is your official address?",
+          "framework": "what_i_have",
+          "required": "yes",
+          "type": "geo_point",
+          "role": "official_address",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.official_address"
+          },
+          "visibility": "on_accept",
+          "pii": true,
+          "masked": true,
+          "unmask_event": "Connection Request Sent --> Connection Request Accepted",
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "unmask_event",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "service_details",
+          "label": "Share more details about the service, opportunity or support provided",
+          "framework": "what_i_have",
+          "required": "yes",
+          "type": "long_text",
+          "role": "free_text_detail",
+          "src": {
+            "kind": "default",
+            "ref": "purple.provider.service_details"
+          },
+          "visibility": "public",
+          "pii": false,
+          "masked": false,
+          "on_card": true,
+          "vectorise": true,
+          "search": true,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        }
+      ],
+      "src": {
+        "kind": "default",
+        "ref": "every network has providers"
+      },
+      "description": "Whatever each Dot colour covers: employers, colleges and skill centres, farm services, women's groups, disability support, emergency services, experience hosts, suppliers and lenders, SHGs and customers.",
+      "description_src": {
+        "kind": "doc",
+        "ref": "brief.md 5. Providers",
+        "quote": "Whatever each colour covers"
+      }
+    },
+    {
+      "id": "aggregator_owner",
+      "kind": "aggregator_owner",
+      "label": "Aggregator Owner",
+      "fields": [
+        {
+          "key": "organisation_name",
+          "label": "Organisation Name",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "text",
+          "constraints": "min 2, max 200 chars",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.organisation_name"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "address",
+          "label": "Street, Area, City, District & State",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "geo_point",
+          "explanation": "Captures address from street onwards for the organisation",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.address"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "website",
+          "label": "Website",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "url",
+          "constraints": "max 2048 chars",
+          "explanation": "Not required at signup; can be added/edited later",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.website"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "aggregator_type",
+          "label": "Aggregator Type",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "multi_select",
+          "explanation": "Who are you aggregating?",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.aggregator_type"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "organisation_type",
+          "label": "Organisation Type",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "single_select",
+          "options": [
+            "NGO",
+            "Government Entity",
+            "Private Company",
+            "Community Group",
+            "Others"
+          ],
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.organisation_type"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "owner_name",
+          "label": "Owner Name",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "text",
+          "constraints": "min 2, max 200 chars",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.owner_name"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "owner_phone",
+          "label": "Owner Phone",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "phone",
+          "constraints": "10 digit Indian mobile (may include +91)",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.owner_phone"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "owner_email",
+          "label": "Owner Email",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "email",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.owner_email"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "terms_consent",
+          "label": "Terms & Privacy Consent",
+          "framework": "terms_consent",
+          "required": "yes",
+          "type": "boolean",
+          "constraints": "required to submit",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.terms_consent"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "consent_given_at",
+          "label": "Consent Given At",
+          "framework": "terms_consent",
+          "required": "server_set",
+          "type": "date_time",
+          "explanation": "Set by the server at submission",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.consent_given_at"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "consent_valid_till",
+          "label": "Consent Valid Till",
+          "framework": "terms_consent",
+          "required": "server_set",
+          "type": "date_time",
+          "explanation": "Set by the server if periodic re-consent is required",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_owner.consent_valid_till"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        }
+      ],
+      "src": {
+        "kind": "default",
+        "ref": "purple.aggregator_owner"
+      }
+    },
+    {
+      "id": "aggregator_coordinator",
+      "kind": "aggregator_coordinator",
+      "label": "Aggregator Coordinator",
+      "fields": [
+        {
+          "key": "organisation_name",
+          "label": "Organisation Name",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "single_select",
+          "constraints": "Org name from the Aggregator Owner list",
+          "explanation": "Name of the entity that wishes to aggregate seekers or providers",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.organisation_name"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "website",
+          "label": "Website",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "url",
+          "constraints": "max 2048 chars",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.website"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "sub_org",
+          "label": "Sub-Org / Division / Vertical / Institution Name",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "text",
+          "explanation": "Any sub-identity needed for identification and tracking; can be the same as the org name",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.sub_org"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "aggregator_type",
+          "label": "Aggregator Type",
+          "framework": "who_i_am",
+          "required": "yes",
+          "type": "single_select",
+          "explanation": "Who are you aggregating?",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.aggregator_type"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "address",
+          "label": "Street, Area, City, District & State",
+          "framework": "who_i_am",
+          "required": "no",
+          "type": "geo_point",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.address"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "contact_name",
+          "label": "Contact Name",
+          "framework": "contact",
+          "required": "yes",
+          "type": "text",
+          "constraints": "min 2, max 200 chars",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.contact_name"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "phone",
+          "label": "Phone",
+          "framework": "contact",
+          "required": "yes",
+          "type": "phone",
+          "constraints": "pattern ^(+?\\d{10,15}|\\d{10})$",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.phone"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "email",
+          "label": "Email",
+          "framework": "contact",
+          "required": "yes",
+          "type": "email",
+          "constraints": "max 320 chars",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.email"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "terms_consent",
+          "label": "Terms & Privacy Consent",
+          "framework": "terms_consent",
+          "required": "yes",
+          "type": "boolean",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.terms_consent"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "consent_given_at",
+          "label": "Consent Given At",
+          "framework": "terms_consent",
+          "required": "server_set",
+          "type": "date_time",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.consent_given_at"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        },
+        {
+          "key": "consent_valid_till",
+          "label": "Consent Valid Till",
+          "framework": "terms_consent",
+          "required": "server_set",
+          "type": "date_time",
+          "src": {
+            "kind": "default",
+            "ref": "base.aggregator_coordinator.consent_valid_till"
+          },
+          "role": "registration_data",
+          "visibility": "aggregator_and_adopter",
+          "pii": false,
+          "masked": false,
+          "on_card": false,
+          "vectorise": false,
+          "search": false,
+          "filter": false,
+          "defaulted": [
+            "filter",
+            "masked",
+            "on_card",
+            "pii",
+            "search",
+            "vectorise",
+            "visibility"
+          ]
+        }
+      ],
+      "src": {
+        "kind": "default",
+        "ref": "purple.aggregator_coordinator"
+      }
+    }
+  ],
+  "interactions": [],
+  "open_items": [
+    {
+      "topic": "Phase 1 needs",
+      "question": "The brief lists nine needs (all Dot colours); phase 1 should start with 3 to 5. The four personas point to Education & Skilling, Jobs, Business, and SHGs.",
+      "why_it_matters": "A network that starts with nine needs spreads aggregators and providers too thin to show results in 90 days.",
+      "owner": "Programme lead",
+      "blocks": "sheet"
+    }
+  ]
+}

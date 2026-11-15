@@ -9,7 +9,7 @@ Bot: Parivar Saathi · Hindi · male voice · White Dots Lucknow. All four belon
 
 ---
 
-## 1. Aman S. · The son (skilling) → Yellow, Blue
+## 1. Aman R. · The son (skilling) → Yellow, Blue
 | id | `aman-son` | label | THE SON |
 - 19, passed Class 12 last year
 - Fixes neighbours' wiring and fans, but has no certificate
@@ -18,7 +18,7 @@ Bot: Parivar Saathi · Hindi · male voice · White Dots Lucknow. All four belon
 
 **Questions:** "बारहवीं के बाद कौन सा कोर्स करूँ जिससे जल्दी नौकरी मिले?" · "इलेक्ट्रीशियन का कोर्स कहाँ होता है?" · "फ़्री में ट्रेनिंग मिलती है क्या?"
 
-## 2. Priya S. · The daughter (job she's qualified for) → Blue, Pink
+## 2. Priya R. · The daughter (job she's qualified for) → Blue, Pink
 | id | `priya-daughter` | label | THE DAUGHTER |
 - 24, B.Com graduate, knows Tally and Excel
 - Has been tutoring children at home for two years
@@ -27,7 +27,7 @@ Bot: Parivar Saathi · Hindi · male voice · White Dots Lucknow. All four belon
 
 **Questions:** "अकाउंट्स की नौकरी आसपास कहाँ मिलेगी?" · "पहली नौकरी के लिए कहाँ अप्लाई करूँ?" · "लड़कियों के लिए कोई सुरक्षित ऑफ़िस है पास में?"
 
-## 3. Rakesh S. · The father (business services) → Brown, Golden
+## 3. Rakesh R. · The father (business services) → Brown, Golden
 | id | `rakesh-father` | label | THE FATHER |
 - 50, runs a sweet shop in Alambagh with two workers
 - Wants to sell boxed sweets to offices and shops
@@ -36,7 +36,7 @@ Bot: Parivar Saathi · Hindi · male voice · White Dots Lucknow. All four belon
 
 **Questions:** "मिठाई के डिब्बे सस्ते कहाँ मिलेंगे?" · "दुकान बढ़ाने के लिए लोन कैसे मिलेगा?" · "फ़ूड लाइसेंस कहाँ बनता है?"
 
-## 4. Sunita S. · The mother (SHG scheme) → Golden, Pink
+## 4. Sunita R. · The mother (SHG scheme) → Golden, Pink
 | id | `sunita-mother` | label | THE MOTHER |
 - 46, member of a 10-woman self-help group making chikan embroidery
 - The group wants a loan for two more machines

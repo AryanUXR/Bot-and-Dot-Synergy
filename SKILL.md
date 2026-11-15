@@ -25,6 +25,7 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 | Dot prototype only | `dot/SKILL.md` |
 | Persona images only | `image-generation/README.md` |
 | Content / writing only | `content/README.md` |
+| Schema for a use case (Domain Mapping, Config Note, Mapping Sheet) | `shared/schema-mapper.md` → schema-mapper's `map-network` skill |
 | DB sync between bot and dot | `shared/async-sync-architecture.md` |
 | Raya agent setup | `shared/raya.md` |
 

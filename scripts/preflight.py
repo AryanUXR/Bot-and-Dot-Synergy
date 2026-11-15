@@ -131,6 +131,30 @@ def check_images(cfg, env):
     report("images", "MISSING", "No image credential. Set GOOGLE_SA_KEY or GEMINI_API_KEY in raya/.env, or note your own image tool in config.")
 
 
+def check_schema(cfg):
+    """schema-mapper (shared/schema-mapper.md): find the copy, check it is the skill, and say what can run."""
+    import shutil, importlib.util
+    path = ((cfg or {}).get("schema_mapper") or {}).get("path") or ""
+    cands = [path] if path else [os.path.join(os.path.dirname(REPO), "Claude Skills", "schema-mapper-main"),
+                                 os.path.join(os.path.dirname(REPO), "schema-mapper")]
+    found = next((c for c in cands if c and os.path.exists(os.path.join(c, ".claude", "skills", "map-network", "SKILL.md"))), None)
+    if not found:
+        report("schema", "MISSING", "No schema-mapper copy found. Ask Parth for access, clone it, and set schema_mapper.path in config "
+               "(shared/schema-mapper.md). Without it, Stage 1 falls back to content/dot-data-guide.md.")
+        return
+    where = "from config" if path else "found next to this repo; set schema_mapper.path in config to make it explicit"
+    if shutil.which("uv"):
+        report("schema", "OK", f"schema-mapper at {found} ({where}); uv is installed, so every tool runs.")
+        return
+    missing = [m for m, mod in (("jsonschema", "jsonschema"), ("python-docx", "docx"), ("openpyxl", "openpyxl"))
+               if importlib.util.find_spec(mod) is None]
+    if missing:
+        report("schema", "MISSING", f"schema-mapper at {found} ({where}), but uv isn't installed and Python lacks {', '.join(missing)}. "
+               "new/status/defaults still run; validate and render need them (shared/schema-mapper.md, Setup).")
+    else:
+        report("schema", "OK", f"schema-mapper at {found} ({where}); run its tools with python3 (no uv).")
+
+
 def main():
     only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
     cfg, env = load_config(), load_env()
@@ -140,6 +164,7 @@ def main():
         "voice": lambda: check_voice(cfg, env),
         "tester": lambda: check_tester(cfg),
         "images": lambda: check_images(cfg, env),
+        "schema": lambda: check_schema(cfg),
     }
     for name, fn in checks.items():
         if only in (None, name):

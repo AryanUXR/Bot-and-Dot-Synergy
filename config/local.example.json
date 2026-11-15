@@ -36,5 +36,9 @@
   "git": {
     "remote": ""
   },
+  "schema_mapper": {
+    "path": "",
+    "note": "Your copy of parthekstep/schema-mapper (private: ask Parth for access). See shared/schema-mapper.md."
+  },
   "local_clone_path": ""
 }

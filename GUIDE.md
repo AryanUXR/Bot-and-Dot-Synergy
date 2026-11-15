@@ -2,7 +2,7 @@
 
 How to use this skill and find your way around it. Read this first, then follow the link for whatever you're doing.
 
-> **Maintained by the EkStep Bot-and-Dot team.** Last reviewed: **14 Nov 2026**. EkStep keeps a Google Doc copy (link in `ekstep/prototypes.md`), so update both. If something here doesn't match the repo, the repo wins: fix this guide in the same commit (see [Keeping this guide current](#keeping-this-guide-current)).
+> **Maintained by the EkStep Bot-and-Dot team.** Last reviewed: **15 Nov 2026**. EkStep keeps a Google Doc copy (link in `ekstep/prototypes.md`), so update both. If something here doesn't match the repo, the repo wins: fix this guide in the same commit (see [Keeping this guide current](#keeping-this-guide-current)).
 
 ---
 
@@ -16,6 +16,8 @@ You give an AI coding agent (Claude Code is the tested one) a use case: a place,
 | **Dot** | A public map of services and requests, with no login | Filters by type, taps a dot, and reads its card |
 
 A first build takes about one to two days, including tests. Once your accounts are set up, a build takes a few hours.
+
+**One schema from idea to real network.** A companion skill, **schema-mapper**, turns the approved brief into the same Domain Mapping, Config Note and Mapping Sheet a real Dots network is configured from, so the prototype and the real network use the same fields.
 
 **You bring your own platforms.** Raya (voice), Lovable (app builder), Google Maps and Gemini (images) are the *tested defaults*, not requirements. Nobody shares keys or accounts. If a platform is missing something, `onboarding/fallbacks.md` has a workaround. `starter/` builds both prototypes with no app builder and no map key.
 
@@ -53,6 +55,7 @@ A first build takes about one to two days, including tests. Once your accounts a
 | **Audit** a prototype against the four checks | "Audit the … prototype" | `scripts/audit.py` | No (repo only) |
 | Make **persona photos** only | "Make persona photos for …" | `image-generation/README.md` | Image model |
 | Write **content** only (brief, personas, dots) | "Draft the brief for …" | `content/README.md` | No |
+| Map the **schema** for a use case (Domain Mapping, Config Note, Mapping Sheet) | "Map the schema for …" | `shared/schema-mapper.md` | Access to schema-mapper |
 | Just look around | read this guide | — | No |
 
 ---
@@ -63,7 +66,7 @@ A first build takes about one to two days, including tests. Once your accounts a
 
 | # | Stage | You get | Gate | Main files |
 |---|---|---|---|---|
-| 1 | Understand the use case | `brief.md`, `personas.md` | You approve the personas | `content/use-case-brief-template.md`, `content/persona-writing-guide.md` |
+| 1 | Understand the use case | `brief.md`, `personas.md`, then the schema in `schema/` | You approve the personas, then the schema | `content/use-case-brief-template.md`, `content/persona-writing-guide.md`, `shared/schema-mapper.md` |
 | 2 | Tech spec | `tech-spec.md` | `preflight.py` passes | `onboarding/stack-options.md` |
 | 3 | Fallbacks | Workarounds written into the spec | Any change to the demo agreed with you | `onboarding/fallbacks.md` |
 | 4 | QC against the rules | Dummy data, clean text | **The four audit checks pass** | `onboarding/non-negotiables.md`, `scripts/audit.py`, `scripts/qc_check.py` |
@@ -132,7 +135,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | `scripts/` | Checks, test calls, number moves (see `scripts/README.md`) |
 | `raya/` | Voice agent registry (`agents.json`), test personas, and your `.env` (never committed) |
 | `image-generation/` | Persona photo pipeline |
-| `shared/` | Notes on Raya, Google Maps, Supabase and the workspace |
+| `shared/` | Notes on Raya, Google Maps, Supabase and the workspace, and how schema mapping fits in (`schema-mapper.md`) |
 | `use-cases/` | One folder per prototype: brief, personas, data, prompts, tests, handover |
 | `versions/` | Snapshots of prompts before big changes |
 | `research/` | Who uses this skill, and why it works the way it does |
@@ -168,6 +171,7 @@ The full ten are in `onboarding/non-negotiables.md`, each with the reason behind
 | **Inbound number (`in_did`)** | The phone number a voice agent answers on |
 | **Gate** | The check that must pass before the next stage |
 | **Remix** | Copying a finished Lovable project as the start of a new one |
+| **Schema** | What each side is asked, and who can see what. schema-mapper writes it as a Domain Mapping (business view), a Config Note (fields per side) and a Mapping Sheet (the settings tech uses). |
 
 ---
 

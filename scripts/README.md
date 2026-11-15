@@ -25,6 +25,7 @@ RAYA_API_TOKEN=[team API key]
 | `card_alignment.js` | Paste into the browser console: checks persona cards line up |
 | `make_dummy_dots.py` | Turn a dots data file into fictional sample data |
 | `raya_did.py` | Move an inbound number between voice agents and back, verified |
+| `gdocs.py` | Read or edit a Google Doc through the service account (`get`, guarded `batch`). The doc must be shared with the service account as Editor. |
 
 ## Quick start — run a test
 

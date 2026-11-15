@@ -26,4 +26,11 @@ The Purple and Red bots also answer on `divyavoiceconnect.lovable.app` and `saha
 [Bot-and-Dot Synergy: user guide](https://docs.google.com/document/d/1kzllQxQm6kvReyakTGQqQHSLCDU4FXiRpuMfG0wRu7o/edit), file id `1kzllQxQm6kvReyakTGQqQHSLCDU4FXiRpuMfG0wRu7o`, owned by Aryan.
 
 - It has the same content as `GUIDE.md`. When one changes, update the other the same day.
-- To be edited by the service account `blue-dots-admin@blue-dots-project.iam.gserviceaccount.com` once Aryan shares the doc with it as Editor.
+- Shared with the service account `blue-dots-admin@blue-dots-project.iam.gserviceaccount.com` as Editor (15 Nov 2026).
+- Edit it with `python3 scripts/gdocs.py get <id> --out doc.json`, then `python3 scripts/gdocs.py batch <id> requests.json`. Each batch is guarded by the doc's current revision.
+- Formatting set 15 Nov 2026:
+  - body paragraphs 6 pt above and below, line spacing 1.15;
+  - H2 headings 22 pt above, H3 headings 14 pt above, all kept with the next paragraph;
+  - table columns sized to their content, and table rows never split across pages;
+  - section 4 starts on a new page, so its table header never sits alone.
+- Re-check the layout after big content changes.

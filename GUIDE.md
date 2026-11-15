@@ -55,7 +55,7 @@ A first build takes about one to two days, including tests. Once your accounts a
 | **Audit** a prototype against the four checks | "Audit the … prototype" | `scripts/audit.py` | No (repo only) |
 | Make **persona photos** only | "Make persona photos for …" | `image-generation/README.md` | Image model |
 | Write **content** only (brief, personas, dots) | "Draft the brief for …" | `content/README.md` | No |
-| Map the **schema** for a use case (Domain Mapping, Config Note, Mapping Sheet) | "Map the schema for …" | `shared/schema-mapper.md` | Access to schema-mapper |
+| Map the **schema** for a use case | "Map the schema for …" | `shared/schema-mapper.md` | Access to schema-mapper |
 | Just look around | read this guide | — | No |
 
 ---

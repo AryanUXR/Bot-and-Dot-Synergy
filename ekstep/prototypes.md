@@ -32,5 +32,7 @@ The Purple and Red bots also answer on `divyavoiceconnect.lovable.app` and `saha
   - body paragraphs 6 pt above and below, line spacing 1.15;
   - H2 headings 22 pt above, H3 headings 14 pt above, all kept with the next paragraph;
   - table columns sized to their content, and table rows never split across pages;
-  - section 4 starts on a new page, so its table header never sits alone.
-- Re-check the layout after big content changes.
+  - no fixed page breaks (they leave half-blank pages once content changes);
+  - the empty paragraph after the last table takes no space, so there's no blank last page.
+- To update the doc after `GUIDE.md` changes: make the same edits in place through the Docs API, then reapply the formatting with `guide_format_requests` in `scripts/gdocs.py`. `sync-guide` replaces the whole doc instead, and needs the Drive API on in the service account's Google Cloud project.
+- Export to PDF and check every page after any change.

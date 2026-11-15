@@ -68,9 +68,9 @@ def call(tok, path, method="GET", body=None):
 
 
 # Formatting for the guide doc (agreed 15 Nov 2026). Table widths are keyed by the first header cell, in points.
-WIDTHS = {"": [90, 189, 189], "I want to…": [128, 124, 140, 76], "#": [24, 92, 96, 112, 144],
+WIDTHS = {"": [90, 189, 189], "I want to…": [124, 118, 130, 96], "#": [24, 92, 96, 112, 144],
           "Check": [112, 226, 130], "Task": [150, 318], "Where": [150, 318], "Word": [140, 328]}
-NEW_PAGE_BEFORE = ("4. The build",)
+NEW_PAGE_BEFORE = ()  # fixed page breaks go stale when content changes; headings keep with next instead
 
 
 def _text(el):
@@ -85,10 +85,10 @@ def guide_format_requests(doc):
             p = el["paragraph"]; st = p["paragraphStyle"].get("namedStyleType", ""); rng = {"startIndex": el["startIndex"], "endIndex": el["endIndex"]}
             if st.startswith("HEADING"):
                 above = {"HEADING_1": 0, "HEADING_2": 22, "HEADING_3": 14}.get(st, 14)
-                style = {"spaceAbove": PT(above), "spaceBelow": PT(10 if st == "HEADING_1" else 8 if st == "HEADING_2" else 6), "keepWithNext": True}
-                fields = "spaceAbove,spaceBelow,keepWithNext"
-                if _text(el).startswith(NEW_PAGE_BEFORE):
-                    style.update(pageBreakBefore=True, spaceAbove=PT(0)); fields += ",pageBreakBefore"
+                brk = bool(NEW_PAGE_BEFORE) and _text(el).startswith(NEW_PAGE_BEFORE)
+                style = {"spaceAbove": PT(0 if brk else above), "spaceBelow": PT(10 if st == "HEADING_1" else 8 if st == "HEADING_2" else 6),
+                         "keepWithNext": True, "pageBreakBefore": brk}
+                fields = "spaceAbove,spaceBelow,keepWithNext,pageBreakBefore"
             elif "bullet" in p:
                 style, fields = {"spaceAbove": PT(2), "spaceBelow": PT(2), "lineSpacing": 115}, "spaceAbove,spaceBelow,lineSpacing"
             else:
@@ -110,6 +110,13 @@ def guide_format_requests(doc):
             prev = "table"
         else:
             prev = None
+    # The empty paragraph Docs keeps after a final table must take no space, or it spills onto a blank last page.
+    last = doc["body"]["content"][-1]
+    if "paragraph" in last and not _text(last):
+        rng = {"startIndex": last["startIndex"], "endIndex": last["endIndex"]}
+        req.append({"updateParagraphStyle": {"range": rng, "paragraphStyle": {"spaceAbove": PT(0), "spaceBelow": PT(0), "lineSpacing": 100},
+                                             "fields": "spaceAbove,spaceBelow,lineSpacing"}})
+        req.append({"updateTextStyle": {"range": rng, "textStyle": {"fontSize": PT(1)}, "fields": "fontSize"}})
     return req
 
 

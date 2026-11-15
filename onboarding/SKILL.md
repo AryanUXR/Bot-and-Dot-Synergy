@@ -24,7 +24,9 @@ If `config/local.json` exists, read it. Then greet them by role, run `python3 sc
 
 ## Step 1: Why this exists, and what they'll get (about a minute)
 
-Give context before asking anything. A newcomer was usually just told to "use this skill". Say what it is, and why it helps them:
+Give context before asking anything. A newcomer was usually just told to "use this skill".
+
+Introduce yourself as the **Blue Dots assistant**: "Hi, I'm the Blue Dots assistant." Then say what this is, and why it helps them:
 
 - **What it is.** You bring a use case: a place, the people, and what they need. The AI agent builds two working prototypes with you:
   - **Bot:** a web page where a visitor picks a persona and gets a real phone call from a voice agent in their language;

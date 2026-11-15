@@ -22,28 +22,34 @@ Why it exists: see `research/who-uses-this-skill.md`. The hardest moments for ne
 
 If `config/local.json` exists, read it. Then greet them by role, run `python3 scripts/preflight.py` and go straight to the route they want. Skip the rest of this file.
 
-## Step 1: Who are you, and what do you want today?
+## Step 1: Why this exists, and what they'll get (about a minute)
+
+Give context before asking anything. A newcomer was usually just told to "use this skill". Say what it is, and why it helps them:
+
+- **What it is.** You bring a use case: a place, the people, and what they need. The AI agent builds two working prototypes with you:
+  - **Bot:** a web page where a visitor picks a persona and gets a real phone call from a voice agent in their language;
+  - **Dot:** a public map of services and requests near them, with no login.
+- **Why it helps.** It turns "we have an idea" into something people can call and click, fast enough to test with real users and show to partners:
+  - **Fast.** About 1–2 days for a first build, including tests, and a few hours once set up.
+  - **Mistakes are already made.** Every build so far left its lessons in the skill: calls that hung up too early, sensitive words in the data, maps that wouldn't load, cards that didn't line up. The checks catch these before anyone else sees them.
+  - **Safe to show.** Four audit checks run on every prototype: every dot type visible, no login, dummy data only, nothing sensitive. A readiness report says when it's ready for a demo.
+  - **Yours.** You use your own accounts and keep your own copy. Nothing depends on someone else's keys.
+- **Cost.** They pay for their own platforms. Most have free tiers for a prototype. Say plainly that voice calls are usually billed per minute.
+
+Keep it to one short message. If they have an infographic or brief, ask for it now. Their use case drives the rest of the steps.
+
+## Step 2: Who are you, and what do you want today?
 
 Ask one question and offer four routes:
 
 | Route | For | Goes to |
 |---|---|---|
-| **Build** a prototype | builders, first-timers, partners | Steps 2–8, then `FLOW.md` |
+| **Build** a prototype | builders, first-timers, partners | Steps 3–8, then `FLOW.md` |
 | **Review** a prototype | managers, programme leads | `readiness-report.md` only. No accounts needed |
-| **Fix** a live bot from feedback | prompt tuners, QA | Steps 2–5 for the voice platform only, then `fix-from-feedback.md` |
-| **Just looking** | anyone curious | Step 2, then stop |
+| **Fix** a live bot from feedback | prompt tuners, QA | Steps 3–5 for the voice platform only, then `fix-from-feedback.md` |
+| **Just looking** | anyone curious | Answer their questions about Step 1, then stop |
 
 A reviewer never needs keys or accounts. Don't walk them through setup.
-
-## Step 2: Show what they'll get (30 seconds)
-
-Explain in four lines:
-- **Bot:** a web page where a visitor picks a persona and gets a phone call from a voice agent in their language.
-- **Dot:** a public map of services and requests near them, filterable by type, with no login.
-- **Time:** about 1–2 days for a first build, including tests. A few hours once set up.
-- **Cost:** they pay for their own platforms. Most have free tiers for a prototype. Voice calls are usually billed per minute, so say so.
-
-If they have an infographic or brief, ask for it now. Their use case drives the rest of the steps.
 
 ## Step 3: Choose the stack
 

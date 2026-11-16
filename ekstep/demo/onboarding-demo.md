@@ -9,6 +9,19 @@ A rehearsed walk-through of the Bot-and-Dot onboarding flow, for showing the who
    > Read `ekstep/demo/onboarding-demo.md` and run the scripted demo. I'm the presenter.
 3. The agent replies "Ready." Then type the presenter lines below, in order. Your wording doesn't need to match.
 
+**Presenter cues, in order:**
+1. "Hi, my manager asked me to try this skill"
+2. "I want to build one. Pet care in Pune: people finding pet hospitals, caretakers and pet shops near them"
+3. "Yes, all four work"
+4. "Go with those"
+5. "Yes, start"
+6. "Approved"
+7. "Run the tests"
+8. "Show me"
+9. "Thanks"
+
+You can ask an unscripted question at any point, such as "what's a dot?". It answers in character, and the next cue still gets the next step. Dry-run on 16 Nov 2026: all nine replies were word for word, including after an off-script question.
+
 **The two live moments are real:**
 - the bot page (a real call to your phone);
 - the published map.
@@ -159,6 +172,8 @@ Last step before building: the **ten non-negotiables**. The ones that matter mos
 | Anjali | ✅ Pass after one fix | Found Kavya (Aundh, 1 km, needs an evening dog walker) and Nikhil (Baner, 4 km, weekend cat sitting). The first run offered a vet as "needing help". I fixed the prompt, re-ran it, and recorded the lesson. |
 
 That last one is the point of testing: the fix is now in the skill, so the next build won't make that mistake.
+
+**Want to see what we built?**
 
 ### Block 8 · cue: "Show me"
 

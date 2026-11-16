@@ -1,0 +1,143 @@
+{
+  "out": "file:/tmp/example-deck/White_Dots_Lucknow.pptx",
+  "colour": "CBD5E1",
+  "ink": "475569",
+  "slides": [
+    "title",
+    "crisis",
+    "voice",
+    "map",
+    "people",
+    "needs",
+    "use_cases",
+    "geographies",
+    "thanks"
+  ],
+  "title": {
+    "title": "THE *WHITE DOTS*^AI^ IN LUCKNOW",
+    "subtitle": "One family, many needs: making the help near home\ndiscoverable through one call"
+  },
+  "crisis": {
+    "headline": "WHEN EVERY NEED MEANS *ASKING AROUND*,\nHELP NEARBY GOES UNUSED",
+    "rows": [
+      "Placement rates of Tier 2-3 colleges: *<20%*",
+      "Attrition due to migration: *High*",
+      "Women's labour force participation: *<35%*",
+      "Scheme budget utilisation: *<70%*",
+      "Services uptake vs. potential: *<50%*",
+      "Limited understanding of demand"
+    ],
+    "result": "Result:\n\nFamilies ask ten people for every need"
+  },
+  "voice": {
+    "text": "Enables *proximal discovery* for every member of a household, by digitally lighting up their needs in *2 mins* through *voice, in Hindi*"
+  },
+  "map": {
+    "headline": "A FAMILY'S NEEDS &\nTHE HELP NEARBY, ON ONE MAP",
+    "image": "file:../../use-cases/white-dots-lucknow/collateral/map.png",
+    "side": "With AI, *White Dots* bring all nine Dots colours onto *one map*\n\nOne call surfaces what a household needs:\n*a course, a job, help for a shop, a scheme*",
+    "place": "Lucknow",
+    "seeker": {
+      "title": "Job Seeker",
+      "lines": [
+        "*Area:* Rajajipuram",
+        "*Needs:* Office job",
+        "*Skills:* Data entry",
+        "*Wants:* Work close to home"
+      ]
+    },
+    "provider": {
+      "title": "Junior\nAccountant",
+      "lines": [
+        "*Employer:* Metro Accounts Services",
+        "*Area:* Hazratganj",
+        "*Skills:* Tally and Excel",
+        "*Freshers:* Considered"
+      ],
+      "image": "remove"
+    }
+  },
+  "people": {
+    "headline": "ONE CALL FOR EACH NEED,\nFOR EVERY MEMBER OF THE FAMILY",
+    "left": {
+      "image": "file:../../use-cases/white-dots-lucknow/images/aman-son-1.png",
+      "caption": "Aman R. finding a course that gets him hired, by talking to Parivar Saathi"
+    },
+    "right": {
+      "image": "file:../../use-cases/white-dots-lucknow/images/sunita-mother-1.png",
+      "caption": "Sunita R. finding a scheme for her self-help group, in Hindi"
+    },
+    "tagline": "Voice AI makes it easy",
+    "sub": "Blue Dots conversations average 1 min 40 sec"
+  },
+  "needs": {
+    "headline": "THE PROTOTYPE COVERS: ONE HOUSEHOLD,\n*NEEDS ACROSS EVERY DOTS COLOUR*",
+    "left": {
+      "title": "What the family asks for",
+      "groups": [
+        {
+          "label": "TO LEARN AND WORK",
+          "chips": [
+            "courses",
+            "jobs near home",
+            "apprenticeships"
+          ]
+        },
+        {
+          "label": "TO RUN THE HOUSEHOLD",
+          "chips": [
+            "shop services",
+            "small loans",
+            "SHG schemes",
+            "women's support"
+          ]
+        }
+      ],
+      "quotes": [
+        {
+          "text": "“Every time someone at home has a need, we end up asking ten different people.”",
+          "by": "Before: from the White Dots brief"
+        },
+        {
+          "text": "“Turns out many of my family's needs can be met by local services.”",
+          "by": "After: from the White Dots brief"
+        }
+      ]
+    },
+    "right": {
+      "title": "Who can help, nearby",
+      "groups": [
+        {
+          "label": "ALL NINE DOTS COLOURS",
+          "chips": [
+            "jobs",
+            "education & skilling",
+            "farm & rural",
+            "women's work & support",
+            "disability support",
+            "emergency",
+            "local experiences",
+            "business services",
+            "SHGs & customers"
+          ]
+        }
+      ],
+      "stat": {
+        "value": "44",
+        "label": "sample dots in the prototype, across 9 colours"
+      },
+      "quotes": []
+    }
+  },
+  "notes": {
+    "title": "White Dots brings every Dots colour into one view for a household. This deck walks through the Lucknow prototype: a family of four, each with a different need, and one map of the help nearby.",
+    "crisis": "Figures are from the Blue Dots Ghaziabad deck (slide 4). The point for White Dots: a household's needs cut across many programmes, and today the family asks around for each one.",
+    "voice": "Each family member makes one call, in Hindi, to Parivar Saathi. The call captures who they are, what they have and what they want.",
+    "map": "This is the live prototype map: 44 sample dots across all nine colours, with the family's home in Alambagh. Filled pins offer help; white pins ask for it. All data is fictional.",
+    "people": "Two of the four personas. Aman wants a course that leads to a job; Sunita wants a scheme for her self-help group. The photos are generated for the prototype.",
+    "needs": "The left side is what one household asks for; the right side is who can help, across all nine colours. The quotes are from the use-case brief, not from real callers: the prototype has no call data yet.",
+    "use_cases": "Where White Dots sits: the 'one household' hub in the middle connects all the use cases.",
+    "geographies": "Where the approach is live, starting and in talks.",
+    "thanks": "Try it: the bot page and the map are live. Ask to see a call."
+  }
+}

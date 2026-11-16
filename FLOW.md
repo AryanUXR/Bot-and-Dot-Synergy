@@ -20,6 +20,7 @@ New to the skill? Run `onboarding/SKILL.md` first. It sets up the builder's own 
 
 **Read:** `content/use-case-brief-template.md`, `content/persona-writing-guide.md`.
 
+0. **Check the fit** if anyone is unsure the idea suits Blue Dots, or it has no clear provider side. Run the fit check in `counsel/SKILL.md` and share the verdict. A "not a fit yet" stops here, with what would make it fit.
 1. Take the infographic or brief. Pull out everything you can before asking: the problem, who seeks, who provides, the place, the language, the before/after quotes, and the manager's steer.
 2. Ask **one round** of questions for what can't be inferred: city or district, language, bot name, and anything to emphasise. Propose a default for each.
 3. Write `brief.md`, then three personas: two seekers and one provider. They're fictional, use first name and initial, and carry no sensitive labels (`onboarding/non-negotiables.md` 1–2).
@@ -118,5 +119,7 @@ Write `handover.md`:
 - known limits and the fallbacks used;
 - test results;
 - who to contact for changes.
+
+**EkStep builds:** also make the deck with `ekstep/collateral/SKILL.md` and add it to the handover links.
 
 Then record anything new in `LESSONS.md` and push.

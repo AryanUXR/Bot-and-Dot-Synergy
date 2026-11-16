@@ -2,7 +2,7 @@
 
 How to use this skill and find your way around it. Read this first, then follow the link for whatever you're doing.
 
-> **Maintained by the EkStep Bot-and-Dot team.** Last reviewed: **15 Nov 2026**. EkStep keeps a Google Doc copy (link in `ekstep/prototypes.md`), so update both. If something here doesn't match the repo, the repo wins: fix this guide in the same commit (see [Keeping this guide current](#keeping-this-guide-current)).
+> **Maintained by the EkStep Bot-and-Dot team.** Last reviewed: **16 Nov 2026**. EkStep keeps a Google Doc copy (link in `ekstep/prototypes.md`), so update both. If something here doesn't match the repo, the repo wins: fix this guide in the same commit (see [Keeping this guide current](#keeping-this-guide-current)).
 
 ---
 
@@ -56,6 +56,7 @@ A first build takes about one to two days, including tests. Once your accounts a
 | Make **persona photos** only | "Make persona photos for …" | `image-generation/README.md` | Image model |
 | Write **content** only (brief, personas, dots) | "Draft the brief for …" | `content/README.md` | No |
 | Map the **schema** for a use case | "Map the schema for …" | `shared/schema-mapper.md` | Access to schema-mapper |
+| **Ask** about Blue Dots, or check an idea **fits** | "Can Blue Dots work for …?" | `counsel/SKILL.md` | No |
 | Just look around | read this guide | — | No |
 
 ---
@@ -72,7 +73,7 @@ A first build takes about one to two days, including tests. Once your accounts a
 | 4 | QC against the rules | Dummy data, clean text | **The four audit checks pass** | `onboarding/non-negotiables.md`, `scripts/audit.py`, `scripts/qc_check.py` |
 | 5 | Build on the template UI | Bot page and map | `ui_check.py` and `card_alignment.js` pass | `starter/UI-SPEC.md`, `bot/SKILL.md`, `dot/SKILL.md` |
 | 6 | Test calls | `tests.md` with transcripts | One call through the website works, then every persona passes | `bot/voice-test-harness.md`, `bot/testing.md` |
-| 7 | Handover | `handover.md` with presentation notes | Readiness report all ✅ | `onboarding/handover-template.md` |
+| 7 | Handover | `handover.md` with presentation notes | Readiness report all ✅ | `onboarding/handover-template.md`; EkStep also makes the deck (`ekstep/collateral/SKILL.md`) |
 
 Everything for one use case lives in `use-cases/<colour>-dots-<place>/`. `use-cases/white-dots-lucknow/` is a complete example.
 
@@ -126,6 +127,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | `SKILL.md` | The agent's entry point: routing, rules, IDs |
 | `FLOW.md` | The 7 build stages and their gates |
 | `LESSONS.md` | Every mistake made so far, and its fix. Read before building. |
+| `counsel/` | Counsel on the Blue Dots approach: a knowledge base from EkStep's own documents, the source texts, and the fit check |
 | `onboarding/` | First-run setup, platform choices, fallbacks, non-negotiables, readiness report, handover template, fixing from feedback |
 | `onboarding/setup-guides/` | One guide per platform: Raya, Lovable, Google Maps, Gemini, GitHub, and any other |
 | `bot/` | Building the bot page: steps, prompt anatomy, testing |
@@ -139,7 +141,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | `use-cases/` | One folder per prototype: brief, personas, data, prompts, tests, handover |
 | `versions/` | Snapshots of prompts before big changes |
 | `research/` | Who uses this skill, and why it works the way it does |
-| `ekstep/` | EkStep's own builds only (header, logo, live links). Not for other teams. |
+| `ekstep/` | EkStep's own builds only (header, logo, live links, and the deck generator in `collateral/`). Not for other teams. |
 | `config/` | `local.example.json`. Your `local.json` is never committed. |
 
 ---

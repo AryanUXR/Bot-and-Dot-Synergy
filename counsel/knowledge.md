@@ -1,0 +1,126 @@
+# Blue Dots: what the documents say (knowledge base for the counsel skill)
+
+Everything here comes from two EkStep documents, kept in `sources/`:
+
+| Key | Source |
+|---|---|
+| **KD** | *The Blue Dots^AI Economy: Key Details* (21 pages), `sources/blue-dots-ai-economy-key-details.pdf` (text: `.txt`) |
+| **GZ** | *[Blue Dots] Ghaziabad Future Ready* deck (15 slides), `sources/ghaziabad-future-ready-deck.txt` |
+
+Cite as **(KD p.N)** or **(GZ slide N)**. When a question needs a fact that isn't here, read the source text. If it isn't there either, say so plainly and never estimate.
+
+---
+
+## 1. The idea in one paragraph
+
+Across India's districts, people, businesses and service providers are often a few kilometres apart but can't find each other. Much of this activity is **"digitally dark"**: present on both sides, yet invisible to the other (KD p.1). Blue Dots makes local demand and supply discoverable to one another:
+- A person, business or provider says **who they are, what they have and what they want**, in their own language, in a voice conversation.
+- That takes **about 1 minute 40 seconds and costs about ₹2**, against about ₹500 and two weeks through field surveys (KD p.1).
+- That intent becomes a **Blue Dot**: a relevant, nearby signal that others can discover and act on.
+
+## 2. Core concepts
+
+- **The paradox of proximity:** demand and supply sit close together, yet stay invisible to one another (KD p.3).
+- **Why discovery breaks down:** (KD p.3)
+  - searching costs time and money;
+  - credibility is hard to establish (two in three people answer only numbers they recognise);
+  - reaching an opportunity costs travel.
+- **Personalised, proximal discovery** is the unlock. (KD p.4–5)
+  - *Personalised:* relevant to the person's need, capability and circumstances.
+  - *Proximal:* close enough to act on, with "close" defined by the person and the journey, not a fixed radius.
+- **A Blue Dot** is intent, structured, consented and placed on a shared local map, where relevant people and institutions nearby can find it and act on it. A dot can be reused as needs change (KD p.5, p.17).
+- **Why now: DPI 2.0 and AI.** NITI Aayog's April 2026 *DPI@2047* roadmap uses the term "blue dot" itself, in "MSME Jobs Finding Local Talent" and "Benefits finding Beneficiaries" (KD p.5). Voice AI makes discovery viable in Tier 2 and 3 India: high-intent callers in Ghaziabad talked for 10+ minutes (KD p.5).
+- **From efficiency to productivity.** Lower discovery cost saves time and money, and raises productivity: closer hires stay longer, and matches improve. Income earned locally is spent locally, so districts become "counter-magnets" to migration (KD p.4).
+
+## 3. How every implementation is built (KD p.5–6, Appendix A p.18–19)
+
+1. **Persona and problem:** a specific person, business or organisation, and a concrete discovery problem. This decides whose intent is captured, what "nearby" means and what a useful connection looks like.
+2. **Institutional anchor** from *samaaj, sarkaar or bazaar* (society, government or market): district administrations, a ministry or department, a foundation, an association. The anchor brings relationships, local knowledge and ownership.
+3. **Local ecosystem.** Institutions people already recognise (MSME associations, ITIs and colleges, NGOs, self-help groups, ASHA supervisors, district departments) act as **aggregators**, bringing people in, and as **providers**, responding to visible demand.
+4. **Enablers:** startups, training organisations and service providers who build services on the demand that becomes visible.
+5. **Solution:** three parts.
+   - voice AI agents that capture intent in the person's own language;
+   - a shared map where intent becomes discoverable;
+   - open Digital Public Goods that structure, verify and connect it. These are the Signal component (who I am, what I want, what I have), the Aggregator component and the map interface (KD p.20).
+
+**Technology is about 30% of the work; the local ecosystem is the other 70%** (KD p.17).
+
+## 4. The colours (KD p.6–7, Appendix B p.19–20)
+
+| Colour | Area | What becomes discoverable | Status in KD |
+|---|---|---|---|
+| Blue | Livelihoods | Work, counselling, skilling, entrepreneurship support, and the people seeking them | Live: Ghaziabad, Hubli-Dharwad; UP and Karnataka scaling |
+| Purple | Disability | Services, assistive devices, schemes and opportunities for persons with disabilities, and their providers | Live in Basti; 14 districts under a DEPwD MoU, 30 targeted this fiscal year |
+| Yellow | Education and skilling | Tutors, coaching, learning and credentials, and learners | mySATHI Foundation with CL Educate and IIT Kharagpur |
+| Orange | Tourism, arts and culture | Experiences, homestays, artisans, performers, guides, and tourists | OneTAC, Udupi: 1,000+ Orange Dots |
+| Brown | Enterprise (emerging) | Markets, suppliers, services, capital and schemes for businesses | MSME associations (AIMO, IIA, KCCI), UP MSME Department |
+| Golden | Welfare and public services (emerging) | Schemes, benefits, public services and last-mile support, and eligible citizens | Under discussion with a state government (KD p.13) |
+| Red | Emergency help | (being discussed) | In GZ slide 13: Assam transport department, in talks |
+| Green | Agriculture | Farmers, buyers, equipment providers, local institutions | Area for exploration |
+| Pink | Women's work | Flexible, nearby work and support for women joining or returning to the workforce | Area for exploration |
+| White | One household | A household's needs across all its members, in one view | Area for exploration |
+
+Also named as areas for exploration: financial access, health and care, and government schemes (KD p.20). **These are not evidence from current implementations** (KD p.20). Say so when you counsel on them.
+
+## 5. Evidence (use these figures exactly, with their source)
+
+**Blue Dots, Ghaziabad and Hubli-Dharwad** (KD p.7–8; GZ slides 6–11)
+- National portals showed **97** local jobs in Ghaziabad and **4** in Hubli-Dharwad. Fewer than **10%** of Ghaziabad's MSMEs surfaced **12,000+** jobs, and **16,000** job seekers became visible. Hubli-Dharwad: **16,000** jobs and **8,000** candidates; one association posted about **900** jobs in four hours.
+- **Over 70%** of applications went to opportunities **within 5 km**. Targeted drives converted at **over 50%**, against **under 10%** at broad job fairs.
+- Applications rose **300%** once the district promoted the voice number. Inbound callers applied at **twice** the rate of cold-call contacts.
+- The application failure rate fell from **88.6% to 2%** once the call completed the application.
+- **More than half** of youth asked for something other than a job. Women applied at about **one-third** the rate of men, and a "women-friendly workplace" signal **tripled** their applications. Some factory shifts started at 8:00 a.m. while the first buses arrived at 9:00 a.m.
+- Time to hire fell from 2 weeks to 2 days, saving **80 productive hours per hire** (GZ slide 11).
+
+**Purple Dots** (KD p.8–9)
+- Basti has about **60,000** persons with disabilities.
+- A DEPwD and ALIMCO national campaign Purple Dotted the needs of **1.1 lakh** people.
+- RCI-registered professionals list free, and contact is shared only once both sides consent.
+- In Basti, **3** organisations and **15** SHGs and ASHA supervisors were shortlisted as local points of assistance.
+- The district rollout has only just gone live in Basti, so **outcomes are still emerging**.
+
+**Yellow Dots** (KD p.10): about **70 lakh** people a year take BFSI assessments, and only a share are hired. A reusable credential on a map lets banks hire locally.
+
+**Orange Dots** (KD p.11–12): **1,000+** Orange Dots in Udupi and coastal Karnataka, with **2,000+** targeted by December 2026. It's commission-free, and practitioners are validated by the district.
+
+**Brown Dots** (KD p.12–13): at AIMO's gathering, about **40** members already employed women. A recruitment startup offered the first 20 MSMEs a **20%** discount and shortlisting within 48 hours.
+
+**Women** (gathered here because people ask)
+- Women applied at about **one-third** the rate of men; a "women-friendly workplace" signal **tripled** their applications. Some first shifts began at 8:00 a.m. while the first buses came at 9:00 a.m. (KD p.8)
+- Two-thirds of women held back until they knew about safety, proximity, amenities and shifts (KD p.15, 5.4).
+- About **40** AIMO members already employed women (KD p.13). Pilots with women entrepreneurs, including Youvati around Moradabad, are under way (KD p.12).
+- Women's labour force participation: **under 35%** (GZ slide 4). GZ slide 8 shows a mother discovering local jobs for her family.
+- Pink Dots itself is an area for exploration, with no implementation yet (KD p.20).
+
+**District context** (GZ slide 4): placement rates of Tier 2–3 colleges under 20%; scheme budget utilisation under 70%; services uptake under 50% of potential; high attrition due to migration.
+
+**Startup accelerators** (KD p.14): **568** applicants, **80** longlisted, **26** shortlisted, **12** ran pilots.
+- Baylink sourced gig workers within **2.5 km**, more cheaply, and they stayed longer.
+- Digital Labour Chowk found workers preferred work within about **3 km**.
+
+**National context**
+- **8.7 crore** registered MSMEs (KD p.1).
+- **56.6 crore** informal workers and **7.5 crore** MSMEs, reached mostly by word of mouth (GZ slide 2).
+- **12.8%** of India's 784 districts produce **85%** of GDP (GZ slide 2).
+- **2.68 crore** persons with disabilities (Census 2011) (KD p.9).
+- Tourism is **5.22%** of GDP (KD p.12).
+
+**Beyond India** (KD p.3; GZ slide 14): the UAE Prime Minister's Office is an advocate. South Africa is applying the approach for micro-entrepreneurs. Conversations are under way in Egypt, Thailand, Ghana, Rwanda and Sri Lanka.
+
+## 6. Learnings to draw on (KD section 5; cite the page in the last column)
+
+| # | Learning | Short form | Page |
+|---|---|---|---|
+| 5.1 | Demand and supply already exist but stay unseen | Visibility is often the first constraint, not absence | KD p.14 |
+| 5.2 | Speaking reveals demand that forms miss | Each extra need captured costs only 10–20% more effort | KD p.14 |
+| 5.3 | Livelihoods is more than a job | Counselling, skilling, credit and starting a business are pathways too | KD p.15 |
+| 5.4 | Discovery exposes participation gaps | Two-thirds of women held back until they knew about safety, proximity, amenities and shifts | KD p.15 |
+| 5.5 | Proximity changes the economics | "Local" is often 2.5–3 km or under 30 minutes of travel | KD p.15 |
+| 5.6 | Earning and spending locally | A local job can leave more disposable income than a metro one | KD p.15 |
+| 5.7 | Lower discovery cost widens participation | Remove steps; complete the action within the call | KD p.15 |
+| 5.8 | The cost of acquiring customers falls | Discovery time drops from over two weeks to under a day; mobilisation costs fall by up to 80% | KD p.16 |
+| 5.9 | Credentials make talent legible | Credentials can shift where employers create demand | KD p.16 |
+| 5.10 | Credibility carries discovery | Cold AI calls plateau around 30% pick-up; use institutions people know, inbound numbers and verification | KD p.16 |
+| 5.11 | Aggregated demand becomes local intelligence | Shift and bus mismatches; what women look for | KD p.17 |
+| 5.12 | Technology is 30%; the ecosystem is 70% | A Joint Facilitation Centre plus weekly reviews | KD p.17 |
+| 5.13 | Value extends beyond the first connection | A dot is reused as needs change | KD p.17 |

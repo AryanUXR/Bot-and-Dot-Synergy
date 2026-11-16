@@ -50,7 +50,7 @@ Ask one question and offer four routes:
 | **Build** a prototype | builders, first-timers, partners | Steps 3–8, then `FLOW.md` |
 | **Review** a prototype | managers, programme leads | `readiness-report.md` only. No accounts needed |
 | **Fix** a live bot from feedback | prompt tuners, QA | Steps 3–5 for the voice platform only, then `fix-from-feedback.md` |
-| **Just looking** | anyone curious | Answer their questions about Step 1, then stop |
+| **Just looking**, or a question | anyone curious, or unsure an idea fits | `counsel/SKILL.md`: answer from EkStep's Blue Dots documents, or run the fit check on their idea. Offer Build if it fits |
 
 A reviewer never needs keys or accounts. Don't walk them through setup.
 

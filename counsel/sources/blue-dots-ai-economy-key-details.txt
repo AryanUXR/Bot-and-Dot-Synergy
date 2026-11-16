@@ -1,0 +1,937 @@
+PAGES 21
+
+=== page 1 ===
+The Blue DotsAI Economy
+Unlocking Bharat's Economic Potential Through
+Personalised, Proximal Discovery of Demand And Supply
+At a Glance
+Across India's districts, people, businesses and service providers are not easily discoverable. Often within
+a few kilometres of one another, they struggle to discover & connect. A young person looks for work and
+support while an employer two bus stops away cannot fill a vacancy. A person with a disability searches
+for a rehabilitation professional who practises nearby. A business looks for suppliers and services that
+already exist in its own district, and a homestay or artisan waits for tourists who never hear of them. Much
+of this activity is digitally dark: present on both sides, yet invisible to the other.
+The Blue Dotsᴬᴵ Economy makes this local demand and supply discoverable to one another. A person,
+business or provider says who they are, what they have and what they want in their own language, in a
+voice conversation that takes about 1 minute 40 seconds and costs about ₹2, against around ₹500 and
+two weeks through field surveys. That intent becomes a Blue Dot, a relevant, nearby signal that others
+can discover and act on. The economic unlock follows from that. Engagements that were never worth the
+effort start to happen, people find work, services and customers close to home, and income earned locally
+is spent locally. Districts that can see and serve their own demand grow as economies in their own right,
+less dependent on metros.
+What has surfaced in a few places points to a far larger national opportunity. In each area, a local finding
+says something specific about what is possible across the country.
+Area What we've seen What it tells us Implication at scale
+Livelihoods
+(Blue Dots)
+< 10% of Ghaziabad's
+MSMEs surfaced
+>12,000 jobs, whereas
+national job platforms
+showed just 97. Similar
+case in Dharwad where
+national job platforms
+showed just 4 jobs.
+If <10% MSMEs in
+each of these districts
+can surface >12,000
+jobs, the remaining
+90% could have >lakh
+jobs in each district.
+The same unseen demand is
+spread across India's 8.7 crore
+registered MSMEs, while over 1
+crore graduates each year and
+a similar number of unskilled or
+semi-skilled candidates are
+looking for work with <50% of
+them getting placed. India
+doesn’t have a jobs crisis, it has
+a discovery crisis at a district
+level (non-metro).
+
+=== page 2 ===
+Entrepreneurs
+(Brown Dots)
+Education and
+Skilling (Yellow
+Dots)
+Disability (Purple
+Dots)
+Tourism, arts
+and culture
+(Orange Dots)
+When a MSME in
+Ghaziabad was made
+aware of relevant
+schemes and was
+connected to a nearby
+service that could help
+him avail it, he received
+26L.
+CL Educate assesses
+around 70 lakh
+candidates for BFSI
+roles across the country
+each year while BFSI
+players struggle to hire
+local talent.
+Basti, a district in UP,
+has about 60,000
+persons with disabilities
+(PwDs), most with
+locomotor, visual or
+hearing disabilities. Their
+needs range from
+assistive devices,
+pensions, UDID cards,
+access to services and
+livelihood options.
+1,000+ experiences,
+artisans and
+homestays are now
+discoverable in Udupi
+and coastal Karnataka
+as Orange Dots, with
+2,000+ targeted by
+December 2026. This
+is >5x of avenues that
+tourists conventionally
+Schemes & services
+that can enable
+MSMEs are not known
+to them resulting in a
+lot of them struggling to
+raise working capital.
+Out of these seventy
+lakh candidates, only a
+fraction are placed in
+BFSI while BFSI
+employers keep
+hunting for such talent
+since these candidates
+are not discoverable
+today.
+A small fraction of
+PwDs contribute and
+consume services in
+the wider economy
+because they & their
+needs are invisible
+today.
+A single district holds
+thousands of
+providers of services
+that tourists have
+never been able to
+find deflating the
+tourism economy.
+>98% of India’s 8.7 crore
+MSMEs are <10 people in size.
+They struggle with access to
+schemes, services, credit, talent
+& suppliers besides looking for
+access to market. MSMEs can
+sustain & grow their business
+with the right help.
+Placed on a map with their
+credentials, when this talent
+becomes visible to BFSI players
+by location. They can hire
+locally and plan where to
+expand based on where
+credentialed talent already sits
+anywhere across the country.
+With 2.68 crore persons with
+disabilities counted nationally
+(Census 2011), surfacing their
+needs would give a live national
+view on a map. That becomes
+the canvas to connect them to
+schemes, services and
+opportunities that can make
+them participate in the economy.
+If one-fifth of such
+experiences visible to tourists
+today already contribute to
+tourism's 5.22% of India's
+GDP, the rest is value that
+discovery could bring into the
+economy
+
+=== page 3 ===
+discover & try out in
+Udupi.
+Each of these was seen in a pocket: a district, a region, or one assessor's pool of candidates. Taken to
+the scale of the country, the potential runs in two directions. The efficiency savings are large, because the
+cost and time of finding each other fall for every person, business and provider involved. The productivity
+gains are larger still, as work, services and talent that were sitting idle begin to be used. 200 key districts,
+beyond the metros, are where this can be shown first.
+Beyond India, the UAE Prime Minister's Office has become an advocate for the approach and will
+convene high-level meetings to take it to African nations, and South Africa is applying it to one of its
+engagements to grow micro-entrepreneurs. Investors are beginning to treat informal markets as an
+investment category of their own.
+1. Context
+1.1 Local Economies That Are Invisible
+India's local economies are full of people, businesses & services looking for each other. One young caller
+asked not just for a job but for an employer who could also arrange lodging, food and commute, because
+for youth, finding a job is just one of the several needs in their livelihoods journey, alongside counselling,
+skilling, further study or capital to start something of their own. A family in Basti searches for someone to
+offer an assistive device while a service that can help them avail it, is just a few kilometres away. MSME
+owners in Ghaziabad travel to Delhi for services that businesses in their own district already offer. A
+tourist in Udupi looks for a guide whose credentials they can check, or a surf operator they can be sure is
+genuine, while local guides and operators have no way to be discovered beyond their own networks.
+This is a paradox of proximity: demand and supply sit close together while remaining invisible to one
+another. Both sides are often digitally dark. A business that hires by word of mouth and a job seeker who
+has never written a CV cannot find each other, and neither can a family looking for a speech therapist and
+the professional practising two kilometres away. National platforms rarely reach this activity, which is local,
+low-ticket and more often spoken than written down.
+1.2 Why Discovery Breaks Down
+These connections fail because much of this activity is digitally dark: what people need and what others
+offer is never recorded anywhere the other side can discover it, so it stays within word of mouth and
+personal networks. Where discovery happens at all, it is slow and costly. Searching costs time and
+money: asking around, travelling to offices and job fairs, scanning posters and WhatsApp groups.
+Surfacing one person's intent through field surveys has cost around ₹500 and two weeks. Establishing
+credibility is hard: two in three people answer calls only from numbers they recognise, and a tourist
+approached by a self-described local guide has no way to check whether the guide is genuine. Reaching
+an opportunity costs travel and time, which is why many women candidates look for work no further than
+two bus stops from home.
+
+=== page 4 ===
+The late C.K. Prahalad, professor at the University of Michigan's Ross School of Business, argued in The
+Fortune at the Bottom of the Pyramid (2004) that markets at the base of the economy go unserved not
+because they lack value, but because serving them needs a different cost structure. Aneel Karnani,
+professor of strategy at the same school, added that people in these markets create the most value as
+producers and earners, not only as consumers. Together they describe what local economies need:
+discovery that is cheap enough and wide enough for many small engagements to become viable. Cost is
+only part of it. A service that is never discovered is never used, and an opening that is never discovered is
+never filled, so each is a lost opportunity for both sides. Making both sides discoverable, with people
+taking part as earners and providers as well as customers, is what expands these markets.
+Several factors now make discovery both cheaper and wider. Proximity lowers the cost of reaching an
+opportunity. Voice conversations in a person's own language make discovery possible for people who
+have never filled a digital form, bringing them into markets they were previously outside. Local institutions
+that people already recognise, such as district administrations, MSME associations, ITIs, NGOs and
+self-help groups, lend credibility and bring participants in. A Blue Dot or a verified credential, once
+created, can be reused across many future discoveries instead of being rebuilt each time. And shared
+rails unbundle who is offering what, so any provider can respond to visible demand without first building
+its own way of reaching customers. Together, these do more than save cost and time: they bring demand
+and supply that were never discovered into the market, which is how local markets expand.
+1.3 From Efficiency to Productivity
+Lower discovery costs are a gain in themselves, in time and money saved by everyone searching. They
+also raise productivity. Workers hired close to home spend less time travelling and more time working,
+and they stay in their roles longer, so businesses spend less on repeated hiring and training. Matches
+improve when needs are personalised and skills are verified, so fewer placements fail. Businesses that
+find workers, suppliers and services nearby operate with lower costs and shorter lead times. People who
+were willing but held back, such as women seeking assurance about safety and shifts, enter productive
+activity once that information is visible. A 21-year-old first-time graduate in Ghaziabad, now working at a
+store near her home, put the change simply: "I didn't know I could get something this quickly.
+"
+These gains stay local. When local candidates are hired by local enterprises, they earn locally and spend
+locally, and the local economy benefits in turn. Ghaziabad's Chief Development Officer has described how
+visible local opportunity can turn districts into counter-magnets to the steady migration towards cities. The
+same logic extends well beyond jobs. MSMEs that trade and source services within their own district keep
+that spending local, and tourist spending that reaches local guides, artisans and homestays circulates
+where it is earned. As productivity rises across many such local pockets, India's dependence on a few
+metros as its economic centres can begin to ease.
+1.4 Personalised, Proximal Discovery as the Unlock
+Personalised, proximal discovery is the answer to digital darkness. When a person, business or provider
+can say in their own words what they have and what they want, and others nearby can find it, activity that
+was invisible enters the economy: openings get filled, services find clients, toursits find hosts and
+businesses find suppliers. It is personalised, so that what people find is relevant to their need, capability
+and circumstances, since discovery without relevance would only add noise. It is proximal, so that what
+people find is close enough to act on, with "close" defined by the person and the journey rather than a
+
+=== page 5 ===
+fixed radius. Repeated across districts and sectors, this turns hidden local demand and supply into
+economic activity at national scale.
+1.5 Why Now: DPI 2.0 and AI
+Between 2010 and 2026, India's Digital Public Infrastructure gave a billion people identity, payments and
+documents on shared public rails. NITI Aayog's April 2026 roadmap, DPI@2047 for Viksit Bharat, sets out
+the next phase. DPI 2.0, from 2025 to 2035, is meant to drive livelihood-led growth across MSMEs,
+agriculture, education, health and other sectors, moving India from digital inclusion to productivity-led
+growth. The roadmap calls for aggregating demand through district-level programmes executed by states
+and districts, and for expanding digital transactions through open, interoperable networks that unbundle
+supply and demand. The roadmap also uses the term "blue dot" itself. In two of its sectoral
+transformations,
+"MSME Jobs Finding Local Talent" and "Benefits finding Beneficiaries"
+, it describes
+people broadcasting who they are and what they seek in a credible way as a "blue dot"
+. The Blue Dotsᴬᴵ
+Economy puts these principles into practice as an AI diffusion pathway, built as shared digital rails with
+voice AI in the loop, and it represents both demand and supply in every use case.
+AI is what makes personalised, proximal discovery viable in Tier 2 and Tier 3 India and beyond. A person
+speaks in Hindi, Kannada or another language, and voice AI captures and structures what they have and
+what they want. Calls average 1 minute 40 seconds, and what once took field teams weeks of travel and
+many hours of effort now happens in a single conversation at a fraction of the cost. The average hides
+something useful: when people have more to say, they keep talking. During campaigns, the district
+administration in Ghaziabad observed high-intent seekers speaking with the voice agent for 10 minutes or
+more, and a startup working with women entrepreneurs observed women opening up about their needs
+because they knew they were not speaking to a person. As cost and time keep falling, it becomes
+possible to digitally light up the aspirations of India's youth, women, businesses and service providers at
+the pace its demographic dividend demands.
+1.6 The Blue Dotsᴬᴵ Economy
+As more local demand and supply becomes discoverable, an economy begins to emerge: a Blue Dotsᴬᴵ
+Economy, in which the intent of people, businesses, providers and everyone in between is discoverable in
+proximity across India's local economies. A Blue Dot is that intent, structured, consented and placed on a
+shared local map, where relevant people and institutions nearby can find it and act on it.
+Personalised, proximal discovery, in this sense, becomes the shared public rails that local services have
+always lacked. A service provider no longer has to build its own way of finding customers, and a citizen in
+any district can find the opportunity, support or service they need without travelling to a metro or relying
+on chance. The implementations that follow show this taking shape across sectors.
+2. Implementations Underway
+Each implementation follows the same pattern of AI diffusion. It starts with a persona, a specific problem
+of discovery and the economic unlock that solving it would bring. From there, it needs four things. An
+institutional anchor from samaaj, sarkaar or bazaar takes ownership. A local ecosystem of institutions
+people already recognise, such as MSME associations, ITIs and colleges, NGOs, self-help groups and
+district departments, brings participants in. Enablers, local or not, including startups, training organisations
+
+=== page 6 ===
+and service providers, build services on the demand that becomes visible. And the solution brings three
+things together: voice AI agents that let people express intent in their own language, a shared map on
+which that intent becomes discoverable, and open Digital Public Goods that structure, verify and connect
+it. The approach is set out in more detail in Appendix A.
+The approach is in use across four areas, with enterprise and emergency services emerging.
+Area Dots Use case Anchors and partners
+Livelihoods Blue
+Dots
+Making local jobs, job
+seekers and livelihood
+support such as counselling,
+skilling, assessment,
+placement, credentialing,
+and entrepreneurship
+discoverable
+●
+●
+●
+●
+●
+●
+District administrations of
+Ghaziabad and Hubli-Dharwad;
+UPSDM, UP Industry Department
+and UP MSME Department,
+UPTPA, Uttar Pradesh;
+KSDA and DITE, Karnataka;
+Ministry of Labour and
+Employment;
+Ministry of Corporate Affairs;
+Ministry of Minority Affairs
+Disability Purple
+Dots
+Making the needs of
+persons with disabilities, and
+the services, schemes and
+opportunities that meet
+them, discoverable
+●
+●
+●
+Department of Empowerment of
+Persons with Disabilities and
+ALIMCO;
+District administrations across 14
+geographies (with more to follow
+this fiscal year);
+Tech Mahindra Foundation and
+EnAble India
+Education and
+skilling
+Yellow
+Dots
+Building a Talent DPI on
+which learners, tutors and
+credentialed talent become
+discoverable
+●
+mySATHI Foundation, with CL
+Educate and IIT Kharagpur
+Tourism, arts
+and culture
+Orange
+Dots
+Making local experiences,
+artisans, performers and
+hosts discoverable and
+verifiable for tourists
+●
+OneTAC, with the Udupi district
+administration and the tourism
+department
+
+=== page 7 ===
+Enterprise
+(emerging)
+Brown
+Dots
+Making businesses' needs
+for markets, suppliers,
+services and capital
+discoverable
+●
+●
+UP MSME Department;
+MSME associations including
+AIMO and IIA in Ghaziabad and
+KCCI in Hubli
+Welfare and
+public services
+(emerging)
+Golden
+Dots
+Making welfare schemes,
+skilling, livelihood support
+and public services
+discoverable to the citizens
+eligible for them
+Under discussion with a state government
+2.1 Livelihoods: Blue Dots
+The Challenge
+In Ghaziabad, national employment portals listed 97 local jobs; in Hubli-Dharwad, at the same point, only
+four. Local businesses were hiring all the while, but their openings never reached a channel job seekers
+could see, and job seekers had no way to show employers nearby what they could do.
+The Response
+The district administrations of Ghaziabad (Uttar Pradesh) and Hubli-Dharwad (Karnataka) anchored the
+work, each through a Joint Facilitation Centre with nominated members from the ITI, higher education,
+polytechnic, industry and employment exchange departments. Existing institutions became aggregators.
+MSME associations, including AIMO and IIA in Ghaziabad and KCCI in Hubli, brought member
+businesses on through Blue Dot-a-thons, and ITIs and colleges brought in their students. Employers and
+job seekers express intent through a voice agent in Hindi or Kannada, or by scanning QR codes at job
+fairs, and the district promotes the voice AI number itself. Startups and NGOs, including Proof of Skill,
+RecEx, JobsUPI, TRRAIN and Head Held High Foundation, offer assessment, recruitment, counselling
+and job-readiness services on the demand that becomes visible.
+What Emerged
+In Ghaziabad, fewer than 10% of MSMEs surfaced over 12,000 jobs, and 16,000 job seekers became
+visible. In Hubli-Dharwad, 16,000 jobs and 8,000 candidates are on the map, and one MSME association
+put nearly 900 jobs online in four hours. At one point during the pilot, the data showed electrician
+vacancies outnumbering newly trained candidates by nearly 3 to 1, while trained youth were leaving for
+Bengaluru.
+Over 70% of applications went to opportunities within 5 km. Targeted placement drives converted at over
+50%, against under 10% at broad job fairs, and candidate mobilisation that took months now takes days.
+In Hubli-Dharwad, applications rose 300% once the district itself promoted the AI voice number and QR
+
+=== page 8 ===
+codes, and inbound callers applied at twice the rate of those reached by cold calls. When the voice agent
+began completing applications within the call, the application failure rate fell from 88.6% to 2%.
+The conversations went well beyond jobs. More than half of the youth who called asked for something
+other than a job, naming over ten needs from counselling and skilling to higher education,
+entrepreneurship, capital and machines. Women engaged with the voice bot as much as men but applied
+at around one-third of the rate. A "women-friendly workplace" signal tripled their applications, and MSME
+associations have begun marking and broadcasting women-friendly jobs. Aggregated call data also
+showed that some factories start their first shift at 8:00 a.m. while the first buses from nearby areas arrive
+at 9:00 a.m.
+What Next
+●
+Uttar Pradesh is rolling the approach out across its 18 mandal headquarters, anchored by the UP
+Industry Department and the UP MSME Department with UPSDM in support, and the Industry
+Department is bringing its Sardar Vallabhbhai Patel Scheme onto the rails.
+●
+Karnataka is scaling the approach statewide through KSDA and DITE.
+●
+The Ministry of Labour and Employment is enabling these rails through the National Career
+Service.
+●
+The Ministry of Corporate Affairs is enabling these rails through the PM Internship Scheme.
+●
+The Ministry of Minority Affairs is extending the approach to PM-VIKAS candidates across 15
+districts.
+●
+Maharashtra and NSDC are at various stages of adoption.
+Economic Potential
+If fewer than 10% of Ghaziabad's MSMEs surfaced over 12,000 jobs, the remaining 90% could make tens
+of thousands more jobs digitally discoverable in that district alone. Nationally, MSMEs contribute around
+31% of GDP and employ about 38.9 crore people, with 8.7 crore enterprises registered on the Udyam
+portal (MSME fact sheet, June 2026), and over 1.1 crore students graduate each year (AISHE 2023-24).
+If hiring demand across these businesses is as unseen as Ghaziabad's was, making it discoverable
+connects that supply to work close to home, starting with India's top 200 districts. That changes where
+people earn and spend. Candidates hired by local enterprises earn locally, spend locally and have less
+reason to migrate to the metros, so districts keep both their talent and the income it generates, and that
+spending sustains other local businesses in turn.
+2.2 Disability: Purple Dots
+The Challenge
+Basti district alone has about 60,000 persons with disabilities, most of them with locomotor, visual or
+hearing disabilities. Their needs range from assistive devices and rehabilitation to support that sits
+beyond the disability itself, such as pensions, UDID cards and other schemes. Yet the wider ecosystem
+that could meet these needs, including government departments, rehabilitation professionals, NGOs,
+device providers, lenders and employers, has had no clear view of where these needs are, and persons
+with disabilities have had no clear view of who nearby can help. Providers face the same gap from the
+other side. ALIMCO's assistive-device camps have seen low turnout because information does not reach
+eligible people, and NGOs with strong local reach have no list of who needs them.
+
+=== page 9 ===
+The Response
+DEPwD and ALIMCO first ran a national campaign that Purple Dotted the needs of 1.1 lakh persons with
+disabilities across the country. Building on what that campaign showed, DEPwD has begun rolling out
+Purple Dots across 14 districts under an MoU signed in September 2026 for Purple Dots, the Unified
+Benefits Interface, and aims to cover 30 districts this fiscal year. District administrations anchor the work
+on the ground, beginning with Basti. Tech Mahindra Foundation and EnAble India implement it, and
+EkStep Foundation seeded it.
+There are two kinds of Purple Dots: a person with a disability or a caregiver who states a need, and a
+provider of services, such as a rehabilitation professional, a prosthetics and orthotics or hearing-aid
+provider, a therapist, or an NGO that helps with documentation and scheme applications, who can find
+people by need and respond. RCI-registered professionals list their services with their registration number
+at no cost, and contact is shared only once both sides consent. In Basti, 3 organisations and 15 self-help
+groups and ASHA supervisors were shortlisted as local points of assistance for documentation, UDID
+cards and assistive-device applications.
+What Emerged
+The district rollout has only just gone live, in Basti, so outcomes will emerge over the coming months. The
+needs of Basti's persons with disabilities are being Purple Dotted, and the most requested so far are
+prosthetics and orthotics, speech and hearing support, and access to schemes and services. District
+ownership came early. After a stakeholder workshop set out what each actor could offer and needed from
+the others, the Basti Health Officer observed that the technology was fine, but what mattered was seeing
+how the programme would work on the ground, and the Chief Development Officer brought health,
+welfare, rural development and skilling onto the district working committee.
+What Next
+●
+●
+Purple Dots will expand from 14 to 30 districts this fiscal year.
+The next stage moves from access to participation, surfacing the intent of persons with disabilities
+to work, contribute and earn, alongside the organisations and employers who can enable it.
+Economic Potential
+Basti alone generates a wide and specific set of needs. Nationally, the Census 2011 counted 2.68 crore
+persons with disabilities, about 2.2% of the population, a figure widely regarded as conservative. When
+DEPwD mapped needs nationally, locomotor, visual and hearing disabilities were the most common, and
+demand spanned assistive devices, financial support such as loans and scholarships, and employment
+and skilling. Mapped at national scale, these needs would give a live view of what persons with disabilities
+need and where. That view becomes the canvas on which schemes, services and opportunities can be
+delivered. Persons with disabilities then take part in the economy on both sides. As consumers, they
+access the devices, therapy, training and financial products they need, which creates a large market for
+rehabilitation professionals, device makers, lenders and trainers. As contributors, they find work, start
+businesses and earn, adding to local output and income.
+
+=== page 10 ===
+2.3 Education and Skilling: Yellow Dots
+The Challenge
+Each year, around 70 lakh people take regulator-recognised assessments for banking, financial services
+and insurance, for certification, recruitment and promotion. Only a share of them are hired into BFSI roles.
+The rest are not weak candidates; most were simply not the top candidate for one particular opening, and
+their assessed skills then disappear from view. The same pattern runs through learning more widely.
+Students looking for tuition, coaching and test preparation depend on known institutions, capable tutors
+working from homes and neighbourhoods remain hard to find, and what a learner can do is rarely
+recorded in a form they can carry and reuse. With the national ambition of equipping one crore young
+people with AI skills, the volume of talent that needs to be visible will only grow.
+The Response
+The entire effort centres on building a Talent DPI, with mySATHI Foundation as anchor and CL Educate
+and IIT Kharagpur as ecosystem partners. As a DPI, it is a set of shared rails, not one organisation's
+platform: any organisation, institution or individual can bring learners, providers or services onto it. On
+these rails, learners, tutors and credentialed talent become discoverable by location and capability.
+Candidates assessed for BFSI roles can hold a BFSI credential that stays with them and appears on a
+map, so that banks and other financial institutions can see where credentialed talent is concentrated in
+the places where they hire or plan to expand. The same applies to young people trained in AI skills, and
+to tutors and coaching providers who can be assessed, credentialed and found locally. Because
+credentials are reusable, a learner can carry them to colleges, employers and later opportunities instead
+of proving the same skill again.
+What Next
+●
+●
+●
+●
+An analytical map of the BFSI candidate pool, showing where credentialed candidates are, how
+many there are and what they hold, as a signal for banks and BFSI employers.
+A first cohort of AI-skilled young people made visible as talent ready for opportunities.
+Learning networks starting in Ghaziabad and Visakhapatnam, open to tutors and providers
+beyond the anchor's own network, and expanding to multiple districts within this fiscal year.
+Over time, a pathway from education to skills, credentials and employability that connects Yellow
+Dots with Blue Dots.
+Economic Potential
+This pool is national from the start, and it renews every year: around 70 lakh people are assessed and
+credentialed for BFSI roles. Today, the value of that assessment largely ends with a single hiring decision.
+A credential that stays with the person and is placed on a map turns it into a lasting economic asset. For
+employers, it lowers the cost and time of hiring: banks and other financial institutions can see where
+credentialed talent already sits and hire locally, without sourcing, screening and assessing the same skills
+again. For candidates, a reusable credential opens more opportunities closer to home, so assessed skills
+are put to productive use instead of going idle. For districts, visible talent shapes where demand is
+created: an institution that can see credentialed talent in a district can expand there with confidence,
+bringing jobs, income and spending to places beyond the metros. The same applies to the national
+ambition of equipping one crore young people with AI skills, so that the returns on that skilling are realised
+where young people live.
+
+=== page 11 ===
+2.4 Tourism, Arts and Culture: Orange Dots
+The Challenge
+Udupi has much of what tourists look for: the Krishna Matha, Yakshagana and Pili Vesha performance, a
+distinctive cuisine and a coastal adventure culture. When OneTAC mapped the questions of seven kinds
+of tourists, from solo travellers to families and international backpackers, their most common needs were
+the hardest to meet: a surf lesson from an operator they could be sure was real, a guide whose
+credentials they could check, a fair auto fare, a temple stay. The people who can meet these needs,
+including guides, performers, artisans, boat operators, home cooks and hosts, are largely invisible online,
+so the value they could earn flows to intermediaries or does not materialise at all.
+The Response
+OneTAC, a public, private and community-led framework for tourism, arts and culture, anchors Orange
+Dots, working with the Udupi district administration and the tourism department. Orange Dots applies the
+same discovery logic to experiences: where a Blue Dot makes a worker or service discoverable, an
+Orange Dot makes a local experience discoverable and ties it to a verified, named practitioner. OneTAC
+provides the standards, credibility and coordination layers that let local actors become discoverable and
+transactable while staying locally owned. It is not a booking platform or a marketplace, and it is sustained
+through CSR support as a commission-free ecosystem. Working with the Deputy Commissioner's office in
+Udupi and the local ecosystem, including the tourism department, self-help groups, artisan and performer
+communities and local entrepreneurs, a local OneTAC Hub carries newly visible actors through validation,
+capacity building, market access and credit readiness. The district administration validates practitioners,
+which gives tourists confidence in what they find.
+For the demand side, simple ways in for tourists are being built: QR codes at bus stands, beaches,
+temples, in autos and on practitioners' ID cards; a map of verified Orange Dots; and Tourist Saarthi, a
+voice AI service that will call tourists back in their language with answers on guides, food, stays and local
+conditions. Tourists will also be able to check a practitioner's ID to confirm they are verified.
+What Emerged
+More than 1,000 Orange Dots have been created across Udupi and coastal Karnataka. They span
+guides, Yakshagana and folk performers, artisans, self-help-group culinary collectives, boat operators,
+homestay hosts and food custodians, many of whom had never held a digital profile. The supply side
+came first, so that when the demand side opens in November 2026, tourists will find a full picture of what
+is on offer.
+What Next
+●
+●
+●
+●
+Scaling to 2,000+ Orange Dots by December 2026.
+Validating these with the district administration into a credible local experience registry, a
+verifiable record of who offers what, where and with what credentials.
+Moving Udupi's performers, artisans and hosts from invisible to bankable, with discovery leading
+on to market access and credit.
+Expanding to further districts in India, with interest also coming from markets outside India.
+
+=== page 12 ===
+Economic Potential
+A single region already holds thousands of experience providers that tourists have never been able to
+find. Nationally, travel and tourism contributes 5.22% of India's GDP, about ₹15.73 lakh crore in 2023-24,
+and supports 46.5 million jobs, according to PIB and WTTC figures. India's handicraft and handloom
+artisans number between 64.66 lakh and 1.13 crore by different estimates, earning on average about
+₹270 a day (Economic Survey 2025-26; Institute for Human Development and Crafts Council of India,
+2025). Anecdotally, only around a fifth of such experiences and artisans are visible to tourists, yet that
+visible share already sustains tourism's contribution to GDP. The rest is value that discovery could bring
+into the economy, and into the hands of the people who carry a place's culture.
+3. Emerging Use Cases
+The same rails are being extended into further parts of local economies. Two are already taking shape;
+others are set out in Appendix B.
+3.1 Enterprise: Brown Dots
+The Challenge
+Businesses, service providers and entrepreneurs need markets, capital, suppliers, schemes and services
+to grow, and much of what they need already exists in their own district. Yet they rarely know what is
+available locally. MoSPI's Annual Survey of Unincorporated Sector Enterprises for 2025 counts 7.92 crore
+establishments employing 12.81 crore workers, of which only 39.4% use the internet for business (MoSPI,
+March 2026). Most of these enterprises are as hard to find as they find it hard to find others.
+The Response
+MSME associations and District Industries Centres are making enterprise needs discoverable. An
+association aggregates what its members need, broadcasts it to providers, and brings credible providers
+back to its members. AIMO in Ghaziabad declared its ambition to become the first 100% AI-enabled
+MSME association and brought 75 member businesses together with startups, NGOs and the district
+administration. In pilots with women entrepreneurs, including Youvati around Moradabad, the local
+ecosystem was mapped to surface the services entrepreneurs needed close to home.
+What Emerged
+At the AIMO gathering, members answered questions by raising numbered placards, which revealed
+capabilities the association had not known about: around 40 members already employed women, one of
+them 200 among 500 workers. Once demand was aggregated, providers competed for it. A recruitment
+startup offered the first 20 MSMEs a 20% discount, shortlisting within 48 hours and a 90-day replacement
+guarantee. In pilots with women entrepreneurs, including one run by Youvati, a startup from the
+Bharat10M accelerator cohort, anchored by Caret Capital that supports women-led businesses around
+Moradabad and Bijnor, the local ecosystem was mapped to surface the services entrepreneurs needed
+close to home.
+
+=== page 13 ===
+What Next
+●
+●
+Associations and District Industries Centres surfacing their members' collective needs regularly,
+so that providers, lenders and suppliers can respond to demand they can see.
+South Africa applying the approach to one of its programs for micro-entrepreneurs.
+3.2 Welfare and Public Services: Golden Dots
+The Challenge
+Citizens often struggle to discover the welfare schemes, skilling opportunities, livelihood support and
+public services they may already be eligible for. Many departments and ecosystem organisations run
+valuable programmes, but the system is fragmented, and data on beneficiaries and services sits in
+separate departments. Eligible people miss out, and programmes reach fewer of the people they were
+designed for.
+The Response
+Golden Dots, under discussion with a state government, would create structured, credible and verifiable
+signals across beneficiaries, schemes, services and ecosystem actors. Citizens would discover what fits
+them through voice bots, WhatsApp, local facilitation centres and ecosystem partners, with guidance on
+the schemes and benefits they are eligible for, skilling and livelihood opportunities, healthcare and
+disability support, documentation and application requirements, and support providers nearby. NGOs,
+CSR organisations, foundations, healthcare partners, skilling providers and welfare institutions can
+themselves become discoverable and offer counselling, assessments, documentation support and other
+last-mile services. Self-help groups, ASHA supervisors and similar community-based organisations would
+carry this discovery to the last mile. They already exist in villages and wards across the country, they
+carry credibility with citizens, and they know which households are eligible for support but are not
+receiving it. A citizen is far more likely to state a need, or to answer a call, when someone they recognise
+is involved. Purple Dots has already shown this in Basti, where 15 self-help groups and ASHA
+supervisors were shortlisted as local points of assistance for documentation, UDID cards and
+assistive-device applications. Golden Dots would extend that role, with these groups helping citizens state
+their needs, confirm their eligibility and complete their applications, so that discovery spreads through
+networks that are already in place rather than ones that have to be built. The same Digital Public Goods
+that power Blue Dots and Purple Dots would serve as the foundation, configured by an implementation
+partner and run through a state-level PMU and district facilitation structures.
+Economic Potential
+When benefits and services reach the citizens they were meant for, public spending does more. Today,
+scheme benefits can reach people who are not eligible while eligible citizens miss out. Verified,
+continuously updated signals on who is eligible reduce that leakage in disbursement, so the same budget
+reaches more of the right people. And because citizens are connected to skilling, livelihood support and
+services close to home, more of them can earn locally and spend that income in their own district, instead
+of migrating to find opportunities elsewhere. Interoperable, continuously updated signals across
+departments also give the state a significant public data unlock: better planning, convergence across
+departments, less duplication and more efficient allocation of public resources. Working alongside Blue
+Dots and Purple Dots, Golden Dots would let a citizen discover welfare support, skilling pathways,
+livelihood opportunities and local services in one place.
+
+=== page 14 ===
+4. Markets Building on Shared Rails
+To investors, Tier 2 and Tier 3 markets have long looked informal: high in volume, low in ticket size and
+too costly to reach. Venture capital has largely stayed away for that reason, not for lack of demand. As
+one investor told the team, you cannot offer services in a place until the roads are built.
+The two accelerators run with Caret Capital and Headstart Network Foundation set out to test whether
+shared discovery rails change that. Startups applied to both accelerators through the Bharat Pitchathon,
+Headstart Network Foundation's flagship programme for surfacing founders from across Bharat, not just
+the metros. Of 568 applicants, 80 were longlisted, 26 were shortlisted to join the two cohorts and 12 ran
+pilots in Tier 2 and Tier 3 districts.The pilots tested two questions: does personalised, proximal discovery
+lower the cost and time of acquiring customers enough to make these markets viable, and does it surface
+market opportunities that were not visible before? The evidence says yes on both counts. Baylink sourced
+gig workers within 2.5 km of the work location more cheaply and quickly than through the open market,
+and they stayed longer in the role. Digital Labour Chowk, matching workers and opportunities directly,
+found that workers preferred opportunities within about 3 km of home. Proof of Skill's AI mock interviews
+in Ghaziabad led employers to approach candidates instead of the other way round. In each case,
+startups also saw a new market opportunity for them in the long tail of the economy, markets that were
+not legible earlier.
+5. Learnings from Implementation
+The same patterns recur across livelihoods, disability, education, tourism and enterprise. The first four
+learnings concern what personalised, proximal discovery reveals, the next five what it changes
+economically, and the last four what makes it work and keeps it working.
+5.1 Demand and Supply Already Exist but Remain Unseen
+The first constraint in a local economy is often visibility, not the absence of jobs, services, talent or
+experiences. In every implementation, demand and supply were present before they were discoverable:
+openings that MSMEs held but no portal listed, persons with disabilities waiting for providers already
+practising in their district, guides and artisans operating outside any tourist’s view, and businesses
+unaware of services available next door. Even the institutions closest to a market may not see it until they
+ask.
+5.2 Speaking Reveals Demand That Forms Miss
+Systems designed around one transaction capture one need. When people speak in their own language
+instead of filling a form, they say more, and conversations run longer when there is more to say. The Blue
+Dots approach was built around the same reality, since one person may need a pension, a device,
+therapy and a scheme at once. Each additional need captured, or service provider added, took only 10 to
+20% extra effort on top of the existing infrastructure and approach.
+
+=== page 15 ===
+5.3 Livelihoods is beyond helping someone find a Job
+Many people are looking for a livelihood, and a job is only one route to it. One candidate said,
+"I don't
+need a job, I need machines and a loan to grow my work.
+" Counselling, skilling, assessments and
+entrepreneurship are livelihood pathways in their own right, and each is also a service someone can
+provide. Among first-time graduates, 80% apply only once they know an opportunity is nearby, the right fit,
+offers growth and pays fairly for the area, and "more guidance" was the leading reason around 38% of
+high-intent youth did not apply. The same holds for persons with disabilities: alongside support and
+services, discovery surfaces their intent to participate, contribute and earn. Someone who upskills from
+a ₹15,000 role to a local job that pays ₹20,000 earns, spends and contributes more locally.
+Someone who starts a local business creates income, and often livelihoods for others. Much of
+the economic return lies in these pathways, not only in placements.
+5.4 Discovery Exposes Participation Gaps
+Making intent visible does not guarantee that people act on it, but it shows why they do not. 2/3rd of
+women held back until they had assurance about safety, proximity, amenities and shifts. Many MSMEs
+already hire women; what they lack is a common standard for what a women-friendly or safe workplace
+means in the places they run, and associations are now asking for guidance and advisory on it. Persons
+with disabilities face a similar gap, eligible for schemes that never reach them. In each case, what looked
+like low interest was unmet demand, and the response it called for was specific and often inexpensive.
+5.5 Proximity Changes the Economics of Participation
+What counts as local depends on the person and the journey, and it is often very local. Baylink's pilot
+landed on 2.5 km; as its CEO put it,
+"A candidate sourced in a 2.5 km radius from the work location is way
+stickier than someone who has to travel more.
+" Digital Labour Chowk saw workers prefer opportunities
+within about 3 km, and Record heard the same pattern from its client during its skill-verification pilot. For
+internships, NetPractice found that offers involving less than 30 minutes of travel were accepted, while
+those beyond it were not, which matters most for interns who earn little and face family pressure over long
+commutes. Purple Dots matches people and providers by need and distance together for the same
+reason.
+5.6 Earning and Spending Locally Strengthens Local Economies
+Once local opportunity is visible, it competes with migration. Illustratively, a job paying ₹17,000 to ₹18,000
+near home can leave more disposable income than a ₹20,000 job in a metro once rent, food and
+commuting are paid, and that income is then spent in the local economy. Many male candidates now
+search within their own district instead of migrating, which lets districts keep their own talent. The same
+holds for businesses sourcing services locally and for tourist spending that reaches local hosts and
+artisans.
+5.7 Lowering the Cost of Discovery Expands Participation
+At survey-level costs, reaching the long tail of local demand was uneconomic. At the cost of a short voice
+call, it is viable, including for people who have never filled a digital form. Removing steps matters as much
+as lowering cost. Job seekers who were once asked to complete applications later, on their own, mostly
+
+=== page 16 ===
+never did; once the call itself completed the application, the effort converted. Habits change once forms
+are gone: MSMEs in Hubli-Dharwad now update their vacancies through a short AI call.
+5.8 The Cost and Time of Acquiring Customers Fall
+Across implementations, those who serve local demand spend less, and less time, finding the people they
+serve. Discovery time falls from over two weeks to under a day. Training organisations in Hubli-Dharwad
+cut mobilisation costs by up to 80%, startups source within a few kilometres at lower cost, and pooled
+demand from MSME associations brought better terms from providers: aggregation creates visibility, and
+volume creates negotiating power. Startups also did not have to build relationships and local context from
+scratch; they built on what district departments and MSME associations had already aggregated, which
+cut the time, effort and cost of entering a new geography. Rehabilitation professionals list on Purple Dots
+at no cost, and Orange Dots hosts become findable without paying intermediaries. Lower acquisition cost
+is what makes serving low-ticket local demand viable, and it is the clearest signal investors have
+responded to.
+5.9 Credentials Make Talent Legible and Can Shift Where Demand Is
+Created
+When talent is credentialed and visible on a map, employers can see what exists in a place before they
+commit to it. That matters as companies look beyond metros. Nearly 28% of new Global Capability
+Centres set up in 2023-24 were located in Tier 2 cities; Bosch's engineering and IoT operations in
+Coimbatore and Schneider Electric's industrial automation centre in Vadodara are early examples, and
+Madhya Pradesh's GCC Policy 2025 aims to bring more than 50 GCCs and 37,000 jobs to Indore and
+Bhopal (Outlook Business). Credentialed, discoverable talent gives employers of every size the depth of
+visibility to set up in a district with confidence. As more demand is created where talent already lives, its
+concentration in a few metros can begin to ease.
+5.10 Discovery is Augmented by Credibility
+Because most people answer only numbers they recognise, and cold AI calls plateaued at around 30%
+pick-up, discovery travels through institutions people already know: a district administration promoting its
+own voice AI number, an association whose members follow its lead, a self-help group or ASHA
+supervisor in a village. The channel has to fit the institution, such as QR codes at job fairs for skilling
+departments, alumni WhatsApp groups for colleges and kiosks at district offices. A separate inbound
+number that has not been marked as spam, with the institution named at the start of the call, keeps that
+credibility intact. Institutions take ownership when it builds their standing, as AIMO's ambition to become
+the first 100% AI-enabled MSME association showed. Credibility matters as much in what people find,
+and here too the local ecosystem does much of the work by verifying that listings are genuine. MSME
+associations ensure that only registered MSMEs post legitimate jobs, and skilling organisations verify the
+candidates they bring onto the rails. Registration numbers on Purple Dots provider listings, verified
+practitioners behind every Orange Dot and skill credentials on Yellow Dots all serve the same purpose:
+signals people can act on without re-checking.
+
+=== page 17 ===
+5.11 Aggregated Demand Becomes Local Economic Intelligence
+Anonymised and aggregated, individual conversations show administrators what their local economy is
+asking for and what is holding it back. A mismatch between factory shift timings and bus timetables in
+Hubli-Dharwad surfaced this way. The same conversations showed what women look for before applying:
+signals on safety, proximity, amenities and shifts, and details about the employer. In Basti, aggregated
+requests show which disability services are most needed. The same intelligence shapes implementation:
+knowing that "local" means 2.5 to 3 km in one place and a travel time in another tells teams how to curate
+opportunities, where to focus outreach and how to plan the next phase. As DEPwD maps needs across
+districts and OneTAC builds a verified experience registry, this intelligence extends to disability services
+and tourism.
+5.12 Technology Is 30% of the Work; the Other 70% Is the Local Ecosystem
+Administrators can read a discovery initiative as a technology project. Adoption followed once the
+execution was visible: in Ghaziabad and Hubli-Dharwad a structure (Joint Facilitation Centre) that set out
+each actor's role, offers and needs moved the conversation from what the technology would do to how the
+programme would run on the ground. Technology accounts for around 30% of what it takes to reach
+scale, in line with findings from India's work on AI diffusion. The other 70% goes into activating the local
+ecosystem and enablers, measuring, tracking and improving what happens on the ground, and setting up
+the weekly and monthly governance rhythms that turn new practices into habits, such as Ghaziabad &
+Hubli-Dharwad's department-wise goals and weekly reviews through its Joint Facilitation Centre.
+5.13 The Value of Discovery Extends Beyond the First Connection
+Needs change over time. A worker may later need training, an MSME may first need a worker and then a
+supplier or capital, a person with a disability may need different support as circumstances change, and a
+tourist who finds one local experience may look for others. Because a Blue Dot can be reused, people
+and businesses keep finding what is relevant as their needs change, without starting over.
+6. The Opportunity Ahead
+India's DPI journey is moving from foundational inclusion towards broader economic participation,
+productivity and inclusive prosperity. The implementations point to a gap between economic activity and
+its discoverability. Across livelihoods, disability, education, tourism and enterprise, people, businesses
+and providers already have intent and capability, but much of it remains scattered across institutions,
+informal networks and individual knowledge.
+The Blue Dotsᴬᴵ Economy offers a replicable way to close that gap across sectors and geographies. As
+implementations grow, the opportunity is to connect them through interoperable public rails, so that a
+signal created in one ecosystem can be discovered and acted on in another, and to treat discovery as
+public infrastructure in the way identity and payments became.
+The economic case follows directly. Making a market visible expands it: demand and supply that were
+never discovered enter the economy, so services get used, openings get filled and providers find
+customers they could not reach before. Lower discovery costs save time and money for every participant.
+They make low-ticket, high-volume local markets viable for service providers and investors. They raise
+
+=== page 18 ===
+productivity through closer, better-matched and longer-lasting connections. And they keep income and
+spending in the districts where it is earned, so that local economies grow in their own right and become
+counter-magnets to migration rather than sources of it. Across hundreds of districts, that is how India's
+demographic dividend can be realised close to where its young people, women and entrepreneurs
+already live.
+The opportunity is not to create a new economy, but to make more of the economy that already exists
+visible, discoverable and connectable, so that proximity becomes an opportunity across India, not only in
+its metros.
+Appendices
+Appendix A: Approach to Implementation
+Each implementation follows a common approach, reflecting a broader lesson from AI diffusion:
+technology is one part of reaching scale, and institutions and ecosystems carry much of the rest.
+Persona and Problem
+The starting point is a specific person, business or organisation and a concrete problem of discovering
+demand or supply: a young person looking for work nearby, a person with a disability seeking a
+prosthetist, a student seeking a tutor, a homestay looking for tourists, or a business looking for local
+services. This determines whose intent needs to be captured, what proximity means in that context and
+what a useful connection looks like.
+Institutional Anchor
+Each implementation needs an actor from samaaj, sarkaar or bazaar that can anchor it locally. District
+administrations anchor livelihoods in Ghaziabad and Hubli-Dharwad, DEPwD and the Basti district
+administration anchor Purple Dots, mySATHI Foundation anchors Yellow Dots, OneTAC anchors Orange
+Dots, and MSME associations carry Brown Dots. The anchor brings relationships, local knowledge and
+the ability to mobilise participants, and creates ownership that sustains the work beyond the first
+implementation.
+Ecosystem
+The anchor works with the ecosystem needed to act on the demand and supply that emerges: MSME
+associations, ITIs and colleges, NGOs, self-help groups and ASHA supervisors, rehabilitation
+professionals, tutors, guides and artisans, training organisations, startups and service providers. These
+actors act as aggregators, bringing people and businesses in through channels they already run, and as
+providers, responding to demand once it is visible.
+Solution
+The final element is the technology that makes discovery work: voice AI agents that let people express
+intent in their own language, mechanisms for structuring, consenting and verifying signals, location-aware
+discovery on a shared map, and rails that connect participants. Where these capabilities serve common
+
+=== page 19 ===
+needs across contexts, they are built as Digital Public Goods, so each new implementation can reuse
+them instead of building its own.
+Appendix B: The Colours of the Blue Dotsᴬᴵ Economy and Emerging
+Applications
+The Blue Dotsᴬᴵ Economy is one approach applied across many parts of a local economy. In each, the
+unlock is the same: personalised, proximal discovery on shared rails lowers the cost of finding and
+connecting, which saves time and money and brings more activity into the local economy. Blue was the
+first use case, which is why the livelihoods colour shares the approach's name. The areas under way are
+set out below.
+Colour Area What becomes discoverable
+Blue Livelihoods Work, counselling, skilling and entrepreneurship support, and the
+people seeking them
+Purple Disability Services, assistive devices, schemes and opportunities for persons
+with disabilities, and the providers who offer them
+Yellow Education and
+skilling
+Tutors, coaching, co-curricular and extracurricular learning and
+credentials, and the learners seeking them
+Orange Tourism, arts and
+culture
+Local experiences, homestays, artisans, performers and guides, and
+the tourists seeking them
+Brown Enterprise Markets, suppliers, services, capital and schemes for businesses,
+service providers and entrepreneurs
+Golden Welfare and public
+services
+Schemes, benefits, public services and last-mile support providers,
+and the eligible citizens seeking them
+Beyond these, Red Dots for emergency help is being discussed, and conversations with ecosystem
+actors point to further applications on the same rails. In agriculture (Green Dots), farmers, buyers,
+equipment providers and local institutions need to find one another. Pink Dots would make flexible,
+nearby work and support visible to women seeking to join or return to the workforce. Golden Dots would
+
+=== page 20 ===
+do the same for self-help groups, citizens and local businesses, and White Dots would bring a
+household's needs across all its members into one view. In financial access, people and enterprises need
+to discover relevant products and support; in health and care, people need to find providers and providers
+need to understand local demand; and across government schemes, people need to discover
+programmes that fit their circumstances. These are areas for exploration, not evidence from current
+implementations.
+Appendix C: Digital Public Goods for Discovery
+Each new implementation builds on reusable components instead of building its own infrastructure. The
+Signal component handles registration, profile completion, checking, discovery and connection, giving
+every participant one structure: who I am, what I want, what I have. The Aggregator component lets
+institutions that already hold relationships, such as ITIs, MSME associations, departments and NGOs, run
+assisted or bulk onboarding, verification and ongoing tracking. AI voice agents provide a spoken interface
+that can be adapted to each participant type and works across voice AI providers. The map interface is
+open source and can be integrated with any platform.
+Together these support one recurring pattern: an existing relationship leads to aggregation and
+onboarding, then to an expression of current intent, a structured and consented signal, verification,
+discovery and connection. Scaling across ecosystems will need common standards for schemas,
+identifiers, consent, credentials, verification and interoperability alongside these components.
+Appendix D: Media Coverage and Official References
+Publication Implementation Date
+PIB, Ministry of Social Justice and Empowerment Purple Dots September 2026
+The Statesman Purple Dots September 2026
+News18 Blue Dots June 2026
+Dainik Jagran Blue Dots June 2026
+Business Standard Orange Dots June 2026
+
+=== page 21 ===
+NITI Aayog, Education and Skilling for Employment Blue Dots Mint Blue Dots Daily Hunt Yellow Dots Mathukumilli Sribharat (MP Vizag) via LinkedIn Yellow Dots Apolitical Blue Dots March 2026
+October 2025
+October 2026
+September 2026
+January 2026

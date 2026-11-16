@@ -16,6 +16,7 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 | Task | Fetch these files (in order) |
 |------|------------------------------|
 | First time, or new machine | `onboarding/SKILL.md` |
+| A question about Blue Dots, or "does this use case fit?" | `counsel/SKILL.md` (answers from EkStep's documents, with citations; runs the fit check) |
 | **Any new build (the 7 stages)** | `FLOW.md`: understand → tech spec → fallbacks → QC → template UI → test calls → handover |
 | No app builder or map key | `starter/` (plain HTML + one call function, OpenStreetMap) |
 | Review a prototype before a demo | `onboarding/readiness-report.md` |
@@ -27,6 +28,7 @@ Read every file from the local clone, not from GitHub URLs. The repo is private,
 | Content / writing only | `content/README.md` |
 | Schema for a use case (Domain Mapping, Config Note, Mapping Sheet) | `shared/schema-mapper.md` → schema-mapper's `map-network` skill |
 | DB sync between bot and dot | `shared/async-sync-architecture.md` |
+| Deck for a finished prototype (EkStep only) | `ekstep/collateral/SKILL.md` |
 | Raya agent setup | `shared/raya.md` |
 
 ---

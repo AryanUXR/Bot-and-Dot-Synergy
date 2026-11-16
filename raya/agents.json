@@ -63,6 +63,16 @@
       "uuid": "4973a151-df82-4f3d-bf4b-8acf208b5c2a"
     },
     {
+      "id": "petsaathi-hi",
+      "name": "Pet Saathi · Blue Dots Pune",
+      "file": "use-cases/blue-dots-pune-petcare/raya/PetSaathi Hinglish.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "a32be3aa-29f3-4e7d-9959-5d7e74dd5ec4"
+    },
+    {
       "id": "tester-bluedots",
       "name": "Testing Agent- Blue Dots",
       "kind": "tester",

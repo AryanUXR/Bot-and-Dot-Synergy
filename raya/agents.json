@@ -73,6 +73,16 @@
       "uuid": "a32be3aa-29f3-4e7d-9959-5d7e74dd5ec4"
     },
     {
+      "id": "saathiseva-hi",
+      "name": "Saathi Seva · Blue Dots Pune (elder care)",
+      "file": "use-cases/blue-dots-pune-silvercare/raya/SaathiSeva Hinglish.md",
+      "kind": "conversation",
+      "language": "hi",
+      "direction": "outbound",
+      "deploy": true,
+      "uuid": "95470a88-87a7-4520-bbad-cf02f737db7d"
+    },
+    {
       "id": "tester-bluedots",
       "name": "Testing Agent- Blue Dots",
       "kind": "tester",

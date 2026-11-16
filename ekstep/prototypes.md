@@ -12,6 +12,7 @@ The published map links are what visitors open, so they're what `scripts/audit.p
 | Purple · Lucknow | Divya 2.0 `3b35a5d0` | https://divya-purpledots.bluedotseconomy.org | `5329af7a` | https://purpledotslucknow.lovable.app |
 | White · Lucknow | Parivar Saathi `d157af22` | https://parivar-opportunity-saathi.lovable.app | `2f44ffbe` | https://whitedotslucknow.lovable.app |
 | Blue · Pune pet care (demo) | Pet Saathi `2ff86ee9` | https://pet-saathi-pune.lovable.app | `2667bede` | https://bluedotspunepetcare.lovable.app |
+| Blue · Pune elder care (silver economy) | Saathi Seva `3acb5e84` | https://saathi-seva-pune.lovable.app | `b79fc59c` | https://bluedotspuneeldercare.lovable.app |
 
 Every bot uses the header in `HEADER.md`.
 

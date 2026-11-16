@@ -1,13 +1,14 @@
 # Blue Dots: what the documents say (knowledge base for the counsel skill)
 
-Everything here comes from two EkStep documents, kept in `sources/`:
+Everything here comes from three EkStep documents, kept in `sources/`:
 
 | Key | Source |
 |---|---|
 | **KD** | *The Blue Dots^AI Economy: Key Details* (21 pages), `sources/blue-dots-ai-economy-key-details.pdf` (text: `.txt`) |
 | **GZ** | *[Blue Dots] Ghaziabad Future Ready* deck (15 slides), `sources/ghaziabad-future-ready-deck.txt` |
+| **PQ** | *Blue Dots Personas and Question Map* (11 Oct 2026): who asks what, by phase, and how well docs.bluedotseconomy.org answers it. `sources/blue-dots-personas-and-question-map.docx` (text: `.txt`) |
 
-Cite as **(KD p.N)** or **(GZ slide N)**. When a question needs a fact that isn't here, read the source text. If it isn't there either, say so plainly and never estimate.
+Cite as **(KD p.N)**, **(GZ slide N)** or **(PQ)**. When a question needs a fact that isn't here, read the source text. If it isn't there either, say so plainly and never estimate.
 
 ---
 
@@ -124,3 +125,52 @@ Also named as areas for exploration: financial access, health and care, and gove
 | 5.11 | Aggregated demand becomes local intelligence | Shift and bus mismatches; what women look for | KD p.17 |
 | 5.12 | Technology is 30%; the ecosystem is 70% | A Joint Facilitation Centre plus weekly reviews | KD p.17 |
 | 5.13 | Value extends beyond the first connection | A dot is reused as needs change | KD p.17 |
+
+## 7. Who asks, and what they ask (PQ)
+
+**Seven personas.** Adopters own the deployment and hold convening authority. Enablers are tech partners who help adopters put the approach and the DPGs into their context. In most cases adopters need enablers. District, state and central adopters ask largely the same questions; a few are central-only.
+
+| Group | Persona | Who | Owns |
+|---|---|---|---|
+| Adopter | Decision Maker | DM, Secretary, Mission Director, Joint Secretary | The decision, budget, convening authority, sustained attention |
+| Adopter | Implementation In-charge | CDO, nodal officer, state IT cell, programme director | Enablers, aggregators, rollout and reporting |
+| Adopter | Network Operator | An organisation running its own network, or a node in a shared one | Its network, participants and their data |
+| Enabler | PMU (programme management partner) | A consulting firm acting as the adopter's PMU | Design, governance, rollout, reporting |
+| Enabler | SI (system integrator) | A technology implementation partner | Deploying, configuring, integrating and operating the DPGs |
+| Enabler | Voice AI provider | Speech, LLM and telephony | The stack behind the voice agents |
+| Enabler | Cloud or hosting provider | Public cloud, government cloud, or own data centre | The infrastructure the DPGs run on |
+
+**Three phases:** *Setup* (deciding and standing it up), *Pilot* (the first district running, building density and outcomes), *Scale* (more districts or use cases, interoperability, sustainability).
+
+**Typical questions** (full list in the source):
+- *Decision Maker.* Setup: why this, and how is it different from my portal? Why a DPG? Is it like ONDC? What does it cost? Which use case first? What is my role? What does EkStep do? Pilot: what share of dots leads to an outcome, is any outcome guaranteed? Scale: other districts, other domains and colours, keep enablers or hand over, who owns the dots.
+- *Implementation In-charge.* Setup: which enablers and how to procure, who leads, own infrastructure or new, which officials, local anchor, aggregators, minimum data per dot, camps, no field team, languages, voice or WhatsApp, time to go live. Pilot: tracking journeys, verification, bad actors, enabler reporting, voice vendor, cost, proximity. Scale: connecting portals and departments, adding languages, enablers carrying over.
+- *Network Operator:* discovering supply and demand for my network; whether I must share dots back; data accountability.
+- *PMU:* the activation playbook, PMU vs SI roles, success metrics, aggregator convenings, review cadence, multi-district teams, handover to government.
+- *SI:* configuration vs build, clouds and OS, GPUs, connecting data, concurrency, voice integration, DPG upgrades, adding instances and domains.
+- *Voice AI provider:* integration points, language and pricing baselines, dialects, concurrency, one agent in many languages, pricing at volume.
+- *Cloud or hosting:* pilot sizing, self-hosting, security and VPN, data residency, multi-district tenancy.
+
+**What the docs site answers** (as of 11 Oct 2026): of 69 questions, 16 answered, 31 partly, 22 not at all. Strongest on the Decision Maker's "why" and on pilot evidence; weakest for enablers. The site sections PQ names are useful pointers: *Introduction, Approach, Blue Dots as a DPG, District Activation, The Dots Family, Use Cases, Pilots, What We're Learning, Participant Profiles, Blue Dot Lifecycle, Aggregators, Networks Domains & Instances, AI Voice Agent Prompts, AI Diffusion DPG, Infrastructure & Deployment, Adaptor Onboarding, API Reference*.
+
+Facts PQ reports from the site (cite as "per PQ, the docs site says…"):
+- District Activation: the use case to start with, the decision maker's role (convening, signal, sustained attention; a Collector-level champion with a Secretary or Mission Director sponsor), officials to bring in (DIC, employment exchange, Joint Facilitation Centre), success metrics, and going live in **under 90 days** (no technical setup time given).
+- A facilitation team of **6 to 8** with a small PMU (Approach). One district only.
+- Cost: only **"under ₹10 per voice interaction"** (Pilots). No capex or opex.
+- Languages documented: Hindi and Kannada. WhatsApp is planned (AI Diffusion DPG).
+- Deployment documented for AWS EKS and local Docker only; TLS, Kong rate limiting and Keycloak, no VPN.
+- No one owns the map; sharing is by consent. Data ownership is not stated.
+
+**Known gaps, in PQ's priority order:**
+1. Cost: capex, opex, optimisation.
+2. Enablers: which ones, procurement, PMU vs SI split, reporting, handover.
+3. EkStep's role.
+4. Sizing: concurrency, pilot sizing, GPUs.
+5. Clouds beyond AWS, data residency, VPN.
+6. Data ownership, sharing obligations, use by central ministries.
+7. Effort to add a language or dialect.
+
+The Network Operator has no pilot-phase questions yet.
+
+**Where PQ and KD differ, use KD and say so if asked.** PQ quotes the site as "70% of applications within 15 km" and "about 50% vs about 5% in targeted drives". KD says over 70% within **5 km** (KD p.7) and over 50% at targeted drives against under 10% at broad job fairs. The site wording may differ from KD; KD is the fuller write-up with its sources.
+

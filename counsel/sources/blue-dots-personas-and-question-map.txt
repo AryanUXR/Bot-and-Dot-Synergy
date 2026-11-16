@@ -1,0 +1,469 @@
+Blue Dots Personas and Question Map
+Oct 11, 2026 · @Tushar
+Overview
+Seven personas are likely to engage with Blue Dots: three adopters and four enablers. Of the questions they ask, docs.bluedotseconomy.org fully answers about a quarter today. Cost, enablers and operating at scale are the largest gaps.
+The questions draw on the Learnings Template (adopter questions), neutralised for local discovery rather than a single use case. Questions for enablers are drafted from their side of the work.
+Phases:
+	•	Setup: deciding to adopt and standing it up.
+	•	Pilot: the first district running, building density and outcomes.
+	•	Scale: more districts or use cases, interoperability and sustainability.
+Coverage status in the mapping:
+	•	Answered: the site addresses the question directly.
+	•	Partial: the site touches it, but an adopter or enabler would still need to ask.
+	•	Missing: the site does not address it.
+Personas
+Adopters own the deployment and hold convening authority. Enablers are tech enablers who help adopters implement the Blue Dots approach and DPGs in their use case and context. In most scenarios adopters need enablers and will not do it on their own.
+Adopter personas are split by role, not by level of government. District, state and central adopters ask largely the same questions. The few that differ for central ministries are tagged central only.
+Group
+Persona
+Who
+Owns
+Adopter
+Decision Maker
+DM, Secretary, Mission Director, Joint Secretary
+The decision, budget, convening authority and sustained attention
+Adopter
+Implementation In-charge
+CDO, nodal officer, state IT cell, programme director
+Enablers, aggregators, rollout and reporting
+Adopter
+Network Operator
+An organisation running its own network, or a node in a shared one
+Its own network, its participants and their data
+Enabler
+Programme management partner (PMU)
+A consulting firm acting as the adopter's PMU
+Design, governance, rollout and reporting
+Enabler
+System integrator (SI)
+A technology implementation partner
+Deploying, configuring, integrating and operating the DPGs
+Enabler
+Voice AI service provider
+A speech, LLM and telephony provider
+The stack behind the voice agents
+Enabler
+Cloud or hosting provider
+A public cloud, a government cloud, or the adopter's own data centre
+The infrastructure the DPGs run on
+Questions by persona and phase
+Adopter questions come from the Learnings Template, neutralised for local discovery. Enabler questions are drafted from the enabler's side of the work.
+Persona
+Setup
+Pilot
+Scale
+Decision Maker
+Why this, and how is it different from my existing portal? Why a DPG? Is it like ONDC? What does it cost? Which use case do I start with? What is my role? What does EkStep do? Central only: do I run my own network or fund states to run theirs?
+What share of Blue Dots lead to a connection or outcome? Is any outcome guaranteed? What does the pilot data show?
+Can it expand to other districts or statewide? Can it extend to other domains (services, schemes, skilling, tourism, agriculture)? What are the other coloured dots? Should I keep enablers or hand over to government? Who owns the Blue Dots? Central only: is there cross-state visibility? Can I use data from state deployments?
+Implementation In-charge
+Which enablers do I need, and how do I procure them? Who in my team leads? Own infrastructure or new? Which district officials do I bring in? Who anchors it locally? Who are the aggregators on each side? What is the minimum data per Blue Dot? Can it run through local events and camps? Can I roll it out without a field team? Which languages? Voice or WhatsApp? How long to go live?
+How do I track a participant's journey to an outcome? Who verifies Blue Dots? How do I handle bad actors? What does the enabler report on, and how often? How do I choose and manage the voice vendor? How do I optimise cost? How does proximity affect response?
+How do I connect existing portals? Can other departments connect? How much effort does a new language take? Do enablers carry over to the next district?
+Network Operator
+Can I discover supply and demand from Blue Dots for my network?
+(gap)
+Must I share my Blue Dots back into the network? How is data accountability ensured?
+PMU
+What does the activation playbook ask of us? How do the PMU and SI split roles? Which success metrics should we set?
+How do we run aggregator convenings on both sides? What is the review cadence with the adopter?
+What team composition works for a multi-district rollout? How does handover to government work?
+SI
+What is configuration and what is build? Which clouds and OS are supported? Do we need GPUs? How do we connect existing data and portals?
+What concurrency should we model? How do we integrate the voice vendor?
+How do DPG upgrades work? How are new instances and domains added?
+Voice AI provider
+What integration points do the DPGs expect? What is the language baseline? What is the pricing baseline?
+How do we add dialects? How do we handle concurrency?
+How does one agent handle multiple languages? How does pricing change at volume?
+Cloud or hosting provider
+What is the reference sizing for a pilot? Is a self-hosted path available?
+How do we set up security and VPN?
+Where does data reside? How does multi-district tenancy work?
+Mapping to the documentation site
+Of 69 questions, 16 are answered, 31 are partial and 22 are missing. Coverage is strongest for the Decision Maker's "why" and for pilot evidence, and weakest for enablers.
+Persona
+Phase
+Question
+Coverage
+Where on the site / note
+Decision Maker
+Setup
+Why this, how it differs from my portal
+Partial
+Introduction, Approach. No direct comparison with portals
+Decision Maker
+Setup
+Why a DPG
+Answered
+Blue Dots as a DPG
+Decision Maker
+Setup
+Is it like ONDC
+Partial
+Blue Dots as a DPG. Compared with UPI, not ONDC
+Decision Maker
+Setup
+What it costs
+Missing
+Only "under ₹10 per voice interaction" on Pilots. No capex or opex
+Decision Maker
+Setup
+Which use case to start with
+Answered
+District Activation
+Decision Maker
+Setup
+My role
+Answered
+District Activation: convening, signal, sustained attention; Collector-level champion, Secretary or Mission Director sponsor
+Decision Maker
+Setup
+What EkStep does
+Missing
+
+Decision Maker
+Setup
+Central only: run own network or fund states
+Partial
+Networks, Domains & Instances. No guidance for ministries
+Decision Maker
+Pilot
+Share of Blue Dots leading to outcomes; any guarantee
+Partial
+Pilots: about 50% vs about 5% in targeted drives. Silent on guarantees
+Decision Maker
+Pilot
+What the pilot data shows
+Answered
+Pilots, What We're Learning
+Decision Maker
+Scale
+Expand to other districts or statewide
+Partial
+Networks, Domains & Instances, Pilots. No how-to
+Decision Maker
+Scale
+Other domains, other coloured dots
+Answered
+The Dots Family, Use Cases
+Decision Maker
+Scale
+Keep enablers or hand over to government
+Missing
+
+Decision Maker
+Scale
+Who owns the Blue Dots
+Partial
+Blue Dots as a DPG: no one owns the map; consent. Data ownership not stated
+Decision Maker
+Scale
+Central only: cross-state visibility
+Partial
+Read & Write Paths. Technical only
+Decision Maker
+Scale
+Central only: use data from state deployments
+Missing
+
+Implementation In-charge
+Setup
+Which enablers, how to procure
+Missing
+
+Implementation In-charge
+Setup
+Who in my team leads
+Partial
+Approach: facilitation team of 6 to 8 with a small PMU. Roles not defined
+Implementation In-charge
+Setup
+Own infrastructure or new
+Partial
+Introduction: adaptable to any major cloud. Only AWS documented
+Implementation In-charge
+Setup
+District officials to bring in
+Partial
+District Activation: DIC, employment exchange, JFC
+Implementation In-charge
+Setup
+Local anchor
+Answered
+District Activation, Approach
+Implementation In-charge
+Setup
+Aggregators on each side
+Answered
+District Activation, Aggregators
+Implementation In-charge
+Setup
+Minimum data per Blue Dot
+Answered
+Participant Profiles
+Implementation In-charge
+Setup
+Local events and camps
+Answered
+Blue Dot Lifecycle (offline camp), What We're Learning (targeted drives)
+Implementation In-charge
+Setup
+Rollout without a field team
+Partial
+Blue Dot Lifecycle: self route, inbound QR, voice. Not addressed directly
+Implementation In-charge
+Setup
+Languages
+Partial
+AI Voice Agent Prompts: Hindi and Kannada; list left to the adopter
+Implementation In-charge
+Setup
+Voice or WhatsApp
+Partial
+AI Diffusion DPG: WhatsApp planned. Case for voice in Approach
+Implementation In-charge
+Setup
+Time to go live
+Partial
+District Activation: under 90 days. No technical setup time
+Implementation In-charge
+Pilot
+Tracking a participant's journey
+Partial
+Items, Actions & Events, What We're Learning. Outcome dashboards on the Roadmap
+Implementation In-charge
+Pilot
+Who verifies Blue Dots
+Answered
+Blue Dot Lifecycle, steps 5 and 6
+Implementation In-charge
+Pilot
+Handling bad actors
+Partial
+Aggregators: invitation-only coordinators; human verification. No fraud handling
+Implementation In-charge
+Pilot
+Enabler reporting and cadence
+Missing
+
+Implementation In-charge
+Pilot
+Choosing and managing the voice vendor
+Partial
+AI Voice Agent Prompts: required capabilities and selection criteria
+Implementation In-charge
+Pilot
+Optimising cost
+Missing
+
+Implementation In-charge
+Pilot
+Proximity effects
+Answered
+What We're Learning: 70% of applications within 15 km
+Implementation In-charge
+Scale
+Connecting existing portals
+Partial
+Bulk upload in Aggregators, API Reference. No integration guide
+Implementation In-charge
+Scale
+Other departments connecting
+Missing
+
+Implementation In-charge
+Scale
+Effort to add a new language
+Missing
+
+Implementation In-charge
+Scale
+Enablers carrying over to the next district
+Missing
+
+Network Operator
+Setup
+Discovering supply and demand for my network
+Partial
+Blue Dots as a DPG, Networks, Domains & Instances. No operator guide
+Network Operator
+Scale
+Sharing Blue Dots back into the network
+Missing
+Consent covered; sharing obligations not
+Network Operator
+Scale
+Data accountability
+Partial
+Aggregators: trust boundary
+PMU
+Setup
+Activation playbook
+Partial
+District Activation summarises it. Playbook v1 referenced, not published
+PMU
+Setup
+PMU vs SI role split
+Missing
+
+PMU
+Setup
+Success metrics
+Answered
+District Activation, Adaptor Onboarding step 6
+PMU
+Pilot
+Running aggregator convenings
+Partial
+District Activation
+PMU
+Pilot
+Review cadence with the adopter
+Missing
+
+PMU
+Scale
+Multi-district team composition
+Partial
+Approach. One district only
+PMU
+Scale
+Handover to government
+Missing
+
+SI
+Setup
+Configuration vs build
+Answered
+Introduction, Adaptor Onboarding, Configuring an AI Diffusion Use Case
+SI
+Setup
+Clouds and OS
+Partial
+Infrastructure & Deployment: AWS EKS and local Docker only
+SI
+Setup
+GPU or not
+Missing
+Implied by hosted LLM providers, never stated
+SI
+Setup
+Connecting existing data and portals
+Partial
+Bulk upload, API Reference
+SI
+Pilot
+Concurrency and sizing
+Missing
+
+SI
+Pilot
+Integrating the voice vendor
+Answered
+AI Voice Agent Prompts, AI Diffusion DPG
+SI
+Scale
+DPG upgrades
+Partial
+CI/CD & Build Pipeline: image pinning
+SI
+Scale
+Adding instances and domains
+Answered
+Networks, Domains & Instances, The Dots Family
+Voice AI provider
+Setup
+Integration points
+Answered
+AI Voice Agent Prompts, AI Diffusion DPG
+Voice AI provider
+Setup
+Language baseline
+Partial
+Hindi and Kannada only
+Voice AI provider
+Setup
+Pricing baseline
+Partial
+Under ₹10 per interaction only
+Voice AI provider
+Pilot
+Adding dialects
+Missing
+
+Voice AI provider
+Pilot
+Concurrency
+Missing
+
+Voice AI provider
+Scale
+One agent, multiple languages
+Missing
+
+Voice AI provider
+Scale
+Pricing at volume
+Missing
+
+Cloud or hosting provider
+Setup
+Reference sizing for a pilot
+Missing
+
+Cloud or hosting provider
+Setup
+Self-hosted path
+Partial
+Local Stack only
+Cloud or hosting provider
+Pilot
+Security and VPN
+Partial
+Infrastructure & Deployment: TLS, Kong rate limiting, Keycloak. No VPN
+Cloud or hosting provider
+Scale
+Data residency
+Missing
+
+Cloud or hosting provider
+Scale
+Multi-district tenancy
+Partial
+Networks, Domains & Instances: instances are independent. No tenancy guidance
+Gaps and how to fill them
+Seven gaps account for most of the missing and partial answers. Two of them can be closed from existing internal material; the rest need new content.
+Priority
+Gap
+Personas affected
+Fill from
+1
+Cost: capex, opex, cost optimisation
+Decision Maker, Implementation In-charge
+New content
+2
+Enablers: which ones, procurement, PMU vs SI split, reporting, handover
+Implementation In-charge, PMU, SI
+New content
+3
+EkStep's role
+Decision Maker
+New content
+4
+Sizing: concurrency, pilot sizing, GPU
+SI, Voice AI provider, Hosting
+Cloud deployment spec; Voice AI provider expectations
+5
+Clouds beyond AWS, data residency, VPN
+SI, Hosting
+Cloud deployment spec (Self-Hosted, AWS, GCP paths)
+6
+Data ownership, sharing obligations, use by central ministries
+Decision Maker, Network Operator
+New content; interoperability business cases document in progress
+7
+Languages: effort to add a language or dialect
+Implementation In-charge, Voice AI provider
+Voice AI provider expectations (language benchmarks); voice pilot learnings
+Open question: the Network Operator persona has no pilot-phase questions yet.

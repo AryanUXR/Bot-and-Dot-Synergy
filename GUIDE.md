@@ -75,7 +75,7 @@ A first build takes about one to two days, including tests. Once your accounts a
 | 6 | Test calls | `tests.md` with transcripts | One call through the website works, then every persona passes | `bot/voice-test-harness.md`, `bot/testing.md` |
 | 7 | Handover | `handover.md` with presentation notes | Readiness report all ✅ | `onboarding/handover-template.md`; EkStep also makes the deck (`ekstep/collateral/SKILL.md`) |
 
-Everything for one use case lives in `use-cases/<colour>-dots-<place>/`. `use-cases/white-dots-lucknow/` is a complete example.
+Everything for one use case lives in `use-cases/<colour>-dots-<place>/`. `use-cases/white-dots-lucknow/` is a complete example. `use-cases/blue-dots-pune-petcare/` is the newest: it serves both sides (pet owners and caretakers), and one data file feeds both the map and the bot.
 
 ---
 
@@ -114,6 +114,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | Change a bot prompt safely | Snapshot first with `scripts/prompt-version.sh`, make the smallest edit, redeploy, compare live against the file, and add a line to that bot's `CHANGELOG.md` |
 | Turn real rows into dummy data | `python3 scripts/make_dummy_dots.py <in.ts> <out.ts> <renames.json>`: drops addresses and non-helpline numbers, and renames rows from your JSON map of id → fictional name |
 | Make persona photos | `image-generation/vertex_generate.py <prompts.md> <out_dir> --options 2`. Check every face before using it. |
+| Keep the map and the bot's directory in step | Generate both from one data file, as `use-cases/blue-dots-pune-petcare/make_data.py` does. It writes the map data and the bot's directory together, with each row's distance from every persona's area. |
 | Move a phone number between voice agents | `python3 scripts/raya_did.py move <number> <from_uuid> <to_uuid>`, then place one real call to prove it routes |
 | Deploy the plain-code version | `starter/README.md` (Vercel or Netlify) |
 
@@ -127,7 +128,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | `SKILL.md` | The agent's entry point: routing, rules, IDs |
 | `FLOW.md` | The 7 build stages and their gates |
 | `LESSONS.md` | Every mistake made so far, and its fix. Read before building. |
-| `counsel/` | Counsel on the Blue Dots approach: a knowledge base from EkStep's own documents, the source texts, and the fit check |
+| `counsel/` | Counsel on the Blue Dots approach: a knowledge base from EkStep's own documents (Key Details, the Ghaziabad deck, and the Personas and Question Map), the source texts, and the fit check |
 | `onboarding/` | First-run setup, platform choices, fallbacks, non-negotiables, readiness report, handover template, fixing from feedback |
 | `onboarding/setup-guides/` | One guide per platform: Raya, Lovable, Google Maps, Gemini, GitHub, and any other |
 | `bot/` | Building the bot page: steps, prompt anatomy, testing |
@@ -141,7 +142,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | `use-cases/` | One folder per prototype: brief, personas, data, prompts, tests, handover |
 | `versions/` | Snapshots of prompts before big changes |
 | `research/` | Who uses this skill, and why it works the way it does |
-| `ekstep/` | EkStep's own builds only (header, logo, live links, and the deck generator in `collateral/`). Not for other teams. |
+| `ekstep/` | EkStep's own builds only (header, logo, live links, the deck generator in `collateral/`, and the scripted onboarding demo in `demo/`). Not for other teams. |
 | `config/` | `local.example.json`. Your `local.json` is never committed. |
 
 ---

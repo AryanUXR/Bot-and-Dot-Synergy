@@ -21,7 +21,7 @@ Audit them all:
 python3 scripts/audit.py <slug> --map-src <map code copy> --bot-src <bot code copy> --map-url <published map>
 ```
 
-The Purple and Red bots also answer on `divyavoiceconnect.lovable.app` and `sahailineassam.lovable.app`, which redirect to the custom domains above. Republished 12 Nov after the UI consistency and four-checks fixes.
+The Purple and Red bots also answer on `divyavoiceconnect.lovable.app` and `sahailineassam.lovable.app`, which redirect to the custom domains above. Republished 12 Nov after the UI consistency and four-checks fixes. Red map republished 18 Nov: it now ignores a placeholder Maps key (lesson 83).
 
 ## User guide (Google Doc)
 

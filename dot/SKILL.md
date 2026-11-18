@@ -37,7 +37,7 @@ Lovable:remix_project
   include_custom_knowledge: false
 ```
 
-**Maps key:** the EkStep map bases carry a stored key in `src/hooks/useGoogleMaps.ts` (`FALLBACK_GOOGLE_MAPS_API_KEY`), used whenever the project has no `GOOGLE_MAPS_API_KEY` secret. So a new copy works with **no secret**: don't ask for one. Never add a secret unless it's a key that allows `*.lovable.app`; a restricted secret overrides the stored key and breaks the map (Red Dots, 11 Nov). Outside EkStep, use your own key (`onboarding/setup-guides/google-maps.md`) or the no-key OpenStreetMap map in `starter/`.
+**Maps key:** the EkStep map bases carry a stored key in `src/hooks/useGoogleMaps.ts` (`FALLBACK_GOOGLE_MAPS_API_KEY`), used whenever the project has no `GOOGLE_MAPS_API_KEY` secret. So a new copy works with **no secret**: don't ask for one. Never add a secret unless it's a key that allows `*.lovable.app`; a restricted secret overrides the stored key and breaks the map (Red Dots, 11 Nov). A placeholder secret breaks it too (Red Dots, 18 Nov): to remove a secret, delete it, don't overwrite it. After remixing, check `useGoogleMaps.ts` uses a returned key only if it starts with `AIza`; if it only checks for a non-empty value, ask Lovable to add that check. Outside EkStep, use your own key (`onboarding/setup-guides/google-maps.md`) or the no-key OpenStreetMap map in `starter/`.
 
 ### Step 2: Read the remixed project
 Read before writing a single prompt:

@@ -1,14 +1,8 @@
 # Pink Dots inbound: number status
 
-**Status (14 Nov 2026, 20:07 IST): LIVE on a LENT number.** Sakhi Inbound (`d37ecf8d-cacf-4d75-a6d3-4fc142e99b75`) answers on **911204404272**, our Blue Dots tester's number, lent at Aryan's request. Dial `1204404272`, or `+91 120 440 4272`. Check calls at 14:35 and 14:37 UTC were answered by Sakhi.
-
-**While it's lent:**
-- **Bot-to-bot tests stop.** `Testing Agent- Blue Dots` (`f60e0899`) receives no calls. Every bot-to-bot test on the account that dials `1204404272` reaches Sakhi instead, including other teams' tests: 22 such calls came on 14 Nov alone.
-- **Return it before any test run:**
-  ```bash
-  python3 scripts/raya_did.py move 911204404272 d37ecf8d-cacf-4d75-a6d3-4fc142e99b75 f60e0899-aa3a-4be7-9b4f-0296bd28ef48
-  ```
-  Then place one call to `1204404272` and confirm the tester logs it. A return on 14 Nov routed within a minute.
+**Status (18 Nov 2026): LIVE on its own number, 918040837122.** Sakhi Inbound (`d37ecf8d-cacf-4d75-a6d3-4fc142e99b75`) answers on **918040837122**, allotted to Pink Dots. Dial `8040837122`, or `+91 80 4083 7122`.
+- **Test call `93fded49`, 116 s, passed.** The tester (playing Rinki) dialled `8040837122`, and Sakhi Inbound logged the call on in_did 918040837122. She worked out Rinki was a seeker, named Iniya Women's Hostel (4 km) and Sudar Ladies Hostel (5 km) with the "listed, not checked" warning, suggested the questions to ask a company hostel, answered the job question, and closed once on `Goodbye`. She didn't give 181 because Rinki raised no safety problem: that's per the prompt. The first dial attempt failed in 0 s; the automatic retry connected.
+- **The tester's number is back.** 911204404272 returned to `Testing Agent- Blue Dots` (`f60e0899`), and check call `20f9aa24` reached it (68 s). Bot-to-bot tests work again without borrowing.
 
 **Memory across bots:** Raya looked up `${contact_memory}` by caller number across agents. A test call from `…6352`, a caller ID that 17 bots share, received another bot's summary ("child care in Dadar"). Sakhi now never mentions an earlier call in the greeting, and uses memory only if it clearly describes an earlier Pink Dots call. That was redeployed 14 Nov and checked on a call.
 

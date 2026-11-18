@@ -40,7 +40,9 @@
       "direction": "inbound",
       "deploy": true,
       "uuid": "d37ecf8d-cacf-4d75-a6d3-4fc142e99b75",
-      "in_did_note": "LENT 911204404272 from tester-bluedots on 2026-11-14 (Aryan). Return before any bot-to-bot test run; see use-cases/pink-dots-tiruppur/raya/INBOUND-NUMBER.md"
+      "in_did": "918040837122",
+      "dial_as": "8040837122",
+      "in_did_note": "Own number, allotted 18 Nov 2026; test call 93fded49 passed."
     },
     {
       "id": "sahayika-hi",
@@ -92,8 +94,7 @@
       "uuid": "f60e0899-aa3a-4be7-9b4f-0296bd28ef48",
       "in_did": "911204404272",
       "dial_as": "1204404272",
-      "note": "Shared tester. raya_testcall.py persona backs it up before each PATCH. Restore the original persona from raya/personas/_backups/ (oldest file) when done.",
-      "warning": "Its in_did 911204404272 is LENT to sakhi-hi-in since 2026-11-14. Calls to 1204404272 reach Pink Sakhi, not the tester. Return it first: scripts/raya_did.py move 911204404272 d37ecf8d-cacf-4d75-a6d3-4fc142e99b75 f60e0899-aa3a-4be7-9b4f-0296bd28ef48"
+      "note": "Shared tester. raya_testcall.py persona backs it up before each PATCH. Restore the original persona from raya/personas/_backups/ (oldest file) when done."
     }
   ]
 }

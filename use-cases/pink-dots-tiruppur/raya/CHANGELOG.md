@@ -38,3 +38,4 @@
 ## 2026-11-14 (later): Number lent; greeting no longer uses memory
 - **Number:** at Aryan's request, 911204404272 was lent from the Blue Dots tester (`f60e0899`). Check call answered by Sakhi. The return command is in `INBOUND-NUMBER.md`.
 - **Fix:** a check call greeted with "last time you asked about child care", but that memory came from another bot's call with the same shared caller ID. Removed the optional earlier-need mention from Phase 1. Memory is now used only if it clearly describes an earlier Pink Dots call. Redeployed; the next call greeted cleanly.
+- 18 Nov 2026: moved to its own number 918040837122 (allotted to Pink Dots). Test call 93fded49 passed. 911204404272 returned to the tester (check call 20f9aa24 reached it).

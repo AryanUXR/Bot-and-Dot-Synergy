@@ -32,7 +32,7 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
       <div className="flex h-full w-[248px] flex-col">
         <div className="group flex h-[52px] items-center gap-2 px-3">
           <BrandChip compact />
-          <span className="min-w-0 flex-1 truncate text-[14px] font-medium text-ink">Assistant</span>
+          <span className="min-w-0 flex-1" />
           <button onClick={onToggle} aria-label="Close sidebar" className="grid h-6 w-6 place-items-center rounded-[4px] text-faint opacity-0 transition hover:bg-press hover:text-muted group-hover:opacity-100 max-lg:opacity-100">
             <ChevronsLeft className="h-4 w-4" />
           </button>

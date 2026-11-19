@@ -18,13 +18,9 @@ export function SectorIcon({ name, className }: { name: string; className?: stri
   return <I className={className} aria-hidden />;
 }
 
-// EkStep's real Blue Dots logo (white on transparent) on a brand-blue chip.
+// The Blue Dots wordmark only (white text, no circle mark), cut from EkStep's logo file.
 export function BrandChip({ compact = false }: { compact?: boolean }) {
-  return (
-    <span className={compact ? "inline-flex h-6 items-center rounded-[4px] bg-brand px-1.5" : "inline-flex h-8 items-center rounded-[5px] bg-brand px-2"}>
-      <img src="/blue-dots-logo.png" alt="Blue Dots AI — Seeded by EkStep" width={899} height={290} className={compact ? "h-[18px] w-auto" : "h-6 w-auto"} />
-    </span>
-  );
+  return <img src="/blue-dots-wordmark.png" alt="Blue Dots AI — Seeded by EkStep" width={647} height={176} className={compact ? "h-[22px] w-auto" : "h-7 w-auto"} />;
 }
 
 export function DotsMark({ className = "h-7 w-7" }: { className?: string }) {

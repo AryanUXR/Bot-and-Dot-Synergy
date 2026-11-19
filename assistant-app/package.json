@@ -1,0 +1,40 @@
+{
+  "name": "assistant-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/bake-knowledge.mjs && next dev -p 3100",
+    "build": "node scripts/bake-knowledge.mjs && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "bake": "node scripts/bake-knowledge.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.10.0",
+    "@upstash/redis": "^1.41.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.76.0",
+    "motion": "^14.14.0",
+    "nanoid": "^6.0.2",
+    "next": "15.5.29",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "server-only": "^0.0.1",
+    "sharp": "^0.35.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/google.maps": "^3.66.10",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.29",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

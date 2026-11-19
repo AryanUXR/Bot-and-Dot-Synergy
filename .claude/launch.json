@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "dots-starter", "runtimeExecutable": "node", "runtimeArgs": ["starter/dev-server.mjs"], "port": 5173 }
+    { "name": "dots-starter", "runtimeExecutable": "node", "runtimeArgs": ["starter/dev-server.mjs"], "port": 5173 },
+    { "name": "assistant-app", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "assistant-app", "run", "dev"], "port": 3100 }
   ]
 }

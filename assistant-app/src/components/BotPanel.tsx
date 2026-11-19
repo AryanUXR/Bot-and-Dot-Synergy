@@ -33,7 +33,7 @@ export default function BotPanel({ projectId, assets, onToast, publicView = fals
   }
 
   return (
-    <div className="min-h-full bg-canvas">
+    <div className="min-h-full bg-white">
       <div className="relative overflow-hidden" style={{ background: `linear-gradient(90deg, ${c.hex}, ${c.deep})` }}>
         <div className="flex h-20 items-center gap-3 px-6 sm:gap-4">
           <img src="/blue-dots-logo.png" alt="Blue Dots AI — Seeded by EkStep" width={899} height={290} className="h-9 w-auto sm:h-11" />
@@ -48,21 +48,21 @@ export default function BotPanel({ projectId, assets, onToast, publicView = fals
 
       <div className="mx-auto max-w-[880px] px-6 py-8">
         <div className="flex flex-wrap items-center gap-2 text-[12.5px] text-muted">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-good-soft px-2.5 py-1 font-semibold text-good"><span className="h-1.5 w-1.5 rounded-full bg-good" /> Live</span>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-wash px-2.5 py-1"><Languages className="h-3.5 w-3.5" /> {b.language}</span>
-          <span className="rounded-full bg-wash px-2.5 py-1">{b.place}</span>
+          <span className="inline-flex h-5 items-center gap-1.5 rounded-[3px] bg-[#dbeddb] px-1.5 text-[13px] text-[#1c3829]"><span className="h-1.5 w-1.5 rounded-full bg-good" /> Live</span>
+          <span className="inline-flex h-5 items-center gap-1 rounded-[3px] bg-[#e3e2e0] px-1.5 text-[13px] text-[#32302c]"><Languages className="h-3 w-3" /> {b.language}</span>
+          <span className="inline-flex h-5 items-center rounded-[3px] bg-[#e3e2e0] px-1.5 text-[13px] text-[#32302c]">{b.place}</span>
         </div>
-        <h2 className="mt-4 font-serif text-[30px] leading-tight text-ink">Pick someone to be, and {b.bot_name} will call you.</h2>
-        <p className="mt-2 text-[14.5px] text-muted">Each persona is a fictional person in {b.place}. Take the call as them and ask what they would ask.</p>
+        <h2 className="mt-5 text-[28px] font-bold leading-tight tracking-[-0.01em] text-ink">Pick someone to be, and {b.bot_name} will call you.</h2>
+        <p className="mt-1.5 text-[15px] text-muted">Each persona is a fictional person in {b.place}. Take the call as them and ask what they would ask.</p>
 
         <div className="mt-6 grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]">
           {personas.map((p) => {
             const on = p.id === pick;
             return (
               <button key={p.id} onClick={() => setPick(p.id)}
-                className={clsx("flex gap-3 rounded-2xl border bg-panel p-3 text-left transition",
-                  on ? "border-brand shadow-[0_0_0_3px_rgba(37,99,235,0.12)]" : "border-line hover:border-brand-line")}>
-                <PersonaPhoto projectId={projectId} p={p} photoKey={assets.photos?.[p.id]} auto={!publicView} className="h-16 w-16 shrink-0 rounded-xl" />
+                className={clsx("flex gap-3 rounded-[6px] p-2.5 text-left transition-colors",
+                  on ? "bg-brand-soft shadow-[0_0_0_1.5px_#2563eb]" : "shadow-card hover:bg-[#fbfbfa]")}>
+                <PersonaPhoto projectId={projectId} p={p} photoKey={assets.photos?.[p.id]} auto={!publicView} className="h-14 w-14 shrink-0 rounded-[4px]" />
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5 text-[14.5px] font-semibold text-ink">{p.name}{on && <Check className="h-4 w-4 text-brand" />}</div>
                   <div className="text-[12px] text-muted">{p.area}</div>
@@ -73,17 +73,17 @@ export default function BotPanel({ projectId, assets, onToast, publicView = fals
           })}
         </div>
 
-        <form onSubmit={call} className="mt-6 rounded-2xl border border-line bg-panel p-5 shadow-card">
+        <form onSubmit={call} className="mt-6 rounded-[6px] bg-white p-4 shadow-card">
           <label className="text-[13px] font-medium text-ink-2" htmlFor="phone">Your mobile number</label>
           <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-            <div className="flex h-12 flex-1 items-center rounded-xl border border-line-2 bg-panel focus-within:border-brand">
+            <div className="flex h-10 flex-1 items-center rounded-[6px] border border-line-2 bg-[#fbfbfa] focus-within:border-brand focus-within:bg-white">
               <span className="pl-4 pr-2 text-[15px] text-muted">+91</span>
               <input id="phone" inputMode="numeric" autoComplete="tel-national" value={phone} placeholder="98765 43210"
                 onChange={(e) => { setPhone(e.target.value.replace(/[^\d\s]/g, "").slice(0, 12)); if (state === "error") setState("idle"); }}
-                className="h-full w-full rounded-r-xl bg-transparent pr-4 text-[16px] tracking-wide outline-none placeholder:text-faint" />
+                className="h-full w-full bg-transparent pr-3 text-[16px] outline-none placeholder:text-faint" />
             </div>
             <button type="submit" disabled={state === "placing" || state === "ringing"}
-              className={clsx("relative flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-[15px] font-semibold text-white transition active:scale-[0.99]",
+              className={clsx("relative flex h-10 items-center justify-center gap-2 rounded-[6px] px-4 text-[14px] font-medium text-white transition-colors active:translate-y-px",
                 state === "ringing" ? "bg-good" : "bg-brand hover:bg-brand-2")}>
               {state === "placing" ? <><Loader2 className="h-4 w-4 animate-spin" /> Placing the call</> :
                 state === "ringing" ? <><span className="relative grid h-5 w-5 place-items-center"><span className="absolute inset-0 rounded-full bg-white/50 animate-ring" /><PhoneCall className="relative h-4 w-4" /></span> Calling you now</> :
@@ -97,9 +97,9 @@ export default function BotPanel({ projectId, assets, onToast, publicView = fals
         </form>
 
         {assets.bot?.greeting && (
-          <div className="mt-6 rounded-2xl bg-wash p-5">
-            <div className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-faint">How {b.bot_name} opens</div>
-            <p className="mt-2 font-serif text-[19px] leading-snug text-ink">“{assets.bot.greeting}”</p>
+          <div className="mt-6 flex gap-3 rounded-[4px] bg-[#f1f1ef] px-4 py-3.5">
+            <Phone className="mt-1 h-4 w-4 shrink-0 text-muted" /><div><div className="text-[13px] text-muted">How {b.bot_name} opens a call</div>
+            <p className="mt-1 text-[16px] leading-relaxed text-ink">“{assets.bot.greeting}”</p></div>
           </div>
         )}
       </div>

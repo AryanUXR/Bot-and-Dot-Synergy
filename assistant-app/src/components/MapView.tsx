@@ -150,19 +150,19 @@ export default function MapView({ map, schema }: { map: MapData; schema?: Schema
       {sectors.length > 0 && (
         <div className="pointer-events-none absolute inset-x-3 top-3 z-10 flex flex-wrap gap-1.5">
           <button onClick={() => setFilter(null)}
-            className={clsx("pointer-events-auto rounded-full px-3 py-1.5 text-[12.5px] font-medium shadow-pop transition", !filter ? "bg-brand text-white" : "bg-white text-ink-2 hover:bg-brand-soft")}>
+            className={clsx("pointer-events-auto rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors", !filter ? "bg-ink text-white" : "bg-white text-ink-2 hover:bg-[#f7f7f5]")}>
             All · {map.dots.length}
           </button>
           {sectors.map((s) => (
             <button key={s.id} onClick={() => setFilter((f) => (f === s.id ? null : s.id))}
-              className={clsx("pointer-events-auto flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12.5px] font-medium shadow-pop transition",
-                filter === s.id ? "bg-brand text-white" : "bg-white text-ink-2 hover:bg-brand-soft")}>
+              className={clsx("pointer-events-auto flex items-center gap-1.5 rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors",
+                filter === s.id ? "bg-ink text-white" : "bg-white text-ink-2 hover:bg-[#f7f7f5]")}>
               <SectorIcon name={s.icon} className="h-3.5 w-3.5" /> {s.label} <span className={filter === s.id ? "text-white/70" : "text-faint"}>{counts[s.id]}</span>
             </button>
           ))}
         </div>
       )}
-      <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-3 rounded-full bg-white/95 px-3 py-1.5 text-[12px] text-ink-2 shadow-pop">
+      <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-3 rounded-[5px] bg-white px-2.5 py-1 text-[12px] text-ink-2 shadow-pop">
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-brand ring-2 ring-white" /> Offers help</span>
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-white ring-2 ring-brand" /> Looking for help</span>
       </div>

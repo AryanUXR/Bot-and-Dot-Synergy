@@ -42,7 +42,7 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
   const current = TABS.find((t) => t.kind === tab);
 
   return (
-    <section className="flex h-full min-w-0 flex-col bg-white">
+    <section className="flex h-full min-w-0 flex-col bg-panel">
       <header className="flex h-[45px] shrink-0 items-center gap-1 px-3">
         <div className="flex min-w-0 flex-1 items-center gap-1 text-[14px]">
           <span className="truncate text-muted">{assets.brief?.title ?? title}</span>
@@ -52,14 +52,14 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
         <button onClick={onClose} aria-label="Close preview" className="grid h-7 w-7 place-items-center rounded-[4px] text-muted hover:bg-hover"><PanelRightClose className="h-4 w-4" /></button>
       </header>
 
-      <nav className="flex shrink-0 gap-0.5 overflow-x-auto px-3 shadow-[inset_0_-1px_0_rgba(55,53,47,0.09)]" role="tablist">
+      <nav className="flex shrink-0 gap-0.5 overflow-x-auto px-3 shadow-[inset_0_-1px_0_rgba(255,255,255,0.08)]" role="tablist">
         {shown.map((t) => {
           const busy = running?.asset === t.kind;
           const on = tab === t.kind;
           return (
             <button key={t.kind} role="tab" aria-selected={on} onClick={() => setTab(t.kind)}
               className={clsx("relative flex h-9 shrink-0 items-center gap-1.5 px-2 text-[14px] transition-colors",
-                on ? "text-ink shadow-[inset_0_-2px_0_#37352f]" : "text-muted hover:text-ink")}>
+                on ? "text-ink shadow-[inset_0_-2px_0_#ffffff]" : "text-muted hover:text-ink")}>
               {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <t.icon className="h-3.5 w-3.5" />}
               {t.label}
               {fresh.has(t.kind) && !on && <span className="ml-0.5 h-1.5 w-1.5 rounded-full bg-brand" />}
@@ -114,7 +114,7 @@ function Prop({ icon: I, label, children }: { icon: typeof MapIcon; label: strin
 }
 
 const Tag = ({ children, tone = "gray" }: { children: React.ReactNode; tone?: "gray" | "blue" | "green" | "orange" | "red" }) => {
-  const c = { gray: "bg-[#e3e2e0] text-[#32302c]", blue: "bg-[#d3e5ef] text-[#183347]", green: "bg-[#dbeddb] text-[#1c3829]", orange: "bg-[#fadec9] text-[#49290e]", red: "bg-[#ffe2dd] text-[#5d1715]" }[tone];
+  const c = { gray: "bg-[#2a2a2a] text-[#d4d4d4]", blue: "bg-[#132240] text-[#8fb4ff]", green: "bg-[#10261a] text-[#7fd6a3]", orange: "bg-[#2a1d0e] text-[#f0b36d]", red: "bg-[#2c1512] text-[#f59a88]" }[tone];
   return <span className={clsx("inline-flex h-5 items-center whitespace-nowrap rounded-[3px] px-1.5 text-[13px] leading-none", c)}>{children}</span>;
 };
 
@@ -126,13 +126,13 @@ function FitPanel({ a }: { a: Assets }) {
     <Page>
       <h1 className="text-[32px] font-bold leading-tight tracking-[-0.01em] text-ink">Fit check</h1>
       <div className="mt-4"><Prop icon={Gauge} label="Verdict"><Tag tone={v[1]}>{v[0]}</Tag></Prop></div>
-      <div className="mt-4 flex gap-3 rounded-[4px] bg-[#f1f1ef] px-4 py-3.5 text-[16px] leading-relaxed text-ink">
+      <div className="mt-4 flex gap-3 rounded-[4px] bg-wash px-4 py-3.5 text-[16px] leading-relaxed text-ink">
         <Lightbulb className="mt-1 h-5 w-5 shrink-0 text-muted" /><p>{f.summary}</p>
       </div>
       <H>Against the Blue Dots criteria</H>
       <div className="mt-2">
         {f.criteria.map((c, i) => (
-          <div key={i} className="flex gap-3 py-2 shadow-[inset_0_-1px_0_rgba(55,53,47,0.09)]">
+          <div key={i} className="flex gap-3 py-2 shadow-[inset_0_-1px_0_rgba(255,255,255,0.08)]">
             <span className="mt-[3px]">{icon[c.result]}</span>
             <div><div className="text-[15px] text-ink">{c.name}</div><div className="text-[14px] leading-relaxed text-muted">{c.note}</div></div>
           </div>
@@ -178,7 +178,7 @@ export function PersonaPhoto({ projectId, p, photoKey, onPhoto, auto = true, cla
   }, [photoKey, auto, state, projectId, p.id, onPhoto]);
   const initials = p.name.split(/\s+/).map((x) => x[0]).join("").slice(0, 2);
   return (
-    <div className={clsx("relative overflow-hidden bg-[#f1f1ef]", className)}>
+    <div className={clsx("relative overflow-hidden bg-wash", className)}>
       {photoKey ? (
         <img src={`/api/photo/${projectId}/${p.id}?k=${photoKey}`} alt={`Portrait of ${p.name} (generated)`} className="h-full w-full object-cover" />
       ) : (
@@ -197,7 +197,7 @@ function PersonasPanel({ projectId, a, onPhoto }: { projectId: string; a: Assets
       <p className="mt-1 text-[14px] text-muted">Fictional people. Photos are generated.</p>
       <div className="mt-6 grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]">
         {a.personas!.map((p) => (
-          <div key={p.id} className="flex flex-col overflow-hidden rounded-[6px] bg-white shadow-card transition-colors hover:bg-[#fbfbfa]">
+          <div key={p.id} className="flex flex-col overflow-hidden rounded-[6px] bg-panel shadow-card transition-colors hover:bg-wash">
             <PersonaPhoto projectId={projectId} p={p} photoKey={a.photos?.[p.id]} onPhoto={onPhoto} className="aspect-[16/11]" />
             <div className="flex flex-1 flex-col gap-2 p-3">
               <div className="text-[15px] font-semibold text-ink">{p.name}</div>
@@ -221,11 +221,11 @@ function SchemaPanel({ a }: { a: Assets }) {
     <>
       <H>{title}</H>
       <table className="mt-2 w-full border-collapse">
-        <thead><tr className="shadow-[inset_0_-1px_0_rgba(55,53,47,0.09),inset_0_1px_0_rgba(55,53,47,0.09)]">
+        <thead><tr className="shadow-[inset_0_-1px_0_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.08)]">
           <th className={th}>Field</th><th className={th}>Example</th><th className={clsx(th, "w-[150px]")}>Who sees it</th></tr></thead>
         <tbody>
           {rows.map((f) => (
-            <tr key={f.key} className="shadow-[inset_0_-1px_0_rgba(55,53,47,0.09)]">
+            <tr key={f.key} className="shadow-[inset_0_-1px_0_rgba(255,255,255,0.08)]">
               <td className={td}>{f.label}<div className="font-mono text-[12px] text-faint">{f.key}</div></td>
               <td className={clsx(td, "text-ink-2")}>{f.example}</td>
               <td className={td}><span className="inline-flex items-center gap-1 text-[14px] text-muted">{f.visible === "public" ? <><Globe className="h-3.5 w-3.5" />On the map</> : <><Lock className="h-3.5 w-3.5" />After both agree</>}</span></td>
@@ -242,7 +242,7 @@ function SchemaPanel({ a }: { a: Assets }) {
       <H>Sectors on the map</H>
       <div className="mt-2">
         {s.sectors.map((x) => (
-          <div key={x.id} className="flex items-start gap-3 py-2 shadow-[inset_0_-1px_0_rgba(55,53,47,0.09)]">
+          <div key={x.id} className="flex items-start gap-3 py-2 shadow-[inset_0_-1px_0_rgba(255,255,255,0.08)]">
             <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand text-white"><SectorIcon name={x.icon} className="h-3.5 w-3.5" /></span>
             <div><div className="text-[15px] text-ink">{x.label}</div><div className="text-[14px] text-muted">{x.description}</div></div>
           </div>

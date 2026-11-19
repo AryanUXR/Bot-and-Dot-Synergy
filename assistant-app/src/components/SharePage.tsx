@@ -17,7 +17,7 @@ export default function SharePage({ projectId, assets }: { projectId: string; as
   return (
     <div className="flex h-screen flex-col bg-canvas">
       {tabs.length > 1 && (
-        <div className="absolute right-4 top-5 z-[1000] flex gap-1 rounded-xl bg-white/95 p-1 shadow-pop">
+        <div className="absolute right-4 top-5 z-[1000] flex gap-1 rounded-xl bg-panel/95 p-1 shadow-pop">
           {tabs.map((t) => (
             <button key={t} onClick={() => setTab(t)}
               className={clsx("flex h-8 items-center gap-1.5 rounded-lg px-3 text-[13px] font-medium", tab === t ? "bg-brand text-white" : "text-ink-2 hover:bg-wash")}>

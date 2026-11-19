@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { BrandChip } from "./icons";
+import { AtlasOrb } from "./AtlasOrb";
 
 export default function AccessGate() {
   const [code, setCode] = useState("");
@@ -21,31 +22,35 @@ export default function AccessGate() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-white">
+    <main className="flex min-h-screen flex-col">
       <header className="flex h-14 items-center px-5"><BrandChip /></header>
-      <div className="mx-auto flex w-full max-w-[340px] flex-1 flex-col justify-center pb-24">
-        <h1 className="text-[28px] font-bold leading-tight tracking-[-0.01em] text-ink">Blue Dots Assistant</h1>
-        <p className="mt-2 text-[15px] leading-relaxed text-muted">
+      <div className="mx-auto flex w-full max-w-[360px] flex-1 flex-col justify-center pb-20">
+        <div className="relative mb-4 grid place-items-center self-center">
+          <span aria-hidden className="absolute h-[120px] w-[120px] rounded-full bg-[radial-gradient(circle_at_40%_35%,rgba(103,232,249,0.22),rgba(37,99,235,0.12)_45%,transparent_70%)] blur-md" />
+          <AtlasOrb size={150} className="relative" />
+        </div>
+        <h1 className="text-center text-[30px] font-medium leading-tight tracking-[-0.035em] text-ink">Blue Dots Assistant</h1>
+        <p className="mt-2 text-center text-[15px] leading-relaxed text-muted">
           Check whether an idea fits the Blue Dots approach, shape it into a brief, and build a voice bot and a map you can show.
         </p>
         <form onSubmit={submit} className="mt-8 space-y-4">
           <label className="block">
             <span className="mb-1 block text-[12px] font-medium text-muted">Your name</span>
             <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Priya" autoComplete="given-name"
-              className="h-9 w-full rounded-md border border-line-2 bg-[#fbfbfa] px-2.5 text-[14px] text-ink outline-none transition placeholder:text-faint focus:border-brand focus:bg-white focus:shadow-[0_0_0_3px_rgba(37,99,235,0.15)]" />
+              className="h-10 w-full rounded-[8px] border border-line-2 bg-wash px-2.5 text-[14px] text-ink outline-none transition placeholder:text-faint focus:border-brand focus:bg-panel focus:shadow-[0_0_0_3px_rgba(37,99,235,0.15)]" />
           </label>
           <label className="block">
             <span className="mb-1 block text-[12px] font-medium text-muted">Access code</span>
             <input value={code} onChange={(e) => { setCode(e.target.value); setErr(null); }} placeholder="From your invite" autoFocus
-              className="h-9 w-full rounded-md border border-line-2 bg-[#fbfbfa] px-2.5 text-[14px] text-ink outline-none transition placeholder:text-faint focus:border-brand focus:bg-white focus:shadow-[0_0_0_3px_rgba(37,99,235,0.15)]" />
+              className="h-10 w-full rounded-[8px] border border-line-2 bg-wash px-2.5 text-[14px] text-ink outline-none transition placeholder:text-faint focus:border-brand focus:bg-panel focus:shadow-[0_0_0_3px_rgba(37,99,235,0.15)]" />
           </label>
           {err && <p role="alert" className="text-[13px] text-bad">{err}</p>}
           <button type="submit" disabled={busy}
-            className="flex h-9 w-full items-center justify-center rounded-md bg-brand text-[14px] font-medium text-white transition hover:bg-brand-2 active:translate-y-px">
+            className="m-btn btn-primary flex h-10 w-full items-center justify-center rounded-[9px] text-[14px] font-medium">
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : "Continue"}
           </button>
         </form>
-        <p className="mt-6 text-[12px] leading-relaxed text-faint">Everything made here uses fictional people and organisations. Seeded by EkStep Foundation.</p>
+        <p className="mt-6 text-center text-[12px] leading-relaxed text-faint">Everything made here uses fictional people and organisations. Seeded by EkStep Foundation.</p>
       </div>
     </main>
   );

@@ -11,18 +11,19 @@ const BLUE = "#2563EB";
 const KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "AIzaSyAsMGjvi-e04B38mWT1kc-tCYb6YlnogCE";
 
 const STYLE = [
-  { elementType: "geometry", stylers: [{ color: "#f3f4f6" }] },
+  { elementType: "geometry", stylers: [{ color: "#111a22" }] },
   { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
-  { elementType: "labels.text.fill", stylers: [{ color: "#8a919e" }] },
-  { elementType: "labels.text.stroke", stylers: [{ color: "#f3f4f6" }] },
-  { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#4b5563" }] },
+  { elementType: "labels.text.fill", stylers: [{ color: "#6f7d8a" }] },
+  { elementType: "labels.text.stroke", stylers: [{ color: "#0b1015" }] },
+  { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#1d2731" }] },
+  { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#a9b6c2" }] },
   { featureType: "poi", stylers: [{ visibility: "off" }] },
-  { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#e3efe4" }, { visibility: "on" }] },
-  { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
-  { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#e5e7eb" }] },
+  { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#13221d" }, { visibility: "on" }] },
+  { featureType: "road", elementType: "geometry", stylers: [{ color: "#1b2631" }] },
+  { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#22303d" }] },
   { featureType: "road.local", elementType: "labels", stylers: [{ visibility: "off" }] },
   { featureType: "transit", stylers: [{ visibility: "off" }] },
-  { featureType: "water", elementType: "geometry", stylers: [{ color: "#cfdcf3" }] },
+  { featureType: "water", elementType: "geometry", stylers: [{ color: "#0a2236" }] },
 ];
 
 let loader: Promise<void> | null = null;
@@ -49,7 +50,7 @@ function pinEl(icon: string, request: boolean, delay: number) {
   const el = document.createElement("div");
   el.className = "dot-pin";
   el.style.cssText = `position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:999px;cursor:pointer;display:grid;place-items:center;
-    background:${request ? "#fff" : BLUE};box-shadow:0 0 0 2.5px ${request ? BLUE : "#fff"},0 4px 10px rgba(16,24,40,.28);
+    background:${request ? "#fff" : BLUE};box-shadow:0 0 0 2.5px ${request ? BLUE : "#0b1015"},0 0 14px rgba(37,99,235,.55);
     opacity:0;transform:scale(.6);transition:opacity .35s ease ${delay}ms, transform .35s cubic-bezier(.2,.9,.3,1.3) ${delay}ms`;
   el.innerHTML = svg;
   requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = "1"; el.style.transform = "scale(1)"; }));
@@ -144,27 +145,27 @@ export default function MapView({ map, schema }: { map: MapData; schema?: Schema
 
   return (
     <div className="relative h-full w-full">
-      <div ref={el} className="absolute inset-0 bg-[#f3f4f6]" />
+      <div ref={el} className="absolute inset-0 bg-[#111a22]" />
       {!ready && !failed && <div className="skeleton absolute inset-0 rounded-none" />}
       {failed && <div className="absolute inset-0 grid place-items-center text-[14px] text-muted">The map couldn&apos;t load. Check the connection and reload.</div>}
       {sectors.length > 0 && (
         <div className="pointer-events-none absolute inset-x-3 top-3 z-10 flex flex-wrap gap-1.5">
           <button onClick={() => setFilter(null)}
-            className={clsx("pointer-events-auto rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors", !filter ? "bg-ink text-white" : "bg-white text-ink-2 hover:bg-[#f7f7f5]")}>
+            className={clsx("pointer-events-auto rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors", !filter ? "bg-white text-[#0f0f0f]" : "bg-panel text-ink-2 hover:bg-wash")}>
             All · {map.dots.length}
           </button>
           {sectors.map((s) => (
             <button key={s.id} onClick={() => setFilter((f) => (f === s.id ? null : s.id))}
               className={clsx("pointer-events-auto flex items-center gap-1.5 rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors",
-                filter === s.id ? "bg-ink text-white" : "bg-white text-ink-2 hover:bg-[#f7f7f5]")}>
+                filter === s.id ? "bg-white text-[#0f0f0f]" : "bg-panel text-ink-2 hover:bg-wash")}>
               <SectorIcon name={s.icon} className="h-3.5 w-3.5" /> {s.label} <span className={filter === s.id ? "text-white/70" : "text-faint"}>{counts[s.id]}</span>
             </button>
           ))}
         </div>
       )}
-      <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-3 rounded-[5px] bg-white px-2.5 py-1 text-[12px] text-ink-2 shadow-pop">
+      <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-3 rounded-[5px] bg-panel px-2.5 py-1 text-[12px] text-ink-2 shadow-pop">
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-brand ring-2 ring-white" /> Offers help</span>
-        <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-white ring-2 ring-brand" /> Looking for help</span>
+        <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-panel ring-2 ring-brand" /> Looking for help</span>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
   const list = projects.filter((p) => p.title.toLowerCase().includes(q.toLowerCase()));
   return (
     <motion.aside initial={false} animate={{ width: open ? 248 : 0 }} transition={{ duration: settled ? 0.2 : 0, ease: [0.2, 0.8, 0.2, 1] }}
-      className={clsx(!settled && "max-lg:hidden", "shrink-0 overflow-hidden bg-side shadow-[inset_-1px_0_0_rgba(55,53,47,0.07)] max-lg:fixed max-lg:inset-y-0 max-lg:left-0 max-lg:z-50 max-lg:shadow-pop")}>
+      className={clsx(!settled && "max-lg:hidden", "shrink-0 overflow-hidden bg-side shadow-[inset_-1px_0_0_rgba(255,255,255,0.07)] max-lg:fixed max-lg:inset-y-0 max-lg:left-0 max-lg:z-50 max-lg:shadow-pop")}>
       <div className="flex h-full w-[248px] flex-col">
         <div className="group flex h-[52px] items-center gap-2 px-3">
           <BrandChip compact />
@@ -37,13 +37,18 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
             <ChevronsLeft className="h-4 w-4" />
           </button>
         </div>
+        <div className="px-2.5 pb-2">
+          <button onClick={onNew} className="m-btn flex h-9 w-full items-center gap-2 rounded-[8px] border border-brand-line bg-gradient-to-r from-[#123a6b] to-[#0f1c2b] px-3 text-[14px] text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:from-[#16457f]">
+            <SquarePen className="h-4 w-4" /> New chat <span className="ml-auto text-[11px] text-muted">⌘K</span>
+          </button>
+        </div>
         <div className="space-y-px px-1.5">
           <button onClick={() => setSearching((s) => !s)} className={row}><Search className="h-4 w-4 text-faint" /> Search</button>
           {searching && (
             <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search your work"
-              className="mx-1 mb-1 h-7 w-[calc(100%-8px)] rounded-[4px] border border-line-2 bg-white px-2 text-[13px] outline-none focus:border-brand" />
+              className="mx-1 mb-1 h-7 w-[calc(100%-8px)] rounded-[4px] border border-line-2 bg-panel px-2 text-[13px] outline-none focus:border-brand" />
           )}
-          <button onClick={onNew} className={row}><SquarePen className="h-4 w-4 text-faint" /> New chat <span className="ml-auto text-[11px] text-faint">⌘K</span></button>
+
         </div>
         <div className="scroll-quiet mt-3 min-h-0 flex-1 overflow-y-auto px-1.5 pb-3">
           {group(list).map(([label, items]) => (
@@ -66,8 +71,8 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
           ))}
           {!projects.length && <p className="px-2 pt-2 text-[13px] leading-relaxed text-faint">Your chats and what you build in them are saved here.</p>}
         </div>
-        <div className="flex items-center gap-2 px-3 py-2.5 shadow-[inset_0_1px_0_rgba(55,53,47,0.07)]">
-          <span className="grid h-[22px] w-[22px] place-items-center rounded-[4px] bg-[#e8e7e3] text-[12px] font-medium text-ink-2">{(name ?? "Y")[0].toUpperCase()}</span>
+        <div className="flex items-center gap-2 px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]">
+          <span className="grid h-[22px] w-[22px] place-items-center rounded-[4px] bg-wash text-[12px] font-medium text-ink-2">{(name ?? "Y")[0].toUpperCase()}</span>
           <span className="min-w-0 flex-1 truncate text-[14px] text-ink-2">{name ?? "You"}</span>
           <button aria-label="Sign out" onClick={async () => { await fetch("/api/access", { method: "DELETE" }); window.location.href = "/"; }}
             className="grid h-6 w-6 place-items-center rounded-[4px] text-faint hover:bg-press hover:text-ink"><LogOut className="h-3.5 w-3.5" /></button>
@@ -102,14 +107,14 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
   useEffect(() => { if (a.focus) setFocus({ kind: a.focus.kind, n: Date.now() }); }, [a.focus]);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-white">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar open={side} settled={settled} projects={a.projects} current={a.project?.id ?? null} name={a.name}
         onNew={() => { a.open(null); if (narrow()) setSide(false); }} onOpen={(id) => { a.open(id); if (narrow()) setSide(false); }}
         onDelete={(id) => a.remove(id)} onToggle={() => setSide(false)} />
 
       {side && settled && <button aria-label="Close sidebar" onClick={() => setSide(false)} className="fixed inset-0 z-40 bg-[rgba(15,15,15,0.4)] lg:hidden" />}
       <main className="relative flex min-w-0 flex-1">
-        <div className={clsx("flex min-w-0 flex-col", showCanvas ? "basis-full lg:basis-[42%] lg:shadow-[inset_-1px_0_0_rgba(55,53,47,0.09)]" : "basis-full")}>
+        <div className={clsx("flex min-w-0 flex-col", showCanvas ? "basis-full lg:basis-[42%] lg:shadow-[inset_-1px_0_0_rgba(255,255,255,0.08)]" : "basis-full")}>
           <div className="flex h-[45px] shrink-0 items-center gap-1 px-3">
             {!side && <button onClick={() => setSide(true)} aria-label="Open sidebar" className="grid h-7 w-7 place-items-center rounded-[4px] text-muted hover:bg-hover"><Menu className="h-4 w-4" /></button>}
             <div className="min-w-0 flex-1 truncate px-1.5 text-[14px] text-ink-2">{a.project?.title ?? "New chat"}</div>
@@ -121,8 +126,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
           </div>
           {a.loading ? <div className="flex-1" /> : !a.project || a.project.ui.length === 0 ? (
             <>
-              <EmptyState name={a.name} onPick={(t) => a.send(t)} />
-              <Composer onSend={a.send} onStop={a.stop} streaming={a.streaming} autoFocus />
+              <EmptyState name={a.name} onPick={(t) => a.send(t)} onSend={a.send} onStop={a.stop} streaming={a.streaming} />
             </>
           ) : (
             <>
@@ -137,7 +141,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
         <AnimatePresence>
           {showCanvas && a.project && (
             <motion.div key="canvas" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
-              className="absolute inset-0 z-30 min-w-0 bg-white lg:static lg:z-auto lg:flex-1">
+              className="absolute inset-0 z-30 min-w-0 bg-panel lg:static lg:z-auto lg:flex-1">
               <Canvas projectId={a.project.id} title={a.project.title} assets={a.project.assets} focus={focus} fresh={a.fresh} running={a.running}
                 onSeen={a.seen} onClose={() => setCanvasOpen(false)} onPhoto={a.setPhoto} onToast={setToast} />
             </motion.div>
@@ -148,7 +152,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity: 0, y: 8, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 8, x: "-50%" }}
-            className="fixed bottom-6 left-1/2 z-[2000] rounded-[6px] bg-[#2f2f2f] px-3.5 py-2 text-[14px] text-white shadow-pop">{toast}</motion.div>
+            className="fixed bottom-6 left-1/2 z-[2000] rounded-[6px] bg-[#262626] px-3.5 py-2 text-[14px] text-white shadow-pop">{toast}</motion.div>
         )}
       </AnimatePresence>
     </div>

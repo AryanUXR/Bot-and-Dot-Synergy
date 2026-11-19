@@ -5,11 +5,12 @@ import remarkGfm from "remark-gfm";
 import { AnimatePresence, motion } from "motion/react";
 import clsx from "clsx";
 import {
-  ArrowUp, Square, Check, Copy, ChevronRight, Loader2, AlertCircle, ArrowDown, CornerDownRight,
+  ArrowUp, Square, Sparkles, Check, Copy, ChevronRight, Loader2, AlertCircle, ArrowDown, CornerDownRight,
   Map as MapIcon, Users, FileText, Layers, Phone, Gauge, BookOpen, Target, PenLine, Hammer,
 } from "lucide-react";
 import type { AssetKind, UiMessage, UiPart } from "@/lib/types";
 import { TOOL_LABEL } from "./useAssistant";
+import { AtlasOrb } from "./AtlasOrb";
 
 const ASSET_ICON: Record<AssetKind, typeof MapIcon> = { fit: Gauge, brief: FileText, personas: Users, schema: Layers, map: MapIcon, bot: Phone };
 
@@ -20,27 +21,38 @@ const STARTERS = [
   { icon: Hammer, title: "Build a voice bot and a map", text: "Elder home care in Pune, end to end", prompt: "Build a bot and a dot map for elderly people and families in Pune finding home nurses, attendants and day-care centres near them." },
 ];
 
-export function EmptyState({ onPick }: { name: string | null; onPick: (t: string) => void }) {
+export function EmptyState({ name, onPick, onSend, onStop, streaming }: {
+  name: string | null; onPick: (t: string) => void; onSend: (t: string) => void; onStop: () => void; streaming: boolean;
+}) {
   return (
-    <div className="scroll-quiet flex-1 overflow-y-auto">
-      <div className="mx-auto w-full max-w-[640px] px-6 pb-8 pt-[12vh]">
-        <h1 className="text-[30px] font-bold leading-[1.2] tracking-[-0.01em] text-ink">Start with a place and the people in it</h1>
-        <p className="mt-2 text-[16px] leading-relaxed text-muted">
-          Describe who needs help, who provides it, and where. The assistant checks the idea against the Blue Dots approach, writes the brief and personas, and builds a voice bot and a map you can share.
-        </p>
-        <div className="mt-8 text-[12px] font-medium text-faint">Try one of these</div>
-        <div className="mt-1.5 -mx-2">
+    <div className="scroll-quiet flex flex-1 flex-col overflow-y-auto">
+      <div className="mx-auto flex w-full max-w-[760px] flex-1 flex-col items-center justify-center px-6 pb-10 pt-6">
+        <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="relative grid place-items-center">
+            <span aria-hidden className="absolute h-[150px] w-[150px] rounded-full bg-[radial-gradient(circle_at_40%_35%,rgba(103,232,249,0.22),rgba(37,99,235,0.12)_45%,transparent_70%)] blur-md" />
+            <span aria-hidden className="absolute h-[148px] w-[148px] rounded-full shadow-[inset_0_0_30px_rgba(56,189,248,0.25),0_0_60px_rgba(37,99,235,0.25)]" />
+            <AtlasOrb size={190} active={streaming} className="relative" />
+          </div>
+        </motion.div>
+        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-4 text-center text-[34px] font-medium leading-tight tracking-[-0.035em] text-ink">
+          Hi {name ?? "there"}
+        </motion.h1>
+        <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-1.5 text-center text-[17px] text-ink-2">
+          Which place and which people are we helping today?
+        </motion.p>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="mt-8 w-full">
+          <Composer onSend={onSend} onStop={onStop} streaming={streaming} autoFocus hero />
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.6 }} className="mt-4 flex flex-wrap justify-center gap-2">
           {STARTERS.map((s) => (
-            <button key={s.title} onClick={() => onPick(s.prompt)}
-              className="flex w-full items-start gap-3 rounded-[5px] px-2 py-2 text-left transition-colors hover:bg-hover">
-              <s.icon className="mt-[3px] h-[18px] w-[18px] shrink-0 text-muted" />
-              <span className="min-w-0">
-                <span className="block text-[15px] text-ink">{s.title}</span>
-                <span className="block text-[14px] text-muted">{s.text}</span>
-              </span>
+            <button key={s.title} onClick={() => onPick(s.prompt)} title={s.text}
+              className="m-btn flex h-9 items-center gap-2 rounded-[8px] border border-line-2 bg-panel/70 px-3 text-[13.5px] text-ink-2 hover:border-brand-line hover:bg-wash hover:text-ink">
+              <s.icon className="h-4 w-4 text-muted" /> {s.title}
             </button>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -58,7 +70,7 @@ function Thinking({ part, live }: { part: Extract<UiPart, { type: "thinking" }>;
       <AnimatePresence initial={false}>
         {open && part.text && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-            <div className="ml-[7px] mt-1 whitespace-pre-wrap pl-4 text-[14px] leading-relaxed text-muted shadow-[inset_2px_0_0_rgba(55,53,47,0.16)]">{part.text.trim()}</div>
+            <div className="ml-[7px] mt-1 whitespace-pre-wrap pl-4 text-[14px] leading-relaxed text-muted shadow-[inset_2px_0_0_rgba(255,255,255,0.16)]">{part.text.trim()}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -83,7 +95,7 @@ function ToolRow({ part, onOpen }: { part: Extract<UiPart, { type: "tool" }>; on
       {running ? <Loader2 className="h-4 w-4 shrink-0 animate-spin text-muted" /> : bad ? <AlertCircle className="h-4 w-4 shrink-0 text-faint" /> : <Icon className="h-4 w-4 shrink-0 text-muted" />}
       {running ? <span className="text-muted">{busy}<Ellipsis /></span> : (
         <span className="min-w-0 truncate">
-          <span className={clsx(bad ? "text-muted" : "text-ink underline decoration-[rgba(55,53,47,0.25)] underline-offset-[3px]")}>{label}</span>
+          <span className={clsx(bad ? "text-muted" : "text-ink underline decoration-[rgba(255,255,255,0.3)] underline-offset-[3px]")}>{label}</span>
           {part.summary && <span className="text-muted"> · {part.summary}</span>}
         </span>
       )}
@@ -100,8 +112,10 @@ function AssistantMessage({ m, live, onOpen }: { m: UiMessage; live: boolean; on
   const text = m.parts.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("\n\n");
   const lastIdx = m.parts.length - 1;
   return (
-    <div className="group">
-      {live && m.parts.length === 0 && <div className="text-[14px] text-muted">Thinking<Ellipsis /></div>}
+    <div className="group flex gap-3">
+      <div className="-ml-1 shrink-0 pt-0.5"><AtlasOrb size={30} active={live} /></div>
+      <div className="min-w-0 flex-1">
+      {live && m.parts.length === 0 && <div className="pt-1 text-[14px] text-muted">Thinking<Ellipsis /></div>}
       {m.parts.map((p, i) => {
         if (p.type === "thinking") return <Thinking key={i} part={p} live={live && i === lastIdx} />;
         if (p.type === "tool") return <ToolRow key={p.id} part={p} onOpen={onOpen} />;
@@ -115,6 +129,7 @@ function AssistantMessage({ m, live, onOpen }: { m: UiMessage; live: boolean; on
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 }
@@ -123,7 +138,7 @@ function UserMessage({ m }: { m: UiMessage }) {
   const text = (m.parts[0] as { text: string })?.text ?? "";
   return (
     <div className="flex justify-end">
-      <div className="max-w-[85%] whitespace-pre-wrap rounded-[10px] bg-[#f1f1ef] px-3 py-2 text-[16px] leading-relaxed text-ink">{text}</div>
+      <div className="max-w-[85%] whitespace-pre-wrap rounded-[12px] border border-line-2 bg-wash px-3.5 py-2 text-[16px] leading-relaxed text-ink">{text}</div>
     </div>
   );
 }
@@ -162,7 +177,7 @@ export function Messages({ ui, streaming, onOpen, error, onRetry }: {
       {away && (
         <button onClick={() => { const el = ref.current; if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" }); }}
           aria-label="Scroll to the latest message"
-          className="absolute bottom-3 left-1/2 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full bg-white text-muted shadow-pop hover:text-ink">
+          className="absolute bottom-3 left-1/2 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full bg-panel text-muted shadow-pop hover:text-ink">
           <ArrowDown className="h-4 w-4" />
         </button>
       )}
@@ -170,9 +185,18 @@ export function Messages({ ui, streaming, onOpen, error, onRetry }: {
   );
 }
 
-export function Composer({ onSend, onStop, streaming, autoFocus, placeholder }: {
-  onSend: (t: string) => void; onStop: () => void; streaming: boolean; autoFocus?: boolean; placeholder?: string;
+const MODES = [
+  { id: "ask", label: "Ask", icon: BookOpen, hint: "Ask anything about Blue Dots…" },
+  { id: "fit", label: "Check fit", icon: Target, hint: "Describe the idea: who needs what, and where…" },
+  { id: "brief", label: "Shape a brief", icon: PenLine, hint: "Tell me the rough idea; I'll ask what's missing…" },
+  { id: "build", label: "Build", icon: Hammer, hint: "Name the place and the people; I'll build the bot and the map…" },
+] as const;
+const MODE_PREFIX: Record<string, string> = { ask: "", fit: "Check whether this fits Blue Dots: ", brief: "Help me shape this into a brief and personas: ", build: "Build a bot and a dot map for: " };
+
+export function Composer({ onSend, onStop, streaming, autoFocus, placeholder, hero }: {
+  onSend: (t: string) => void; onStop: () => void; streaming: boolean; autoFocus?: boolean; placeholder?: string; hero?: boolean;
 }) {
+  const [mode, setMode] = useState<string>("ask");
   const [text, setText] = useState("");
   const ta = useRef<HTMLTextAreaElement>(null);
   useLayoutEffect(() => { const el = ta.current; if (!el) return; el.style.height = "0px"; el.style.height = Math.min(el.scrollHeight, 220) + "px"; }, [text]);
@@ -183,30 +207,49 @@ export function Composer({ onSend, onStop, streaming, autoFocus, placeholder }: 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
-  const submit = () => { if (!text.trim() || streaming) return; onSend(text); setText(""); };
+  const submit = () => { if (!text.trim() || streaming) return; onSend(hero ? MODE_PREFIX[mode] + text : text); setText(""); };
   const can = text.trim().length > 0;
+  const hint = hero ? MODES.find((m) => m.id === mode)!.hint : placeholder ?? "Reply, or ask for a change…";
   return (
-    <div className="mx-auto w-full max-w-[680px] px-6 pb-4">
-      <div className="rounded-[10px] bg-white shadow-composer transition-shadow focus-within:shadow-[0_0_0_1px_rgba(37,99,235,0.5),0_2px_4px_rgba(15,15,15,0.06)]">
-        <textarea ref={ta} value={text} autoFocus={autoFocus} rows={1}
+    <div className={clsx("mx-auto w-full", hero ? "" : "max-w-[720px] px-6 pb-4")}>
+      <div className={clsx("composer-lit flex flex-col rounded-[14px] border border-line-2 bg-panel/90 shadow-composer transition-colors focus-within:border-brand-line", hero && "min-h-[150px]")}>
+        <textarea ref={ta} value={text} autoFocus={autoFocus} rows={hero ? 3 : 1}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); submit(); } }}
-          placeholder={placeholder ?? "Describe a place, the people, and what they need…"}
-          className="block max-h-[220px] w-full resize-none bg-transparent px-3.5 pb-1 pt-3 text-[16px] leading-relaxed text-ink outline-none placeholder:text-faint" />
-        <div className="flex items-center justify-end gap-2 px-2.5 pb-2.5">
-          {streaming ? (
-            <button onClick={onStop} aria-label="Stop" className="grid h-7 w-7 place-items-center rounded-full bg-ink text-white hover:bg-ink-2">
-              <Square className="h-3 w-3 fill-current" />
-            </button>
-          ) : (
-            <button onClick={submit} aria-label="Send" disabled={!can}
-              className={clsx("grid h-7 w-7 place-items-center rounded-full transition-colors", can ? "bg-brand text-white hover:bg-brand-2" : "bg-[#e9e9e7] text-white")}>
-              <ArrowUp className="h-4 w-4" strokeWidth={2.5} />
-            </button>
+          placeholder={hint}
+          className="block max-h-[220px] w-full flex-1 resize-none bg-transparent px-4 pb-1 pt-3.5 text-[16px] leading-relaxed text-ink outline-none placeholder:text-faint" />
+        <div className="flex items-center gap-2 px-3 pb-3">
+          {hero && (
+            <div className="flex flex-wrap gap-1.5">
+              {MODES.map((m) => (
+                <button key={m.id} onClick={() => setMode(m.id)} aria-pressed={mode === m.id}
+                  className={clsx("m-btn flex h-8 items-center gap-1.5 rounded-[7px] border px-2.5 text-[13px] transition-colors",
+                    mode === m.id ? "border-brand-line bg-brand-soft text-ink" : "border-line-2 bg-wash text-muted hover:text-ink")}>
+                  <m.icon className="h-3.5 w-3.5" /> {m.label}
+                </button>
+              ))}
+            </div>
           )}
+          <div className="ml-auto">
+            {streaming ? (
+              <button onClick={onStop} aria-label="Stop" className="m-btn grid h-9 w-9 place-items-center rounded-[9px] bg-ink text-canvas hover:bg-ink-2">
+                <Square className="h-3.5 w-3.5 fill-current" />
+              </button>
+            ) : hero ? (
+              <button onClick={submit} disabled={!can}
+                className={clsx("m-btn flex h-9 items-center gap-2 rounded-[9px] px-4 text-[14px] font-medium transition-opacity", can ? "btn-primary" : "btn-primary opacity-50")}>
+                <Sparkles className="h-4 w-4" /> Start
+              </button>
+            ) : (
+              <button onClick={submit} aria-label="Send" disabled={!can}
+                className={clsx("m-btn grid h-9 w-9 place-items-center rounded-[9px] transition-opacity", can ? "btn-primary" : "btn-primary opacity-40")}>
+                <ArrowUp className="h-4 w-4" strokeWidth={2.5} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
-      <p className="mt-2 text-center text-[12px] text-faint">The assistant can make mistakes. People and organisations it creates are fictional.</p>
+      {!hero && <p className="mt-2 text-center text-[12px] text-faint">The assistant can make mistakes. People and organisations it creates are fictional.</p>}
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const sans = Geist({ variable: "--font-geist", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -10,11 +11,11 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
 };
 
-export const viewport: Viewport = { themeColor: "#ffffff", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#0f0f0f", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={mono.variable}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

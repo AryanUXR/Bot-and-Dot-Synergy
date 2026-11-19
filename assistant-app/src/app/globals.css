@@ -2,32 +2,33 @@
 
 @theme {
   /* Notion-like: the system UI face, warm greys, flat surfaces, small radii */
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji";
-  --font-mono: var(--font-geist-mono), "SFMono-Regular", Menlo, Consolas, monospace;
-  --font-serif: Lyon-Text, Georgia, ui-serif, serif;
+  /* Taste-skill deal (client colours: Blue Dots blue, Geist) shifted to the navy-teal of Aryan's reference */
+  --font-sans: var(--font-geist), "Geist", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, Menlo, monospace;
+  --font-serif: var(--font-geist), system-ui, sans-serif;
 
-  --color-ink: #37352f;
-  --color-ink-2: #4a4843;
-  --color-muted: #787774;
-  --color-faint: #a5a29c;
-  --color-line: #ededeb;
-  --color-line-2: #e0dfdc;
-  --color-canvas: #ffffff;
-  --color-panel: #ffffff;
-  --color-wash: #f1f1ef;
-  --color-side: #f7f7f5;
-  --color-hover: rgb(55 53 47 / 0.06);
-  --color-press: rgb(55 53 47 / 0.1);
+  --color-ink: #f2f6fa;
+  --color-ink-2: #c9d3dc;
+  --color-muted: #8b98a5;
+  --color-faint: #5b6773;
+  --color-line: #1d2731;
+  --color-line-2: #28343f;
+  --color-canvas: #0b1015;
+  --color-panel: #111820;
+  --color-wash: #17202a;
+  --color-side: #0d1318;
+  --color-hover: rgb(255 255 255 / 0.06);
+  --color-press: rgb(255 255 255 / 0.1);
   --color-brand: #2563eb;
-  --color-brand-2: #1d4ed8;
-  --color-brand-soft: #e7f0fb;
-  --color-brand-line: #c7dbf5;
-  --color-good: #448361;
-  --color-good-soft: #edf3ec;
-  --color-warn: #c46a1a;
-  --color-warn-soft: #fbecdd;
-  --color-bad: #d44c47;
-  --color-bad-soft: #fdebec;
+  --color-brand-2: #3d8bff;
+  --color-brand-soft: #0f2744;
+  --color-brand-line: #1f4f86;
+  --color-good: #6fcf97;
+  --color-good-soft: #10261a;
+  --color-warn: #e8a85b;
+  --color-warn-soft: #2a1d0e;
+  --color-bad: #f2836f;
+  --color-bad-soft: #2c1512;
 
   --radius-sm: 3px;
   --radius-md: 4px;
@@ -35,9 +36,9 @@
   --radius-xl: 8px;
   --radius-2xl: 10px;
 
-  --shadow-pop: 0 0 0 1px rgb(15 15 15 / 0.05), 0 3px 6px rgb(15 15 15 / 0.1), 0 9px 24px rgb(15 15 15 / 0.2);
-  --shadow-card: 0 0 0 1px rgb(15 15 15 / 0.06);
-  --shadow-composer: 0 0 0 1px rgb(15 15 15 / 0.08), 0 2px 4px rgb(15 15 15 / 0.06);
+  --shadow-pop: 0 0 0 1px rgb(255 255 255 / 0.08), 0 8px 24px rgb(0 0 0 / 0.5);
+  --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.07);
+  --shadow-composer: 0 0 0 1px rgb(255 255 255 / 0.1), 0 10px 30px rgb(0 0 0 / 0.45);
 
   --animate-pulse-dot: pulse-dot 1.4s ease-in-out infinite;
   --animate-ring: ring 1.6s ease-out infinite;
@@ -57,29 +58,34 @@
 }
 
 html, body { height: 100%; }
+html { color-scheme: dark; }
 body {
-  background: var(--color-canvas);
+  background:
+    radial-gradient(1100px 680px at 88% -12%, rgb(56 189 248 / 0.13), transparent 62%),
+    radial-gradient(900px 620px at 12% 115%, rgb(37 99 235 / 0.09), transparent 60%),
+    var(--color-canvas);
+  background-attachment: fixed;
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: rgb(35 131 226 / 0.28); }
+::selection { background: rgb(37 99 235 / 0.45); color: #fff; }
 
 /* Working state: plain grey with a slow fade, no gradient sweep */
 .shimmer-text { color: var(--color-muted); animation: pulse-dot 1.8s ease-in-out infinite; }
 
 .skeleton {
-  background: linear-gradient(90deg, #f1f1ef 0%, #f7f7f5 50%, #f1f1ef 100%);
+  background: linear-gradient(90deg, #1b1b1b 0%, #242424 50%, #1b1b1b 100%);
   background-size: 200% 100%;
   animation: shimmer 1.6s linear infinite;
   border-radius: 4px;
 }
 
 /* Thin, quiet scrollbars */
-.scroll-quiet { scrollbar-width: thin; scrollbar-color: #dcdbd8 transparent; }
+.scroll-quiet { scrollbar-width: thin; scrollbar-color: #333 transparent; }
 .scroll-quiet::-webkit-scrollbar { width: 8px; height: 8px; }
-.scroll-quiet::-webkit-scrollbar-thumb { background: #d5d9e2; border-radius: 8px; border: 2px solid transparent; background-clip: content-box; }
+.scroll-quiet::-webkit-scrollbar-thumb { background: #333; border-radius: 8px; border: 2px solid transparent; background-clip: content-box; }
 
 /* Chat prose */
 .prose-chat { font-size: 16px; line-height: 1.6; color: var(--color-ink); }
@@ -94,7 +100,7 @@ body {
 .prose-chat h1, .prose-chat h2, .prose-chat h3 { font-weight: 600; margin: 1em 0 0.4em; letter-spacing: -0.01em; }
 .prose-chat h1 { font-size: 1.2em; } .prose-chat h2 { font-size: 1.1em; } .prose-chat h3 { font-size: 1em; }
 .prose-chat a { color: var(--color-brand); text-decoration: underline; text-underline-offset: 2px; }
-.prose-chat code { font-family: var(--font-mono); font-size: 0.85em; color: #eb5757; background: rgb(135 131 120 / 0.15); padding: 0.2em 0.4em; border-radius: 3px; }
+.prose-chat code { font-family: var(--font-mono); font-size: 0.85em; color: #ff8f7a; background: rgb(255 255 255 / 0.08); padding: 0.2em 0.4em; border-radius: 3px; }
 .prose-chat blockquote { border-left: 3px solid currentColor; padding-left: 0.9em; color: var(--color-ink-2); margin: 0.6em 0; }
 .prose-chat table { width: 100%; border-collapse: collapse; margin: 0.6em 0 0.9em; font-size: 0.93em; }
 .prose-chat th, .prose-chat td { border-bottom: 1px solid var(--color-line); padding: 6px 8px; text-align: left; vertical-align: top; }
@@ -123,3 +129,21 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* Hover and press layer (taste-skill motion tokens: 150ms in, 120ms out, 90ms press) */
+.m-btn { transition: transform 120ms cubic-bezier(.2,.8,.2,1), background-color 150ms cubic-bezier(.2,.8,.2,1), box-shadow 150ms; }
+.m-btn:hover { transform: translateY(-1px); }
+.m-btn:active { transform: translateY(1px) scale(.98); transition-duration: 90ms; }
+.m-lift { transition: transform 150ms cubic-bezier(.2,.8,.2,1), box-shadow 150ms, background-color 150ms; }
+.m-lift:hover { transform: translateY(-2px); }
+.m-zoom img { transition: transform 600ms cubic-bezier(.2,.8,.2,1); }
+.m-zoom:hover img { transform: scale(1.03); }
+[data-fx] { position: relative; isolation: isolate; overflow: hidden; }
+
+/* Primary action: Blue Dots blue with a lit top edge, like the reference's Generate button */
+.btn-primary { background: linear-gradient(180deg, #3b8cff 0%, #2563eb 100%); color: #fff; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 0 0 1px rgb(37 99 235 / 0.6), 0 6px 18px -6px rgb(37 99 235 / 0.7); }
+.btn-primary:hover { background: linear-gradient(180deg, #4a97ff 0%, #2e6ef2 100%); }
+/* Composer with a lit top hairline */
+.composer-lit { position: relative; }
+.composer-lit::before { content: ""; position: absolute; left: 12%; right: 12%; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgb(103 232 249 / 0.7), transparent); }
+.glass { background: rgb(17 24 32 / 0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }

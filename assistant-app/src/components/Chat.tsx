@@ -27,8 +27,15 @@ export function EmptyState({ name, onPick, onSend, onStop, streaming }: {
   return (
     <div className="scroll-quiet flex flex-1 flex-col overflow-y-auto">
       <div className="mx-auto flex w-full max-w-[760px] flex-1 flex-col items-center justify-center px-6 pb-10 pt-6">
+        <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
+          <div className="relative grid place-items-center">
+            <span aria-hidden className="absolute h-[150px] w-[150px] rounded-full bg-[radial-gradient(circle_at_40%_35%,rgba(103,232,249,0.22),rgba(37,99,235,0.12)_45%,transparent_70%)] blur-md" />
+            <span aria-hidden className="absolute h-[148px] w-[148px] rounded-full shadow-[inset_0_0_30px_rgba(56,189,248,0.25),0_0_60px_rgba(37,99,235,0.25)]" />
+            <AtlasOrb size={190} active={streaming} className="relative" />
+          </div>
+        </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center text-[34px] font-medium leading-tight tracking-[-0.035em] text-ink">
+          className="mt-4 text-center text-[34px] font-medium leading-tight tracking-[-0.035em] text-ink">
           Hi {name ?? "there"}
         </motion.h1>
         <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

@@ -128,7 +128,7 @@ It prints PASS or FAIL for each check. Any FAIL blocks testing and handover.
 | `SKILL.md` | The agent's entry point: routing, rules, IDs |
 | `FLOW.md` | The 7 build stages and their gates |
 | `LESSONS.md` | Every mistake made so far, and its fix. Read before building. |
-| `counsel/` | Counsel on the Blue Dots approach: a knowledge base from EkStep's own documents (Key Details, the Ghaziabad deck, and the Personas and Question Map), the source texts, and the fit check |
+| `counsel/` | Counsel on the Blue Dots approach: a knowledge base from EkStep's own documents (Key Details, the Ghaziabad deck, the Personas and Question Map, and pages from the docs site on cost, configuration and channels), the source texts, and the fit check |
 | `onboarding/` | First-run setup, platform choices, fallbacks, non-negotiables, readiness report, handover template, fixing from feedback |
 | `onboarding/setup-guides/` | One guide per platform: Raya, Lovable, Google Maps, Gemini, GitHub, and any other |
 | `bot/` | Building the bot page: steps, prompt anatomy, testing |

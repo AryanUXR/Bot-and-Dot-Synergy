@@ -162,3 +162,7 @@ The Nashik lessons paid off: the Raya agent, memory, Lovable wiring, photos and 
 ## 2026-11-18 · Red Dots Guwahati map down
 
 83. **A placeholder Maps secret breaks the map as surely as a wrong key.** The Red Dots map showed "Oops! Something went wrong" (`InvalidKeyMapError`). Its `GOOGLE_MAPS_API_KEY` secret had been set to a `PLACEHOLDER…` value, and the hook used any non-empty value over the stored key. No code had changed since 12 Nov. → `useGoogleMaps.ts` now uses a returned key only if it starts with `AIza`, else the stored key; republished 18 Nov. To check a map, curl `get-google-maps-key` and print only whether the value starts with `AIza`. To switch off a secret, delete it; never overwrite it with a placeholder. → *Now in* `dot/SKILL.md` Step 1.
+
+## 2026-11-19 · The assistant concept Doc as source of truth
+
+84. **Check a scope document's "Today" against what the assistant can answer.** The manager's *Conceptualising the Blue Dots Assistant* marked four jobs as working today that counsel couldn't answer: ONDC, configuration vs build, voice or WhatsApp, and cost. The answers for three of them were on EkStep's docs site, which counsel hadn't read. → Added five docs-site pages as source DS (`counsel/sources/docs-site-selected-pages.txt`) and `knowledge.md` §8, with the cost calculator link. A fresh agent answered all four questions with citations. No source compares Blue Dots with ONDC, so counsel gives the UPI comparison and says so. Refresh DS when the site changes; the pages show "Last updated".

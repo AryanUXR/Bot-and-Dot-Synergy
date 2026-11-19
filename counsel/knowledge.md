@@ -1,14 +1,15 @@
 # Blue Dots: what the documents say (knowledge base for the counsel skill)
 
-Everything here comes from three EkStep documents, kept in `sources/`:
+Everything here comes from EkStep's own documents and docs site, kept in `sources/`:
 
 | Key | Source |
 |---|---|
 | **KD** | *The Blue Dots^AI Economy: Key Details* (21 pages), `sources/blue-dots-ai-economy-key-details.pdf` (text: `.txt`) |
 | **GZ** | *[Blue Dots] Ghaziabad Future Ready* deck (15 slides), `sources/ghaziabad-future-ready-deck.txt` |
 | **PQ** | *Blue Dots Personas and Question Map* (11 Oct 2026): who asks what, by phase, and how well docs.bluedotseconomy.org answers it. `sources/blue-dots-personas-and-question-map.docx` (text: `.txt`) |
+| **DS** | Five pages of EkStep's docs site, docs.bluedotseconomy.org, fetched 19 Nov 2026 (pages last updated 16 Nov): *Blue Dots as a DPG*, *Schema-Driven Model*, *Customisation & Branding*, *Cost & Sizing*, *AI Diffusion DPG*. `sources/docs-site-selected-pages.txt` |
 
-Cite as **(KD p.N)**, **(GZ slide N)** or **(PQ)**. When a question needs a fact that isn't here, read the source text. If it isn't there either, say so plainly and never estimate.
+Cite as **(KD p.N)**, **(GZ slide N)**, **(PQ)** or **(DS: page title)**. When a question needs a fact that isn't here, read the source text. If it isn't there either, say so plainly and never estimate.
 
 ---
 
@@ -174,3 +175,31 @@ The Network Operator has no pilot-phase questions yet.
 
 **Where PQ and KD differ, use KD and say so if asked.** PQ quotes the site as "70% of applications within 15 km" and "about 50% vs about 5% in targeted drives". KD says over 70% within **5 km** (KD p.7) and over 50% at targeted drives against under 10% at broad job fairs. The site wording may differ from KD; KD is the fuller write-up with its sources.
 
+
+## 8. Practical answers from the docs site (DS)
+
+Four questions officials and enablers ask early, answered from EkStep's docs site. Where KD and DS differ, use KD for evidence and DS for how the software works and what it costs.
+
+**Why a DPG, and is it like ONDC?** Blue Dots is built as Digital Public Goods: open-source building blocks any organisation can deploy, run and extend, so no single company owns it and no one owns the map. The docs site compares it to UPI: as UPI lets any bank or app send money through one shared system, Blue Dots lets anyone list what they need or offer, and others find them through the same shared rules. Instances talk to each other through an open protocol, and the search API uses a "Beckn-aligned" request format (DS: Blue Dots as a DPG; Schema-Driven Model). **The documents do not compare Blue Dots with ONDC.** Give the UPI comparison, say there is no ONDC comparison in the documents, and suggest asking the EkStep team for one.
+
+**What is configuration and what is build?** Most of a deployment is configuration, not code:
+- **Configuration (no code changes):** which domain (colour) a deployment runs, its fields and forms (schema files such as `network.json`), consent text, branding (logo, colours, language), operational settings (SMS gateway, the phone number for voice calls, admin emails), dashboards and the landing page. "A new district or state can start without a custom build each time" (DS: Blue Dots as a DPG; Schema-Driven Model; Customisation & Branding).
+- **Build or set-up work:** standing up the infrastructure (scripts exist for AWS; other clouds need adapting), integrating with existing systems, a new colour that has no published minimum standard yet (Pink, Green and Brown have none), and anything beyond the reference set-up such as firewalls and security controls (DS: Schema-Driven Model; Cost & Sizing).
+- Published minimum standards: Blue (jobs), Yellow (education), Purple (disability) and Orange (tourism) (DS: Schema-Driven Model).
+
+**What does it cost to run, and how big a setup?** Point to the **cost calculator**, https://cost-calculator.bluedotseconomy.org/. It takes the expected number of blue dots (10,000 to 5 lakh), how many are active in a month, the cloud (AWS, Azure, GCP, Tata Cloud or NIC MeghRaj), and whether a test copy, high availability or a disaster recovery site is needed. It gives the monthly and annual cost and a bill of quantities for procurement (DS: Cost & Sizing). Example, for 1 lakh blue dots with 10% active a month on AWS, at list prices without GST:
+
+| Setup | Cloud a month | Total a month (adds SMS, voice, maps) |
+|---|---|---|
+| Standard | ₹47,973 | ₹85,973 |
+| Standard with a test copy | ₹95,134 | ₹1,33,134 |
+| High availability | ₹1,33,273 | ₹1,71,273 |
+| High availability with a DR site | ₹2,72,534 | ₹3,10,534 |
+
+- A standard setup (2 servers) serves about **60,000 active blue dots a month**; high availability (3 servers) about **1,20,000** (DS: Cost & Sizing).
+- Voice AI calls are assumed at one 3-minute call a month per active blue dot at ₹1 a minute; SMS at 4 a month at ₹0.20 each (DS: Cost & Sizing).
+- **Not included:** one-time setup work, staff to run and support it, firewalls and security controls beyond the basic one, and negotiated discounts. Say these are "indicative list prices, not a quote" (DS: Cost & Sizing).
+
+**Voice or WhatsApp?** Voice works today. A **WhatsApp channel is planned**, not available (DS: AI Diffusion DPG). Prototypes from this skill are voice only. Languages documented on the site are Hindi and Kannada (PQ).
+
+**Still not answered by any source:** a direct ONDC comparison, full costs including setup and staff, procurement and the PMU/SI split, EkStep's role, data ownership, and the effort to add a language.

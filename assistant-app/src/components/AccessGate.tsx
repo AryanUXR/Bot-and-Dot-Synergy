@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { BrandChip } from "./icons";
-import { AtlasOrb } from "./AtlasOrb";
 import NetworkBackground from "./NetworkBackground";
 
 export default function AccessGate() {
@@ -27,10 +26,6 @@ export default function AccessGate() {
       <NetworkBackground className="pointer-events-none fixed inset-0 h-full w-full" />
       <header className="relative flex h-14 items-center px-5"><BrandChip /></header>
       <div className="relative mx-auto flex w-full max-w-[360px] flex-1 flex-col justify-center pb-20">
-        <div className="relative mb-4 grid place-items-center self-center">
-          <span aria-hidden className="absolute h-[120px] w-[120px] rounded-full bg-[radial-gradient(circle_at_40%_35%,rgba(103,232,249,0.22),rgba(37,99,235,0.12)_45%,transparent_70%)] blur-md" />
-          <AtlasOrb size={150} className="relative" />
-        </div>
         <h1 className="text-center text-[30px] font-medium leading-tight tracking-[-0.035em] text-ink">Blue Dots Assistant</h1>
         <p className="mt-2 text-center text-[15px] leading-relaxed text-muted">
           Check whether an idea fits the Blue Dots approach, shape it into a brief, and build a voice bot and a map you can show.

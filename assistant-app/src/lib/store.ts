@@ -14,7 +14,8 @@ interface KV {
 }
 
 class FileKV implements KV {
-  dir = path.resolve(process.cwd(), ".data");
+  // On Vercel only /tmp is writable, and it is per instance: use Upstash there.
+  dir = process.env.VERCEL ? "/tmp/bd-data" : path.resolve(process.cwd(), ".data");
   private file(key: string) { return path.join(this.dir, encodeURIComponent(key)); }
   async get(key: string) {
     try { return await fs.readFile(this.file(key), "utf8"); } catch { return null; }

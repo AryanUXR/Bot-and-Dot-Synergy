@@ -27,7 +27,7 @@ function Sidebar({ open, projects, current, name, onNew, onOpen, onDelete, onTog
   const list = projects.filter((p) => p.title.toLowerCase().includes(q.toLowerCase()));
   return (
     <motion.aside initial={false} animate={{ width: open ? 272 : 0 }} transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-      className="shrink-0 overflow-hidden border-r border-line bg-[#f1f3f6]">
+      className="shrink-0 overflow-hidden border-r border-line bg-[#f1f3f6] max-lg:fixed max-lg:inset-y-0 max-lg:left-0 max-lg:z-50 max-lg:shadow-pop">
       <div className="flex h-full w-[272px] flex-col">
         <div className="flex h-14 items-center justify-between px-4">
           <div className="flex items-center gap-2"><DotsMark className="h-7 w-7" /><span className="text-[14.5px] font-semibold tracking-tight">Blue Dots Assistant</span></div>
@@ -87,6 +87,8 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
   const showCanvas = hasAssets && canvasOpen;
 
   useEffect(() => { if (a.running?.asset) setCanvasOpen(true); }, [a.running]);
+  useEffect(() => { if (window.innerWidth < 1024) setSide(false); }, []);
+  const narrow = () => typeof window !== "undefined" && window.innerWidth < 1024;
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); a.open(null); } };
     window.addEventListener("keydown", onKey);
@@ -102,8 +104,9 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
   return (
     <div className="flex h-screen overflow-hidden bg-canvas">
       <Sidebar open={side} projects={a.projects} current={a.project?.id ?? null} name={a.name}
-        onNew={() => a.open(null)} onOpen={(id) => a.open(id)} onDelete={(id) => a.remove(id)} onToggle={() => setSide(false)} />
+        onNew={() => { a.open(null); if (narrow()) setSide(false); }} onOpen={(id) => { a.open(id); if (narrow()) setSide(false); }} onDelete={(id) => a.remove(id)} onToggle={() => setSide(false)} />
 
+      {side && <button aria-label="Close sidebar" onClick={() => setSide(false)} className="fixed inset-0 z-40 bg-ink/20 lg:hidden" />}
       <main className="relative flex min-w-0 flex-1">
         <div className={clsx("flex min-w-0 flex-col transition-[flex-basis] duration-300", showCanvas ? "basis-full lg:basis-[44%] lg:border-r lg:border-line" : "basis-full")}>
           <div className="flex h-14 shrink-0 items-center gap-2 px-3">

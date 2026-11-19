@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { BrandChip } from "./icons";
 import { AtlasOrb } from "./AtlasOrb";
+import NetworkBackground from "./NetworkBackground";
 
 export default function AccessGate() {
   const [code, setCode] = useState("");
@@ -22,9 +23,10 @@ export default function AccessGate() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <header className="flex h-14 items-center px-5"><BrandChip /></header>
-      <div className="mx-auto flex w-full max-w-[360px] flex-1 flex-col justify-center pb-20">
+    <main className="relative flex min-h-screen flex-col">
+      <NetworkBackground className="pointer-events-none fixed inset-0 h-full w-full" />
+      <header className="relative flex h-14 items-center px-5"><BrandChip /></header>
+      <div className="relative mx-auto flex w-full max-w-[360px] flex-1 flex-col justify-center pb-20">
         <div className="relative mb-4 grid place-items-center self-center">
           <span aria-hidden className="absolute h-[120px] w-[120px] rounded-full bg-[radial-gradient(circle_at_40%_35%,rgba(103,232,249,0.22),rgba(37,99,235,0.12)_45%,transparent_70%)] blur-md" />
           <AtlasOrb size={150} className="relative" />

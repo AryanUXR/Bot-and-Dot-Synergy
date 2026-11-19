@@ -9,6 +9,7 @@ import { useAssistant } from "./useAssistant";
 import { Composer, EmptyState, Messages } from "./Chat";
 import Canvas from "./Canvas";
 import { BrandChip } from "./icons";
+import NetworkBackground from "./NetworkBackground";
 
 function group(ps: ProjectSummary[]) {
   const day = 86400000, now = Date.now();
@@ -114,7 +115,8 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
 
       {side && settled && <button aria-label="Close sidebar" onClick={() => setSide(false)} className="fixed inset-0 z-40 bg-[rgba(15,15,15,0.4)] lg:hidden" />}
       <main className="relative flex min-w-0 flex-1">
-        <div className={clsx("flex min-w-0 flex-col", showCanvas ? "basis-full lg:basis-[42%] lg:shadow-[inset_-1px_0_0_rgba(255,255,255,0.08)]" : "basis-full")}>
+        <NetworkBackground className="pointer-events-none absolute inset-0 h-full w-full" />
+        <div className={clsx("relative z-[1] flex min-w-0 flex-col", showCanvas ? "basis-full lg:basis-[42%] lg:shadow-[inset_-1px_0_0_rgba(255,255,255,0.08)]" : "basis-full")}>
           <div className="flex h-[45px] shrink-0 items-center gap-1 px-3">
             {!side && <button onClick={() => setSide(true)} aria-label="Open sidebar" className="grid h-7 w-7 place-items-center rounded-[4px] text-muted hover:bg-hover"><Menu className="h-4 w-4" /></button>}
             <div className="min-w-0 flex-1 truncate px-1.5 text-[14px] text-ink-2">{a.project?.title ?? "New chat"}</div>
@@ -141,7 +143,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
         <AnimatePresence>
           {showCanvas && a.project && (
             <motion.div key="canvas" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
-              className="absolute inset-0 z-30 min-w-0 bg-panel lg:static lg:z-auto lg:flex-1">
+              className="absolute inset-0 z-30 min-w-0 bg-panel lg:relative lg:z-[1] lg:flex-1">
               <Canvas projectId={a.project.id} title={a.project.title} assets={a.project.assets} focus={focus} fresh={a.fresh} running={a.running}
                 onSeen={a.seen} onClose={() => setCanvasOpen(false)} onPhoto={a.setPhoto} onToast={setToast} />
             </motion.div>

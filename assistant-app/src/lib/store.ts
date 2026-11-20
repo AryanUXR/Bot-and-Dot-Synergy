@@ -22,7 +22,7 @@ class FileKV implements KV {
   }
   async set(key: string, value: string) {
     await fs.mkdir(this.dir, { recursive: true });
-    const tmp = this.file(key) + ".tmp";
+    const tmp = `${this.file(key)}.${process.pid}.${Math.random().toString(36).slice(2)}.tmp`;
     await fs.writeFile(tmp, value);
     await fs.rename(tmp, this.file(key));
   }

@@ -1,8 +1,9 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AssetKind, Assets, ProjectSummary, StreamEvent, UiMessage, UiPart } from "@/lib/types";
+import type { Journey } from "@/lib/journey";
 
-export interface ProjectView { id: string; title: string; ui: UiMessage[]; assets: Assets }
+export interface ProjectView { id: string; title: string; ui: UiMessage[]; assets: Assets; journey?: Journey }
 
 const uid = () => Math.random().toString(36).slice(2, 12);
 
@@ -35,7 +36,7 @@ export function useAssistant(initialId: string | null) {
     setLoading(false);
     if (!r.ok) { setProject(null); window.history.replaceState(null, "", "/"); return; }
     const { project: p } = await r.json();
-    setProject({ id: p.id, title: p.title, ui: p.ui, assets: p.assets });
+    setProject({ id: p.id, title: p.title, ui: p.ui, assets: p.assets, journey: p.journey_view });
     if (window.location.pathname !== `/c/${id}`) window.history.pushState(null, "", `/c/${id}`);
   }, []);
 
@@ -140,6 +141,9 @@ export function useAssistant(initialId: string | null) {
         case "asset":
           setProject((p) => (p ? { ...p, assets: { ...p.assets, [e.kind]: e.data } } : p));
           setFresh((s) => new Set(s).add(e.kind));
+          break;
+        case "journey":
+          setProject((p) => (p ? { ...p, journey: e.data } : p));
           break;
         case "title":
           setProject((p) => (p ? { ...p, title: e.title } : p));

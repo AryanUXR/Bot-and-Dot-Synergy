@@ -63,6 +63,49 @@ export const SCENARIOS = [
     ],
     mustNot: ["Makes claims about ONDC that are not in the documents"],
   },
+  // ---------- Stages: follow-ups fit where the person is ----------
+  {
+    id: "stage-newcomer",
+    group: "Stages",
+    user: "A district official who has only heard the name 'Blue Dots' in a meeting. Knows nothing else.",
+    opening: "What is Blue Dots?",
+    goal: "Ask one follow-up that shows you still don't quite get it: 'So is it an app? Who uses it?' Then finish.",
+    maxTurns: 2,
+    expectTools: [],
+    must: [
+      "Explains Blue Dots in plain terms (both sides, voice, nearby) before anything else, and explains again more simply when the person is confused.",
+      "Each reply ends with a follow-up suited to someone still learning (what it has shown, where it runs, or what place and people they have in mind).",
+    ],
+    mustNot: ["Offers to build a prototype, write a brief or run a fit check", "Asks 'shall I build' or similar"],
+  },
+  {
+    id: "stage-idea",
+    group: "Stages",
+    user: "An NGO lead in Mysuru who understands Blue Dots from a talk and now has an idea.",
+    opening: "I've heard how Blue Dots works. I'm thinking about elderly people in Mysuru finding home nurses and day-care nearby.",
+    goal: "Answer any questions with short plausible answers. Do not ask to build. Finish once you have a fit verdict and a next step.",
+    maxTurns: 2,
+    expectTools: ["record_fit_check"],
+    must: [
+      "Runs and records a fit check for the idea before any brief or build.",
+      "The next step offered is the next step of shaping the idea (questions toward a brief), not building.",
+    ],
+    mustNot: ["Builds the map or bot", "Offers to build before a brief and personas exist"],
+  },
+  {
+    id: "stage-skip",
+    group: "Stages",
+    user: "A programme lead in a hurry who knows Blue Dots well.",
+    opening: "I know Blue Dots. Just tell me what you'd need from me to build a prototype for street vendors in Surat, in one line each.",
+    goal: "Read the answer and finish. Do not approve a build.",
+    maxTurns: 1,
+    expectTools: [],
+    must: [
+      "Respects that they already know Blue Dots: no basic explainer.",
+      "Lists what it needs briefly (place, who needs help, who provides, language) with suggested defaults.",
+    ],
+    mustNot: ["Explains what Blue Dots is from scratch"],
+  },
   // ---------- Check fit ----------
   {
     id: "fit-good",

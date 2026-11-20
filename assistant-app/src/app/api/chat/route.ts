@@ -4,6 +4,8 @@ import { config } from "@/lib/env";
 import { session } from "@/lib/session";
 import { getProject, saveProject, bump, count, addDailyUsage } from "@/lib/store";
 import { ReplyGate } from "@/lib/guard";
+import { deriveJourney, journeyNote, EMPTY_SIGNALS } from "@/lib/journey";
+import { classifyJourney } from "@/lib/journeyClassifier";
 import type { Usage } from "@/lib/types";
 import { SYSTEM_PROMPT } from "@/lib/prompt";
 import { TOOLS, TOOL_ASSET, runTool } from "@/lib/tools";
@@ -74,7 +76,7 @@ export async function POST(req: Request) {
   if (DAILY_LIMIT > 0 && (await count(`msgs:${s.workspace}:${day}`)) >= DAILY_LIMIT) {
     return Response.json({ error: `You've reached today's limit of ${DAILY_LIMIT} messages. It resets at midnight UTC. Ask the EkStep team if you need more.` }, { status: 429 });
   }
-  await bump(`msgs:${s.workspace}:${day}`);
+  await bump(`msgs:${s.workspace}:${day}`).catch((e) => console.error("[cap]", e));
 
   let project: Project | null = body.projectId ? await getProject(body.projectId) : null;
   if (project && project.workspace !== s.workspace) return Response.json({ error: "Not found." }, { status: 404 });
@@ -94,7 +96,9 @@ export async function POST(req: Request) {
   // If the reply checker corrected the last reply, tell the model what the person actually saw.
   const note = p.note ? `(Note for you, not from the person: before your last reply was shown, the checker corrected it: ${p.note} Use the facts table rows and places exactly.)\n\n` : "";
   p.note = undefined;
-  (p.transcript as BMsg[]).push({ role: "user", content: note + text });
+  // Where the person is in the journey, so the reply and its follow-up fit their stage.
+  const stageNote = journeyNote(deriveJourney(p.journey ?? EMPTY_SIGNALS, p.assets)) + "\n\n";
+  (p.transcript as BMsg[]).push({ role: "user", content: note + stageNote + text });
 
   const client = new Anthropic({ apiKey: config.anthropicKey });
   const encoder = new TextEncoder();
@@ -200,6 +204,24 @@ export async function POST(req: Request) {
           }
           (p.transcript as BMsg[]).push({ role: "user", content: results });
           await saveProject(p);
+        }
+        // Update the journey from this exchange and send the stage and suggested replies.
+        const reply = parts.filter((x) => x.type === "text").map((x) => (x as { text: string }).text).join("\n");
+        if (reply.trim()) {
+          const j = await Promise.race([
+            classifyJourney(client, p.journey ?? EMPTY_SIGNALS, p.assets, text, reply),
+            new Promise<null>((r) => setTimeout(() => r(null), 8000)),
+          ]);
+          if (j) {
+            p.journey = j.signals;
+            p.journey_view = j.journey;
+            const ju: Usage = { calls: 1, input: j.usage.input, cache_read: 0, cache_write: 0, output: j.usage.output, usd: (j.usage.input * 0.1 + j.usage.output * 0.5) / 1e6 };
+            p.usage = addUsage(p.usage, ju);
+            addDailyUsage(ju).catch(() => {});
+          } else {
+            p.journey_view = deriveJourney(p.journey ?? EMPTY_SIGNALS, p.assets);
+          }
+          emit({ type: "journey", data: p.journey_view });
         }
       } catch (e) {
         console.error("[chat]", e);

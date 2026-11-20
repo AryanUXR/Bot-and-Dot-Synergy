@@ -31,7 +31,8 @@ const FACTS_MD = fs.readFileSync(path.join(repo, "counsel", "facts.md"), "utf8")
 
 const envText = fs.readFileSync(path.join(repo, "raya/.env"), "utf8");
 const apiKey = envText.match(/^ANTHROPIC_API_KEY=(.*)$/m)?.[1]?.trim();
-const accessCode = envText.match(/^ACCESS_CODE=(.*)$/m)?.[1]?.trim();
+const localEnv = fs.existsSync(path.join(app, ".env.local")) ? fs.readFileSync(path.join(app, ".env.local"), "utf8") : "";
+const accessCode = process.env.ACCESS_CODE || (envText.match(/^ACCESS_CODE=(.*)$/m) ?? localEnv.match(/^ACCESS_CODE=(.*)$/m))?.[1]?.trim().replace(/^["']|["']$/g, "");
 if (!accessCode) throw new Error("Set ACCESS_CODE in raya/.env to run simulations.");
 const client = new Anthropic({ apiKey });
 
@@ -262,6 +263,12 @@ const cookie = await signIn();
 console.log(`Running ${list.length} scenarios (${CONC} at a time) → ${path.relative(app, outDir)}`);
 const results = [];
 let next = 0;
+// Run the first scenario alone so it writes the prompt cache once; the rest then read it
+// instead of each paying the cache write (about $0.24 each at Opus 5.5's 1-hour rate).
+if (list.length > 1 && CONC > 1) {
+  const sc = list[next++];
+  try { results.push(await runScenario(sc, cookie)); } catch (e) { console.log(`! ${sc.id} crashed: ${e.message}`); }
+}
 await Promise.all(Array.from({ length: CONC }, async () => {
   while (next < list.length) {
     const sc = list[next++];

@@ -27,7 +27,14 @@ const PLACE_TERMS: [string, RegExp][] = [
 ];
 const PROTOTYPE = /\b(made-up|fictional|prototype|personas?|localities|providers and|requests? from|on the map|map tab|dots across|voice bot|brief)\b/i;
 const DISTRICTS = new Set(["Ghaziabad", "Hubli-Dharwad", "Basti", "Udupi"]);
-const DOC_TALK = /\b(the (documents?|docs?|sources?|deck|report|knowledge base) (say|says|said|mention|mentions|state|states|show|shows|note|notes)|according to (the )?(documents?|sources?|KD|GZ)|KD (says|mentions)|the doc mentions)\b/i;
+const DOC_TALK = new RegExp([
+  // "the documents say", "EkStep's docs site describes", "the deck shows" ...
+  String.raw`\b(?:the|our|ekstep's|its)\s+(?:documents?|docs?(?:\s+site)?|documentation|sources?|deck|report|knowledge base|materials?)\s+(?:say|says|said|mention|mentions|state|states|show|shows|note|notes|describe|describes|list|lists|cover|covers|don't|do not|doesn't|does not)\b`,
+  // "Sources don't give ...", "the sources don't spell out ..."
+  String.raw`(?:^|[.!?]\s+|\b(?:since|as|but|because)\s+)(?:the\s+)?sources?\s+(?:don't|do not|doesn't|does not|say|says|give|gives|mention|mentions|spell)`,
+  String.raw`\baccording to (?:the )?(?:documents?|sources?|docs?|KD|GZ)\b`,
+  String.raw`\b(?:KD|GZ|PQ) (?:says|mentions|states)\b`,
+].join("|"), "i");
 
 export const numbersIn = (s: string) =>
   (s.replace(/(\d),(?=\d)/g, "$1").match(/\d+(?:\.\d+)?/g) ?? []).map(Number);

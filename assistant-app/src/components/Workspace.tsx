@@ -8,6 +8,7 @@ import { COLOURS } from "@/lib/types";
 import { useAssistant } from "./useAssistant";
 import { Composer, EmptyState, Messages } from "./Chat";
 import Canvas from "./Canvas";
+import JourneyBar from "./JourneyBar";
 import { BrandChip, EnvBadge } from "./icons";
 import NetworkBackground from "./NetworkBackground";
 
@@ -123,6 +124,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
           <div className="flex h-[45px] shrink-0 items-center gap-1 px-3">
             {!side && <button onClick={() => setSide(true)} aria-label="Open sidebar" className="grid h-7 w-7 place-items-center rounded-[4px] text-muted hover:bg-hover"><Menu className="h-4 w-4" /></button>}
             <div className="min-w-0 flex-1 truncate px-1.5 text-[14px] text-ink-2">{a.project?.title ?? "New chat"}</div>
+            {a.project && a.project.ui.length > 0 && <JourneyBar journey={a.project.journey} />}
             {hasAssets && !canvasOpen && (
               <button onClick={() => setCanvasOpen(true)} className="flex h-7 items-center gap-1.5 rounded-[4px] px-2 text-[14px] text-muted hover:bg-hover">
                 <PanelRightOpen className="h-4 w-4" /> Preview
@@ -135,7 +137,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
             </>
           ) : (
             <>
-              <Messages ui={a.project.ui} streaming={a.streaming} error={a.error}
+              <Messages ui={a.project.ui} streaming={a.streaming} error={a.error} options={a.project.journey?.options} onPick={a.send}
                 onOpen={(k) => { openAsset(k); setFocus({ kind: k, n: Date.now() }); }}
                 onRetry={() => a.send("Please carry on from where you stopped.")} />
               <Composer onSend={a.send} onStop={a.stop} streaming={a.streaming} placeholder="Reply, or ask for a change…" />

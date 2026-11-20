@@ -177,8 +177,9 @@ function UserMessage({ m }: { m: UiMessage }) {
   );
 }
 
-export function Messages({ ui, streaming, onOpen, error, onRetry }: {
+export function Messages({ ui, streaming, onOpen, error, onRetry, options = [], onPick }: {
   ui: UiMessage[]; streaming: boolean; onOpen: (k: AssetKind) => void; error: string | null; onRetry: () => void;
+  options?: string[]; onPick?: (text: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const stick = useRef(true);
@@ -213,6 +214,16 @@ export function Messages({ ui, streaming, onOpen, error, onRetry }: {
               {m.role === "user" ? <UserMessage m={m} /> : <AssistantMessage m={m} live={streaming && i === ui.length - 1} onOpen={onOpen} />}
             </div>
           ))}
+          {!streaming && !error && options.length > 0 && onPick && ui[ui.length - 1]?.role === "assistant" && (
+            <div role="group" aria-label="Suggested replies" className="-mt-2 flex flex-wrap gap-2 pl-10">
+              {options.map((o) => (
+                <button key={o} type="button" onClick={() => onPick(o)}
+                  className="rounded-full border border-line-2 bg-panel/80 px-3 py-1.5 text-left text-[13.5px] text-ink-2 transition-colors hover:border-brand-line hover:bg-wash hover:text-ink">
+                  {o}
+                </button>
+              ))}
+            </div>
+          )}
           {error && (
             <div role="alert" className="flex items-start gap-2.5 rounded-[4px] bg-bad-soft px-3 py-2.5 text-[14px] text-ink">
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-bad" />

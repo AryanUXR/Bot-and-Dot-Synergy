@@ -119,6 +119,8 @@ export interface Project {
   assets: Assets;
   usage?: Usage; // token use for this chat, summed over every model call
   note?: string; // what the reply checker corrected last turn, passed to the model with the next message
+  journey?: import("./journey").JourneySignals; // what the person knows and wants (lib/journey.ts)
+  journey_view?: import("./journey").Journey; // the stage, its criteria and suggested replies, for the UI
 }
 
 export interface Usage { calls: number; input: number; cache_read: number; cache_write: number; output: number; usd: number }
@@ -133,6 +135,7 @@ export type StreamEvent =
   | { type: "tool_done"; id: string; name: string; status: "done" | "error"; summary: string; asset?: AssetKind }
   | { type: "asset"; kind: AssetKind; data: unknown }
   | { type: "title"; title: string }
+  | { type: "journey"; data: import("./journey").Journey }
   | { type: "done" }
   | { type: "error"; message: string };
 

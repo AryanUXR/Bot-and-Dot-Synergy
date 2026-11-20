@@ -7,8 +7,9 @@ import clsx from "clsx";
 import {
   ArrowUp, Square, Sparkles, Check, Copy, ChevronRight, Loader2, AlertCircle, ArrowDown, CornerDownRight,
   Map as MapIcon, Users, FileText, Layers, Phone, Gauge, BookOpen, Target, PenLine, Hammer,
+  Landmark, HeartHandshake, Wrench, Compass, ArrowRight,
 } from "lucide-react";
-import type { AssetKind, UiMessage, UiPart } from "@/lib/types";
+import type { AssetKind, ProjectSummary, UiMessage, UiPart } from "@/lib/types";
 import { TOOL_LABEL } from "./useAssistant";
 import { AtlasOrb } from "./AtlasOrb";
 
@@ -21,9 +22,18 @@ const STARTERS = [
   { icon: Hammer, title: "Build a voice bot and a map", text: "Elder home care in Pune, end to end", prompt: "Build a bot and a dot map for elderly people and families in Pune finding home nurses, attendants and day-care centres near them." },
 ];
 
-export function EmptyState({ name, onPick, onSend, onStop, streaming }: {
+const ROLES = [
+  { icon: Landmark, title: "I lead a district or department", prompt: "I lead a district or department. What could Blue Dots do for us, and what has it shown so far?" },
+  { icon: HeartHandshake, title: "I run a programme or NGO", prompt: "I run a programme or NGO and I have an idea I'd like to try. Where do I start?" },
+  { icon: Wrench, title: "I build or support deployments", prompt: "I build or support deployments (as a programme partner, system integrator, or voice or cloud provider). What would working on Blue Dots involve?" },
+  { icon: Compass, title: "I'm just curious", prompt: "I'm just curious. What is Blue Dots, in simple words?" },
+];
+
+export function EmptyState({ name, onPick, onSend, onStop, streaming, latest, onOpenLatest }: {
   name: string | null; onPick: (t: string) => void; onSend: (t: string) => void; onStop: () => void; streaming: boolean;
+  latest?: ProjectSummary | null; onOpenLatest?: (id: string) => void;
 }) {
+  const first = name?.split(" ")[0];
   return (
     <div className="scroll-quiet flex flex-1 flex-col overflow-y-auto">
       <div className="mx-auto flex w-full max-w-[760px] flex-1 flex-col items-center justify-center px-6 pb-10 pt-6">
@@ -36,18 +46,33 @@ export function EmptyState({ name, onPick, onSend, onStop, streaming }: {
         </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 text-center text-[34px] font-medium leading-tight tracking-[-0.035em] text-ink">
-          Hi {name ?? "there"}
+          {first ? `Hi ${first}` : "Hi, I'm the Blue Dots assistant"}
         </motion.h1>
         <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-1.5 text-center text-[17px] text-ink-2">
-          Which place and which people are we helping today?
+          className="mx-auto mt-2 max-w-[520px] text-center text-[17px] leading-[1.5] text-ink-2">
+          {first
+            ? latest ? "Pick up where you left off, or start something new." : "Tell me about a place and the people you want to help, or ask anything about Blue Dots."
+            : "Tell me a little about you, and I'll start in the right place."}
         </motion.p>
+        {first && latest && onOpenLatest && (
+          <motion.button type="button" onClick={() => onOpenLatest(latest.id)} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="group mx-auto mt-5 flex w-full max-w-[420px] items-center gap-3 rounded-[10px] border border-line-2 bg-panel/80 px-4 py-3 text-left transition-colors hover:border-brand-line hover:bg-wash">
+            <span className="min-w-0 flex-1">
+              <span className="block truncate text-[14.5px] font-medium text-ink">{latest.title}</span>
+              <span className="mt-0.5 flex items-center gap-1.5 text-[12.5px] text-muted">
+                {latest.has.length ? latest.has.map((k) => { const I = ASSET_ICON[k]; return <I key={k} className="h-3.5 w-3.5" aria-label={k} />; }) : "Chat"}
+                <span className="ml-1">· {ago(latest.updated_at)}</span>
+              </span>
+            </span>
+            <ArrowRight className="h-4 w-4 text-muted transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </motion.button>
+        )}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="mt-8 w-full">
           <Composer onSend={onSend} onStop={onStop} streaming={streaming} autoFocus hero />
         </motion.div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75, duration: 0.6 }} className="mt-4 flex flex-wrap justify-center gap-2">
-          {STARTERS.map((s) => (
-            <button key={s.title} onClick={() => onPick(s.prompt)} title={s.text}
+          {(first ? STARTERS : ROLES).map((s) => (
+            <button key={s.title} onClick={() => onPick(s.prompt)} title={s.prompt}
               className="m-btn flex h-9 items-center gap-2 rounded-[8px] border border-line-2 bg-panel/70 px-3 text-[13.5px] text-ink-2 hover:border-brand-line hover:bg-wash hover:text-ink">
               <s.icon className="h-4 w-4 text-muted" /> {s.title}
             </button>
@@ -56,6 +81,15 @@ export function EmptyState({ name, onPick, onSend, onStop, streaming }: {
       </div>
     </div>
   );
+}
+
+function ago(ms: number) {
+  const m = Math.round((Date.now() - ms) / 60000);
+  if (m < 60) return m <= 1 ? "just now" : `${m} min ago`;
+  const h = Math.round(m / 60);
+  if (h < 24) return `${h} h ago`;
+  const d = Math.round(h / 24);
+  return d === 1 ? "yesterday" : `${d} days ago`;
 }
 
 function Thinking({ part, live }: { part: Extract<UiPart, { type: "thinking" }>; live: boolean }) {

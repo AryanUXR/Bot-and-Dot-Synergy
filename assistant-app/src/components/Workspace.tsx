@@ -144,7 +144,8 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
           </div>
           {a.loading ? <div className="flex-1" /> : !a.project || a.project.ui.length === 0 ? (
             <>
-              <EmptyState name={a.name} onPick={(t) => a.send(t)} onSend={a.send} onStop={a.stop} streaming={a.streaming} />
+              <EmptyState name={a.guest ? null : a.name} onPick={(t) => a.send(t)} onSend={a.send} onStop={a.stop} streaming={a.streaming}
+                latest={a.guest ? null : a.projects[0] ?? null} onOpenLatest={(id) => a.open(id)} />
             </>
           ) : (
             <>

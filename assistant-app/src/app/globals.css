@@ -10,7 +10,7 @@
   --color-ink: #f2f6fa;
   --color-ink-2: #c9d3dc;
   --color-muted: #8b98a5;
-  --color-faint: #5b6773;
+  --color-faint: #7d8a97; /* 4.66:1 on wash, 5.07 on panel, 5.42 on canvas (WCAG AA) */
   --color-line: #1d2731;
   --color-line-2: #28343f;
   --color-canvas: #0b1015;
@@ -125,6 +125,10 @@ body {
 .gm-style .gm-style-iw-c { border-radius: 6px !important; box-shadow: var(--shadow-pop) !important; }
 .gm-style .gm-style-iw-chr { height: 0; }
 .gm-style .gm-style-iw-chr button { position: absolute !important; right: 0; top: 0; }
+
+/* One visible focus ring for every control (WCAG 2.4.7, 1.4.11). */
+:focus-visible { outline: 2px solid #8fb4ff; outline-offset: 2px; }
+.dot-pin:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }

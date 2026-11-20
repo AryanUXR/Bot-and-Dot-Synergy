@@ -9,6 +9,13 @@ import { PersonaPhoto } from "./Canvas";
 
 type CallState = "idle" | "placing" | "ringing" | "error";
 
+// BCP 47 code for the bot's spoken language, so screen readers use the right voice (WCAG 3.1.2).
+function langCode(language?: string) {
+  const l = (language ?? "").toLowerCase();
+  const map: [RegExp, string][] = [[/kannada/, "kn"], [/tamil/, "ta"], [/telugu/, "te"], [/marathi/, "mr"], [/bengali|bangla/, "bn"], [/gujarati/, "gu"], [/malayalam/, "ml"], [/odia|oriya/, "or"], [/punjabi/, "pa"], [/assamese/, "as"], [/urdu/, "ur"], [/hindi|hinglish/, "hi"]];
+  return map.find(([re]) => re.test(l))?.[1] ?? "en";
+}
+
 export default function BotPanel({ projectId, assets, onToast, publicView = false }: {
   projectId: string; assets: Assets; onToast?: (t: string) => void; publicView?: boolean;
 }) {
@@ -52,14 +59,14 @@ export default function BotPanel({ projectId, assets, onToast, publicView = fals
           <span className="inline-flex h-5 items-center gap-1 rounded-[3px] bg-[#1f2a35] px-1.5 text-[13px] text-[#c9d3dc]"><Languages className="h-3 w-3" /> {b.language}</span>
           <span className="inline-flex h-5 items-center rounded-[3px] bg-[#1f2a35] px-1.5 text-[13px] text-[#c9d3dc]">{b.place}</span>
         </div>
-        <h2 className="mt-5 text-[28px] font-bold leading-tight tracking-[-0.01em] text-ink">Pick someone to be, and {b.bot_name} will call you.</h2>
+        <h1 className="mt-5 text-[28px] font-bold leading-tight tracking-[-0.01em] text-ink">Pick someone to be, and {b.bot_name} will call you.</h1>
         <p className="mt-1.5 text-[15px] text-muted">Each persona is a fictional person in {b.place}. Take the call as them and ask what they would ask.</p>
 
-        <div className="mt-6 grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]">
+        <div role="group" aria-label="Choose a persona for the call" className="mt-6 grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]">
           {personas.map((p) => {
             const on = p.id === pick;
             return (
-              <button key={p.id} onClick={() => setPick(p.id)}
+              <button key={p.id} type="button" aria-pressed={on} onClick={() => setPick(p.id)}
                 className={clsx("flex gap-3 rounded-[6px] p-2.5 text-left transition-colors",
                   on ? "bg-brand-soft shadow-[0_0_0_1.5px_#2563eb]" : "shadow-card hover:bg-wash")}>
                 <PersonaPhoto projectId={projectId} p={p} photoKey={assets.photos?.[p.id]} auto={!publicView} className="h-14 w-14 shrink-0 rounded-[4px]" />
@@ -99,7 +106,7 @@ export default function BotPanel({ projectId, assets, onToast, publicView = fals
         {assets.bot?.greeting && (
           <div className="mt-6 flex gap-3 rounded-[4px] bg-wash px-4 py-3.5">
             <Phone className="mt-1 h-4 w-4 shrink-0 text-muted" /><div><div className="text-[13px] text-muted">How {b.bot_name} opens a call</div>
-            <p className="mt-1 text-[16px] leading-relaxed text-ink">“{assets.bot.greeting}”</p></div>
+            <p lang={langCode(b.language)} className="mt-1 text-[16px] leading-relaxed text-ink">“{assets.bot.greeting}”</p></div>
           </div>
         )}
       </div>

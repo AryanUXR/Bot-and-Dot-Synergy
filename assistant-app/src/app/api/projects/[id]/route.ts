@@ -16,6 +16,7 @@ export async function GET(_: Request, { params }: Ctx) {
   if (r.error) return r.error;
   const { transcript: _t, ...rest } = r.p; // eslint-disable-line @typescript-eslint/no-unused-vars
   rest.assets = { ...rest.assets, photos: await photoRefs(r.p) };
+  if (rest.assets.bot) rest.assets.bot = { ...rest.assets.bot, prompt: undefined };
   return Response.json({ project: rest });
 }
 

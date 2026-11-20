@@ -28,14 +28,14 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
   const [searching, setSearching] = useState(false);
   const list = projects.filter((p) => p.title.toLowerCase().includes(q.toLowerCase()));
   return (
-    <motion.aside initial={false} animate={{ width: open ? 248 : 0 }} transition={{ duration: settled ? 0.2 : 0, ease: [0.2, 0.8, 0.2, 1] }}
+    <motion.aside initial={false} animate={{ width: open ? 248 : 0 }} inert={!open} aria-label="Your chats" transition={{ duration: settled ? 0.2 : 0, ease: [0.2, 0.8, 0.2, 1] }}
       className={clsx(!settled && "max-lg:hidden", "shrink-0 overflow-hidden bg-side shadow-[inset_-1px_0_0_rgba(255,255,255,0.07)] max-lg:fixed max-lg:inset-y-0 max-lg:left-0 max-lg:z-50 max-lg:shadow-pop")}>
       <div className="flex h-full w-[248px] flex-col">
         <div className="group flex h-[52px] items-center gap-2 px-3">
           <BrandChip compact />
           <EnvBadge />
           <span className="min-w-0 flex-1" />
-          <button onClick={onToggle} aria-label="Close sidebar" className="grid h-6 w-6 place-items-center rounded-[4px] text-faint opacity-0 transition hover:bg-press hover:text-muted group-hover:opacity-100 max-lg:opacity-100">
+          <button onClick={onToggle} aria-label="Close sidebar" className="grid h-6 w-6 place-items-center rounded-[4px] text-faint opacity-0 transition hover:bg-press hover:text-muted focus-visible:opacity-100 group-hover:opacity-100 max-lg:opacity-100">
             <ChevronsLeft className="h-4 w-4" />
           </button>
         </div>
@@ -64,7 +64,7 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
                     <span className={clsx("truncate text-[14px]", current === p.id ? "font-medium text-ink" : "text-ink-2")}>{p.title}</span>
                   </button>
                   <button onClick={() => { if (confirm(`Delete "${p.title}"? Its chat and work are removed. The voice bot stays on the voice platform.`)) onDelete(p.id); }}
-                    aria-label={`Delete ${p.title}`} className="mr-1 hidden h-6 w-6 shrink-0 place-items-center rounded-[4px] text-faint hover:bg-press hover:text-ink group-hover:grid">
+                    aria-label={`Delete ${p.title}`} className="mr-1 grid h-6 w-6 shrink-0 place-items-center rounded-[4px] text-faint opacity-0 hover:bg-press hover:text-ink focus-visible:opacity-100 group-hover:opacity-100 group-focus-within:opacity-100 max-lg:opacity-100">
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
                 </div>
@@ -111,12 +111,13 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
 
   return (
     <div className="flex h-screen overflow-hidden">
+      <a href="#main" className="sr-only z-[3000] rounded-[6px] bg-brand px-3 py-2 text-[14px] text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Skip to chat</a>
       <Sidebar open={side} settled={settled} projects={a.projects} current={a.project?.id ?? null} name={a.name}
         onNew={() => { a.open(null); if (narrow()) setSide(false); }} onOpen={(id) => { a.open(id); if (narrow()) setSide(false); }}
         onDelete={(id) => a.remove(id)} onToggle={() => setSide(false)} />
 
       {side && settled && <button aria-label="Close sidebar" onClick={() => setSide(false)} className="fixed inset-0 z-40 bg-[rgba(15,15,15,0.4)] lg:hidden" />}
-      <main className="relative flex min-w-0 flex-1">
+      <main id="main" tabIndex={-1} className="relative flex min-w-0 flex-1 focus:outline-none">
         <NetworkBackground className="pointer-events-none absolute inset-0 h-full w-full" />
         <div className={clsx("relative z-[1] flex min-w-0 flex-col", showCanvas ? "basis-full lg:basis-[42%] lg:shadow-[inset_-1px_0_0_rgba(255,255,255,0.08)]" : "basis-full")}>
           <div className="flex h-[45px] shrink-0 items-center gap-1 px-3">
@@ -146,8 +147,8 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
           {showCanvas && a.project && (
             <motion.div key="canvas" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
               className="absolute inset-0 z-30 min-w-0 bg-panel lg:relative lg:z-[1] lg:flex-1">
-              <Canvas projectId={a.project.id} title={a.project.title} assets={a.project.assets} focus={focus} fresh={a.fresh} running={a.running}
-                onSeen={a.seen} onClose={() => setCanvasOpen(false)} onPhoto={a.setPhoto} onToast={setToast} />
+              <Canvas projectId={a.project.id} title={a.project.title} assets={a.project.assets} focus={focus} fresh={a.fresh} running={a.running} busy={a.streaming}
+                onAsk={a.send} onSeen={a.seen} onClose={() => setCanvasOpen(false)} onPhoto={a.setPhoto} onToast={setToast} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -156,7 +157,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity: 0, y: 8, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 8, x: "-50%" }}
-            className="fixed bottom-6 left-1/2 z-[2000] rounded-[6px] bg-[#262626] px-3.5 py-2 text-[14px] text-white shadow-pop">{toast}</motion.div>
+            role="status" className="fixed bottom-6 left-1/2 z-[2000] rounded-[6px] bg-[#262626] px-3.5 py-2 text-[14px] text-white shadow-pop">{toast}</motion.div>
         )}
       </AnimatePresence>
     </div>

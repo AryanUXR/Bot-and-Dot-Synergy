@@ -164,3 +164,17 @@ export async function count(key: string): Promise<number> {
   const raw = await store().get(`count:${key}`);
   return raw ? Number(raw) : 0;
 }
+
+// Token use per day, summed across every chat (for the admin and the cost page).
+export async function addDailyUsage(u: import("./types").Usage) {
+  const key = `usage:${new Date().toISOString().slice(0, 10)}`;
+  const raw = await store().get(key);
+  const cur = raw ? JSON.parse(raw) : { calls: 0, input: 0, cache_read: 0, cache_write: 0, output: 0, usd: 0 };
+  for (const k of Object.keys(cur)) cur[k] += (u as unknown as Record<string, number>)[k] ?? 0;
+  cur.usd = Math.round(cur.usd * 10000) / 10000;
+  await store().set(key, JSON.stringify(cur));
+}
+export async function getDailyUsage(day: string) {
+  const raw = await store().get(`usage:${day}`);
+  return raw ? JSON.parse(raw) : null;
+}

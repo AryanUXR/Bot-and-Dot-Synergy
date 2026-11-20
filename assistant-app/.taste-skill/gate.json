@@ -6,23 +6,7 @@
  "status": "active",
  "history": [
   {
-   "at": "2026-11-19T14:16:42.394Z",
-   "mode": "hook",
-   "host": "claude",
-   "decision": "block",
-   "reason": "a build is active in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app, but no page was found in /Users/turock/Desktop/EkStep Foundation",
-   "stopHookActive": false
-  },
-  {
-   "at": "2026-11-19T14:16:49.040Z",
-   "mode": "hook",
-   "host": "claude",
-   "decision": "allow",
-   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
-   "stopHookActive": true
-  },
-  {
-   "at": "2026-11-19T14:22:04.395Z",
+   "at": "2026-11-20T02:41:30.472Z",
    "mode": "hook",
    "host": "claude",
    "decision": "allow",
@@ -30,7 +14,7 @@
    "stopHookActive": false
   },
   {
-   "at": "2026-11-19T14:27:25.815Z",
+   "at": "2026-11-20T02:47:33.882Z",
    "mode": "hook",
    "host": "claude",
    "decision": "allow",
@@ -38,7 +22,143 @@
    "stopHookActive": false
   },
   {
-   "at": "2026-11-19T14:29:25.546Z",
+   "at": "2026-11-20T02:49:23.364Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T02:55:20.018Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T02:58:47.131Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:00:13.524Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:09:45.981Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:11:34.444Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:18:25.611Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:20:47.375Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:22:02.981Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:22:54.738Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:24:33.006Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:30:55.179Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:43:15.167Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:45:05.243Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:46:24.751Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:48:35.409Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T03:56:52.368Z",
+   "mode": "hook",
+   "host": "claude",
+   "decision": "allow",
+   "reason": "no page was found in /Users/turock/Desktop/EkStep Foundation/Bot-and-Dot-Synergy/assistant-app; told once, stop allowed",
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-20T04:03:25.352Z",
    "mode": "hook",
    "host": "claude",
    "decision": "allow",

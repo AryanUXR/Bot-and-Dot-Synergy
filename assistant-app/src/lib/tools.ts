@@ -88,13 +88,26 @@ const MapInput = z.object({
   })).min(12).max(40),
 });
 
+// The voice bot is written in the structure of the hand-built reference prompts
+// (use-cases/blue-dots-pune-petcare and -silvercare). The server assembles the sections
+// and adds the rules every bot must carry, so no build can leave them out.
+const spoken = (what: string) => z.string().describe(`${what}. Spoken line, in the bot's language, in quotes-free plain text.`);
 const BotInput = z.object({
-  conversation_prompt: z.string().describe(
-    "The bot's conversation prompt, following the prompt anatomy: identity and tone, the greeting (use ${persona} only through the persona block the server adds), how to find out what the caller needs, how to answer from the directory (two nearest options with distances), safety rules for this domain, and how to handle silence. Instructions in English; every spoken line quoted in the bot's language. Do not include the directory or the closing rule; the server adds them.",
-  ),
-  greeting: z.string().describe("The first spoken line, in the bot's language"),
-  closing_line: z.string().describe("The spoken closing line in the bot's language, ending with the English word Goodbye"),
-  overtime_line: z.string().describe("Spoken line in the bot's language for when the call runs out of time"),
+  role: z.string().describe("Who the bot is and its tone, 2 to 4 sentences, in English. Name, what it helps with, who calls it."),
+  language_rules: z.string().describe("How the bot speaks, in English: which language or mix, everyday words to prefer, words to avoid. 2 to 4 sentences."),
+  greeting: spoken("The first line of the call: who the bot is and an open question about what they need"),
+  understand: z.string().describe("Phase 2 instructions in English: what to find out (the need, the area, timing) in at most two short questions, with those questions as spoken lines in the bot's language. No example places or distances."),
+  match: z.string().describe("Phase 3 instructions in English: how to choose from the directory for this domain (what counts as a good match, what to say when nothing fits). No example places, names or distances."),
+  anything_else_line: spoken("Asked after every answer: is there anything else"),
+  reask_line: spoken("Said when the caller's reply didn't come through: please say that again"),
+  emergency_line: spoken("For an emergency in this domain: call 112 now, said with the number as spoken digits"),
+  safety_rules: z.array(z.object({
+    when: z.string().describe("The situation, in English"),
+    say: spoken("What the bot says"),
+  })).min(2).max(6).describe("Domain safety rules beyond emergencies, e.g. a domain helpline (181, 1098, 14567) when someone is unsafe, distressed or lonely; scams asking for money in advance"),
+  prohibited: z.array(z.string()).min(2).max(8).describe("Things this bot must never do in this domain, in English (e.g. never say which medicine to take). Never quote an offensive word, even to forbid it: write 'use respectful, person-first words' instead."),
+  closing_line: spoken("The closing line, ending with the English word Goodbye"),
+  overtime_line: spoken("For when the call runs out of time, ending with Goodbye"),
   voice_gender: z.enum(["female", "male"]),
 });
 
@@ -140,7 +153,7 @@ function checkClean(texts: string[]) {
 
 export type Emit = (e: StreamEvent) => void;
 
-export async function runTool(name: string, rawInput: unknown, project: Project, emit: Emit): Promise<{ ok: boolean; result: string; summary: string }> {
+export async function runTool(name: string, rawInput: unknown, project: Project, emit: Emit, opts: { simulate?: boolean } = {}): Promise<{ ok: boolean; result: string; summary: string }> {
   const def = DEFS.find((d) => d.name === name);
   if (!def) return { ok: false, result: `Unknown tool ${name}`, summary: "Unknown tool" };
   const parsed = def.schema.safeParse(rawInput);
@@ -211,27 +224,31 @@ export async function runTool(name: string, rawInput: unknown, project: Project,
         if (!a.brief || !a.personas || !a.map || !a.schema) {
           return { ok: false, result: "Needs update_brief, set_personas, set_schema and build_map first.", summary: "Needs the brief, personas and map first" };
         }
-        if (!/goodbye\s*[.!]?\s*$/i.test(b.closing_line.trim())) {
-          return { ok: false, result: "closing_line must end with the English word Goodbye.", summary: "Needs another try" };
+        if (!/goodbye\s*[.!]?\s*$/i.test(b.closing_line.trim()) || !/goodbye\s*[.!]?\s*$/i.test(b.overtime_line.trim())) {
+          return { ok: false, result: "closing_line and overtime_line must end with the English word Goodbye.", summary: "Needs another try" };
+        }
+        if (!/112|एक[- ]एक[- ]दो|ಒಂದು|one one two/i.test(b.emergency_line)) {
+          return { ok: false, result: "emergency_line must tell the caller to call 112.", summary: "Needs another try" };
         }
         const sector = (id: string) => a.schema!.sectors.find((s) => s.id === id)?.label ?? id;
         const instructions = composeBotPrompt(project, b, directory(a.map, a.personas, sector));
         if (a.bot?.agent_id) {
-          await updateAgentInstructions(a.bot.agent_id, instructions);
-          a.bot = { ...a.bot, greeting: b.greeting, voice_gender: b.voice_gender };
+          if (!opts.simulate) await updateAgentInstructions(a.bot.agent_id, instructions);
+          a.bot = { ...a.bot, greeting: b.greeting, voice_gender: b.voice_gender, prompt: instructions };
         } else {
           const made = await count(`bots:${project.workspace}`);
           if (made >= config.maxBotsPerWorkspace) {
             return { ok: false, result: "This workspace has reached its limit of voice bots. Tell the person and suggest reusing an existing project.", summary: "Bot limit reached" };
           }
-          const id = await createAgent({
+          const id = opts.simulate ? `sim-${project.id}` : await createAgent({
             name: `${a.brief.bot_name} · ${a.brief.title} (Assistant)`.slice(0, 90),
             instructions, language: a.brief.language, gender: b.voice_gender, overtime_line: b.overtime_line,
           });
-          await bump(`bots:${project.workspace}`);
-          a.bot = { agent_id: id, name: a.brief.bot_name, language: a.brief.language, voice_gender: b.voice_gender, greeting: b.greeting, created_at: Date.now(), calls: 0 };
+          if (!opts.simulate) await bump(`bots:${project.workspace}`);
+          a.bot = { agent_id: id, name: a.brief.bot_name, language: a.brief.language, voice_gender: b.voice_gender, greeting: b.greeting, created_at: Date.now(), calls: 0, prompt: instructions };
         }
-        emit({ type: "asset", kind: "bot", data: a.bot });
+        const { prompt: _hidden, ...botView } = a.bot; // eslint-disable-line @typescript-eslint/no-unused-vars
+        emit({ type: "asset", kind: "bot", data: botView });
         return { ok: true, result: `Voice bot "${a.brief.bot_name}" is live in ${a.brief.language}. The person can call it from the Bot tab as any persona.`, summary: `${a.brief.bot_name} is live` };
       }
     }
@@ -244,31 +261,63 @@ export async function runTool(name: string, rawInput: unknown, project: Project,
 
 function composeBotPrompt(project: Project, b: z.infer<typeof BotInput>, dir: string) {
   const a = project.assets;
+  const name = a.brief!.bot_name;
   const lang = a.brief!.language;
+  const q = (t: string) => `"${t.trim().replace(/^["“]|["”]$/g, "")}"`;
   const personaBlock = a.personas!.map((p) =>
-    `- ${p.id}: ${p.name}, ${p.age}, ${p.occupation}, lives in ${p.area}. ${p.side === "seeker" ? "Looking for" : "Offers / wants"}: ${p.need}`).join("\n");
-  return `${b.conversation_prompt.trim()}
+    `- \`${p.id}\`: ${p.name}, ${p.age}, ${p.occupation}, in ${p.area}. ${p.side === "seeker" ? "Looking for" : "Offers, and looks for"}: ${p.need}`).join("\n");
+  return `# ${name}: conversation prompt (${lang})
 
-# Who is calling
-This call is for the persona with id \${persona}. Treat the caller as that person, living in their area, and use that area for distances. Personas:
+## Role
+${b.role.trim()}
+
+## Input variables
+- \`\${persona}\`: the id of the persona this call is for (see Persona context). Treat the caller as that person, living in their area, and measure distances from that area. If it is empty or unknown, ask which area they are calling from.
+
+## Language rules
+${b.language_rules.trim()}
+- Short sentences. One question at a time.
+- Say helpline numbers digit by digit.
+
+## Call flow
+
+### Phase 1: Greeting (1 turn)
+Say: ${q(b.greeting)}
+
+### Phase 2: Understand the need (1 to 2 turns)
+${b.understand.trim()}
+
+### Phase 3: Match (1 to 2 turns)
+${b.match.trim()}
+- Answer only from the Directory. Give at most the two nearest suitable options, each with its area and its distance from the caller's area as listed. Never invent a place, number, address, fee, timing or distance.
+- After each answer, ask if there is anything else: ${q(b.anything_else_line)}
+
+### Phase 4: Close (1 turn, exactly once)
+When the caller has nothing else, say: ${q(b.closing_line)}
+Say Goodbye once, at the very end, and nothing after it. Never close because of silence.
+
+## Safety rules (these override the call flow)
+- **Emergency, 112** (someone is hurt, in danger or very unwell): first say ${q(b.emergency_line)}
+${b.safety_rules.map((r) => `- **${r.when.trim()}**: say ${q(r.say)}`).join("\n")}
+- **Never ask** for an address, phone number, Aadhaar, bank details, income or health details. The area is enough.
+- **Never promise** that someone is available, a price, a timing or that a place is safe. Say they can ask there.
+- **If you hear nothing, or get a nudge after your turn**, the caller may have spoken and not come through. Say ${q(b.reask_line)} If it happens again, ask a simpler question.
+
+## Persona context
 ${personaBlock}
-If \${persona} is empty or unknown, ask which area they are calling from.
 
-# Greeting
-Open with: "${b.greeting}"
+## Prohibited
+${b.prohibited.map((x) => `- ${x.trim()}`).join("\n")}
+- No medical, legal or financial advice.
+- No names, numbers or addresses that are not in the Directory, except national helplines.
+- Never claim to book, transfer or connect anyone: they can see the details on the Blue Dots map.
+- Never ask about community, religion or family status.
+- If the call runs out of time, say ${q(b.overtime_line)}
 
-# Directory
-Answer only from this list. It is fictional demo data. Give at most the two nearest suitable options, with the distance from the caller's area. Never invent a place, number, address, fee or time that is not listed. Providers who are looking for clients can be told about the requests below.
+## Directory
+This is fictional demo data. It is the only source of places and distances.
 
-${dir}
-
-# Always
-- Speak only ${lang === "Hinglish" ? "everyday Hinglish" : lang}. Short sentences; one question at a time.
-- Never give medical, legal or financial advice. Never promise an outcome. You cannot book, transfer or connect anyone: say they can see the details on the map.
-- No phone numbers or addresses, except national helplines.
-- If you hear nothing, or get a nudge after your turn, the caller may have spoken and not come through. Never stay silent: ask again briefly. If it happens twice, ask a simpler question. Never close because of silence.
-- After each answer, ask if there is anything else.
-- When the caller is done, say: "${b.closing_line}" Say Goodbye once, at the very end, and nothing after it.`;
+${dir}`;
 }
 
 export const LANGUAGE_NAMES = Object.keys(LANGUAGES);

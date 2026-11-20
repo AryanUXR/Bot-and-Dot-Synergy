@@ -45,11 +45,13 @@ function loadMaps(): Promise<void> {
 
 function esc(s: string) { return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!); }
 
-function pinEl(icon: string, request: boolean, delay: number) {
-  const svg = renderToStaticMarkup(<SectorIcon name={icon} />).replace("<svg", `<svg width="15" height="15" style="stroke:${request ? BLUE : "#fff"}"`);
-  const el = document.createElement("div");
+function pinEl(icon: string, request: boolean, delay: number, label: string) {
+  const svg = renderToStaticMarkup(<SectorIcon name={icon} />).replace("<svg", `<svg width="15" height="15" aria-hidden="true" style="stroke:${request ? BLUE : "#fff"}"`);
+  const el = document.createElement("button");
+  el.type = "button";
   el.className = "dot-pin";
-  el.style.cssText = `position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:999px;cursor:pointer;display:grid;place-items:center;
+  el.setAttribute("aria-label", label);
+  el.style.cssText = `position:absolute;width:30px;height:30px;border:0;padding:0;margin:-15px 0 0 -15px;border-radius:999px;cursor:pointer;display:grid;place-items:center;
     background:${request ? "#fff" : BLUE};box-shadow:0 0 0 2.5px ${request ? BLUE : "#0b1015"},0 0 14px rgba(37,99,235,.55);
     opacity:0;transform:scale(.6);transition:opacity .35s ease ${delay}ms, transform .35s cubic-bezier(.2,.9,.3,1.3) ${delay}ms`;
   el.innerHTML = svg;
@@ -67,6 +69,7 @@ export default function MapView({ map, schema }: { map: MapData; schema?: Schema
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [filter, setFilter] = useState<string | null>(null);
+  const [view, setView] = useState<"map" | "list">("map");
   const sectors = useMemo(() => schema?.sectors ?? [], [schema]);
 
   useEffect(() => {
@@ -103,7 +106,8 @@ export default function MapView({ map, schema }: { map: MapData; schema?: Schema
     const visible = map.dots.filter((d) => !filter || d.sector === filter);
     visible.forEach((d, i) => {
       const s = sectorOf(d.sector);
-      const node = pinEl(s?.icon ?? "map-pin", d.kind === "request", Math.min(i * 22, 700));
+      const node = pinEl(s?.icon ?? "map-pin", d.kind === "request", Math.min(i * 22, 700),
+        `${d.name}, ${d.kind === "request" ? "looking for help" : "offers help"}, ${s?.label ?? d.sector}, ${d.area}`);
       node.addEventListener("click", (e) => {
         e.stopPropagation();
         info.current?.setContent(`<div style="padding:4px 6px 2px;max-width:250px;font-family:var(--font-sans)">
@@ -141,6 +145,7 @@ export default function MapView({ map, schema }: { map: MapData; schema?: Schema
     m.addListener("click", () => info.current?.close());
   }, [ready, map, sectors, filter]);
 
+  const listed = useMemo(() => map.dots.filter((d) => !filter || d.sector === filter), [map.dots, filter]);
   const counts = useMemo(() => Object.fromEntries(sectors.map((s) => [s.id, map.dots.filter((d) => d.sector === s.id).length])), [sectors, map.dots]);
 
   return (
@@ -150,18 +155,39 @@ export default function MapView({ map, schema }: { map: MapData; schema?: Schema
       {failed && <div className="absolute inset-0 grid place-items-center text-[14px] text-muted">The map couldn&apos;t load. Check the connection and reload.</div>}
       {sectors.length > 0 && (
         <div className="pointer-events-none absolute inset-x-3 top-3 z-10 flex flex-wrap gap-1.5">
-          <button onClick={() => setFilter(null)}
+          <button type="button" aria-pressed={!filter} onClick={() => setFilter(null)}
             className={clsx("pointer-events-auto rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors", !filter ? "bg-white text-[#0f0f0f]" : "bg-panel text-ink-2 hover:bg-wash")}>
             All · {map.dots.length}
           </button>
           {sectors.map((s) => (
-            <button key={s.id} onClick={() => setFilter((f) => (f === s.id ? null : s.id))}
+            <button key={s.id} type="button" aria-pressed={filter === s.id} onClick={() => setFilter((f) => (f === s.id ? null : s.id))}
               className={clsx("pointer-events-auto flex items-center gap-1.5 rounded-[5px] px-2 py-1 text-[13px] shadow-pop transition-colors",
                 filter === s.id ? "bg-white text-[#0f0f0f]" : "bg-panel text-ink-2 hover:bg-wash")}>
-              <SectorIcon name={s.icon} className="h-3.5 w-3.5" /> {s.label} <span className={filter === s.id ? "text-white/70" : "text-faint"}>{counts[s.id]}</span>
+              <SectorIcon name={s.icon} className="h-3.5 w-3.5" /> {s.label} <span className={filter === s.id ? "text-[#3d4652]" : "text-faint"}>{counts[s.id]}</span>
             </button>
           ))}
+          <button type="button" aria-pressed={view === "list"} onClick={() => setView((v) => (v === "map" ? "list" : "map"))}
+            className="pointer-events-auto ml-auto flex items-center gap-1.5 rounded-[5px] bg-panel px-2 py-1 text-[13px] text-ink-2 shadow-pop hover:bg-wash">
+            {view === "map" ? "Show as a list" : "Show the map"}
+          </button>
         </div>
+      )}
+      {view === "list" && (
+        <section aria-label="Dots as a list" tabIndex={0} className="scroll-quiet absolute inset-0 z-[5] overflow-y-auto bg-canvas px-4 pb-10 pt-16">
+          <p className="mb-3 text-[13px] text-muted">{listed.length} dots{filter ? ` in ${sectors.find((s) => s.id === filter)?.label ?? filter}` : ""}. Everyone here is fictional.</p>
+          <ul className="space-y-2">
+            {listed.map((d, i) => (
+              <li key={i} className="rounded-[6px] bg-panel px-3 py-2.5 shadow-card">
+                <div className="flex flex-wrap items-center gap-2 text-[12px]">
+                  <span className="rounded-full bg-brand-soft px-2 py-0.5 text-[#8fb4ff]">{sectors.find((s) => s.id === d.sector)?.label ?? d.sector}</span>
+                  <span className="text-muted">{d.kind === "request" ? "Looking for help" : "Offers help"} · {d.area}{d.hours ? ` · ${d.hours}` : ""}</span>
+                </div>
+                <div className="mt-1 text-[15px] font-medium text-ink">{d.name}</div>
+                <div className="text-[13.5px] leading-relaxed text-ink-2">{d.detail}</div>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
       <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-3 rounded-[5px] bg-panel px-2.5 py-1 text-[12px] text-ink-2 shadow-pop">
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-brand ring-2 ring-white" /> Offers help</span>

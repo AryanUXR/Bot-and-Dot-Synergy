@@ -103,8 +103,42 @@ function ToolRow({ part, onOpen }: { part: Extract<UiPart, { type: "tool" }>; on
   );
 }
 
+// Source markers like [KD p.7] (or the older "(KD p.7)") become small grey superscripts
+// that name the document on hover, so answers read naturally but stay traceable.
+const SOURCE_NAMES: Record<string, string> = {
+  KD: "The Blue Dots AI Economy: Key Details",
+  GZ: "Ghaziabad Future Ready deck",
+  PQ: "Blue Dots Personas and Question Map",
+  DS: "Blue Dots documentation site",
+};
+const SOURCE_RE = /\s?[[(]((?:KD|GZ|PQ|DS)\b[^\])]{0,40})[\])]/g;
+function sourceTitle(tag: string) {
+  return tag.split(/[;,] (?=KD|GZ|PQ|DS)/).map((t) => {
+    const key = t.trim().slice(0, 2);
+    const rest = t.trim().slice(2).replace(/^:\s*/, "").trim();
+    return `${SOURCE_NAMES[key] ?? key}${rest ? `, ${rest.replace(/^p\.\s?(\S*[–-]\S*)/, "pages $1").replace(/^p\./, "page ").replace(/^slide\s(\S*[–-])/, "slides $1")}` : ""}`;
+  }).join("; ");
+}
+function withSourceLinks(text: string) {
+  return text.replace(SOURCE_RE, (_m, tag: string) => ` [${tag.trim()}](#src:${encodeURIComponent(tag.trim())})`);
+}
+
 const Markdown = memo(function Markdown({ text }: { text: string }) {
-  return <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: (p) => <a {...p} target="_blank" rel="noreferrer" /> }}>{text}</ReactMarkdown>;
+  return (
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={{
+      a: ({ href, children, ...p }) => {
+        if (href?.startsWith("#src:")) {
+          const tag = decodeURIComponent(href.slice(5));
+          return (
+            <sup title={`Source: ${sourceTitle(tag)}`} className="ml-0.5 cursor-help rounded-[3px] bg-wash px-1 py-px align-super text-[10.5px] font-normal tracking-normal text-faint no-underline">
+              {tag}
+            </sup>
+          );
+        }
+        return <a href={href} {...p} target="_blank" rel="noreferrer">{children}</a>;
+      },
+    }}>{withSourceLinks(text)}</ReactMarkdown>
+  );
 });
 
 function AssistantMessage({ m, live, onOpen }: { m: UiMessage; live: boolean; onOpen: (k: AssetKind) => void }) {
@@ -152,8 +186,22 @@ export function Messages({ ui, streaming, onOpen, error, onRetry }: {
   useLayoutEffect(() => { const el = ref.current; if (el && stick.current) el.scrollTop = el.scrollHeight; });
   useEffect(() => { stick.current = true; setAway(false); }, [ui.length]);
 
+  // Screen readers: say when a reply starts, and read it once it has finished (WCAG 4.1.3).
+  const [said, setSaid] = useState("");
+  const wasStreaming = useRef(streaming);
+  useEffect(() => {
+    if (streaming && !wasStreaming.current) setSaid("The assistant is replying.");
+    if (!streaming && wasStreaming.current) {
+      const last = ui[ui.length - 1];
+      const text = last?.role === "assistant" ? last.parts.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join(" ") : "";
+      setSaid(text ? "The assistant replied: " + text.replace(/\[[^\]]*\]/g, "").replace(/[*_#`>]/g, "").replace(/\s+/g, " ").trim() : "");
+    }
+    wasStreaming.current = streaming;
+  }, [streaming, ui]);
+
   return (
     <div className="relative min-h-0 flex-1">
+      <div aria-live="polite" className="sr-only">{said}</div>
       <div ref={ref} onScroll={(e) => {
         const el = e.currentTarget;
         const near = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
@@ -166,7 +214,7 @@ export function Messages({ ui, streaming, onOpen, error, onRetry }: {
             </div>
           ))}
           {error && (
-            <div className="flex items-start gap-2.5 rounded-[4px] bg-bad-soft px-3 py-2.5 text-[14px] text-ink">
+            <div role="alert" className="flex items-start gap-2.5 rounded-[4px] bg-bad-soft px-3 py-2.5 text-[14px] text-ink">
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-bad" />
               <div className="flex-1">{error}</div>
               <button onClick={onRetry} className="text-muted underline underline-offset-2 hover:text-ink">Try again</button>

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local data store
 /.data
+
+# simulation runs (reports are summarised in sim/RESULTS.md)
+/sim/runs/

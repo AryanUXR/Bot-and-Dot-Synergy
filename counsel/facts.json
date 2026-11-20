@@ -1,0 +1,1207 @@
+{
+ "about": "Every figure the Blue Dots assistant may state. Each fact carries the exact sentence from the source (evidence) and, where the place is not in that sentence, the sentence that names the place (place_evidence). counsel/check_facts.mjs checks every quote against counsel/sources and every number in the claim against the quotes. Edit this file, run the check, then bake. 'note' is shown to the assistant; 'editor_note' is for the team only and is not baked.",
+ "sources": {
+  "KD": "blue-dots-ai-economy-key-details.txt",
+  "GZ": "ghaziabad-future-ready-deck.txt",
+  "PQ": "blue-dots-personas-and-question-map.txt",
+  "DS": "docs-site-selected-pages.txt"
+ },
+ "places": [
+  "Ghaziabad",
+  "Hubli-Dharwad",
+  "Across the pilots",
+  "Basti",
+  "Udupi",
+  "National",
+  "Blue Dots overall",
+  "Startup pilots",
+  "Illustrative",
+  "Projection"
+ ],
+ "facts": [
+  {
+   "id": "F1",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "jobs on national portals",
+   "claim": "National employment portals listed 97 local jobs in Ghaziabad.",
+   "cite": "KD p.7",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "In Ghaziabad, national employment portals listed 97 local jobs"
+    }
+   ]
+  },
+  {
+   "id": "F2",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "MSMEs surfaced jobs, job seekers visible",
+   "claim": "In Ghaziabad, fewer than 10% of MSMEs surfaced over 12,000 jobs, and 16,000 job seekers became visible.",
+   "cite": "KD p.7",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "In Ghaziabad, fewer than 10% of MSMEs surfaced over 12,000 jobs, and 16,000 job seekers became visible."
+    }
+   ]
+  },
+  {
+   "id": "F3",
+   "places": [
+    "Ghaziabad",
+    "Across the pilots"
+   ],
+   "topic": "applications within 5 km, proximity",
+   "claim": "Over 70% of applications went to opportunities within 5 km.",
+   "cite": "KD p.7; GZ slide 9",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Over 70% of applications went to opportunities within 5 km."
+    }
+   ],
+   "place_evidence": {
+    "src": "GZ",
+    "text": "IN GHAZIABAD ACROSS 200 DISTRICTS IF SCALED UP MSME jobs that become discoverable"
+   },
+   "note": "KD gives no district; the GZ deck shows it for Ghaziabad.",
+   "editor_note": "Pranay's research paper uses a different operational figure (70% within 15 km); not in these sources."
+  },
+  {
+   "id": "F4",
+   "places": [
+    "Ghaziabad",
+    "Across the pilots"
+   ],
+   "topic": "targeted placement drives vs job fairs conversion, placement rate",
+   "claim": "Targeted placement drives converted at over 50%, against under 10% at broad job fairs.",
+   "cite": "KD p.7; GZ slide 11",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Targeted placement drives converted at over 50%, against under 10% at broad job fairs"
+    }
+   ],
+   "place_evidence": {
+    "src": "GZ",
+    "text": "IN GHAZIABAD ACROSS 200 DISTRICTS MSMEs productive hours"
+   },
+   "note": "KD gives no district; the GZ deck shows it for Ghaziabad."
+  },
+  {
+   "id": "F5",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "time to hire, productive hours saved per hire",
+   "claim": "In Ghaziabad, MSMEs' time to hire fell from 2 weeks to 2 days, saving 80 productive hours per hire.",
+   "cite": "GZ slide 11",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "MSMEs time to hire 2 weeks 2 days 80 productive hours saved per hire"
+    }
+   ],
+   "place_evidence": {
+    "src": "GZ",
+    "text": "IN GHAZIABAD ACROSS 200 DISTRICTS MSMEs productive hours"
+   }
+  },
+  {
+   "id": "F6",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "high-intent seekers talked to the voice agent for minutes, call length",
+   "claim": "During campaigns in Ghaziabad, the district administration saw high-intent seekers talk to the voice agent for 10 minutes or more.",
+   "cite": "KD p.5",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "the district administration in Ghaziabad observed high-intent seekers speaking with the voice agent for 10 minutes or more"
+    }
+   ]
+  },
+  {
+   "id": "F7",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "MSME received money after being connected to schemes",
+   "claim": "One MSME in Ghaziabad received ₹26 lakh after being made aware of relevant schemes and connected to a nearby service.",
+   "cite": "KD p.2",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "When a MSME in Ghaziabad was made aware of relevant schemes and was connected to a nearby service that could help him avail it, he received 26L."
+    }
+   ]
+  },
+  {
+   "id": "F8",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "AIMO members brought together",
+   "claim": "AIMO in Ghaziabad aimed to become the first 100% AI-enabled MSME association and brought 75 member businesses together with startups, NGOs and the district administration.",
+   "cite": "KD p.12",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "AIMO in Ghaziabad declared its ambition to become the first 100% AI-enabled MSME association and brought 75 member businesses together with startups, NGOs and the district administration."
+    }
+   ]
+  },
+  {
+   "id": "F9",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "AIMO members employing women",
+   "claim": "At AIMO's gathering in Ghaziabad, around 40 members already employed women, one of them 200 among 500 workers.",
+   "cite": "KD p.12",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "around 40 members already employed women, one of them 200 among 500 workers"
+    }
+   ],
+   "place_evidence": {
+    "src": "KD",
+    "text": "AIMO in Ghaziabad declared its ambition"
+   }
+  },
+  {
+   "id": "F10",
+   "places": [
+    "Ghaziabad"
+   ],
+   "topic": "recruitment startup offer to MSMEs, discount, shortlisting",
+   "claim": "Once AIMO's demand was aggregated, a recruitment startup offered the first 20 MSMEs a 20% discount, shortlisting within 48 hours and a 90-day replacement guarantee.",
+   "cite": "KD p.12",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "A recruitment startup offered the first 20 MSMEs a 20% discount, shortlisting within 48 hours and a 90-day replacement guarantee."
+    }
+   ],
+   "place_evidence": {
+    "src": "KD",
+    "text": "AIMO in Ghaziabad declared its ambition"
+   }
+  },
+  {
+   "id": "F11",
+   "places": [
+    "Ghaziabad",
+    "Across the pilots"
+   ],
+   "topic": "youth asked for something other than a job, needs beyond jobs",
+   "claim": "More than half of the youth who called asked for something other than a job, naming over ten needs from counselling and skilling to higher education, entrepreneurship, capital and machines.",
+   "cite": "KD p.8; GZ slide 10",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "More than half of the youth who called asked for something other than a job, naming over ten needs from counselling and skilling to higher education, entrepreneurship, capital and machines."
+    }
+   ],
+   "place_evidence": {
+    "src": "GZ",
+    "text": "A woman caller, Ghaziabad"
+   },
+   "note": "KD gives no district; the GZ deck (about Ghaziabad) shows >50%.",
+   "editor_note": "Pranay's research paper drops this figure as unverified."
+  },
+  {
+   "id": "F12",
+   "places": [
+    "Projection"
+   ],
+   "topic": "Ghaziabad scaled up, 200 districts, jobs and youth discoverable",
+   "claim": "If scaled up, Ghaziabad could make 1 lakh+ MSME jobs and 50,000+ youth a year discoverable; across 200 districts, 2 crore+ jobs and 1 crore+ youth.",
+   "cite": "GZ slide 9",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "MSME jobs that become discoverable 1 lakh+ 2 crore+ Youth enterin the job market each year become discoverable 50,000+ 1 crore+"
+    },
+    {
+     "src": "GZ",
+     "text": "IN GHAZIABAD ACROSS 200 DISTRICTS IF SCALED UP MSME jobs that become discoverable"
+    }
+   ]
+  },
+  {
+   "id": "F13",
+   "places": [
+    "Projection"
+   ],
+   "topic": "Ghaziabad scaled up, productive hours, more people in work, salary",
+   "claim": "If scaled up, Ghaziabad's MSMEs could gain 80 lakh+ productive hours a year and 20,000+ more people could be in work; across 200 districts, 160 crore+ hours, 40 lakh+ people and ₹84,000 crore+ in salary a year.",
+   "cite": "GZ slide 11",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "productive hours ained each year 80 lakh+ 160 crore+ IF SCALED UP Job seekers more people in work each year 20,000+ 40 lakh+ 84,000 crore+"
+    },
+    {
+     "src": "GZ",
+     "text": "IN GHAZIABAD ACROSS 200 DISTRICTS MSMEs productive hours"
+    }
+   ]
+  },
+  {
+   "id": "F14",
+   "places": [
+    "Projection"
+   ],
+   "topic": "remaining MSMEs could surface more jobs",
+   "claim": "If fewer than 10% of Ghaziabad's MSMEs surfaced over 12,000 jobs, the remaining 90% could make tens of thousands more jobs discoverable in that district alone.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "If fewer than 10% of Ghaziabad's MSMEs surfaced over 12,000 jobs, the remaining 90% could make tens of thousands more jobs digitally discoverable in that district alone."
+    }
+   ]
+  },
+  {
+   "id": "F20",
+   "places": [
+    "Hubli-Dharwad"
+   ],
+   "topic": "jobs on national portals",
+   "claim": "National job platforms showed just 4 local jobs in Hubli-Dharwad.",
+   "cite": "KD p.1; KD p.7",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Similar case in Dharwad where national job platforms showed just 4 jobs."
+    },
+    {
+     "src": "KD",
+     "text": "in Hubli-Dharwad, at the same point, only four."
+    }
+   ]
+  },
+  {
+   "id": "F21",
+   "places": [
+    "Hubli-Dharwad"
+   ],
+   "topic": "jobs and candidates on the map, association put jobs online in hours",
+   "claim": "In Hubli-Dharwad, 16,000 jobs and 8,000 candidates are on the map, and one MSME association put nearly 900 jobs online in four hours.",
+   "cite": "KD p.7",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "In Hubli-Dharwad, 16,000 jobs and 8,000 candidates are on the map, and one MSME association put nearly 900 jobs online in four hours."
+    }
+   ],
+   "editor_note": "Pranay's research paper drops the 900-jobs figure as unverified."
+  },
+  {
+   "id": "F22",
+   "places": [
+    "Hubli-Dharwad",
+    "Across the pilots"
+   ],
+   "topic": "electrician vacancies vs trained candidates",
+   "claim": "At one point, electrician vacancies outnumbered newly trained candidates by nearly 3 to 1, while trained youth were leaving for Bengaluru.",
+   "cite": "KD p.7",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "electrician vacancies outnumbering newly trained candidates by nearly 3 to 1, while trained youth were leaving for Bengaluru."
+    }
+   ],
+   "note": "KD does not name the district; youth leaving for Bengaluru points to Hubli-Dharwad. Say 'during the pilot' unless asked."
+  },
+  {
+   "id": "F23",
+   "places": [
+    "Hubli-Dharwad"
+   ],
+   "topic": "applications rose after the district promoted the voice number, inbound vs cold calls",
+   "claim": "In Hubli-Dharwad, applications rose 300% once the district itself promoted the AI voice number and QR codes, and inbound callers applied at twice the rate of those reached by cold calls.",
+   "cite": "KD p.7–8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "In Hubli-Dharwad, applications rose 300% once the district itself promoted the AI voice number and QR codes, and inbound callers applied at twice the rate of those reached by cold calls."
+    }
+   ]
+  },
+  {
+   "id": "F24",
+   "places": [
+    "Hubli-Dharwad"
+   ],
+   "topic": "first shift times vs first buses, shift and bus mismatch",
+   "claim": "In Hubli-Dharwad, some factories start their first shift at 8:00 a.m. while the first buses from nearby areas arrive at 9:00 a.m.",
+   "cite": "KD p.8; KD p.17",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "some factories start their first shift at 8:00 a.m. while the first buses from nearby areas arrive at 9:00 a.m."
+    }
+   ],
+   "place_evidence": {
+    "src": "KD",
+    "text": "A mismatch between factory shift timings and bus timetables in Hubli-Dharwad surfaced this way."
+   }
+  },
+  {
+   "id": "F25",
+   "places": [
+    "Hubli-Dharwad"
+   ],
+   "topic": "training organisations mobilisation costs",
+   "claim": "Training organisations in Hubli-Dharwad cut mobilisation costs by up to 80%.",
+   "cite": "KD p.16",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Training organisations in Hubli-Dharwad cut mobilisation costs by up to 80%"
+    }
+   ]
+  },
+  {
+   "id": "F30",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "application failure rate fell when the call completed the application",
+   "claim": "When the voice agent began completing applications within the call, the application failure rate fell from 88.6% to 2%.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "When the voice agent began completing applications within the call, the application failure rate fell from 88.6% to 2%."
+    }
+   ]
+  },
+  {
+   "id": "F31",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "women engaged as much as men but applied at a third the rate, women-friendly signal",
+   "claim": "Women engaged with the voice bot as much as men but applied at around one-third of the rate; a women-friendly workplace signal tripled their applications.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Women engaged with the voice bot as much as men but applied at around one-third of the rate."
+    }
+   ]
+  },
+  {
+   "id": "F32",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "women held back until assurance on safety, proximity, amenities and shifts",
+   "claim": "2/3 of women held back until they had assurance about safety, proximity, amenities and shifts.",
+   "cite": "KD p.15",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "2/3rd of women held back until they had assurance about safety, proximity, amenities and shifts."
+    }
+   ]
+  },
+  {
+   "id": "F33",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "first-time graduates apply only once, guidance reason for not applying",
+   "claim": "Among first-time graduates, 80% apply only once they know an opportunity is nearby, the right fit, offers growth and pays fairly, and more guidance was the leading reason around 38% of high-intent youth did not apply.",
+   "cite": "KD p.15",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Among first-time graduates, 80% apply only once they know an opportunity is nearby, the right fit, offers growth and pays fairly for the area, and"
+    },
+    {
+     "src": "KD",
+     "text": "was the leading reason around 38% of high-intent youth did not apply."
+    }
+   ]
+  },
+  {
+   "id": "F34",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "cold AI calls pick-up plateau, credibility",
+   "claim": "Cold AI calls plateaued at around 30% pick-up, so discovery travels through institutions people already know.",
+   "cite": "KD p.16",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "cold AI calls plateaued at around 30% pick-up"
+    }
+   ]
+  },
+  {
+   "id": "F35",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "extra effort for each additional need or provider",
+   "claim": "Each additional need captured, or service provider added, took only 10 to 20% extra effort.",
+   "cite": "KD p.14",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Each additional need captured, or service provider added, took only 10 to 20% extra effort on top of the existing infrastructure and approach."
+    }
+   ]
+  },
+  {
+   "id": "F36",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "technology share of the work vs local ecosystem",
+   "claim": "Technology accounts for around 30% of what it takes to reach scale; the other 70% goes into activating the local ecosystem.",
+   "cite": "KD p.17",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Technology accounts for around 30% of what it takes to reach scale"
+    },
+    {
+     "src": "KD",
+     "text": "The other 70% goes into activating the local ecosystem and enablers"
+    }
+   ]
+  },
+  {
+   "id": "F37",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "what local means, km",
+   "claim": "Local often means 2.5 to 3 km in one place and a travel time in another.",
+   "cite": "KD p.17",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "knowing that \"local\" means 2.5 to 3 km in one place and a travel time in another"
+    }
+   ]
+  },
+  {
+   "id": "F38",
+   "places": [
+    "Across the pilots"
+   ],
+   "topic": "discovery time for those serving local demand",
+   "claim": "Across implementations, discovery time falls from over two weeks to under a day.",
+   "cite": "KD p.16",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Discovery time falls from over two weeks to under a day."
+    }
+   ]
+  },
+  {
+   "id": "F40",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "voice conversation length and cost vs field survey",
+   "claim": "A voice conversation takes about 1 minute 40 seconds and costs about ₹2, against around ₹500 and two weeks through field surveys.",
+   "cite": "KD p.1",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "in a voice conversation that takes about 1 minute 40 seconds and costs about ₹2, against around ₹500 and two weeks through field surveys."
+    }
+   ]
+  },
+  {
+   "id": "F41",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "people who answer only recognised numbers",
+   "claim": "Two in three people answer calls only from numbers they recognise.",
+   "cite": "KD p.3",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "two in three people answer calls only from numbers they recognise"
+    }
+   ]
+  },
+  {
+   "id": "F42",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost per voice interaction on the docs site",
+   "claim": "The docs site gives only one cost figure: under ₹10 per voice interaction.",
+   "cite": "PQ",
+   "evidence": [
+    {
+     "src": "PQ",
+     "text": "Only \"under ₹10 per voice interaction\" on Pilots."
+    }
+   ]
+  },
+  {
+   "id": "F43",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "time to go live in a district",
+   "claim": "A district can go live in under 90 days; no technical setup time is given.",
+   "cite": "PQ",
+   "evidence": [
+    {
+     "src": "PQ",
+     "text": "District Activation: under 90 days. No technical setup time"
+    }
+   ]
+  },
+  {
+   "id": "F44",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "facilitation team size, PMU",
+   "claim": "The docs site describes a facilitation team of 6 to 8 with a small PMU.",
+   "cite": "PQ",
+   "evidence": [
+    {
+     "src": "PQ",
+     "text": "facilitation team of 6 to 8 with a small PMU"
+    }
+   ]
+  },
+  {
+   "id": "F45",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "docs site coverage of questions",
+   "claim": "Of 69 questions officials and enablers ask, the docs site answers 16, partly answers 31 and misses 22.",
+   "cite": "PQ",
+   "evidence": [
+    {
+     "src": "PQ",
+     "text": "Of 69 questions, 16 are answered, 31 are partial and 22 are missing."
+    }
+   ]
+  },
+  {
+   "id": "F46",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "how long it takes to create a Blue Dot",
+   "claim": "With AI, a Blue Dot is created in about 2 minutes, through voice, in local languages.",
+   "cite": "GZ slides 5–6",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "digitally lighting up intent of people/businesses in 2 mins through voice, in local languages"
+    }
+   ]
+  },
+  {
+   "id": "F50",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost calculator: monthly cost of a standard setup",
+   "claim": "For 1 lakh blue dots with 10% active a month on AWS, a standard setup costs ₹47,973 a month in cloud and ₹85,973 in total.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "Standard One copy of Blue Dots, with no spare server ₹47,973 ₹85,973"
+    },
+    {
+     "src": "DS",
+     "text": "All four assume 1 lakh (100,000) blue dots, with 10% active in a month, on AWS."
+    }
+   ]
+  },
+  {
+   "id": "F51",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost calculator: standard with a test copy",
+   "claim": "A standard setup with a test copy costs ₹95,134 a month in cloud and ₹1,33,134 in total.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "Standard with a test copy Adds a separate copy for development and testing ₹95,134 ₹1,33,134"
+    }
+   ]
+  },
+  {
+   "id": "F52",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost calculator: high availability",
+   "claim": "A high-availability setup costs ₹1,33,273 a month in cloud and ₹1,71,273 in total.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "High availability Keeps running if one server fails ₹1,33,273 ₹1,71,273"
+    }
+   ]
+  },
+  {
+   "id": "F53",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost calculator: high availability with a DR site",
+   "claim": "High availability with a DR site costs ₹2,72,534 a month in cloud and ₹3,10,534 in total.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "High availability with a DR site Also keeps a full second copy in another region ₹2,72,534 ₹3,10,534"
+    }
+   ]
+  },
+  {
+   "id": "F54",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "how many active blue dots one setup serves, servers",
+   "claim": "A standard setup with 2 servers serves up to about 60,000 active blue dots a month; a high-availability setup with 3 servers about 1,20,000.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "A standard setup with 2 servers can serve up to about 60,000 active blue dots a month."
+    },
+    {
+     "src": "DS",
+     "text": "A high-availability setup with 3 servers can serve up to about 1,20,000, with one server kept spare."
+    }
+   ]
+  },
+  {
+   "id": "F55",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost calculator assumptions: voice calls and SMS",
+   "claim": "The calculator assumes one 3-minute voice call a month per active blue dot at ₹1 a minute, and 4 SMS a month at ₹0.20 each.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "the default assumes one 3-minute call a month for each active blue dot, at ₹1 a minute."
+    },
+    {
+     "src": "DS",
+     "text": "the default assumes 4 messages a month for each active blue dot, at ₹0.20 each."
+    }
+   ]
+  },
+  {
+   "id": "F56",
+   "places": [
+    "Blue Dots overall"
+   ],
+   "topic": "cost calculator range of blue dots",
+   "claim": "The calculator takes from 10,000 to 5 lakh blue dots.",
+   "cite": "DS: Cost & Sizing",
+   "evidence": [
+    {
+     "src": "DS",
+     "text": "how many blue dots you expect, from 10,000 to 5 lakh (500,000)"
+    }
+   ]
+  },
+  {
+   "id": "F60",
+   "places": [
+    "Basti"
+   ],
+   "topic": "persons with disabilities in Basti",
+   "claim": "Basti district alone has about 60,000 persons with disabilities.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Basti district alone has about 60,000 persons with disabilities"
+    }
+   ]
+  },
+  {
+   "id": "F61",
+   "places": [
+    "Basti"
+   ],
+   "topic": "local points of assistance shortlisted in Basti",
+   "claim": "In Basti, 3 organisations and 15 self-help groups and ASHA supervisors were shortlisted as local points of assistance.",
+   "cite": "KD p.9",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "In Basti, 3 organisations and 15 self-help groups and ASHA supervisors were shortlisted as local points of assistance"
+    }
+   ]
+  },
+  {
+   "id": "F62",
+   "places": [
+    "National"
+   ],
+   "topic": "DEPwD ALIMCO national campaign, Purple Dotted needs",
+   "claim": "A DEPwD and ALIMCO national campaign Purple Dotted the needs of 1.1 lakh persons with disabilities.",
+   "cite": "KD p.9",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "DEPwD and ALIMCO first ran a national campaign that Purple Dotted the needs of 1.1 lakh persons with disabilities across the country."
+    }
+   ]
+  },
+  {
+   "id": "F63",
+   "places": [
+    "National"
+   ],
+   "topic": "Purple Dots districts, MoU",
+   "claim": "DEPwD is rolling out Purple Dots across 14 districts under an MoU signed in September 2026, aiming for 30 districts this fiscal year.",
+   "cite": "KD p.9",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "DEPwD has begun rolling out Purple Dots across 14 districts under an MoU signed in September 2026"
+    },
+    {
+     "src": "KD",
+     "text": "aims to cover 30 districts this fiscal year."
+    }
+   ],
+   "note": "GZ slide 14 shows Disability as 'Live: 10 districts'; KD (the fuller document) says 14."
+  },
+  {
+   "id": "F64",
+   "places": [
+    "National"
+   ],
+   "topic": "persons with disabilities nationally, Census",
+   "claim": "The Census 2011 counted 2.68 crore persons with disabilities, about 2.2% of the population.",
+   "cite": "KD p.9",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "the Census 2011 counted 2.68 crore persons with disabilities, about 2.2% of the population"
+    }
+   ]
+  },
+  {
+   "id": "F70",
+   "places": [
+    "National"
+   ],
+   "topic": "BFSI assessments a year, Yellow Dots",
+   "claim": "Around 70 lakh people a year take regulator-recognised assessments for banking, financial services and insurance; only a share are hired into BFSI roles.",
+   "cite": "KD p.10",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Each year, around 70 lakh people take regulator-recognised assessments for banking, financial services and insurance"
+    }
+   ]
+  },
+  {
+   "id": "F71",
+   "places": [
+    "National"
+   ],
+   "topic": "AI skills national ambition",
+   "claim": "The national ambition is to equip one crore young people with AI skills.",
+   "cite": "KD p.10",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "the national ambition of equipping one crore young people with AI skills"
+    }
+   ]
+  },
+  {
+   "id": "F80",
+   "places": [
+    "Udupi"
+   ],
+   "topic": "Orange Dots created, target",
+   "claim": "More than 1,000 Orange Dots have been created across Udupi and coastal Karnataka, with 2,000+ targeted by December 2026.",
+   "cite": "KD p.11",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "More than 1,000 Orange Dots have been created across Udupi and coastal Karnataka."
+    },
+    {
+     "src": "KD",
+     "text": "Scaling to 2,000+ Orange Dots by December 2026."
+    }
+   ]
+  },
+  {
+   "id": "F81",
+   "places": [
+    "Udupi"
+   ],
+   "topic": "Orange Dots compared with avenues tourists usually find",
+   "claim": "That is more than 5 times the avenues tourists conventionally discover and try out in Udupi.",
+   "cite": "KD p.2–3",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "This is >5x of avenues that tourists conventionally"
+    }
+   ],
+   "place_evidence": {
+    "src": "KD",
+    "text": "discover & try out in Udupi."
+   }
+  },
+  {
+   "id": "F82",
+   "places": [
+    "National"
+   ],
+   "topic": "tourism share of GDP, jobs",
+   "claim": "Travel and tourism contributes 5.22% of India's GDP, about ₹15.73 lakh crore in 2023-24, and supports 46.5 million jobs.",
+   "cite": "KD p.12",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "travel and tourism contributes 5.22% of India's GDP, about ₹15.73 lakh crore in 2023-24, and supports 46.5 million jobs"
+    }
+   ]
+  },
+  {
+   "id": "F83",
+   "places": [
+    "National"
+   ],
+   "topic": "artisans numbers and daily earnings",
+   "claim": "India's handicraft and handloom artisans number between 64.66 lakh and 1.13 crore by different estimates, earning about ₹270 a day on average.",
+   "cite": "KD p.12",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "India's handicraft and handloom artisans number between 64.66 lakh and 1.13 crore by different estimates, earning on average about ₹270 a day"
+    }
+   ]
+  },
+  {
+   "id": "F90",
+   "places": [
+    "National"
+   ],
+   "topic": "registered MSMEs",
+   "claim": "India has 8.7 crore registered MSMEs.",
+   "cite": "KD p.1; KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "8.7 crore enterprises registered on the Udyam portal"
+    }
+   ]
+  },
+  {
+   "id": "F91",
+   "places": [
+    "National"
+   ],
+   "topic": "MSMEs share of GDP and employment",
+   "claim": "MSMEs contribute around 31% of GDP and employ about 38.9 crore people.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "MSMEs contribute around 31% of GDP and employ about 38.9 crore people"
+    }
+   ]
+  },
+  {
+   "id": "F92",
+   "places": [
+    "National"
+   ],
+   "topic": "graduates each year",
+   "claim": "Over 1.1 crore students graduate each year.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "over 1.1 crore students graduate each year"
+    }
+   ]
+  },
+  {
+   "id": "F93",
+   "places": [
+    "National"
+   ],
+   "topic": "MSMEs that are tiny",
+   "claim": "Over 98% of India's 8.7 crore MSMEs have fewer than 10 people.",
+   "cite": "KD p.2",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": ">98% of India's 8.7 crore MSMEs are <10 people in size."
+    }
+   ]
+  },
+  {
+   "id": "F94",
+   "places": [
+    "National"
+   ],
+   "topic": "unincorporated enterprises, internet use",
+   "claim": "MoSPI counts 7.92 crore unincorporated establishments employing 12.81 crore workers, of which only 39.4% use the internet for business.",
+   "cite": "KD p.12",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "counts 7.92 crore establishments employing 12.81 crore workers, of which only 39.4% use the internet for business"
+    }
+   ]
+  },
+  {
+   "id": "F95",
+   "places": [
+    "National"
+   ],
+   "topic": "informal workers and MSMEs reached by word of mouth, informal share",
+   "claim": "India has 56.6 crore informal workers and 7.5 crore MSMEs, reached mostly by word of mouth; 88% of the market is informal.",
+   "cite": "GZ slide 2",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "56.6 crore inormal workers and 7.5 crore MSMEs, reached mostly by word o mouth"
+    },
+    {
+     "src": "GZ",
+     "text": "12% 88% ADDRESSABLE INFORMAL"
+    }
+   ]
+  },
+  {
+   "id": "F96",
+   "places": [
+    "National"
+   ],
+   "topic": "districts producing most of GDP",
+   "claim": "12.8% of India's 784 districts produce 85% of its GDP.",
+   "cite": "GZ slide 2",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "12.8% of India's 784 districts 85% o India's GDP comes rom these districts"
+    }
+   ]
+  },
+  {
+   "id": "F97",
+   "places": [
+    "National"
+   ],
+   "topic": "local jobs offline, graduates without CV",
+   "claim": "About 80% of local jobs are offline, and about 80% of Tier 2/3 graduates don't have a CV.",
+   "cite": "GZ slide 3",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "~80% OF LOCAL JOBS ARE OFFLINE"
+    },
+    {
+     "src": "GZ",
+     "text": "~80% OF TIER 2/3 GRADUATES DON'T HAVE A CV"
+    }
+   ]
+  },
+  {
+   "id": "F98",
+   "places": [
+    "National"
+   ],
+   "topic": "district context: placement rates, women's participation, scheme use, services uptake",
+   "claim": "In Tier 2–3 districts, college placement rates are under 20%, women's labour force participation under 35%, scheme budget utilisation under 70% and services uptake under 50% of potential.",
+   "cite": "GZ slide 4",
+   "evidence": [
+    {
+     "src": "GZ",
+     "text": "Placement rates of Tier 2-3 colleges: <20%"
+    },
+    {
+     "src": "GZ",
+     "text": "Women's labour force participation: <35% Scheme budget utilisation: <70%"
+    },
+    {
+     "src": "GZ",
+     "text": "Services uptake vs. potential: <50%"
+    }
+   ]
+  },
+  {
+   "id": "F99",
+   "places": [
+    "National"
+   ],
+   "topic": "key districts beyond the metros",
+   "claim": "200 key districts beyond the metros are where this can be shown first.",
+   "cite": "KD p.3",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "200 key districts, beyond the metros, are where this can be shown first."
+    }
+   ]
+  },
+  {
+   "id": "F100",
+   "places": [
+    "National"
+   ],
+   "topic": "UP mandal headquarters, PM-VIKAS districts",
+   "claim": "Uttar Pradesh is rolling the approach out across its 18 mandal headquarters, and the Ministry of Minority Affairs is extending it to PM-VIKAS candidates across 15 districts.",
+   "cite": "KD p.8",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Uttar Pradesh is rolling the approach out across its 18 mandal headquarters"
+    },
+    {
+     "src": "KD",
+     "text": "extending the approach to PM-VIKAS candidates across 15 districts."
+    }
+   ]
+  },
+  {
+   "id": "F110",
+   "places": [
+    "Startup pilots"
+   ],
+   "topic": "accelerator applicants, longlisted, shortlisted, pilots",
+   "claim": "Of 568 startup applicants, 80 were longlisted, 26 shortlisted and 12 ran pilots in Tier 2 and Tier 3 districts.",
+   "cite": "KD p.14",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Of 568 applicants, 80 were longlisted, 26 were shortlisted to join the two cohorts and 12 ran pilots in Tier 2 and Tier 3 districts."
+    }
+   ]
+  },
+  {
+   "id": "F111",
+   "places": [
+    "Startup pilots"
+   ],
+   "topic": "Baylink sourced gig workers within km",
+   "claim": "Baylink sourced gig workers within 2.5 km of the work location more cheaply and quickly, and they stayed longer.",
+   "cite": "KD p.14",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Baylink sourced gig workers within 2.5 km of the work location more cheaply and quickly than through the open market, and they stayed longer in the role."
+    }
+   ]
+  },
+  {
+   "id": "F112",
+   "places": [
+    "Startup pilots"
+   ],
+   "topic": "Digital Labour Chowk workers preferred opportunities within km",
+   "claim": "Digital Labour Chowk found workers preferred opportunities within about 3 km of home.",
+   "cite": "KD p.14",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Digital Labour Chowk, matching workers and opportunities directly, found that workers preferred opportunities within about 3 km of home."
+    }
+   ]
+  },
+  {
+   "id": "F113",
+   "places": [
+    "Startup pilots"
+   ],
+   "topic": "NetPractice internships travel time minutes",
+   "claim": "NetPractice found internship offers with less than 30 minutes of travel were accepted, while those beyond it were not.",
+   "cite": "KD p.15",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "NetPractice found that offers involving less than 30 minutes of travel were accepted, while those beyond it were not"
+    }
+   ]
+  },
+  {
+   "id": "F120",
+   "places": [
+    "Illustrative"
+   ],
+   "topic": "local job vs metro job disposable income",
+   "claim": "Illustratively, a ₹17,000 to ₹18,000 job near home can leave more disposable income than a ₹20,000 job in a metro once rent, food and commuting are paid.",
+   "cite": "KD p.15",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "a job paying ₹17,000 to ₹18,000 near home can leave more disposable income than a ₹20,000 job in a metro once rent, food and commuting are paid"
+    }
+   ]
+  },
+  {
+   "id": "F121",
+   "places": [
+    "Illustrative"
+   ],
+   "topic": "upskilling to a better local job",
+   "claim": "Someone who upskills from a ₹15,000 role to a local job that pays ₹20,000 earns, spends and contributes more locally.",
+   "cite": "KD p.15",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Someone who upskills from a ₹15,000 role to a local job that pays ₹20,000 earns, spends and contributes more locally."
+    }
+   ]
+  },
+  {
+   "id": "F122",
+   "places": [
+    "National"
+   ],
+   "topic": "Global Capability Centres in Tier 2 cities",
+   "claim": "Nearly 28% of new Global Capability Centres set up in 2023-24 were in Tier 2 cities.",
+   "cite": "KD p.16",
+   "evidence": [
+    {
+     "src": "KD",
+     "text": "Nearly 28% of new Global Capability Centres set up in 2023-24 were located in Tier 2 cities"
+    }
+   ]
+  }
+ ]
+}

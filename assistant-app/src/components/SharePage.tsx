@@ -15,11 +15,11 @@ export default function SharePage({ projectId, assets }: { projectId: string; as
     return <div className="grid min-h-screen place-items-center p-8 text-center text-muted">This prototype is still being built. Check back soon.</div>;
   }
   return (
-    <div className="flex h-screen flex-col bg-canvas">
+    <main className="flex h-screen flex-col bg-canvas">
       {tabs.length > 1 && (
         <div className="absolute right-4 top-5 z-[1000] flex gap-1 rounded-xl bg-panel/95 p-1 shadow-pop">
           {tabs.map((t) => (
-            <button key={t} onClick={() => setTab(t)}
+            <button key={t} type="button" aria-pressed={tab === t} onClick={() => setTab(t)}
               className={clsx("flex h-8 items-center gap-1.5 rounded-lg px-3 text-[13px] font-medium", tab === t ? "bg-brand text-white" : "text-ink-2 hover:bg-wash")}>
               {t === "bot" ? <Phone className="h-3.5 w-3.5" /> : <MapIcon className="h-3.5 w-3.5" />}{t === "bot" ? "Call the bot" : "See the map"}
             </button>
@@ -30,6 +30,6 @@ export default function SharePage({ projectId, assets }: { projectId: string; as
         {tab === "bot" && assets.bot ? <BotPanel projectId={projectId} assets={assets} publicView /> :
           assets.map ? <div className="absolute inset-0"><MapView map={assets.map} schema={assets.schema} personas={assets.personas} /></div> : null}
       </div>
-    </div>
+    </main>
   );
 }

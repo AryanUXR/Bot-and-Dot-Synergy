@@ -47,7 +47,7 @@ export default function AccessGate() {
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : "Continue"}
           </button>
         </form>
-        <p className="mt-6 text-center text-[12px] leading-relaxed text-faint">Everything made here uses fictional people and organisations. Seeded by EkStep Foundation.</p>
+        <p className="mt-6 text-center text-[12px] leading-relaxed text-faint">Everything made here uses fictional people and organisations. Seeded by EkStep Foundation.{process.env.NEXT_PUBLIC_APP_ENV === "uat" && " This is the test site: the EkStep team reads chats here to improve the assistant."}</p>
       </div>
     </main>
   );

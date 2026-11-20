@@ -17,6 +17,7 @@ export function useAssistant(initialId: string | null) {
   const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const startedRef = useRef<string | null>(null);
 
   const refreshList = useCallback(async () => {
     const r = await fetch("/api/projects");
@@ -24,6 +25,8 @@ export function useAssistant(initialId: string | null) {
   }, []);
 
   const open = useCallback(async (id: string | null) => {
+    // The chat this page just started: it's already on screen and streaming, so don't reload it.
+    if (id && id === startedRef.current) { startedRef.current = null; return; }
     abortRef.current?.abort();
     setError(null); setFresh(new Set()); setRunning(null); setStreaming(false);
     if (!id) { setProject(null); setLoading(false); window.history.pushState(null, "", "/"); return; }
@@ -61,7 +64,7 @@ export function useAssistant(initialId: string | null) {
     const user: UiMessage = { id: uid(), role: "user", parts: [{ type: "text", text: msg }], at: Date.now() };
     const asst: UiMessage = { id: uid(), role: "assistant", parts: [], at: Date.now() };
     setProject((p) => ({ id, title: p?.title ?? msg.slice(0, 42), ui: [...(p?.ui ?? []), user, asst], assets: p?.assets ?? {} }));
-    if (!project) window.history.pushState(null, "", `/c/${id}`);
+    if (!project) { startedRef.current = id; window.history.pushState(null, "", `/c/${id}`); }
     setStreaming(true);
     const ac = new AbortController();
     abortRef.current = ac;

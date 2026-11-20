@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import {
   Gauge, FileText, Users, Layers, Map as MapIcon, Phone, Check, Minus, X, Lock, Globe, Loader2, PanelRightClose,
-  MapPin, Languages, Palette, Bot as BotIcon, Share2, Lightbulb,
+  MapPin, Languages, Palette, Bot as BotIcon, Share2, Lightbulb, ArrowRight,
 } from "lucide-react";
 import type { AssetKind, Assets, Persona } from "@/lib/types";
 import { COLOURS } from "@/lib/types";
@@ -23,10 +23,11 @@ const TABS: { kind: AssetKind; label: string; icon: typeof MapIcon }[] = [
   { kind: "bot", label: "Voice bot", icon: Phone },
 ];
 
-export default function Canvas({ projectId, title, assets, focus, fresh, running, onSeen, onClose, onPhoto, onToast }: {
+export default function Canvas({ projectId, title, assets, focus, fresh, running, busy, onSeen, onClose, onPhoto, onToast, onAsk }: {
   projectId: string; title: string; assets: Assets; focus: { kind: AssetKind; n: number } | null; fresh: Set<AssetKind>;
   running: { name: string; asset?: AssetKind } | null; onSeen: (k: AssetKind) => void; onClose: () => void;
   onPhoto: (personaId: string, key: string) => void; onToast: (t: string) => void;
+  busy: boolean; onAsk: (text: string) => void;
 }) {
   const shown = TABS.filter((t) => assets[t.kind] || running?.asset === t.kind);
   const [tab, setTab] = useState<AssetKind>(shown[shown.length - 1]?.kind ?? "brief");
@@ -57,7 +58,16 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
           const busy = running?.asset === t.kind;
           const on = tab === t.kind;
           return (
-            <button key={t.kind} role="tab" aria-selected={on} onClick={() => setTab(t.kind)}
+            <button key={t.kind} id={`tab-${t.kind}`} role="tab" aria-selected={on} aria-controls="canvas-panel" tabIndex={on ? 0 : -1} onClick={() => setTab(t.kind)}
+              onKeyDown={(e) => {
+                const i = shown.findIndex((x) => x.kind === t.kind);
+                const j = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? shown.length - 1 : null;
+                if (j == null) return;
+                e.preventDefault();
+                const next = shown[(j + shown.length) % shown.length];
+                setTab(next.kind);
+                requestAnimationFrame(() => document.getElementById(`tab-${next.kind}`)?.focus());
+              }}
               className={clsx("relative flex h-9 shrink-0 items-center gap-1.5 px-2 text-[14px] transition-colors",
                 on ? "text-ink shadow-[inset_0_-2px_0_#ffffff]" : "text-muted hover:text-ink")}>
               {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <t.icon className="h-3.5 w-3.5" />}
@@ -69,9 +79,11 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
       </nav>
 
       <div className="relative min-h-0 flex-1">
-        <div key={tab + (busyHere ? "-busy" : "")} className={clsx("absolute inset-0", tab === "map" && assets.map && !busyHere ? "" : "scroll-quiet overflow-y-auto")}>
+        <div key={tab + (busyHere ? "-busy" : "")} id="canvas-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} tabIndex={tab === "map" ? -1 : 0}
+          className={clsx("absolute inset-0", tab === "map" && assets.map && !busyHere ? "" : "scroll-quiet overflow-y-auto")}>
+          {tab === "map" && <h1 className="sr-only">Map of {assets.brief?.title ?? title}</h1>}
           {busyHere ? <Building name={running!.name} kind={tab} /> :
-            tab === "fit" && assets.fit ? <FitPanel a={assets} /> :
+            tab === "fit" && assets.fit ? <FitPanel a={assets} busy={busy} onAsk={(t) => { onAsk(t); if (window.innerWidth < 1024) onClose(); }} /> :
             tab === "brief" && assets.brief ? <BriefPanel a={assets} /> :
             tab === "personas" && assets.personas ? <PersonasPanel projectId={projectId} a={assets} onPhoto={onPhoto} /> :
             tab === "schema" && assets.schema ? <SchemaPanel a={assets} /> :
@@ -86,7 +98,7 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
 const Page = ({ children, wide }: { children: React.ReactNode; wide?: boolean }) => (
   <div className={clsx("mx-auto px-10 pb-16 pt-10", wide ? "max-w-[900px]" : "max-w-[720px]")}>{children}</div>
 );
-const H = ({ children }: { children: React.ReactNode }) => <h3 className="mb-1 mt-8 text-[20px] font-semibold leading-snug text-ink">{children}</h3>;
+const H = ({ children }: { children: React.ReactNode }) => <h2 className="mb-1 mt-8 text-[20px] font-semibold leading-snug text-ink">{children}</h2>;
 
 function Building({ name, kind }: { name: string; kind: AssetKind }) {
   const [label] = TOOL_LABEL[name] ?? ["Working"];
@@ -118,7 +130,7 @@ const Tag = ({ children, tone = "gray" }: { children: React.ReactNode; tone?: "g
   return <span className={clsx("inline-flex h-5 items-center whitespace-nowrap rounded-[3px] px-1.5 text-[13px] leading-none", c)}>{children}</span>;
 };
 
-function FitPanel({ a }: { a: Assets }) {
+function FitPanel({ a, busy, onAsk }: { a: Assets; busy: boolean; onAsk: (text: string) => void }) {
   const f = a.fit!;
   const v = { fits: ["Fits", "green"], fits_with_changes: ["Fits with changes", "orange"], not_yet: ["Not a fit yet", "red"] }[f.verdict] as [string, "green" | "orange" | "red"];
   const icon = { yes: <Check className="h-4 w-4 text-good" />, partly: <Minus className="h-4 w-4 text-warn" />, no: <X className="h-4 w-4 text-bad" /> };
@@ -140,7 +152,57 @@ function FitPanel({ a }: { a: Assets }) {
       </div>
       {f.to_make_it_fit.length > 0 && (<><H>To make it fit</H>
         <ul className="list-disc space-y-1 pl-6 text-[16px] leading-relaxed text-ink marker:text-ink">{f.to_make_it_fit.map((t, i) => <li key={i}>{t}</li>)}</ul></>)}
+      <NextSteps verdict={f.verdict} open={f.criteria.filter((c) => c.result !== "yes").length} busy={busy} onAsk={onAsk} />
     </Page>
+  );
+}
+
+// What to do after a fit check: the verdict decides the next step, and each button sends it as a chat message.
+const NEXT: Record<"fits" | "fits_with_changes" | "not_yet", { lead: string; steps: { label: string; hint: string; say: string }[] }> = {
+  fits: {
+    lead: "The idea fits. Next, turn it into a brief and three personas, or go straight to the prototypes.",
+    steps: [
+      { label: "Shape it into a brief", hint: "A few quick questions, then a brief and three personas to approve.", say: "It fits. Let's shape it into a brief and personas." },
+      { label: "Build the prototypes now", hint: "Brief, personas, map and voice bot in one go, with sensible defaults.", say: "Build the voice bot and the dot map now. Go with your defaults." },
+    ],
+  },
+  fits_with_changes: {
+    lead: "It can fit once the open points above are settled. Answer them, or go ahead with the suggestions and change them later.",
+    steps: [
+      { label: "Go with your suggestions", hint: "Uses the changes listed above and moves on to the brief and personas.", say: "Go with your suggested changes and shape it into a brief and personas." },
+      { label: "Answer the open points", hint: "One question at a time, each with a suggested answer.", say: "Ask me about the open points one at a time, with your suggested answer for each." },
+    ],
+  },
+  not_yet: {
+    lead: "As it stands, it isn't a Blue Dots use case. A reframe often fixes that.",
+    steps: [
+      { label: "Try a reframe that fits", hint: "Reworks the idea so both sides are nearby and can find each other, then checks it again.", say: "Suggest a version of my idea that would fit, and check the fit again." },
+      { label: "Explain what's missing", hint: "What a Blue Dots use case needs, in plain words.", say: "Explain what's missing and what kind of idea would fit." },
+    ],
+  },
+};
+
+function NextSteps({ verdict, open, busy, onAsk }: { verdict: keyof typeof NEXT; open: number; busy: boolean; onAsk: (text: string) => void }) {
+  const n = NEXT[verdict];
+  return (
+    <section aria-labelledby="fit-next" className="mt-10 rounded-[6px] bg-wash p-5">
+      <h2 id="fit-next" className="text-[20px] font-semibold leading-snug text-ink">What to do next</h2>
+      <p className="mt-1 text-[15px] leading-relaxed text-muted">{n.lead}{verdict === "fits_with_changes" && open > 0 ? ` ${open} of the criteria ${open === 1 ? "is" : "are"} still open.` : ""}</p>
+      <div className="mt-4 flex flex-col gap-2">
+        {n.steps.map((s, i) => (
+          <button key={s.label} disabled={busy} onClick={() => onAsk(s.say)}
+            className={clsx("group flex items-center gap-3 rounded-[6px] px-4 py-3 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+              i === 0 ? "bg-brand text-white hover:bg-brand/90" : "bg-[#262626] text-ink hover:bg-hover")}>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[15px] font-medium">{s.label}</span>
+              <span className={clsx("block text-[13px] leading-snug", i === 0 ? "text-white" : "text-muted")}>{s.hint}</span>
+            </span>
+            <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+          </button>
+        ))}
+      </div>
+      <p className="mt-3 text-[13px] text-faint">Or write your own reply in the chat.</p>
+    </section>
   );
 }
 

@@ -75,6 +75,7 @@ export interface Bot {
   greeting: string;
   created_at: number;
   calls: number;
+  prompt?: string; // the full instructions sent to the voice platform (kept for QC; never public)
 }
 
 export interface Assets {
@@ -103,13 +104,18 @@ export interface ProjectSummary { id: string; title: string; updated_at: number;
 export interface Project {
   id: string;
   workspace: string;
+  owner_name?: string; // the name typed at sign-in, for reviewing test chats
   title: string;
   created_at: number;
   updated_at: number;
   ui: UiMessage[];
   transcript: unknown[]; // Anthropic beta message params, stored exactly as returned
   assets: Assets;
+  usage?: Usage; // token use for this chat, summed over every model call
+  note?: string; // what the reply checker corrected last turn, passed to the model with the next message
 }
+
+export interface Usage { calls: number; input: number; cache_read: number; cache_write: number; output: number; usd: number }
 
 // Events streamed from /api/chat to the browser (one JSON object per SSE message).
 export type StreamEvent =

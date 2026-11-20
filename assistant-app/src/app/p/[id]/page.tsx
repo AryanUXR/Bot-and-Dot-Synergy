@@ -16,5 +16,5 @@ export default async function Share({ params }: Props) {
   if (!p?.assets.brief) notFound();
   const { brief, personas, schema, map, bot } = p.assets;
   const photos = await photoRefs(p);
-  return <SharePage projectId={p.id} assets={{ brief, personas, schema, map, photos, bot: bot ? { ...bot, agent_id: "" } : undefined }} />;
+  return <SharePage projectId={p.id} assets={{ brief, personas, schema, map, photos, bot: bot ? { ...bot, agent_id: "", prompt: undefined } : undefined }} />;
 }

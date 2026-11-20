@@ -4,7 +4,8 @@
   "KD": "blue-dots-ai-economy-key-details.txt",
   "GZ": "ghaziabad-future-ready-deck.txt",
   "PQ": "blue-dots-personas-and-question-map.txt",
-  "DS": "docs-site-selected-pages.txt"
+  "DS": "docs-site-selected-pages.txt",
+  "PMIS": "pm-internship-scheme.txt"
  },
  "places": [
   "Ghaziabad",
@@ -16,7 +17,8 @@
   "Blue Dots overall",
   "Startup pilots",
   "Illustrative",
-  "Projection"
+  "Projection",
+  "PM Internship Scheme"
  ],
  "facts": [
   {
@@ -1200,6 +1202,159 @@
     {
      "src": "KD",
      "text": "Nearly 28% of new Global Capability Centres set up in 2023-24 were located in Tier 2 cities"
+    }
+   ]
+  },
+  {
+   "id": "F130",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme target, how many internships",
+   "claim": "The PM Internship Scheme aims to offer one crore internships to youth over five years.",
+   "cite": "PMIS: Candidate FAQ",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "This scheme targets to offer one crore internships to youth over five years."
+    }
+   ]
+  },
+  {
+   "id": "F131",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme internship duration, months",
+   "claim": "Internships last 6 or 9 months; interns from the earlier pilot rounds stay at 12 months.",
+   "cite": "PMIS: Candidate FAQ",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "Internships under the PM Internship Scheme will be for a duration of either 6 months or 9 months"
+    },
+    {
+     "src": "PMIS",
+     "text": "internship duration for the existing interns of the earlier pilot rounds will remain 12 months"
+    }
+   ]
+  },
+  {
+   "id": "F132",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme eligibility, age",
+   "claim": "Applicants must be Indian citizens aged 18 to 25, not in full-time employment and not in full-time education (online, distance and final-year students can apply).",
+   "cite": "PMIS: Candidate FAQ",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "You must be aged between 18-25 years (as on the date of submission of application)."
+    }
+   ]
+  },
+  {
+   "id": "F133",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme money, monthly assistance, stipend, one-time grant",
+   "claim": "Each intern gets ₹9,000 a month (₹900 from the company and up to ₹8,100 from the government by DBT), plus a one-time ₹6,000 in two instalments of ₹3,000.",
+   "cite": "PMIS: Candidate FAQ",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "each intern will receive monthly assistance of ₹9,000"
+    },
+    {
+     "src": "PMIS",
+     "text": "Company share: ₹900 per month (10%)"
+    },
+    {
+     "src": "PMIS",
+     "text": "Government share: Up to ₹8,100 per month"
+    },
+    {
+     "src": "PMIS",
+     "text": "A one-time incidental grant of ₹6,000 is provided by the Government via DBT in two instalments of ₹3,000 each."
+    }
+   ]
+  },
+  {
+   "id": "F134",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme ineligibility, family income",
+   "claim": "People whose family income (self, parents or spouse) was above ₹12 lakh in the previous financial year can't apply.",
+   "cite": "PMIS: Candidate FAQ",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "exceeds ₹12 lakh in the preceding financial year"
+    }
+   ]
+  },
+  {
+   "id": "F135",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme portal opportunities, sectors, states, districts",
+   "claim": "On 20 Nov 2026 the portal listed 3,68,768 internship opportunities across 34 sectors, 36 states and UTs, and 744 districts.",
+   "cite": "PMIS: portal home",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "Dashboard (figures shown on 20 Nov 2026; they change as companies post) 368768 Internship Opportunities."
+    },
+    {
+     "src": "PMIS",
+     "text": "34 Sectors. 36 States/UTs. 744 Districts."
+    }
+   ],
+   "note": "These dashboard figures change as companies post; say they are from 20 Nov 2026."
+  },
+  {
+   "id": "F136",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme applications and offers limits, days to accept",
+   "claim": "A candidate can have at most 3 active applications and 2 offers at a time, accepts only 1, and has 14 days to accept or reject an offer.",
+   "cite": "PMIS: State FAQ",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "Maximum active applications per candidate: 3; maximum concurrent offers: 2; only 1 offer can be accepted."
+    },
+    {
+     "src": "PMIS",
+     "text": "Offer action window: 14 days to Accept/Reject"
+    }
+   ]
+  },
+  {
+   "id": "F137",
+   "places": [
+    "PM Internship Scheme",
+    "National"
+   ],
+   "topic": "PM Internship Scheme helpline number",
+   "claim": "The PMIS helpline is 1800 11 6090.",
+   "cite": "PMIS: portal home",
+   "evidence": [
+    {
+     "src": "PMIS",
+     "text": "Helpline 1800 11 6090."
     }
    ]
   }

@@ -9,6 +9,7 @@ import { classifyJourney } from "@/lib/journeyClassifier";
 import type { Usage } from "@/lib/types";
 import { SYSTEM_PROMPT } from "@/lib/prompt";
 import { TOOLS, TOOL_ASSET, runTool } from "@/lib/tools";
+import { linkKey, readLink, type LinkResult } from "@/lib/links";
 import type { Project, StreamEvent, UiMessage, UiPart } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -56,6 +57,21 @@ function usageOf(u: Anthropic.Beta.Messages.BetaUsage): Usage {
 function addUsage(a: Usage | undefined, b: Usage): Usage {
   const z = a ?? { calls: 0, input: 0, cache_read: 0, cache_write: 0, output: 0, usd: 0 };
   return { calls: z.calls + b.calls, input: z.input + b.input, cache_read: z.cache_read + b.cache_read, cache_write: z.cache_write + b.cache_write, output: z.output + b.output, usd: Math.round((z.usd + b.usd) * 10000) / 10000 };
+}
+
+// On Vercel, links are read by /api/link in the Mumbai region (some Indian government sites only
+// answer Indian addresses); locally, or if that call fails, they're read here.
+function linkReader(origin: string) {
+  return async (url: string): Promise<LinkResult> => {
+    if (process.env.VERCEL) {
+      try {
+        const r = await fetch(`${origin}/api/link`, { method: "POST", headers: { "content-type": "application/json", "x-link-key": linkKey() }, body: JSON.stringify({ url }), signal: AbortSignal.timeout(50000) });
+        if (r.ok) return (await r.json()) as LinkResult;
+        console.warn("[link] regional reader", r.status);
+      } catch (e) { console.warn("[link] regional reader failed", e instanceof Error ? e.message : e); }
+    }
+    return readLink(url);
+  };
 }
 
 function titleFrom(text: string) {
@@ -135,7 +151,8 @@ export async function POST(req: Request) {
         parts.push(t);
         return t;
       };
-      const gate = new ReplyGate((t) => { lastText().text += t; emit({ type: "text", delta: t }); }, client, config.model);
+      const gate = new ReplyGate((t) => { lastText().text += t; emit({ type: "text", delta: t }); }, client, config.model, () => p.links ?? []);
+      const reader = linkReader(new URL(req.url).origin);
       const corrections: string[] = [];
       emit({ type: "start", message_id: assistant.id });
       emit({ type: "title", title: p.title });
@@ -211,7 +228,7 @@ export async function POST(req: Request) {
 
           const results: Anthropic.Beta.Messages.BetaToolResultBlockParam[] = [];
           for (const u of uses) {
-            const r = await runTool(u.name, u.input, p, emit, { simulate });
+            const r = await runTool(u.name, u.input, p, emit, { simulate, readLink: reader });
             const part = parts.find((x): x is Extract<UiPart, { type: "tool" }> => x.type === "tool" && x.id === u.id);
             if (part) { part.status = r.ok ? "done" : "error"; part.summary = r.summary; }
             emit({ type: "tool_done", id: u.id, name: u.name, status: r.ok ? "done" : "error", summary: r.summary, asset: TOOL_ASSET[u.name] });

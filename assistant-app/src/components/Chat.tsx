@@ -144,12 +144,14 @@ const SOURCE_NAMES: Record<string, string> = {
   GZ: "Ghaziabad Future Ready deck",
   PQ: "Blue Dots Personas and Question Map",
   DS: "Blue Dots documentation site",
+  PMIS: "PM Internship Scheme portal and FAQs (Ministry of Corporate Affairs)",
+  Link: "Web page you shared",
 };
-const SOURCE_RE = /\s?[[(]((?:KD|GZ|PQ|DS)\b[^\])]{0,40})[\])]/g;
+const SOURCE_RE = /\s?[[(]((?:KD|GZ|PQ|DS|PMIS|Link)\b[^\])]{0,60})[\])]/g;
 function sourceTitle(tag: string) {
-  return tag.split(/[;,] (?=KD|GZ|PQ|DS)/).map((t) => {
-    const key = t.trim().slice(0, 2);
-    const rest = t.trim().slice(2).replace(/^:\s*/, "").trim();
+  return tag.split(/[;,] (?=KD|GZ|PQ|DS|PMIS|Link)/).map((t) => {
+    const key = t.trim().match(/^(PMIS|Link|KD|GZ|PQ|DS)/)?.[1] ?? t.trim().slice(0, 2);
+    const rest = t.trim().slice(key.length).replace(/^:\s*/, "").trim();
     return `${SOURCE_NAMES[key] ?? key}${rest ? `, ${rest.replace(/^p\.\s?(\S*[–-]\S*)/, "pages $1").replace(/^p\./, "page ").replace(/^slide\s(\S*[–-])/, "slides $1")}` : ""}`;
   }).join("; ");
 }

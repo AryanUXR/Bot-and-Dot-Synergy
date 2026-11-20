@@ -121,6 +121,7 @@ export interface Project {
   note?: string; // what the reply checker corrected last turn, passed to the model with the next message
   journey?: import("./journey").JourneySignals; // what the person knows and wants (lib/journey.ts)
   journey_view?: import("./journey").Journey; // the stage, its criteria and suggested replies, for the UI
+  links?: { url: string; domain: string; title?: string; text: string; fetched_at: number }[]; // web pages read in this chat (read_link), for checking figures cited [Link: ...]
 }
 
 export interface Usage { calls: number; input: number; cache_read: number; cache_write: number; output: number; usd: number }

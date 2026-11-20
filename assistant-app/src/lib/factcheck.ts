@@ -4,6 +4,7 @@
 //    sentence must be in the cited rows, and the place the sentence (or its list heading) names must be a
 //    place the row allows. A known figure with no [F..] marker, or a percentage/lakh/crore/₹ figure in a
 //    Blue Dots sentence that matches no row, is also flagged.
+//    A sentence citing a web page the person shared ([Link: site]) may use figures from that page instead.
 // 2. Voice (EkStep comms rules): no em dashes, "credible" not "trust", never "the documents say".
 //
 // Voice problems are fixed in place. Figure problems are returned for the caller to correct or drop.
@@ -24,6 +25,7 @@ const PLACE_TERMS: [string, RegExp][] = [
   ["Projection", /\b(if scaled|scaled up|could make|could gain|200 districts|projection)\b/i],
   ["Startup pilots", /\b(baylink|digital labour chowk|netpractice|startup|accelerator)/i],
   ["Illustrative", /\b(illustrat|for example|say,)/i],
+  ["PM Internship Scheme", /\b(PM Internships?|PMIS|internship scheme)\b/i],
 ];
 const PROTOTYPE = /\b(made-up|fictional|prototype|personas?|localities|providers and|requests? from|on the map|map tab|dots across|voice bot|brief)\b/i;
 const DISTRICTS = new Set(["Ghaziabad", "Hubli-Dharwad", "Basti", "Udupi"]);
@@ -47,7 +49,7 @@ function placesIn(s: string): Set<string> {
 
 // Numbers that are figures (not list numbering, years, helplines, or small counts like "3 personas").
 function figuresIn(s: string): { n: number; strong: boolean }[] {
-  const t = s.replace(/\[[^\]]*\]/g, " ").replace(/\((?:KD|GZ|PQ|DS)\b[^)]*\)/g, " ").replace(/^\s*(\d+[.)]|[-*•])\s+/, " ");
+  const t = s.replace(/\[[^\]]*\]/g, " ").replace(/\((?:KD|GZ|PQ|DS|PMIS|Link)\b[^)]*\)/g, " ").replace(/\b1800[\s-]?\d{2,3}[\s-]?\d{3,4}\b/g, " ").replace(/^\s*(\d+[.)]|[-*•])\s+/, " ");
   const out: { n: number; strong: boolean }[] = [];
   const re = /(₹\s?)?(\d[\d,]*(?:\.\d+)?)(\s?(%|per ?cent|lakh|crore|km|x\b|L\b|minutes?|mins?|hours?|days?|weeks?))?/gi;
   for (const m of t.matchAll(re)) {
@@ -92,7 +94,7 @@ function segment(text: string): Seg[] {
   return segs;
 }
 
-export function makeChecker(facts: Fact[]) {
+export function makeChecker(facts: Fact[], links: () => { text: string }[] = () => []) {
   const byId = new Map(facts.map((f) => [f.id, f]));
   const factNums = new Map(facts.map((f) => [f.id, new Set(numbersIn(f.claim))]));
   const allNums = new Map<number, string[]>();
@@ -101,7 +103,18 @@ export function makeChecker(facts: Fact[]) {
   function checkSentence(s: Seg, item: boolean, itemLabelPlaces: Set<string>): Issue[] {
     const issues: Issue[] = [];
     const ids = [...s.text.matchAll(/\bF\d{1,3}\b/g)].map((m) => m[0]).filter((id) => /\[[^\]]*\]/.test(s.text));
-    const figs = figuresIn(s.text);
+    let figs = figuresIn(s.text);
+    // Figures cited to a page the person shared must be on that page.
+    if (/\[Link:[^\]]*\]/i.test(s.text)) {
+      const onPage = new Set(links().flatMap((l) => numbersIn(l.text)));
+      const missing = figs.filter(({ n }) => !onPage.has(n));
+      if (!ids.length) {
+        const bad = missing.filter(({ n, strong }) => strong || n >= 13);
+        if (bad.length) issues.push({ kind: "unknown_figure", sentence: s.text, detail: `${bad.map((k) => k.n).join(", ")} is not on the linked page` });
+        return issues;
+      }
+      figs = missing;
+    }
     const own = placesIn(s.text.replace(/\[[^\]]*\]/g, " "));
     const ownDistrict = [...own].some((p) => DISTRICTS.has(p));
     const scope = ownDistrict ? own : new Set([...own, ...(itemLabelPlaces.size ? itemLabelPlaces : s.ctx)]);

@@ -7,7 +7,6 @@ import { makeChecker, renderMarkers, fixVoice, dropSentences, type Issue } from 
 // From the first sentence that fails, the rest of the text block is held, corrected once by the
 // model against the facts table, checked again, and anything still failing is dropped.
 
-const check = makeChecker(FACTS);
 const FACT_LINES = FACTS.map((f) => `${f.id} [${f.places.join(" / ")}] ${f.claim} (${f.cite})`).join("\n");
 
 const CORRECT_SYSTEM = `You fix one part of a reply from the Blue Dots assistant before it is shown. The part breaks the figure rules listed under Problems.
@@ -15,6 +14,7 @@ Rules:
 - Every figure about Blue Dots must come from the facts table below, worded as its row is (over, under, about, nearly), with the row id in square brackets right after it, e.g. [F23].
 - Say the place the row gives. A row's figure may only be put under a place listed in its brackets. "Across the pilots", "Blue Dots overall" and "National" rows are never put under one district.
 - If a figure has no row, remove it and keep the sentence's point without a number.
+- A sentence marked [Link: site] may use figures from the web page the person shared; keep them exactly as they are, or remove them if you're unsure.
 - Never say "the documents say" or similar; just state the fact.
 - Keep everything else: meaning, tone, markdown, length and the closing question. No em dashes. Say "credible", never "trust".
 Return only the rewritten part, nothing else.
@@ -29,7 +29,10 @@ export class ReplyGate {
   private held = ""; // raw model text not yet sent
   private holding = false;
   private found: Issue[] = [];
-  constructor(private emit: (text: string) => void, private client: Anthropic, private model: string) {}
+  private check: ReturnType<typeof makeChecker>;
+  constructor(private emit: (text: string) => void, private client: Anthropic, private model: string, links: () => { text: string }[] = () => []) {
+    this.check = makeChecker(FACTS, links);
+  }
 
   push(delta: string) {
     this.held += delta;
@@ -51,7 +54,7 @@ export class ReplyGate {
 
   private release(chunk: string, final: boolean) {
     const fixed = fixVoice(chunk);
-    const res = check(this.shown + fixed, this.shown.length);
+    const res = this.check(this.shown + fixed, this.shown.length);
     if (res.issues.length) { this.holding = true; this.found.push(...res.issues); return; }
     this.send(fixed);
     this.held = this.held.slice(chunk.length);
@@ -67,7 +70,7 @@ export class ReplyGate {
   private async correct() {
     const base = this.shown;
     const raw = fixVoice(this.held);
-    const problems = check(base + raw, base.length).issues;
+    const problems = this.check(base + raw, base.length).issues;
     let text = raw;
     if (problems.length) {
       try {
@@ -83,7 +86,7 @@ export class ReplyGate {
         console.error("[guard] correction failed", e instanceof Error ? e.message : e);
       }
       // Anything still failing is dropped rather than shown.
-      const again = check(base + text, base.length);
+      const again = this.check(base + text, base.length);
       const bad = again.sentences.filter((s) => s.issues.length).map((s) => ({ start: s.start - base.length, text: s.text }));
       if (bad.length) { console.warn("[guard] dropped", bad.length, "sentence(s)"); text = dropSentences(text, bad); }
     }

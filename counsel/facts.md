@@ -123,3 +123,16 @@ Generated from `facts.json` by the assistant's bake step. Do not edit by hand. E
 | F12 | If scaled up, Ghaziabad could make 1 lakh+ MSME jobs and 50,000+ youth a year discoverable; across 200 districts, 2 crore+ jobs and 1 crore+ youth. |  | GZ slide 9 | Ghaziabad scaled up, 200 districts, jobs and youth discoverable |
 | F13 | If scaled up, Ghaziabad's MSMEs could gain 80 lakh+ productive hours a year and 20,000+ more people could be in work; across 200 districts, 160 crore+ hours, 40 lakh+ people and ₹84,000 crore+ in salary a year. |  | GZ slide 11 | Ghaziabad scaled up, productive hours, more people in work, salary |
 | F14 | If fewer than 10% of Ghaziabad's MSMEs surfaced over 12,000 jobs, the remaining 90% could make tens of thousands more jobs discoverable in that district alone. |  | KD p.8 | remaining MSMEs could surface more jobs |
+
+## PM Internship Scheme
+
+| Id | Figure | Also true for | Source | Topic |
+|---|---|---|---|---|
+| F130 | The PM Internship Scheme aims to offer one crore internships to youth over five years. | National | PMIS: Candidate FAQ | PM Internship Scheme target, how many internships |
+| F131 | Internships last 6 or 9 months; interns from the earlier pilot rounds stay at 12 months. | National | PMIS: Candidate FAQ | PM Internship Scheme internship duration, months |
+| F132 | Applicants must be Indian citizens aged 18 to 25, not in full-time employment and not in full-time education (online, distance and final-year students can apply). | National | PMIS: Candidate FAQ | PM Internship Scheme eligibility, age |
+| F133 | Each intern gets ₹9,000 a month (₹900 from the company and up to ₹8,100 from the government by DBT), plus a one-time ₹6,000 in two instalments of ₹3,000. | National | PMIS: Candidate FAQ | PM Internship Scheme money, monthly assistance, stipend, one-time grant |
+| F134 | People whose family income (self, parents or spouse) was above ₹12 lakh in the previous financial year can't apply. | National | PMIS: Candidate FAQ | PM Internship Scheme ineligibility, family income |
+| F135 | On 20 Nov 2026 the portal listed 3,68,768 internship opportunities across 34 sectors, 36 states and UTs, and 744 districts. *Note: These dashboard figures change as companies post; say they are from 20 Nov 2026.* | National | PMIS: portal home | PM Internship Scheme portal opportunities, sectors, states, districts |
+| F136 | A candidate can have at most 3 active applications and 2 offers at a time, accepts only 1, and has 14 days to accept or reject an offer. | National | PMIS: State FAQ | PM Internship Scheme applications and offers limits, days to accept |
+| F137 | The PMIS helpline is 1800 11 6090. | National | PMIS: portal home | PM Internship Scheme helpline number |

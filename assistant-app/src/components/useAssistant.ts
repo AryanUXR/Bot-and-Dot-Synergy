@@ -174,6 +174,7 @@ export const TOOL_ASSET: Record<string, AssetKind> = {
 };
 
 export const TOOL_LABEL: Record<string, [string, string]> = {
+  read_link: ["Reading the link", "Read the link"],
   record_fit_check: ["Checking the fit", "Fit check"],
   update_brief: ["Writing the brief", "Brief"],
   set_personas: ["Creating personas", "Personas"],

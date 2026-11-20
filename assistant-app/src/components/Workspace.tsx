@@ -8,7 +8,7 @@ import { COLOURS } from "@/lib/types";
 import { useAssistant } from "./useAssistant";
 import { Composer, EmptyState, Messages } from "./Chat";
 import Canvas from "./Canvas";
-import { BrandChip } from "./icons";
+import { BrandChip, EnvBadge } from "./icons";
 import NetworkBackground from "./NetworkBackground";
 
 function group(ps: ProjectSummary[]) {
@@ -33,6 +33,7 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
       <div className="flex h-full w-[248px] flex-col">
         <div className="group flex h-[52px] items-center gap-2 px-3">
           <BrandChip compact />
+          <EnvBadge />
           <span className="min-w-0 flex-1" />
           <button onClick={onToggle} aria-label="Close sidebar" className="grid h-6 w-6 place-items-center rounded-[4px] text-faint opacity-0 transition hover:bg-press hover:text-muted group-hover:opacity-100 max-lg:opacity-100">
             <ChevronsLeft className="h-4 w-4" />
@@ -101,7 +102,8 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [a]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(null), 3200); return () => clearTimeout(t); }, [toast]);
-  useEffect(() => { document.title = a.project?.title ? `${a.project.title} · Blue Dots Assistant` : "Blue Dots Assistant"; }, [a.project?.title]);
+  useEffect(() => { const tag = process.env.NEXT_PUBLIC_APP_ENV === "uat" ? "[UAT] " : "";
+    document.title = tag + (a.project?.title ? `${a.project.title} · Blue Dots Assistant` : "Blue Dots Assistant"); }, [a.project?.title]);
 
   const openAsset = useCallback((k: AssetKind) => { setCanvasOpen(true); a.seen(k); }, [a]);
   const [focus, setFocus] = useState<{ kind: AssetKind; n: number } | null>(null);

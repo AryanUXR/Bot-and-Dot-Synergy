@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blue Dots Assistant
 
-## Getting Started
+A chat platform where anyone can ask about Blue Dots, check whether an idea fits, shape it into a brief and personas, and build a working voice bot and dot map. Next.js on Vercel; Claude for the assistant, Raya for voice bots, Gemini on Vertex for persona photos, Google Maps for the map.
 
-First, run the development server:
+## Two instances
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| | Address | Use it for |
+|---|---|---|
+| **UAT** | https://blue-dots-assistant-uat.vercel.app | Trying every change first. Shows a "UAT" badge. |
+| **Production** | https://blue-dots-assistant.vercel.app | Demos and real users. Only builds checked on UAT. |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Both are projects in the BlueDots team on Vercel, each with its own access code (the `ACCESS_CODE` setting on that project), environment variables and storage, so testing never touches production data. Access codes are shared privately, never written in this repository.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Releasing a change
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. `scripts/deploy.sh uat` and check the change on UAT.
+2. `scripts/deploy.sh prod` (it asks you to confirm UAT was checked).
 
-## Learn More
+## Settings on each Vercel project
 
-To learn more about Next.js, take a look at the following resources:
+`RAYA_API_TOKEN`, `RAYA_BASE_URL`, `GOOGLE_SA_JSON` (base64 service-account key), `ACCESS_CODE`, `ANTHROPIC_API_KEY`, and Upstash Redis (`KV_REST_API_URL`, `KV_REST_API_TOKEN`, added by connecting an Upstash database). UAT also sets `NEXT_PUBLIC_APP_ENV=uat`. Never commit a key or a code.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Local development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Keys come from `../raya/.env`. Run `npm run dev` (port 3100). Without Upstash, data is kept in `.data/`.

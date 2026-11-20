@@ -34,3 +34,9 @@ export function DotsMark({ className = "h-7 w-7" }: { className?: string }) {
     </svg>
   );
 }
+
+// Shown only on the UAT instance, so nobody mistakes it for production.
+export function EnvBadge() {
+  if (process.env.NEXT_PUBLIC_APP_ENV !== "uat") return null;
+  return <span title="Test instance: changes are tried here before production" className="inline-flex h-5 items-center rounded-[4px] border border-[#5a3d12] bg-warn-soft px-1.5 text-[11px] font-semibold tracking-wide text-warn">UAT</span>;
+}

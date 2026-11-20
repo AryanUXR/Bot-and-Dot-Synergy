@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { BrandChip } from "./icons";
+import { BrandChip, EnvBadge } from "./icons";
 import NetworkBackground from "./NetworkBackground";
 
 export default function AccessGate() {
@@ -24,7 +24,7 @@ export default function AccessGate() {
   return (
     <main className="relative flex min-h-screen flex-col">
       <NetworkBackground className="pointer-events-none fixed inset-0 h-full w-full" />
-      <header className="relative flex h-14 items-center px-5"><BrandChip /></header>
+      <header className="relative flex h-14 items-center gap-3 px-5"><BrandChip /><EnvBadge /></header>
       <div className="relative mx-auto flex w-full max-w-[360px] flex-1 flex-col justify-center pb-20">
         <h1 className="text-center text-[30px] font-medium leading-tight tracking-[-0.035em] text-ink">Blue Dots Assistant</h1>
         <p className="mt-2 text-center text-[15px] leading-relaxed text-muted">

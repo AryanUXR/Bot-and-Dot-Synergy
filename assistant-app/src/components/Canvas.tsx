@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import {
   Gauge, FileText, Users, Layers, Map as MapIcon, Phone, Check, Minus, X, Lock, Globe, Loader2, PanelRightClose,
-  MapPin, Languages, Palette, Bot as BotIcon, Share2, Lightbulb, ArrowRight,
+  MapPin, Languages, Palette, Bot as BotIcon, Share2, Lightbulb, ArrowRight, ExternalLink,
 } from "lucide-react";
 import type { AssetKind, Assets, Persona } from "@/lib/types";
 import { COLOURS } from "@/lib/types";
@@ -13,6 +13,13 @@ import BotPanel from "./BotPanel";
 import { TOOL_LABEL } from "./useAssistant";
 
 const MapView = dynamic(() => import("./MapView"), { ssr: false, loading: () => <div className="skeleton h-full w-full rounded-none" /> });
+
+// Public prototype pages live on the Lovable viewer (library layout); /uat/ reads the test instance.
+function viewerUrl(projectId: string, page: "bot" | "map") {
+  const viewer = process.env.NEXT_PUBLIC_VIEWER_URL ?? "https://blue-dots-prototypes.lovable.app";
+  const base = process.env.NEXT_PUBLIC_APP_ENV === "uat" ? `/uat/p/${projectId}` : `/p/${projectId}`;
+  return `${viewer}${base}${page === "map" ? "/map" : ""}`;
+}
 
 const TABS: { kind: AssetKind; label: string; icon: typeof MapIcon }[] = [
   { kind: "fit", label: "Fit check", icon: Gauge },
@@ -23,11 +30,11 @@ const TABS: { kind: AssetKind; label: string; icon: typeof MapIcon }[] = [
   { kind: "bot", label: "Voice bot", icon: Phone },
 ];
 
-export default function Canvas({ projectId, title, assets, focus, fresh, running, busy, onSeen, onClose, onPhoto, onToast, onAsk }: {
+export default function Canvas({ projectId, title, assets, focus, fresh, running, busy, onSeen, onClose, onPhoto, onToast, onAsk, headerEnd }: {
   projectId: string; title: string; assets: Assets; focus: { kind: AssetKind; n: number } | null; fresh: Set<AssetKind>;
   running: { name: string; asset?: AssetKind } | null; onSeen: (k: AssetKind) => void; onClose: () => void;
   onPhoto: (personaId: string, key: string) => void; onToast: (t: string) => void;
-  busy: boolean; onAsk: (text: string) => void;
+  busy: boolean; onAsk: (text: string) => void; headerEnd?: React.ReactNode;
 }) {
   const shown = TABS.filter((t) => assets[t.kind] || running?.asset === t.kind);
   const [tab, setTab] = useState<AssetKind>(shown[shown.length - 1]?.kind ?? "brief");
@@ -36,10 +43,7 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
   useEffect(() => { onSeen(tab); }, [tab, fresh, onSeen]);
 
   const share = async () => {
-    // Public prototype pages live on the Lovable viewer (library layout); /uat/ reads the test instance.
-    const viewer = process.env.NEXT_PUBLIC_VIEWER_URL ?? "https://blue-dots-prototypes.lovable.app";
-    const path = process.env.NEXT_PUBLIC_APP_ENV === "uat" ? `/uat/p/${projectId}` : `/p/${projectId}`;
-    await navigator.clipboard.writeText(`${viewer}${path}`);
+    await navigator.clipboard.writeText(viewerUrl(projectId, "bot"));
     onToast("Link copied. Anyone with it can call the bot and see the map.");
   };
   const busyHere = running?.asset === tab && !assets[tab];
@@ -52,8 +56,15 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
           <span className="truncate text-muted">{assets.brief?.title ?? title}</span>
           {current && <><span className="text-faint">/</span><span className="truncate text-ink">{current.label}</span></>}
         </div>
+        {(tab === "map" || tab === "bot") && assets[tab] && assets.brief && (
+          <a href={viewerUrl(projectId, tab)} target="_blank" rel="noopener noreferrer"
+            className="flex h-7 items-center gap-1.5 rounded-[4px] px-2 text-[14px] text-ink-2 hover:bg-hover">
+            <ExternalLink className="h-3.5 w-3.5" /> Open in new tab
+          </a>
+        )}
         {assets.brief && <button onClick={share} className="flex h-7 items-center gap-1.5 rounded-[4px] px-2 text-[14px] text-ink-2 hover:bg-hover"><Share2 className="h-3.5 w-3.5" /> Share</button>}
         <button onClick={onClose} aria-label="Close preview" className="grid h-7 w-7 place-items-center rounded-[4px] text-muted hover:bg-hover"><PanelRightClose className="h-4 w-4" /></button>
+        {headerEnd}
       </header>
 
       <nav className="flex shrink-0 gap-0.5 overflow-x-auto px-3 shadow-[inset_0_-1px_0_rgba(255,255,255,0.08)]" role="tablist">

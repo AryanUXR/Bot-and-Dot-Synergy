@@ -17,12 +17,13 @@ export function useAssistant(initialId: string | null) {
   const [focus, setFocus] = useState<{ kind: AssetKind; n: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
+  const [guest, setGuest] = useState(true);
   const abortRef = useRef<AbortController | null>(null);
   const startedRef = useRef<string | null>(null);
 
   const refreshList = useCallback(async () => {
     const r = await fetch("/api/projects");
-    if (r.ok) { const j = await r.json(); setProjects(j.projects); setName(j.name); }
+    if (r.ok) { const j = await r.json(); setProjects(j.projects); setName(j.name); setGuest(j.guest !== false); }
   }, []);
 
   const open = useCallback(async (id: string | null) => {
@@ -165,7 +166,7 @@ export function useAssistant(initialId: string | null) {
     refreshList();
   }, [project, open, refreshList]);
 
-  return { projects, project, loading, streaming, running, fresh, focus, error, name, send, stop, open, seen, setPhoto, remove, setError };
+  return { projects, project, loading, streaming, running, fresh, focus, error, name, guest, send, stop, open, seen, setPhoto, remove, setError };
 }
 
 export const TOOL_ASSET: Record<string, AssetKind> = {

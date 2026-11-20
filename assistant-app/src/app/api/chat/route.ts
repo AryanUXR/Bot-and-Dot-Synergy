@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { nanoid } from "nanoid";
 import { config } from "@/lib/env";
-import { session } from "@/lib/session";
-import { getProject, saveProject, bump, count, addDailyUsage } from "@/lib/store";
+import { session, networkId } from "@/lib/session";
+import { getProject, saveProject, bump, count, addDailyUsage, getDailyUsage } from "@/lib/store";
 import { ReplyGate } from "@/lib/guard";
 import { deriveJourney, journeyNote, EMPTY_SIGNALS } from "@/lib/journey";
 import { classifyJourney } from "@/lib/journeyClassifier";
@@ -44,7 +44,9 @@ function forApi(t: BMsg[]): BMsg[] {
 
 // List prices for Claude Opus 5.5, US$ per million tokens (1-hour cache writes at 2x input).
 const PRICE = { input: 4, output: 20, cache_read: 0.2, cache_write: 8 };
-const DAILY_LIMIT = Number(process.env.ASSISTANT_DAILY_MESSAGES ?? 60);
+const DAILY_LIMIT = Number(process.env.ASSISTANT_DAILY_MESSAGES ?? 60); // per person (browser or account)
+const NETWORK_LIMIT = Number(process.env.ASSISTANT_NETWORK_MESSAGES ?? 80); // per network, for guests
+const DAILY_BUDGET_USD = Number(process.env.ASSISTANT_DAILY_BUDGET_USD ?? 10); // for everyone together
 
 function usageOf(u: Anthropic.Beta.Messages.BetaUsage): Usage {
   const input = u.input_tokens ?? 0, cache_read = u.cache_read_input_tokens ?? 0, cache_write = u.cache_creation_input_tokens ?? 0, output = u.output_tokens ?? 0;
@@ -63,7 +65,7 @@ function titleFrom(text: string) {
 
 export async function POST(req: Request) {
   const s = await session();
-  if (!s.ok || !s.workspace) return Response.json({ error: "Enter the access code first." }, { status: 401 });
+  if (!s.ok || !s.workspace) return Response.json({ error: "Reload the page and try again." }, { status: 401 });
   if (!config.anthropicKey) return Response.json({ error: "The assistant's API key isn't set up yet." }, { status: 503 });
 
   const body = (await req.json().catch(() => ({}))) as { projectId?: string; message?: string };
@@ -71,8 +73,20 @@ export async function POST(req: Request) {
   if (!text) return Response.json({ error: "Write a message first." }, { status: 400 });
   if (text.length > 20000) return Response.json({ error: "That message is too long. Shorten it and try again." }, { status: 400 });
 
-  // A daily cap per person, so one session can't use up the budget.
+  // Spending guards: a total daily budget for everyone, a cap per person, and for guests a cap
+  // per network (so clearing cookies doesn't reset it).
   const day = new Date().toISOString().slice(0, 10);
+  const spent = (await getDailyUsage(day).catch(() => null))?.usd ?? 0;
+  if (DAILY_BUDGET_USD > 0 && spent >= DAILY_BUDGET_USD) {
+    return Response.json({ error: "The assistant has reached today's usage limit and is resting until midnight UTC (5:30 a.m. in India). Please come back then." }, { status: 503 });
+  }
+  if (s.guest && NETWORK_LIMIT > 0) {
+    const net = `net:${networkId(req)}:${day}`;
+    if ((await count(net)) >= NETWORK_LIMIT) {
+      return Response.json({ error: "Too many messages from this network today. Sign in to keep going, or come back tomorrow." }, { status: 429 });
+    }
+    await bump(net).catch((e) => console.error("[cap]", e));
+  }
   if (DAILY_LIMIT > 0 && (await count(`msgs:${s.workspace}:${day}`)) >= DAILY_LIMIT) {
     return Response.json({ error: `You've reached today's limit of ${DAILY_LIMIT} messages. It resets at midnight UTC. Ask the EkStep team if you need more.` }, { status: 429 });
   }
@@ -97,7 +111,8 @@ export async function POST(req: Request) {
   const note = p.note ? `(Note for you, not from the person: before your last reply was shown, the checker corrected it: ${p.note} Use the facts table rows and places exactly.)\n\n` : "";
   p.note = undefined;
   // Where the person is in the journey, so the reply and its follow-up fit their stage.
-  const stageNote = journeyNote(deriveJourney(p.journey ?? EMPTY_SIGNALS, p.assets)) + "\n\n";
+  const first = (s.name ?? "").trim().split(/\s+/)[0];
+  const stageNote = journeyNote(deriveJourney(p.journey ?? EMPTY_SIGNALS, p.assets)).replace(/\)$/, first ? ` Their first name: ${first}.)` : ")") + "\n\n";
   (p.transcript as BMsg[]).push({ role: "user", content: note + stageNote + text });
 
   const client = new Anthropic({ apiKey: config.anthropicKey });

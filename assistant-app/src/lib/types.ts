@@ -43,7 +43,7 @@ export interface Persona {
 }
 
 export interface SchemaField { key: string; label: string; example: string; visible: "public" | "after_connect" }
-export interface Sector { id: string; label: string; icon: string; description: string }
+export interface Sector { id: string; label: string; icon: string; description: string; short_label?: string }
 export interface SchemaDoc {
   sectors: Sector[];
   seeker_fields: SchemaField[];

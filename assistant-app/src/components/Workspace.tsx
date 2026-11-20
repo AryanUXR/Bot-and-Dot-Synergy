@@ -2,13 +2,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import clsx from "clsx";
-import { ChevronsLeft, Menu, PanelRightOpen, SquarePen, Trash2, Search, LogOut, FileText, MessageSquare } from "lucide-react";
+import { CircleUserRound, ChevronsLeft, Menu, PanelRightOpen, SquarePen, Trash2, Search, LogOut, FileText, MessageSquare } from "lucide-react";
 import type { AssetKind, ProjectSummary } from "@/lib/types";
 import { COLOURS } from "@/lib/types";
 import { useAssistant } from "./useAssistant";
 import { Composer, EmptyState, Messages } from "./Chat";
 import Canvas from "./Canvas";
 import JourneyBar from "./JourneyBar";
+import SignInDialog from "./SignInDialog";
 import { BrandChip, EnvBadge } from "./icons";
 import NetworkBackground from "./NetworkBackground";
 
@@ -21,9 +22,9 @@ function group(ps: ProjectSummary[]) {
 
 const row = "flex h-[28px] w-full items-center gap-2 rounded-[5px] px-2 text-[14px] text-ink-2 transition-colors hover:bg-hover";
 
-function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDelete, onToggle }: {
-  open: boolean; settled: boolean; projects: ProjectSummary[]; current: string | null; name: string | null;
-  onNew: () => void; onOpen: (id: string) => void; onDelete: (id: string) => void; onToggle: () => void;
+function Sidebar({ open, settled, projects, current, name, guest, onNew, onOpen, onDelete, onToggle, onSignIn }: {
+  open: boolean; settled: boolean; projects: ProjectSummary[]; current: string | null; name: string | null; guest: boolean;
+  onNew: () => void; onOpen: (id: string) => void; onDelete: (id: string) => void; onToggle: () => void; onSignIn: () => void;
 }) {
   const [q, setQ] = useState("");
   const [searching, setSearching] = useState(false);
@@ -72,14 +73,16 @@ function Sidebar({ open, settled, projects, current, name, onNew, onOpen, onDele
               ))}
             </div>
           ))}
-          {!projects.length && <p className="px-2 pt-2 text-[13px] leading-relaxed text-faint">Your chats and what you build in them are saved here.</p>}
+          {!projects.length && <p className="px-2 pt-2 text-[13px] leading-relaxed text-faint">{guest ? "Your chats show up here." : "Your chats and what you build in them are saved here."}</p>}
         </div>
-        <div className="flex items-center gap-2 px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]">
-          <span className="grid h-[22px] w-[22px] place-items-center rounded-[4px] bg-wash text-[12px] font-medium text-ink-2">{(name ?? "Y")[0].toUpperCase()}</span>
-          <span className="min-w-0 flex-1 truncate text-[14px] text-ink-2">{name ?? "You"}</span>
-          <button aria-label="Sign out" onClick={async () => { await fetch("/api/access", { method: "DELETE" }); window.location.href = "/"; }}
-            className="grid h-6 w-6 place-items-center rounded-[4px] text-faint hover:bg-press hover:text-ink"><LogOut className="h-3.5 w-3.5" /></button>
-        </div>
+        {!guest && (
+          <div className="flex items-center gap-2 px-3 py-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]">
+            <span className="grid h-[22px] w-[22px] place-items-center rounded-[4px] bg-wash text-[12px] font-medium text-ink-2">{(name ?? "Y")[0].toUpperCase()}</span>
+            <span className="min-w-0 flex-1 truncate text-[14px] text-ink-2">{name ?? "You"}</span>
+            <button aria-label="Sign out" title="Sign out" onClick={async () => { await fetch("/api/auth", { method: "DELETE" }); window.location.href = "/"; }}
+              className="grid h-6 w-6 place-items-center rounded-[4px] text-faint hover:bg-press hover:text-ink"><LogOut className="h-3.5 w-3.5" /></button>
+          </div>
+        )}
       </div>
     </motion.aside>
   );
@@ -91,6 +94,13 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
   const [settled, setSettled] = useState(false);
   const [canvasOpen, setCanvasOpen] = useState(true);
   const [toast, setToast] = useState<string | null>(null);
+  const [signingIn, setSigningIn] = useState(false);
+  const signInButton = (
+    <button type="button" onClick={() => setSigningIn(true)} aria-label="Sign in to save your work" title="Sign in to save your work"
+      className="ml-1 grid h-7 w-7 shrink-0 place-items-center rounded-full text-muted hover:bg-hover hover:text-ink">
+      <CircleUserRound className="h-[18px] w-[18px]" />
+    </button>
+  );
   const hasAssets = !!a.project && (Object.keys(a.project.assets).some((k) => k !== "photos") || !!a.running);
   const showCanvas = hasAssets && canvasOpen;
 
@@ -113,7 +123,7 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
   return (
     <div className="flex h-screen overflow-hidden">
       <a href="#main" className="sr-only z-[3000] rounded-[6px] bg-brand px-3 py-2 text-[14px] text-white focus:not-sr-only focus:fixed focus:left-3 focus:top-3">Skip to chat</a>
-      <Sidebar open={side} settled={settled} projects={a.projects} current={a.project?.id ?? null} name={a.name}
+      <Sidebar open={side} settled={settled} projects={a.projects} current={a.project?.id ?? null} name={a.name} guest={a.guest} onSignIn={() => setSigningIn(true)}
         onNew={() => { a.open(null); if (narrow()) setSide(false); }} onOpen={(id) => { a.open(id); if (narrow()) setSide(false); }}
         onDelete={(id) => a.remove(id)} onToggle={() => setSide(false)} />
 
@@ -121,10 +131,11 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
       <main id="main" tabIndex={-1} className="relative flex min-w-0 flex-1 focus:outline-none">
         <NetworkBackground className="pointer-events-none absolute inset-0 h-full w-full" />
         <div className={clsx("relative z-[1] flex min-w-0 flex-col", showCanvas ? "basis-full lg:basis-[42%] lg:shadow-[inset_-1px_0_0_rgba(255,255,255,0.08)]" : "basis-full")}>
-          <div className="flex h-[45px] shrink-0 items-center gap-1 px-3">
+          <div className="@container flex h-[45px] shrink-0 items-center gap-1 px-3">
             {!side && <button onClick={() => setSide(true)} aria-label="Open sidebar" className="grid h-7 w-7 place-items-center rounded-[4px] text-muted hover:bg-hover"><Menu className="h-4 w-4" /></button>}
             <div className="min-w-0 flex-1 truncate px-1.5 text-[14px] text-ink-2">{a.project?.title ?? "New chat"}</div>
             {a.project && a.project.ui.length > 0 && <JourneyBar journey={a.project.journey} />}
+            {a.guest && !showCanvas && signInButton}
             {hasAssets && !canvasOpen && (
               <button onClick={() => setCanvasOpen(true)} className="flex h-7 items-center gap-1.5 rounded-[4px] px-2 text-[14px] text-muted hover:bg-hover">
                 <PanelRightOpen className="h-4 w-4" /> Preview
@@ -150,12 +161,14 @@ export default function Workspace({ initialId }: { initialId: string | null }) {
             <motion.div key="canvas" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
               className="absolute inset-0 z-30 min-w-0 bg-panel lg:relative lg:z-[1] lg:flex-1">
               <Canvas projectId={a.project.id} title={a.project.title} assets={a.project.assets} focus={focus} fresh={a.fresh} running={a.running} busy={a.streaming}
-                onAsk={a.send} onSeen={a.seen} onClose={() => setCanvasOpen(false)} onPhoto={a.setPhoto} onToast={setToast} />
+                onAsk={a.send} onSeen={a.seen} onClose={() => setCanvasOpen(false)} onPhoto={a.setPhoto} onToast={setToast}
+                headerEnd={a.guest ? signInButton : null} />
             </motion.div>
           )}
         </AnimatePresence>
       </main>
 
+      {signingIn && <SignInDialog onClose={() => setSigningIn(false)} />}
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity: 0, y: 8, x: "-50%" }} animate={{ opacity: 1, y: 0, x: "-50%" }} exit={{ opacity: 0, y: 8, x: "-50%" }}

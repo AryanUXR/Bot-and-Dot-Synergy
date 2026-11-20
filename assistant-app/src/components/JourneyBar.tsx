@@ -12,7 +12,7 @@ export default function JourneyBar({ journey }: { journey?: Journey }) {
   const tip = open.length ? `Next: ${open.map((c) => c.label.toLowerCase()).join("; then ")}.` : "This stage is done.";
   return (
     <div className="group relative" tabIndex={0} aria-label={`Stage ${current + 1} of ${STAGES.length}: ${stage.label}. ${tip}`}>
-      <ol className="hidden items-center gap-1 text-[12.5px] md:flex" aria-hidden="true">
+      <ol className="hidden items-center gap-1 whitespace-nowrap text-[12.5px] @2xl:flex" aria-hidden="true">
         {STAGES.map((s, i) => (
           <li key={s.id} className="flex items-center gap-1">
             {i > 0 && <span className="text-faint">›</span>}
@@ -24,7 +24,7 @@ export default function JourneyBar({ journey }: { journey?: Journey }) {
           </li>
         ))}
       </ol>
-      <span className="flex items-center gap-1.5 rounded-[4px] bg-brand-soft px-1.5 py-0.5 text-[12.5px] text-ink md:hidden" aria-hidden="true">
+      <span className="flex items-center gap-1.5 whitespace-nowrap rounded-[4px] bg-brand-soft px-1.5 py-0.5 text-[12.5px] text-ink @2xl:hidden" aria-hidden="true">
         <span className="h-1.5 w-1.5 rounded-full bg-brand-2" /> {current + 1}/{STAGES.length} {stage.label}
       </span>
       <div role="tooltip" className="pointer-events-none absolute right-0 top-full z-50 mt-1.5 hidden w-[280px] rounded-[6px] bg-[#1b232c] p-3 text-[13px] leading-relaxed text-ink-2 shadow-pop group-hover:block group-focus:block">

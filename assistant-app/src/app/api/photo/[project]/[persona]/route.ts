@@ -26,7 +26,7 @@ export async function GET(_: Request, { params }: Ctx) {
 export async function POST(_: Request, { params }: Ctx) {
   const { project, persona } = await params;
   const s = await session();
-  if (!s.ok) return Response.json({ error: "Enter the access code first." }, { status: 401 });
+  if (!s.ok) return Response.json({ error: "Reload the page and try again." }, { status: 401 });
   const p = await getProject(project);
   if (!p || p.workspace !== s.workspace) return Response.json({ error: "Not found." }, { status: 404 });
   const per = p.assets.personas?.find((x) => x.id === persona);

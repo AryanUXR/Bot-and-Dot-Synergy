@@ -5,7 +5,7 @@ type Ctx = { params: Promise<{ id: string }> };
 
 async function own(id: string) {
   const s = await session();
-  if (!s.ok || !s.workspace) return { error: Response.json({ error: "Enter the access code first." }, { status: 401 }) };
+  if (!s.ok || !s.workspace) return { error: Response.json({ error: "Reload the page and try again." }, { status: 401 }) };
   const p = await getProject(id);
   if (!p || p.workspace !== s.workspace) return { error: Response.json({ error: "Not found." }, { status: 404 }) };
   return { p, ws: s.workspace };

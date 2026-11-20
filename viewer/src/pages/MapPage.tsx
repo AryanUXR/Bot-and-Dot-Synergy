@@ -36,9 +36,9 @@ const iconSvg = (name: string, colour: string, size = 20) =>
 function selfMarkerHTML(): HTMLElement {
   const el = document.createElement("div");
   el.innerHTML = `
-    <div style="position:relative;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+    <div style="position:relative;width:var(--bd-pin,42px);height:var(--bd-pin,42px);display:flex;align-items:center;justify-content:center;cursor:pointer;">
       <div style="position:absolute;inset:-6px;border-radius:50%;background:${CHARCOAL_RING};animation:pulse-ring 2s cubic-bezier(0.4,0,0.6,1) infinite;"></div>
-      <div style="width:42px;height:42px;border-radius:50%;background:#ffffff;border:3px solid ${CHARCOAL};box-shadow:0 2px 10px ${CHARCOAL_SHADOW};display:flex;align-items:center;justify-content:center;">
+      <div style="width:100%;height:100%;border-radius:50%;background:#ffffff;border:3px solid ${CHARCOAL};box-shadow:0 2px 10px ${CHARCOAL_SHADOW};display:flex;align-items:center;justify-content:center;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CHARCOAL}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
       </div>
     </div>`;
@@ -64,14 +64,24 @@ function spreadDots(dots: MapDot[]): (MapDot & { _lat: number; _lng: number })[]
   return out;
 }
 
-const shortLabel = (s: string) => (s.length <= 11 ? s : s.split(/[\s,&]+/)[0]);
+function shortLabels(sectors: { label: string; short_label?: string }[]): Record<string, string> {
+  const out: Record<string, string> = {};
+  const first = (l: string, n: number) => l.split(/[\s,&]+/).filter(Boolean).slice(0, n).join(" ");
+  for (const s of sectors) {
+    if (s.short_label) { out[s.label] = s.short_label; continue; }
+    let n = 1, cand = first(s.label, n);
+    while (sectors.some((o) => o.label !== s.label && first(o.label, n).toLowerCase() === cand.toLowerCase()) && n < 4) cand = first(s.label, ++n);
+    out[s.label] = cand;
+  }
+  return out;
+}
 
 function markerHTML(dot: MapDot): HTMLElement {
   const el = document.createElement("div");
   const seeker = dot.type === "seeker";
   el.innerHTML = `
-    <div style="cursor:pointer;width:42px;height:42px;border-radius:50%;background:${seeker ? "#ffffff" : PIN_BLUE};display:flex;align-items:center;justify-content:center;border:${seeker ? `2.5px solid ${PIN_BLUE}` : "2.5px solid #ffffff"};box-shadow:0 2px 8px rgba(0,0,0,0.22);">
-      ${iconSvg(dot.icon, seeker ? PIN_BLUE : "#ffffff")}
+    <div style="cursor:pointer;width:var(--bd-pin,42px);height:var(--bd-pin,42px);border-radius:50%;background:${seeker ? "#ffffff" : PIN_BLUE};display:flex;align-items:center;justify-content:center;border:${seeker ? `2.5px solid ${PIN_BLUE}` : "2.5px solid #ffffff"};box-shadow:0 2px 8px rgba(0,0,0,0.22);">
+      ${iconSvg(dot.icon, seeker ? PIN_BLUE : "#ffffff").replace('width="20" height="20"', 'width="48%" height="48%"')}
     </div>`;
   const node = el.firstElementChild as HTMLElement;
   const label = `${dot.name}, ${seeker ? "looking for help" : "offers help"}, ${dot.sector}, ${dot.area}`;
@@ -98,7 +108,8 @@ function MapView({ p, botHref }: { p: Prototype; botHref: string }) {
   const mapInstance = useRef<any>(null);
   const markersRef = useRef<any[]>([]);
   const dots = useMemo(() => toDots(p), [p]);
-  const sectors = useMemo(() => (p.schema?.sectors ?? []).map((s) => ({ label: s.label, icon: s.icon })), [p]);
+  const sectors = useMemo(() => (p.schema?.sectors ?? []).map((s) => ({ label: s.label, icon: s.icon, short_label: (s as { short_label?: string }).short_label })), [p]);
+  const shorts = useMemo(() => shortLabels(sectors), [sectors]);
   const self = useMemo(() => selfLocation(p), [p]);
   const seeker = p.personas.find((x) => x.side === "seeker") ?? p.personas[0];
   const [selected, setSelected] = useState<MapDot | null>(null);
@@ -117,6 +128,12 @@ function MapView({ p, botHref }: { p: Prototype; botHref: string }) {
       center: p.map!.center, zoom: p.map!.zoom, minZoom: 9, maxZoom: 18,
       disableDefaultUI: true, zoomControl: true, styles: CLEAN_MAP_STYLE, gestureHandling: "greedy", mapId: "DEMO_MAP_ID",
     });
+    const sizePins = () => {
+      const z = mapInstance.current?.getZoom() ?? 12;
+      mapRef.current?.style.setProperty("--bd-pin", z >= 13 ? "42px" : z === 12 ? "34px" : z === 11 ? "28px" : "24px");
+    };
+    mapInstance.current.addListener("zoom_changed", sizePins);
+    sizePins();
   }, [ready, p]);
 
   useEffect(() => {
@@ -191,7 +208,7 @@ function MapView({ p, botHref }: { p: Prototype; botHref: string }) {
                     className="flex flex-col items-center gap-1 rounded-lg p-1.5 transition-colors border"
                     style={{ background: on ? PIN_BLUE : "#fff", color: on ? "#fff" : PIN_BLUE, borderColor: PIN_BLUE }}>
                     <Icon size={16} aria-hidden="true" />
-                    <span className="text-[9px] leading-tight text-center font-semibold">{shortLabel(s.label)}</span>
+                    <span className="text-[9px] leading-tight text-center font-semibold">{shorts[s.label]}</span>
                   </button>
                 );
               })}
@@ -222,7 +239,7 @@ function MapView({ p, botHref }: { p: Prototype; botHref: string }) {
                   <button key={s.label} onClick={() => toggle(s.label)} aria-pressed={on} aria-label={s.label}
                     className="text-[10px] font-semibold px-2.5 py-1 rounded-full border whitespace-nowrap"
                     style={{ background: on ? CHARCOAL : "#fff", color: on ? "#fff" : "#334155", borderColor: on ? CHARCOAL : "#e2e8f0" }}>
-                    {shortLabel(s.label)}
+                    {shorts[s.label]}
                   </button>
                 );
               })}
@@ -260,8 +277,8 @@ function MapView({ p, botHref }: { p: Prototype; botHref: string }) {
 
       {selected && <DotCard dot={selected} onClose={() => setSelected(null)} />}
       {selfOpen && seeker && (
-        <SelfCard onClose={() => setSelfOpen(false)} name={seeker.name} area={`${p.map!.you_area}, ${p.brief.place.split(",")[0]}`}
-          who={seeker.occupation} lookingFor={seeker.traits.length ? [seeker.need] : [seeker.need]} about={seeker.story} />
+        <SelfCard onClose={() => setSelfOpen(false)} name={seeker.name} area={`${seeker.occupation} · ${p.map!.you_area}`}
+          need={seeker.need} about={seeker.story} />
       )}
     </div>
   );
@@ -275,80 +292,81 @@ function useEscapeClose(onClose: () => void) {
   }, [onClose]);
 }
 
+// The dot card, in words a first-time visitor understands: who this is, what they offer or need,
+// when, and that it's made up for the demo. Layout follows the library DotCard.
 function DotCard({ dot, onClose }: { dot: MapDot; onClose: () => void }) {
   useEscapeClose(onClose);
-  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${dot.lat},${dot.lng}`)}`;
   const seeker = dot.type === "seeker";
+  const first = dot.name.split(" ")[0];
+  const who = dot.org_type && !/^(request|provider|person)$/i.test(dot.org_type) ? dot.org_type : "";
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${dot.lat},${dot.lng}`)}`;
   return (
-    <div className="fixed inset-0 z-[2000] bg-black/40 flex items-end sm:items-center justify-center p-0 sm:p-6" onClick={onClose} role="dialog" aria-modal="true" aria-label={`${dot.name}, ${dot.sector}`}>
+    <div className="fixed inset-0 z-[2000] bg-black/40 flex items-end sm:items-center justify-center p-0 sm:p-6" onClick={onClose} role="dialog" aria-modal="true" aria-label={`${dot.name}, ${seeker ? "looking for help" : "offers help"}`}>
       <div onClick={(e) => e.stopPropagation()} className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[88dvh] overflow-y-auto">
         <div className="p-5 pb-4 relative rounded-t-3xl sm:rounded-t-2xl" style={{ background: `linear-gradient(135deg, ${PIN_BLUE}, ${CHARCOAL})` }}>
           <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 p-1 rounded-full bg-white/20 hover:bg-white/30"><X size={16} className="text-white" /></button>
           <div className="pr-8">
-            <span className="text-[10px] font-bold uppercase tracking-wider bg-white/25 text-white px-2 py-0.5 rounded-full">{seeker ? `Request · ${dot.offers[0] ?? dot.org_type}` : dot.org_type}</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider bg-white/25 text-white px-2 py-0.5 rounded-full">{seeker ? "Looking for help" : "Offers help"}</span>
             <h2 className="text-white font-bold text-lg leading-tight mt-2">{dot.name}</h2>
-            <p className="text-white/85 text-xs flex items-center gap-1 mt-1"><MapPin size={11} aria-hidden="true" /> {dot.area}{dot.hours ? ` · ${dot.hours}` : ""}</p>
+            <p className="text-white/85 text-xs flex items-center gap-1 mt-1"><MapPin size={11} aria-hidden="true" /> {who ? `${who} · ${dot.area}` : dot.area}</p>
           </div>
         </div>
         <div className="p-5 space-y-4">
-          <Row label="Sector" value={dot.sector} />
+          <p className="text-[15px] leading-relaxed text-slate-800">{dot.description}</p>
           {dot.offers.length > 0 && (
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">{seeker ? "What they need" : "What they offer"}</p>
+              <p className="text-[11px] font-semibold text-slate-600 mb-1.5">{seeker ? `What ${first} is looking for` : "What they offer"}</p>
               <div className="flex flex-wrap gap-1.5">
-                {dot.offers.map((o) => <span key={o} className="text-[11px] font-semibold px-2.5 py-1 rounded-full" style={{ background: `${PIN_BLUE}1A`, color: "#1F2937" }}>{o}</span>)}
+                {dot.offers.map((o) => <span key={o} className="text-[12px] font-medium px-2.5 py-1 rounded-full" style={{ background: `${PIN_BLUE}1A`, color: "#1F2937" }}>{o}</span>)}
               </div>
             </div>
           )}
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">About</p>
-            <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg">{dot.description}</p>
-            <p className="text-[11px] text-slate-500 mt-1.5">{seeker ? "Sample request for this prototype." : "Sample listing for this prototype."}</p>
+          <div className="grid grid-cols-2 gap-3">
+            <Row label="Type of help" value={dot.sector} />
+            {dot.hours && <Row label={seeker ? "When" : "Available"} value={dot.hours} />}
           </div>
-          <div className={`pt-1 ${seeker ? "" : "grid grid-cols-2 gap-2"}`}>
-            {!seeker && (
-              <span aria-disabled="true" className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold text-white opacity-40 cursor-not-allowed" style={{ background: CHARCOAL }}>
+          {!seeker && (
+            <div className="pt-1 grid grid-cols-2 gap-2">
+              <span aria-disabled="true" title="Calling is switched off in this demo" className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold text-white opacity-40 cursor-not-allowed" style={{ background: CHARCOAL }}>
                 <Phone size={14} aria-hidden="true" /> Call
               </span>
-            )}
-            <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold border" style={{ borderColor: CHARCOAL, color: CHARCOAL }}>
-              <Navigation size={14} aria-hidden="true" /> Directions
-            </a>
-          </div>
+              <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm font-semibold border" style={{ borderColor: CHARCOAL, color: CHARCOAL }}>
+                <Navigation size={14} aria-hidden="true" /> Directions
+              </a>
+            </div>
+          )}
+          <p className="text-[12px] leading-snug text-slate-500">
+            {seeker
+              ? `${first} is made up for this demo. In a real network, people nearby who can help would see this request and respond.`
+              : "This listing is made up for this demo. Calling is switched off."}
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-function SelfCard({ onClose, name, area, who, lookingFor, about }: { onClose: () => void; name: string; area: string; who: string; lookingFor: string[]; about: string }) {
+function SelfCard({ onClose, name, area, need, about }: { onClose: () => void; name: string; area: string; need: string; about: string }) {
   useEscapeClose(onClose);
+  const first = name.split(" ")[0];
   return (
-    <div className="fixed inset-0 z-[2000] bg-black/40 flex items-end sm:items-center justify-center p-0 sm:p-6" onClick={onClose} role="dialog" aria-modal="true" aria-label={name}>
+    <div className="fixed inset-0 z-[2000] bg-black/40 flex items-end sm:items-center justify-center p-0 sm:p-6" onClick={onClose} role="dialog" aria-modal="true" aria-label={`You are ${name}`}>
       <div onClick={(e) => e.stopPropagation()} className="w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[88dvh] overflow-y-auto">
         <div className="p-5 pb-4 relative rounded-t-3xl sm:rounded-t-2xl" style={{ background: CHARCOAL }}>
           <button onClick={onClose} aria-label="Close" className="absolute top-4 right-4 p-1 rounded-full bg-white/20 hover:bg-white/30"><X size={16} className="text-white" /></button>
           <div className="pr-8">
-            <span className="text-[10px] font-bold uppercase tracking-wider bg-white/25 text-white px-2 py-0.5 rounded-full">You</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider bg-white/25 text-white px-2 py-0.5 rounded-full">You are here</span>
             <h2 className="text-white font-bold text-lg leading-tight mt-2">{name}</h2>
             <p className="text-white/85 text-xs flex items-center gap-1 mt-1"><MapPin size={11} aria-hidden="true" /> {area}</p>
           </div>
         </div>
         <div className="p-5 space-y-4">
-          <div className="grid grid-cols-2 gap-3">
-            <Row label="Who" value={who} />
-            <Row label="Sector" value="Looking for help" />
-          </div>
+          <p className="text-[15px] leading-relaxed text-slate-800">{about}</p>
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Looking for</p>
-            <div className="flex flex-wrap gap-1.5">
-              {lookingFor.map((o) => <span key={o} className="text-[11px] font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(31,41,55,0.08)", color: CHARCOAL }}>{o}</span>)}
-            </div>
+            <p className="text-[11px] font-semibold text-slate-600 mb-1.5">What {first} is looking for</p>
+            <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg">{need}</p>
           </div>
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">About</p>
-            <p className="text-sm text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg">{about}</p>
-          </div>
+          <p className="text-[12px] leading-snug text-slate-500">The map shows what is near {first}, one of the made-up people in this demo. Tap a pin to see who offers or needs help.</p>
         </div>
       </div>
     </div>
@@ -357,7 +375,7 @@ function SelfCard({ onClose, name, area, who, lookingFor, about }: { onClose: ()
 
 const Row = ({ label, value }: { label: string; value: string }) => (
   <div>
-    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">{label}</p>
+    <p className="text-[11px] font-semibold text-slate-600 mb-0.5">{label}</p>
     <p className="text-sm font-semibold text-slate-800">{value}</p>
   </div>
 );

@@ -178,3 +178,25 @@ export async function getDailyUsage(day: string) {
   const raw = await store().get(`usage:${day}`);
   return raw ? JSON.parse(raw) : null;
 }
+
+// Plain key access for accounts and the whitelist (lib/accounts.ts).
+export async function kvGet(key: string) { return store().get(key); }
+export async function kvSet(key: string, value: string) { await store().set(key, value); }
+
+// When a guest signs in, their chats move into their account.
+export async function moveProjects(fromWs: string, toWs: string): Promise<number> {
+  if (!fromWs || fromWs === toWs) return 0;
+  const ids = await listIds(fromWs);
+  if (!ids.length) return 0;
+  const target = await listIds(toWs);
+  for (const id of ids) {
+    const p = await getProject(id);
+    if (!p || p.workspace !== fromWs) continue;
+    p.workspace = toWs;
+    await store().set(pKey(id), JSON.stringify(p));
+    if (!target.includes(id)) target.unshift(id);
+  }
+  await store().set(wKey(toWs), JSON.stringify(target));
+  await store().set(wKey(fromWs), JSON.stringify([]));
+  return ids.length;
+}

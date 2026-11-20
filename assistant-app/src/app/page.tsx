@@ -1,8 +1,6 @@
-import { session } from "@/lib/session";
-import AccessGate from "@/components/AccessGate";
 import Workspace from "@/components/Workspace";
 
-export default async function Home() {
-  const s = await session();
-  return s.ok ? <Workspace initialId={null} /> : <AccessGate />;
+// Open to anyone: middleware.ts gives each browser a guest workspace.
+export default function Home() {
+  return <Workspace initialId={null} />;
 }

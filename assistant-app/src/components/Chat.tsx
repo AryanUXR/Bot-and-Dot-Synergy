@@ -141,8 +141,49 @@ const Markdown = memo(function Markdown({ text }: { text: string }) {
   );
 });
 
+// Reveals streamed text smoothly, word by word, the way Claude's apps do, instead of in jumps.
+// Speeds up when it falls behind so it never lags the stream by much; shows everything at once
+// for saved messages and for people who prefer reduced motion.
+function useSmoothText(text: string, animate: boolean) {
+  const [shown, setShown] = useState(animate ? 0 : text.length);
+  const target = useRef(text);
+  target.current = text;
+  useEffect(() => {
+    if (!animate || (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) { setShown(text.length); return; }
+    let raf = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const dt = Math.min(64, now - last);
+      last = now;
+      setShown((cur) => {
+        const left = target.current.length - cur;
+        if (left <= 0) return cur;
+        // A steady, readable pace (like Claude's apps): about 90 characters a second, rising to at most
+        // 320 when a long burst arrives at once, so a 1,200-character reply plays out in about 4 seconds.
+        const perSecond = Math.min(320, Math.max(90, left * 1.2));
+        return Math.min(target.current.length, cur + Math.max(1, Math.round((perSecond * dt) / 1000)));
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [animate, text.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (shown >= text.length) return { text, done: true };
+  // Stop at a word boundary so half-words don't flicker.
+  const cut = text.lastIndexOf(" ", shown);
+  return { text: text.slice(0, cut > 0 ? cut : shown), done: false };
+}
+
+function SmoothMarkdown({ text, animate, caret }: { text: string; animate: boolean; caret: boolean }) {
+  const s = useSmoothText(text, animate);
+  return <div className={clsx("prose-chat my-1.5", (caret || !s.done) && "caret")}><Markdown text={s.text} /></div>;
+}
+
 function AssistantMessage({ m, live, onOpen }: { m: UiMessage; live: boolean; onOpen: (k: AssetKind) => void }) {
   const [copied, setCopied] = useState(false);
+  // Animate only messages that were streaming while on screen, not ones loaded from history.
+  const animated = useRef(live);
+  if (live) animated.current = true;
   const text = m.parts.filter((p) => p.type === "text").map((p) => (p as { text: string }).text).join("\n\n");
   const lastIdx = m.parts.length - 1;
   return (
@@ -153,7 +194,7 @@ function AssistantMessage({ m, live, onOpen }: { m: UiMessage; live: boolean; on
       {m.parts.map((p, i) => {
         if (p.type === "thinking") return <Thinking key={i} part={p} live={live && i === lastIdx} />;
         if (p.type === "tool") return <ToolRow key={p.id} part={p} onOpen={onOpen} />;
-        return <div key={i} className={clsx("prose-chat my-1.5", live && i === lastIdx && "caret")}><Markdown text={p.text} /></div>;
+        return <SmoothMarkdown key={i} text={p.text} animate={animated.current} caret={live && i === lastIdx} />;
       })}
       {!live && text && (
         <div className="mt-1 flex h-6 items-center opacity-0 transition-opacity group-hover:opacity-100">
@@ -308,7 +349,7 @@ export function Composer({ onSend, onStop, streaming, autoFocus, placeholder, he
           </div>
         </div>
       </div>
-      {!hero && <p className="mt-2 text-center text-[12px] text-faint">The assistant can make mistakes. People and organisations it creates are fictional.</p>}
+      {!hero && <p className="mt-2 text-center text-[12px] text-faint">The assistant can make mistakes. People and organisations it creates are fictional.{process.env.NEXT_PUBLIC_APP_ENV === "uat" && " This is the test site: the EkStep team reads chats here to improve it."}</p>}
     </div>
   );
 }

@@ -33,7 +33,6 @@ const envText = fs.readFileSync(path.join(repo, "raya/.env"), "utf8");
 const apiKey = envText.match(/^ANTHROPIC_API_KEY=(.*)$/m)?.[1]?.trim();
 const localEnv = fs.existsSync(path.join(app, ".env.local")) ? fs.readFileSync(path.join(app, ".env.local"), "utf8") : "";
 const accessCode = process.env.ACCESS_CODE || (envText.match(/^ACCESS_CODE=(.*)$/m) ?? localEnv.match(/^ACCESS_CODE=(.*)$/m))?.[1]?.trim().replace(/^["']|["']$/g, "");
-if (!accessCode) throw new Error("Set ACCESS_CODE in raya/.env to run simulations.");
 const client = new Anthropic({ apiKey });
 
 const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
@@ -42,8 +41,9 @@ fs.mkdirSync(outDir, { recursive: true });
 
 // ---------- talking to the app ----------
 async function signIn() {
-  const r = await fetch(`${BASE}/api/access`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: accessCode, name: "Sim" }) });
-  if (!r.ok) throw new Error(`sign-in failed ${r.status}`);
+  // Open access: the first visit gives a guest workspace cookie (middleware.ts).
+  const r = await fetch(`${BASE}/`, { redirect: "manual" });
+  if (!r.ok) throw new Error(`could not open the app: ${r.status}`);
   return r.headers.getSetCookie().map((c) => c.split(";")[0]).join("; ");
 }
 

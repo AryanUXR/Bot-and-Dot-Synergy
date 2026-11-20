@@ -63,6 +63,7 @@ const SchemaInput = z.object({
   sectors: z.array(z.object({
     id: z.string().regex(/^[a-z0-9-]+$/),
     label: z.string().describe("Filter label on the map, e.g. 'Vets and clinics'"),
+    short_label: z.string().max(12).describe("One-word tile label for the 3-column filter grid, different for every sector, e.g. 'Vets'"),
     icon: z.enum(ICONS),
     description: z.string(),
   })).min(3).max(7),
@@ -83,14 +84,14 @@ const MapInput = z.object({
   you_area: z.string().describe("The area where the 'You' marker goes, usually the first seeker persona's area"),
   areas: z.array(z.object({ name: z.string(), lat: z.number(), lng: z.number() })).min(4).max(12),
   dots: z.array(z.object({
-    name: z.string().describe("Fictional, e.g. 'Paws and Care Clinic' or 'Kavya S.' for a person"),
+    name: z.string().describe("Fictional, e.g. 'Paws and Care Clinic', or a first name and initial for a person, e.g. 'Prakash M.'"),
     kind: z.enum(["provider", "request"]),
     sector: z.string().describe("A sector id from set_schema"),
     area: z.string().describe("One of the areas above, same spelling"),
-    detail: z.string().describe("What they offer or need, one short sentence"),
-    org_type: z.string().max(30).describe("Short tag for the dot card, e.g. 'Clinic', 'Self-help group', 'Wholesaler', 'Person'"),
-    offers: z.array(z.string().max(40)).min(1).max(4).describe("Chips: what a provider offers, or what a request needs, two to four words each"),
-    hours: z.string().optional().describe("Opening hours or availability, if it matters"),
+    detail: z.string().describe("One or two plain sentences a stranger understands on their own: who this is and what they offer or need, with one concrete detail. E.g. 'A small soybean farmer who needs a harvester for 4 acres before the rains.' Never a fragment like 'Needs harvester.'"),
+    org_type: z.string().max(30).describe("Who they are, in two or three words shown under the name: for providers the kind of business or group ('Clinic', 'Work group', 'Tractor owner'); for requests the kind of person ('Small farmer', 'Working mother')"),
+    offers: z.array(z.string().max(40)).min(1).max(4).describe("Chips, each a short phrase that makes sense on its own: what a provider offers ('Soybean harvesting', 'Tractor with driver') or what a request needs ('Harvester for 4 acres'). Never a bare noun like 'Soybean'."),
+    hours: z.string().optional().describe("When, in plain words that read on their own: for providers when they are available ('Open 6 a.m. to 1 p.m.', 'From mid-October'); for requests by when ('Needed within 10 days'). Omit if it doesn't matter."),
   })).min(12).max(40),
 });
 

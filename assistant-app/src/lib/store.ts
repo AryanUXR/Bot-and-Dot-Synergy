@@ -106,6 +106,22 @@ export async function deleteProject(ws: string, id: string): Promise<void> {
 export async function savePhoto(key: string, base64: string, mime: string) {
   await store().set(`photo:${key}`, JSON.stringify({ base64, mime }));
 }
+// Which photo belongs to a persona, kept apart from the project so a photo
+// arriving mid-chat never overwrites the project the chat is writing.
+export async function setPhotoRef(project: string, persona: string, key: string) {
+  await store().set(`photoref:${project}:${persona}`, key);
+}
+export async function getPhotoRef(project: string, persona: string) {
+  return store().get(`photoref:${project}:${persona}`);
+}
+export async function photoRefs(p: Project): Promise<Record<string, string>> {
+  const out: Record<string, string> = { ...(p.assets.photos ?? {}) };
+  for (const per of p.assets.personas ?? []) {
+    const k = await getPhotoRef(p.id, per.id);
+    if (k) out[per.id] = k;
+  }
+  return out;
+}
 export async function getPhoto(key: string): Promise<{ base64: string; mime: string } | null> {
   const raw = await store().get(`photo:${key}`);
   return raw ? JSON.parse(raw) : null;

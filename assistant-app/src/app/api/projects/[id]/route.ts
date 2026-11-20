@@ -1,5 +1,5 @@
 import { session } from "@/lib/session";
-import { deleteProject, getProject, saveProject } from "@/lib/store";
+import { deleteProject, getProject, photoRefs, saveProject } from "@/lib/store";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -14,7 +14,8 @@ async function own(id: string) {
 export async function GET(_: Request, { params }: Ctx) {
   const r = await own((await params).id);
   if (r.error) return r.error;
-  const { transcript: _t, ...rest } = r.p;
+  const { transcript: _t, ...rest } = r.p; // eslint-disable-line @typescript-eslint/no-unused-vars
+  rest.assets = { ...rest.assets, photos: await photoRefs(r.p) };
   return Response.json({ project: rest });
 }
 

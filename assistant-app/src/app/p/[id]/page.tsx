@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getProject } from "@/lib/store";
+import { getProject, photoRefs } from "@/lib/store";
 import SharePage from "@/components/SharePage";
 
 type Props = { params: Promise<{ id: string }> };
@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Share({ params }: Props) {
   const p = await getProject((await params).id);
   if (!p?.assets.brief) notFound();
-  const { brief, personas, schema, map, bot, photos } = p.assets;
+  const { brief, personas, schema, map, bot } = p.assets;
+  const photos = await photoRefs(p);
   return <SharePage projectId={p.id} assets={{ brief, personas, schema, map, photos, bot: bot ? { ...bot, agent_id: "" } : undefined }} />;
 }

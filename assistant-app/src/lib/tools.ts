@@ -37,6 +37,8 @@ const BriefInput = z.object({
   why_it_matters: z.string().describe("Why nearness and voice matter here, one or two sentences"),
   bot_name: z.string().describe("The voice bot's name, e.g. 'Pet Saathi'"),
   tagline: z.string().describe("One-line promise for the bot page, under 70 characters"),
+  heading: z.string().max(70).describe("Bot page heading: short and concrete, naming who calls, e.g. 'Two workers. One day-care. Three calls.'"),
+  subheading: z.string().max(220).describe("Bot page subheading: one or two sentences on how it works, naming the personas"),
 });
 
 const PersonasInput = z.object({
@@ -50,6 +52,8 @@ const PersonasInput = z.object({
     story: z.string().describe("Two or three sentences about their situation today"),
     need: z.string().describe("What they want from the bot, in their terms"),
     quote: z.string().describe("A short line in their own voice"),
+    traits: z.array(z.string().max(60)).min(3).max(3).describe("Three short facts shown on the persona card, e.g. '34, runs a tea stall', 'Lives in Bhawarkua', 'Needs cold storage nearby'"),
+    questions: z.array(z.string()).min(2).max(3).describe("Two or three questions this persona might ask the bot, written in the bot's language (shown as 'Questions they might ask')"),
     gender: z.enum(["female", "male"]),
     photo_prompt: z.string().describe("Photorealistic portrait prompt: age, look, clothing, setting from their life, natural light, face clearly visible, no text or logos"),
   })).min(2).max(4),
@@ -84,6 +88,8 @@ const MapInput = z.object({
     sector: z.string().describe("A sector id from set_schema"),
     area: z.string().describe("One of the areas above, same spelling"),
     detail: z.string().describe("What they offer or need, one short sentence"),
+    org_type: z.string().max(30).describe("Short tag for the dot card, e.g. 'Clinic', 'Self-help group', 'Wholesaler', 'Person'"),
+    offers: z.array(z.string().max(40)).min(1).max(4).describe("Chips: what a provider offers, or what a request needs, two to four words each"),
     hours: z.string().optional().describe("Opening hours or availability, if it matters"),
   })).min(12).max(40),
 });
@@ -184,7 +190,7 @@ export async function runTool(name: string, rawInput: unknown, project: Project,
       }
       case "set_personas": {
         const { personas } = input as z.infer<typeof PersonasInput>;
-        const dirty = checkClean(personas.flatMap((p) => [p.story, p.need, p.quote]));
+        const dirty = checkClean(personas.flatMap((p) => [p.story, p.need, p.quote, ...p.traits, ...p.questions]));
         if (dirty) return { ok: false, result: dirty, summary: "Needs another try" };
         a.personas = personas;
         a.photos = Object.fromEntries(Object.entries(a.photos ?? {}).filter(([id]) => personas.some((p) => p.id === id)));
@@ -202,7 +208,7 @@ export async function runTool(name: string, rawInput: unknown, project: Project,
         if (!a.schema) return { ok: false, result: "Call set_schema first.", summary: "Needs the schema first" };
         const sectorIds = new Set(a.schema.sectors.map((s) => s.id));
         const problems: string[] = [];
-        const dirty = checkClean(m.dots.flatMap((d) => [d.name, d.detail]));
+        const dirty = checkClean(m.dots.flatMap((d) => [d.name, d.detail, d.org_type, ...d.offers]));
         if (dirty) problems.push(dirty);
         const dots: Dot[] = m.dots.map((d, i) => {
           const area = findArea(m.areas, d.area);

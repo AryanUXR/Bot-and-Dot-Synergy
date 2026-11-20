@@ -36,7 +36,10 @@ export default function Canvas({ projectId, title, assets, focus, fresh, running
   useEffect(() => { onSeen(tab); }, [tab, fresh, onSeen]);
 
   const share = async () => {
-    await navigator.clipboard.writeText(`${window.location.origin}/p/${projectId}`);
+    // Public prototype pages live on the Lovable viewer (library layout); /uat/ reads the test instance.
+    const viewer = process.env.NEXT_PUBLIC_VIEWER_URL ?? "https://blue-dots-prototypes.lovable.app";
+    const path = process.env.NEXT_PUBLIC_APP_ENV === "uat" ? `/uat/p/${projectId}` : `/p/${projectId}`;
+    await navigator.clipboard.writeText(`${viewer}${path}`);
     onToast("Link copied. Anyone with it can call the bot and see the map.");
   };
   const busyHere = running?.asset === tab && !assets[tab];

@@ -22,6 +22,8 @@ export interface Brief {
   why_it_matters: string;
   bot_name: string;
   tagline: string;
+  heading?: string; // bot page heading (library standard); older builds lack it
+  subheading?: string;
 }
 
 export interface Persona {
@@ -36,6 +38,8 @@ export interface Persona {
   quote: string;
   gender: "female" | "male";
   photo_prompt: string;
+  traits?: string[]; // three short facts for the persona card
+  questions?: string[]; // sample questions, in the bot's language
 }
 
 export interface SchemaField { key: string; label: string; example: string; visible: "public" | "after_connect" }
@@ -56,6 +60,8 @@ export interface Dot {
   area: string;
   detail: string;
   hours?: string;
+  org_type?: string;
+  offers?: string[];
   lat: number;
   lng: number;
 }

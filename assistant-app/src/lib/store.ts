@@ -40,9 +40,34 @@ class RedisKV implements KV {
   async del(key: string) { await this.r.del(key); }
 }
 
+// Supabase: the assistant_kv table in the campaign-manager project, reached only through
+// secret-checked functions (row security blocks direct reads). KV_ENV keeps UAT and
+// production rows apart.
+class SupabaseKV implements KV {
+  constructor(private url: string, private key: string, private kvEnv: string, private secret: string) {}
+  private async rpc(fn: string, args: Record<string, string>) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const r = await fetch(`${this.url}/rest/v1/rpc/${fn}`, {
+        method: "POST",
+        headers: { apikey: this.key, "Content-Type": "application/json" },
+        body: JSON.stringify({ p_env: this.kvEnv, p_secret: this.secret, ...args }),
+        cache: "no-store",
+      });
+      if (r.ok) return r.status === 204 ? null : await r.json();
+      if (r.status >= 500 && attempt < 2) { await new Promise((s) => setTimeout(s, 300 * (attempt + 1))); continue; }
+      throw new Error(`store ${fn} ${r.status}`);
+    }
+  }
+  async get(key: string) { return ((await this.rpc("assistant_kv_get", { p_key: key })) as string | null) ?? null; }
+  async set(key: string, value: string) { await this.rpc("assistant_kv_set", { p_key: key, p_value: value }); }
+  async del(key: string) { await this.rpc("assistant_kv_del", { p_key: key }); }
+}
+
 let kv: KV | null = null;
 function store(): KV {
   if (kv) return kv;
+  const sbUrl = env("SUPABASE_URL"), sbKey = env("SUPABASE_PUBLISHABLE_KEY"), sbEnv = env("KV_ENV"), sbSecret = env("KV_SECRET");
+  if (sbUrl && sbKey && sbEnv && sbSecret) { kv = new SupabaseKV(sbUrl.replace(/\/$/, ""), sbKey, sbEnv, sbSecret); return kv; }
   const url = env("KV_REST_API_URL") ?? env("UPSTASH_REDIS_REST_URL");
   const token = env("KV_REST_API_TOKEN") ?? env("UPSTASH_REDIS_REST_TOKEN");
   kv = url && token ? new RedisKV(new Redis({ url, token, automaticDeserialization: false })) : new FileKV();
@@ -50,7 +75,8 @@ function store(): KV {
 }
 
 export function storageKind() {
-  return store() instanceof RedisKV ? "redis" : "files";
+  const s = store();
+  return s instanceof SupabaseKV ? "supabase" : s instanceof RedisKV ? "redis" : "files";
 }
 
 const pKey = (id: string) => `project:${id}`;
